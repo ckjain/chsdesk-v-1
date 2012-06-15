@@ -1,0 +1,71 @@
+    310.times do |n|
+      name  = Faker::Name.name
+      email = Faker::Internet.email 
+      zip = Faker::Address.zip_code
+      phone = Faker::PhoneNumber.phone_number
+      bio = Faker::Company.bs
+      password  = "please"
+      society_id = 1
+      User.create!(name:     name,
+                   email:    email,
+                   password: password,
+                   password_confirmation: password,
+                   society_id: society_id,
+                   zip: zip,
+                   phone_number: phone,
+                   bio: bio,
+                   confirmed_at: DateTime.now)
+    end
+    20.times do |n|
+      name  = Faker::Name.name
+      email = "sauser-#{n+1}@chsdesk.com"
+      password  = "please"
+      society_id = 1
+      User.create!(name:     name,
+                   email:    email,
+                   password: password,
+                   password_confirmation: password,
+                   society_id: society_id)
+    end
+   
+    210.times do |n|
+      name  = Faker::Name.name
+      email = Faker::Internet.email 
+      zip = Faker::Address.zip_code
+      phone = Faker::PhoneNumber.phone_number
+      bio = Faker::Company.bs
+      password  = "please"
+      society_id = 2
+      User.create!(name:     name,
+                   email:    email,
+                   password: password,
+                   password_confirmation: password,
+                   society_id: society_id,
+                   zip: zip,
+                   phone_number: phone,
+                   bio: bio,
+                   confirmed_at: DateTime.now)
+    end
+    57.times do |n|
+      name  = Faker::Name.name
+      email = "oiuser-#{n+1}@chsdesk.com"
+      password  = "please"
+      society_id = 2
+      User.create!(name:     name,
+                   email:    email,
+                   password: password,
+                   password_confirmation: password,
+                   society_id: society_id)
+    end
+    20.times do |n|
+      name  = Faker::Name.name
+      email = "btuser-#{n+1}@chsdesk.com"
+      password  = "please"
+      society_id = 3
+      User.create!(name:     name,
+                   email:    email,
+                   password: password,
+                   password_confirmation: password,
+                   society_id: society_id)
+    end
+ 

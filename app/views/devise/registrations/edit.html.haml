@@ -1,0 +1,48 @@
+.row-fluid
+  .span12
+    %ul.breadcrumb
+      %li
+        %a{:href => "http://localhost:3000"} Dashboard
+        %span.divider /
+      %li.active Edit Profile
+.row-fluid
+  .span12
+    .box.grad_colour_dark_blue
+      %h2.box_head.round_top
+        Edit #{resource_name.to_s.humanize}
+      %a.settings.box_button_3{:href => "#", :title => "config"}  
+      %a.toggle.box_button_2{:href => "#", :title => "toggle"}  
+      %a.destroy.box_button_1{:href => "#", :title => "close"}  
+      .toggle_container
+        .block.box_content.round_bottom.padding_20
+          %ul
+            %h3
+            = form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f|
+              = devise_error_messages!
+              %ul
+                %p
+                %p   
+                  = f.label :name
+                  = f.text_field :name
+                %p
+                  = f.label :email
+
+                  = f.email_field :email
+                %p
+                  = f.label :password
+                  %i (leave blank if you don't want to change it)
+                  %br/
+                  = f.password_field :password
+                %p
+                  = f.label :password_confirmation
+                  = f.password_field :password_confirmation
+                %p
+                  = f.label :current_password
+                  %i (we need your current password to confirm your changes)
+                  %br/
+                  = f.password_field :current_password
+                %p= f.submit "Update"
+              %h4 Cancel my account
+              %p
+                Unhappy? #{link_to "Cancel my account", registration_path(resource_name), :confirm => "Are you sure?", :method => :delete}.
+              = link_to "Back", :back

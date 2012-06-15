@@ -1,0 +1,23 @@
+<% if user_signed_in? %></li>
+    <div class="row-fluid">
+        <div class="span12">
+    		<div class="box grad_colour_dark_blue">
+                <h2 class="box_head round_top">Visitor Statistics</h2>
+                <a href="#" class="settings box_button_3" title="config">&nbsp;</a>
+                <a href="#" class="toggle box_button_2" title="toggle">&nbsp;</a>
+                <a href="#" class="destroy box_button_1" title="close">&nbsp;</a>
+                <div class="toggle_container">					
+                    <div class="block box_content round_bottom std_padding">
+                     	<div class="row-fluid">                 
+                            <div class="span12 box_padding_20">
+                                <h3>Visitor Statistics <small>use the overview box below the graph to select the time period...</small></h3>
+                                <div id="visits_per_day_placeholder" style="width:95%;height:300px;margin-top:20px;"></div>
+                            	<div id="visits_per_day_overview" style="margin-left:5%;margin-top:20px;width:85%;height:50px"></div>
+                            </div>                       
+                    	</div>
+                    </div>                                
+                </div>
+            </div>
+        </div><!--/span-->
+    </div><!--/row-->
+<% end %>

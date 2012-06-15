@@ -1,0 +1,39 @@
+%h1 Listing bill_headers
+
+%table
+  %tr
+    %th Bill date
+    %th From date
+    %th To date
+    %th Bill cycle
+    %th Grace period
+    %th Days to discount
+    %th Bill number start
+    %th Bill number end
+    %th Bill number format
+    %th Locked period
+    %th Society
+    %th
+    %th
+    %th
+
+  - @bill_headers.each do |bill_header|
+    %tr
+      %td= bill_header.bill_date
+      %td= bill_header.from_date
+      %td= bill_header.to_date
+      %td= bill_header.bill_cycle
+      %td= bill_header.grace_period
+      %td= bill_header.days_to_discount
+      %td= bill_header.bill_number_start
+      %td= bill_header.bill_number_end
+      %td= bill_header.bill_number_format
+      %td= bill_header.locked_period
+      %td= bill_header.society_id
+      %td= link_to 'Show', bill_header
+      %td= link_to 'Edit', edit_bill_header_path(bill_header)
+      %td= link_to 'Destroy', bill_header, :confirm => 'Are you sure?', :method => :delete
+
+%br
+
+= link_to 'New Bill header', new_bill_header_path

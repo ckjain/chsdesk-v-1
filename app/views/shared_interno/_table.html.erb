@@ -1,0 +1,51 @@
+<% if user_signed_in? %></li>
+	<div class="row-fluid">
+	    <div class="span12">
+			<div class="box grad_colour_dark_blue">
+	            <h2 class="box_head round_top">Site Calender</h2>
+	            <a href="#" class="settings box_button_3" title="config">&nbsp;</a>
+	        <a href="#" class="toggle box_button_2" title="toggle">&nbsp;</a>
+	        <a href="#" class="destroy box_button_1" title="close">&nbsp;</a>
+	            <div class="toggle_container">					
+	                <div class="block box_content round_bottom padding_20">                             
+	                   <table cellpadding="0" cellspacing="0" border="0" class="display datatable" id="datatable">
+	                      <thead>
+	                          <tr>
+	                              <th>Username</th>
+	                              <th>Date registered</th>
+	                              <th>Role</th>
+	                              <th>Status</th>
+	                              <th>Actions</th>
+	                          </tr>
+	                      </thead>   
+	                      <tbody>
+	                        	<td>TazmanianDevil</td>
+	                        	<td class="center">2011/03/01</td>
+	                            <td class="center">Member</td>
+	                            <td class="center">
+	                            	<span class="label label-warning">Pending</span>
+	                            </td>
+	                            <td class="center">
+	                            	<a class="btn btn-success" href="#">
+	                                    <i class="icon-zoom-in icon-white"></i>  
+	                                    View                                            
+	                                </a>
+	                            	<a class="btn btn-info" href="#">
+	                                    <i class="icon-edit icon-white"></i>  
+	                                    Edit                                            
+	                                </a>
+	                                <a class="btn btn-danger" href="#">
+	                                	<i class="icon-trash icon-white"></i> 
+	                                    Delete
+	                                </a>
+	                            </td>
+	                        </tr>
+	                      </tbody>
+	                      </table>                                   
+	             
+	                </div>                                
+	            </div>
+	        </div>
+	    </div><!--/span-->               
+	</div><!--/row-->
+<% end %>

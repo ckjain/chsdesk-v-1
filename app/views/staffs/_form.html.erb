@@ -1,0 +1,69 @@
+<div class="row-fluid">
+  <div class="span12">
+    <ul class="breadcrumb">
+    <li><a href="http://localhost:3000">Dashboard</a> <span class="divider">/</span></li>                                      
+    <li><a href="http://localhost:3000/meetings">Meetings</a> <span class="divider">/</span></li>                                      
+	<li class="active"><%= controller.action_name.capitalize %> </li>
+	<li class="pull-right"> 
+	</li>
+    </ul>
+  </div><!--/span-->
+</div>
+
+<div class="row-fluid">
+	<div class="span7">
+		<div class="box grad_colour_dark_blue" id="box_0">
+			<h2 class="box_head round_top"><%= @staff.staff_name %> </h2>
+			<div class="block box_content round_bottom padding_20">
+
+<%= form_for @staff do |f| %>
+				<% if @staff.errors.any? %>
+					<div class="error_messages">
+						<h2><%= pluralize(@staff.errors.count, "error") %> prohibited this staff from being saved:</h2>
+						<ul>
+						<% @staff.errors.full_messages.each do |msg| %>
+						<li><%= msg %></li>
+						<% end %>
+						</ul>
+					</div>
+				<% end %>
+				<div class="well form-inline">
+					<%= f.text_field :staff_name, :style=>"width:40%;", :placeholder => 'Name of staff' %>
+					<%= f.text_field :gender, :style=>"width:10%;", :placeholder => 'Gender' %>
+					<%= f.text_field :staff_age, :style=>"width:10%;", :placeholder => 'Age' %>
+				</div>
+				<div class="well form-inline">
+					<%= f.text_field :staff_category, :style=>"width:25%;", :placeholder => 'Designation' %> 
+					<%= f.number_field :staff_salary, :style=>"width:15%;", :placeholder => 'Salary' %> 
+					<%= f.text_field :joining_date, :style=>"width:25%;", :placeholder => 'Joining Date' %> 
+				</div>
+			 	<div class="well form-inline">
+					<%= f.text_field :staff_email, :style=>"width:40%;", :placeholder => 'Email' %> 
+					<%= f.text_field :staff_phone, :style=>"width:40%;", :placeholder => 'Mobile' %> 
+				</div>
+				<div class="well form-inline">
+					<%= f.text_field :staff_current_address, :style=>"width:45%;", :placeholder => 'Current Address' %> 
+					<%= f.text_field :staff_permamnent_address, :style=>"width:45%;", :placeholder => 'Permanent Address' %> 
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div class="span5">
+		<div class="box grad_colour_dark_blue" id="box_0">
+			<h2 class="box_head round_top"><%= controller.action_name.capitalize %> Photo</h2>
+			<div class="block box_content round_bottom padding_20">
+
+				<label class="control-label" for="focusedInput">Staff Photo</label>
+				  <%= f.file_field :avatar %>
+				<label class="control-label" for="focusedInput">Active</label>
+				<div class="controls"><%= f.check_box :active %></div>
+			 	<div class="form-actions">
+					<%= f.submit nil, :class => 'btn btn-primary' %>
+					<%= link_to 'Cancel', staffs_path, :class => 'btn' %>
+				</div>
+	<% end %></form>
+			</div>
+		</div>
+	</div>
+</div>

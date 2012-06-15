@@ -1,0 +1,26 @@
+%body
+  .container
+    .content
+      .row
+        .span12
+          #request-invite.modal{:style => "display: #{@user.errors.any? ? 'block' : 'none'};"}
+            = simple_form_for resource, :as => resource_name, :url => registration_path(resource_name) , :html => {:class => 'form-horizontal' } do |f|
+              .modal-header
+                %a.close{"data-dismiss" => "modal"} &#215;
+                %h3 Request Invitation
+              .modal-body
+                = f.error_notification
+                = f.input :email, :placeholder => 'user@example.com'
+                = f.input :name, :placeholder => 'Name'
+                = f.input :password, :placeholder => 'Password'
+                = f.input :zip, :placeholder => 'Your Pincode'
+                = f.input :phone_number, :placeholder => 'Contact number'
+                = f.label 'Society Name '.html_safe
+                \&nbsp;&nbsp;&nbsp;&nbsp; #{f.input_field :society_name, data: {autocomplete_source: Society.order(:name).map(&:name)}, :placeholder => 'Society Name'}
+              .modal-footer
+                = f.submit "Request Invitation", :class => "btn.btn-success", :id => 'invitation_button'
+                %a.btn{"data-dismiss" => "modal", :href => "#"} Close
+          #romance-copy{:style => "text-align: center; margin-top: 80px"}
+            %h2 Want in?
+          #call-to-action{:style => "text-align: center; margin-top: 80px"}
+            %a.btn.btn-primary.btn-large{"data-toggle" => "modal", :href => "#request-invite"} Request invite

@@ -1,0 +1,103 @@
+		<%= render 'shared/dhtmlx_stylesheet' %>
+    	<%= render 'shared/dhtmlx_javascript' %>
+ <div class="row-fluid">
+  <div class="span12">
+    <ul class="breadcrumb">
+    <li><a href="http://localhost:3000">Dashboard</a> <span class="divider">/</span></li>                                      
+	<li class="active">Unit </li>
+    	<%= render 'shared/buttons' %>
+    </ul>
+  </div><!--/span-->
+</div>
+
+  <div class="row-fluid">
+    <div class="span12">
+		    <div id="recinfoArea"></div>
+		    <div id="grid_unit" style="width:100%; height:510px; background-color:white;overflow:hidden"></div>
+		    <div id="pagingArea"></div>
+		<div id="grid_unit_sub" style="width:300px; height:310px; background-color:white;"></div>
+
+		<script type="text/javascript" charset="utf-8">
+	function add_r() {
+    var ind1 = "";
+    var ind2 = "New Unit";
+    var ind3 = '1';
+    var ind4 = "A";
+    var ind5 = "1";
+    var ind6 = "";
+    var ind7 = 0.00;
+    var ind8 = 0.00;
+    var ind9 = 0.00;
+    var ind10 = 0.00;
+    var ind11 = 0.00;
+    var ind12 = 0.00;
+    
+    grid.addRow(grid.uid(), [ind1, ind2, ind3, ind4, ind5, ind6, ind7, ind8, ind9, ind10, ind11, ind12], 0);
+}
+			subgrid = new dhtmlXGridObject('grid_unit_sub');
+			subgrid.setImagePath("imgs/");
+			subgrid.setHeader("TypeName,Tax Area,Maintenance area");
+			subgrid.setInitWidths("100,100,100");
+			subgrid.setColTypes("ro,ro,ro");
+			subgrid.setSkin("sbdark");
+			subgrid.init();
+			subgrid.load("unit_types/data.xml", function() {		});			
+
+			var grid = new dhtmlXGridObject("grid_unit");
+			grid.setImagePath("imgs/");
+			grid.setHeader("&nbsp;,Unit No, Bldg-No, Wing, Floor,Unit Type,ParkingCharges,Non-occupancyCharges, PropertyTax, Maintenance, SinkingFund, RepairFund,OtherCharges,Other Detail, ServiceTax, BillAmount, S Id");
+			grid.attachHeader("#,#text_filter,#text_filter,#text_filter,#text_filter,#select_filter,#text_filter");
+			grid.setColSorting("na,str,str,str,str,str,int,int,int,int,int,int,int,str,int,int,int");
+			grid.setInitWidths("40,55,40,40,40,120,60,60,70,70,60,60,60,100,60,80,50");
+			grid.setColAlign("right,right,center,center,center,center,right,right,right,right,right,right,right,right,right,right,center");
+			grid.setColTypes("cntr,edtxt,ed,ed,ed,grid,edn,edn,edn,edn,edn,edn,edn,ed,edn,edn,edn");
+			grid.enableMultiselect(true);
+			grid.enableValidation(true);
+			grid.setMathRound(2);
+			grid.enableMathEditing(true);
+			grid.setNumberFormat("0,000.00",6,".",","); //(US English)
+			grid.setNumberFormat("0,000.00",7,".",","); //(US English)
+			grid.setNumberFormat("0,000.00",8,".",","); //(US English)
+			grid.setNumberFormat("0,000.00",9,".",","); //(US English)
+			grid.setNumberFormat("0,000.00",10,".",","); //(US English)
+			grid.setNumberFormat("0,000.00",11,".",","); //(US English)
+			grid.setNumberFormat("0,000.00",12,".",","); //(US English)
+			grid.setNumberFormat("0,000.00",14,".",","); //(US English)
+			grid.setNumberFormat("0,000.00",15,".",","); //(US English)
+   			grid.attachFooter("A,B,C,D",["","color:red;","",""]);
+			grid.setColumnColor("#fffddd");
+			grid.setSkin("sbdark");
+			grid.enablePaging(true, 20, 10, "pagingArea", true, "recinfoArea");
+			grid.setPagingSkin("bricks");
+			grid.setSubGrid(subgrid, 5, 0);
+			grid.init();
+			grid.load("units/data.xml");
+			
+			function not_empty(value) {
+			    return value != "";
+			}
+			function greater_0(value) {
+			    return value > 0;
+			}
+    		dp = new dataProcessor("units/dbaction.xml/");
+			dp.setVerificator(6, greater_0);
+			dp.setVerificator(7, not_empty);
+			dp.init(grid);
+
+	//link dataprocessor to the grid;
+			function clear_filter(){
+				grid.filterBy(0,"");
+				grid._f_rowsBuffer = null;
+			}
+			function add(){
+				clear_filter();
+				grid.addRow(grid.uid(), 'unit');
+			}
+			function remove(){
+				clear_filter();
+				grid.deleteSelectedRows();
+			}
+			
+		</script>
+    </div>
+  </div>

@@ -1,0 +1,84 @@
+<%= render 'shared/dhtmlx_stylesheet' %>
+<%= render 'shared/dhtmlx_javascript' %>
+
+<div class="row-fluid">
+  <div class="span12">
+    <ul class="breadcrumb">
+    <li><a href="http://localhost:3000">Dashboard</a> <span class="divider">/</span></li>                                      
+	<li class="active">Bills</li>
+    	<%= render 'shared/buttons' %>
+    </ul>
+  </div><!--/span-->
+</div>
+
+  <div class="row-fluid">
+    <div class="span12">
+    <div id="recinfoArea"></div>
+    <div id="grid_bill" style="width:100%; height:500px; background-color:white;overflow:hidden"></div>
+    <div id="pagingArea"></div>
+
+	<script type="text/javascript" charset="utf-8">
+	function add_r() {
+    var ind1 = 1;
+    var ind2 = null;
+    var ind3 = null;
+    var ind4 = null;
+    var ind5 = 1;
+    var ind6 = 0.00;
+    var ind7 = 0.00;
+    var ind8 = 0.00;
+    var ind9 = 0.00;
+    var ind10 = 0.00;
+    var ind11 = 0.00;
+    var ind12 = 0.00;
+    var ind13 = 0.00;
+    var ind14 = "";
+    var ind15 = 0.00;
+    var ind16 = 0.00;
+    var ind17 = 0.00;
+    var ind18 = 0.00;
+    var ind19 = 1;
+    var ind20 = 1;
+    
+    grid.addRow(grid.uid(), [ind1, ind2, ind3, ind4, ind5, ind6, ind7, ind8, ind9, ind10, ind11, ind12, ind13, ind14, ind15, ind16, ind17, ind18, ind19, ind20], 0);
+}
+
+		var grid = new dhtmlXGridObject("grid_bill");
+		grid.setImagePath("/imgs/");
+		grid.selMultiRows = true;
+		grid.enableMultiselect(true);
+		grid.enableUndoRedo();
+		grid.setHeader("bill_number, from_date, to_date, bill_date, membership_id, parking_charges, noc_charges, property_tax, maintenance_charges, sinking_fund, repair_fund, other_charges, other_detail, service_tax, penalty_interest, discount_amount, current_bill_charges, payable_amount, bh.id, S.Id");
+		grid.setSizes();
+		grid.setColSorting("int,date,date,date,int,int,int,int,int,int,int,int,str,int,int,int,int,int,int,int");
+		grid.setInitWidths("80,80,80,80,100,80,80,*");
+		grid.setColAlign("left,left,right,right,right,right,right,right");
+		grid.setColTypes("ed,dhxCalendarA,dhxCalendarA,dhxCalendarA,ed,edn,edn,edn,edn,edn,edn,edn,ed,edn,edn,edn,edn,edn,ed,ed");
+		grid.enableMathEditing(true);
+	   	grid.setMathRound(2);
+
+		grid.setSkin("sbdark");
+		grid.enablePaging(true, 20, 3, "pagingArea", true, "recinfoArea");
+		grid.setPagingSkin("bricks");
+		grid.init();
+		grid.enableCSVAutoID(true);
+		grid.load("data.xml");
+
+		dp = new dataProcessor("dbaction.xml/");
+		dp.init(grid);
+
+		function clear_filter(){
+			grid.filterBy(0,"");
+			grid._f_rowsBuffer = null;
+		}
+		function add(){
+			clear_filter();
+			grid.addRow(grid.uid(), 'new bill');
+		}
+		function remove(){
+			clear_filter();
+			grid.deleteSelectedRows();
+		}
+		</script>
+    </div>
+  </div>

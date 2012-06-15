@@ -1,0 +1,27 @@
+		<script>dhtmlx.skin = "dhx_skyblue";</script>
+<div class="pull-right">
+<div class="btn-group">
+		<a class="btn-mini " type="submit" onclick="add_r()"><i class="icon-plus-sign"></i> Add Record</a>
+		<a class="btn-mini btn-danger" type="submit" onclick="remove();"><i class="icon-trash icon-white"></i> Delete Record</a>
+		<a class="btn-mini " type="submit" onclick=grid.toExcel("http://dhtmlxgrid.appspot.com/export/excel");><i class="icon-list-alt"></i> to Excel</a>
+		<a class="btn-mini " type="submit" onclick=grid.toPDF("http://dhtmlxgrid.appspot.com/export/pdf");><i class="icon-file"></i> to PDF</a>
+		<a class="btn-mini " type="submit" onclick="adds();"><i class="icon-plus-sign"></i> Add 9 rows</a>
+		<a class="btn-mini " type="submit" onclick="grid.printView()"><i class="icon-print"></i> Printable view</a>
+		<a class="btn-mini " type="submit" onclick="grid.doRedo();"><i class="icon-remove-sign"></i> Redo</a>
+		<a class="btn-mini btn-inverse" type="submit" onclick="grid.doUndo();"><i class="icon-remove-sign icon-white"></i> Undo</a>
+</div>
+</div>
+<style>
+.not_m_line{
+    white-space:nowrap; overflow:hidden;
+}
+</style>
+<script>
+_css_prefix = "/javascripts/codebase/";
+</script>
+<script>
+function serilaizeToCSVWithDelim(delim) {
+    grid.setCSVDelimiter(delim);
+    document.getElementById('ser_1').value = grid.serializeToCSV();
+}
+</script>

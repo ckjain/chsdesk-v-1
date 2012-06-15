@@ -1,0 +1,48 @@
+  <%= render 'shared_interno/header' %>
+  <body id="dashboard"><!-- This id is used for the cookies -->
+  <!-- Top navigation bar -->
+  <%= render 'shared_interno/topbar' %>
+<body>
+	<div class="container-fluid">
+		<div class="row-fluid">
+
+			<!-- side nav -->
+			<div id="side_nav" class="span2 sidebar-nav side_nav">
+				<span id="logo" class="logo">&nbsp;</span>
+				<%= render 'shared_interno/sidebar' %>
+				<a href="#" class="minimize round_bottom"><span>minimize</span></a>
+			</div><!--/span-->
+
+			<!-- main container -->
+			<div id="main_container" class="span10">
+			<!-- Shortcut buttons -->
+			<!--Sidebar content-->
+				<%= render 'shared_interno/shortcut_button' %>
+			<!-- Breadcrumb -->
+			<!-- Content start -->
+					<% [:notice, :error, :alert].each do |level| %>
+						<% unless flash[level].blank? %>
+							<div data-alert="alert" class="alert alert-<%= flash_class(level) %> fade in">
+							<a class="close" data-dismiss="alert" href="#">&times;</a>
+							<%= content_tag :p, flash[level] %>
+							</div>
+						<% end %>
+					<% end %>
+					<%= yield %>
+				<%= render 'shared_interno/visitor_per_day' %>
+				<%= render 'shared_interno/calendar' %>
+				<%= render 'shared_interno/widgets' %>
+
+			<!-- Content end -->
+			</div><!--/span-->
+		</div><!--/row-->
+			<!-- footer -->
+	</div>	<!--/.fluid-container-->
+
+			<!-- javascript
+	    ================================================== -->
+	    <!-- Placed at the end of the document so the pages load faster -->
+	<%= render 'shared_interno/javascripts' %>
+
+</body>
+</html>

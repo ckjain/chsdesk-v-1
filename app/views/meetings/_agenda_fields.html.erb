@@ -1,0 +1,15 @@
+<fieldset>
+  <%= f.label :meeting_agendas, "Agenda" %>
+  <%= f.text_area :meeting_agendas %>
+      <div class="controls">
+        <label class="checkbox uniform">
+		  <%= f.check_box :_destroy %>
+		  <%= f.label :_destroy, "Remove Agenda" %>
+        </label>
+      </div>
+  <%= f.fields_for :resolutions do |builder| %>
+    <%= render 'resolution_fields', f: builder %>
+  <% end %>
+  <%= link_to_add_fields "Add Resolution", f, :resolutions %>
+</fieldset>
+

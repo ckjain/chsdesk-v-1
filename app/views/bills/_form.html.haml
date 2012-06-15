@@ -1,0 +1,52 @@
+= form_for @bill do |f|
+  -if @bill.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@bill.errors.count, "error")} prohibited this bill from being saved:"
+      %ul
+        - @bill.errors.full_messages.each do |msg|
+          %li= msg
+
+  .field
+    = f.label :society_id
+    = f.number_field :society_id
+  .field
+    = f.label :bill_number
+    = f.number_field :bill_number
+  .field
+    = f.label :unit_id
+    = f.number_field :unit_id
+  .field
+    = f.label :from_date
+    = f.date_select :from_date
+  .field
+    = f.label :to_date
+    = f.date_select :to_date
+  .field
+    = f.label :bill_date
+    = f.date_select :bill_date
+  .field
+    = f.label :property_tax
+    = f.text_field :property_tax
+  .field
+    = f.label :maintenance_charges
+    = f.text_field :maintenance_charges
+  .field
+    = f.label :other_charges
+    = f.text_field :other_charges
+  .field
+    = f.label :service_tax
+    = f.text_field :service_tax
+  .field
+    = f.label :penalty_interest
+    = f.text_field :penalty_interest
+  .field
+    = f.label :discount_amount
+    = f.text_field :discount_amount
+  .field
+    = f.label :current_bill_charges
+    = f.text_field :current_bill_charges
+  .field
+    = f.label :payable_amount
+    = f.text_field :payable_amount
+  .actions
+    = f.submit 'Save'

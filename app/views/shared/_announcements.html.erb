@@ -1,0 +1,9 @@
+<div id="announcement" class="container">
+    <%- for announcement in announcements_for_display -%>
+      	<h4><%=h announcement.headline -%></h4>
+
+      	    <div class="alert alert-block">
+				<p><%=h announcement.message -%></p>
+		    </div>
+    <%- end -%>
+</div>

@@ -1,0 +1,112 @@
+
+	    <%= render 'shared/dhtmlx_stylesheet' %>
+    	<%= render 'shared/dhtmlx_javascript' %>
+<div class="row-fluid">
+  <div class="span12">
+    <ul class="breadcrumb">
+    <li><a href="http://localhost:3000">Dashboard</a> <span class="divider">/</span></li>                                      
+	<li class="active">Assign Unit to Member </li>
+		<div class="pull-right">
+			<div class="btn-group">
+				<a class="btn-mini " type="submit" onclick="add_r()"><i class="icon-plus-sign"></i> Add</a>
+				<a class="btn-mini btn-danger" type="submit" onclick="remove();"><i class="icon-trash icon-white"></i> Delete</a>
+				<a class="btn-mini " type="submit" onclick=grid.toExcel("http://dhtmlxgrid.appspot.com/export/excel");><i class="icon-list-alt"></i> to Excel</a>
+				<a class="btn-mini " type="submit" onclick=grid.toPDF("http://dhtmlxgrid.appspot.com/export/pdf");><i class="icon-file"></i> to PDF</a>
+				<a class="btn-mini " type="submit" onclick="adds();"><i class="icon-plus-sign"></i> Add 9 rows</a>
+				<a class="btn-mini " type="submit" onclick="grid.printView()"><i class="icon-print"></i> Printable view</a>
+				<a class="btn-mini " type="submit" onclick="grid.doRedo();"><i class="icon-remove-sign"></i> Redo</a>
+				<a class="btn-mini btn-inverse" type="submit" onclick="grid.doUndo();"><i class="icon-remove-sign icon-white"></i> Undo</a>
+			</div>
+		</div>
+
+    </ul>
+  </div><!--/span-->
+</div>
+
+  <div class="row-fluid">
+    <div class="span12">
+    <!--Body content-->
+	    <div id="recinfoArea"></div>
+	    <div id="grid_membership" style="width:100%; height:540px; background-color:white;overflow:hidden"></div>
+	    <div id="pagingArea"></div>
+
+		<div id="grid_membership_sub" style="width:317px; height:350px; background-color:white;"></div>
+		<div id="grid_unit_sub" style="width:217px; height:350px; background-color:white;"></div>
+	<script type="text/javascript" charset="utf-8">
+	function add_r() {
+	    var ind1 = "";
+	    var ind2 = "";
+	    var ind3 = "";
+	    var ind4 = "Regular";
+	    var ind5 = true;
+	    var ind6 = "";
+	    var ind7 = 'Owner';
+	    var ind8 = true;
+	    var ind9 = true;
+	    var ind10 = true;
+	    var ind11 = true;
+	    var ind12 = false;
+	    
+	    grid.addRow(grid.uid(), [ind1, ind2, ind3, ind4, ind5, ind6, ind7, ind8, ind9, ind10, ind11, ind12], 0);
+	}
+	memgrid = new dhtmlXGridObject('grid_membership_sub');
+		memgrid.setImagePath("imgs/");
+		memgrid.setSkin("sbdark");
+		memgrid.setHeader("First Name-Last Name-Mobile No");
+		memgrid.setInitWidths("300");
+		memgrid.setColTypes("ro");
+		memgrid.init();
+		memgrid.load("members/data.xml");
+	unitgrid = new dhtmlXGridObject('grid_unit_sub');
+		unitgrid.setImagePath("imgs/");
+		unitgrid.setSkin("sbdark");
+		unitgrid.setHeader("Unit No-Bldg-Wing-Floor");
+		unitgrid.setInitWidths("100");
+		unitgrid.setColTypes("ro");
+		unitgrid.init();
+		unitgrid.load("units/data.xml", function() {		});	
+
+	var grid = new dhtmlXGridObject("grid_membership");
+		grid.setImagePath("imgs/");
+		grid.setHeader("Start Date, Unit.Bldg.Wing.Fl, Member Name, Member Type, Active?, End Date, Who is living?, Owner Live Here?, Emeil Bills, SMS Bills, SMS Reciept, MC Member, S.Id");
+		grid.attachHeader("#text_filter,#text_filter,#text_filter,#text_filter,#text_filter,#text_filter,#text_filter,#text_filter,#text_filter,#text_filter,#text_filter,#text_filter");
+		grid.setInitWidths("80,110,180,70,60,80,60,70,60,60,60,60,60,30");
+		grid.setColAlign("left,left,left,left,left,left,left,left,left,left,left,left,left");
+		grid.setColTypes("dhxCalendarA,grid,grid,clist,acheck,dhxCalendar,clist,acheck,acheck,acheck,acheck,acheck,ed");
+		grid.setColSorting("date,str,str,str,int,date,str,int,int,int,int,int");
+		grid.registerCList(3, ["Regular", "Associate"]);
+		grid.registerCList(6, ["Owner", "Tennant", "Family"]);
+		grid.enableMultiselect(true);
+		grid.enableValidation(true);
+		grid.enableMultiline(false);
+		grid.setSkin("sbdark");
+		grid.enablePaging(true, 20, 10, "pagingArea", true, "recinfoArea");
+		grid.setPagingSkin("bricks");
+		grid.setSubGrid(memgrid, 2, 0);
+		grid.setSubGrid(unitgrid, 1, 0);
+		grid.init();
+		grid.load("memberships/data.xml", function() {
+    grid.forEachRow(function(id) {
+        grid.cells(id, 2).cell.className = 'not_m_line';
+		    });
+		});
+		dp = new dataProcessor("memberships/dbaction.xml/");
+		dp.init(grid);
+//link dataprocessor to the grid;
+		function adds() {
+		    for (var i = 9; i >= 0; i--) {
+		        grid.addRow(i, [0, 'new', i]);
+		    };
+		}			
+		function clear_filter(){
+			grid.filterBy(0,"");
+			grid._f_rowsBuffer = null;
+		}
+		function remove(){
+			clear_filter();
+			grid.deleteSelectedRows();
+		}
+
+	</script>
+    </div>
+  </div>

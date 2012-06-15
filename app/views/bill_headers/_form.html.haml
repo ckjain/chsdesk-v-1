@@ -1,0 +1,43 @@
+= form_for @bill_header do |f|
+  -if @bill_header.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@bill_header.errors.count, "error")} prohibited this bill_header from being saved:"
+      %ul
+        - @bill_header.errors.full_messages.each do |msg|
+          %li= msg
+
+  .field
+    = f.label :bill_date
+    = f.date_select :bill_date
+  .field
+    = f.label :from_date
+    = f.date_select :from_date
+  .field
+    = f.label :to_date
+    = f.date_select :to_date
+  .field
+    = f.label :bill_cycle
+    = f.text_field :bill_cycle
+  .field
+    = f.label :grace_period
+    = f.number_field :grace_period
+  .field
+    = f.label :days_to_discount
+    = f.number_field :days_to_discount
+  .field
+    = f.label :bill_number_start
+    = f.number_field :bill_number_start
+  .field
+    = f.label :bill_number_end
+    = f.number_field :bill_number_end
+  .field
+    = f.label :bill_number_format
+    = f.text_field :bill_number_format
+  .field
+    = f.label :locked_period
+    = f.check_box :locked_period
+  .field
+    = f.label :society_id
+    = f.number_field :society_id
+  .actions
+    = f.submit 'Save'

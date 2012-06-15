@@ -1,0 +1,84 @@
+- content_for :head do
+  = javascript_include_tag 'http://www.google.com/jsapi'
+%h3 Users
+.row-fluid
+  .span12
+    %ul.breadcrumb
+      %li
+        %a{:href => "http://localhost:3000"} Dashboard
+        %span.divider /
+      %li.active Users
+      %li.pull-right
+        Send Bulk Invitations:
+        \#{link_to "10 ·".html_safe, bulk_invite_path(:quantity => '10')}
+        \#{link_to "50 ·".html_safe, bulk_invite_path(:quantity => '50')}
+        \#{link_to "100 ·".html_safe, bulk_invite_path(:quantity => '100')}
+        \#{link_to "500 ·".html_safe, bulk_invite_path(:quantity => '500')}
+        \#{link_to "1000", bulk_invite_path(:quantity => '1000')}
+  / /span
+.row-fluid
+  .span12
+    .box.grad_colour_dark_blue
+      %h3.box_head.round_top
+        Total #{@users.count}  Users
+      %a.settings.box_button_3{:href => "#", :title => "config"}  
+      %a.toggle.box_button_2{:href => "#", :title => "toggle"}  
+      %a.destroy.box_button_1{:href => "#", :title => "close"}  
+      .toggle_container
+        .block.box_content.round_bottom.padding_20
+
+.span12
+  #chart{:style => "width: 700px; height: 240px"}
+  = render_chart @chart, 'chart'
+  %br
+.span12
+  %h4
+    Filter Users:  #{link_to t('.options.all'), users_url}
+    · #{link_to t('.options.active'), active_users_url}
+    · #{link_to t('.options.suspended'), suspended_users_url}
+    · #{link_to t('.options.pending'), pending_users_url}
+    · #{link_to t('.options.deleted'), deleted_users_url}
+  %table.datatable.table.table-bordered.table-condensed
+    %thead
+      %tr
+        %th ID
+        %th Name
+        %th Email
+        %th Status
+        %th Admin
+        %th Requested
+        %th Invitation
+        %th Joined
+        %th Visits
+        %th Most Recent
+        %th Photo
+        %th 
+    %tbody
+      - @users.each do |user|
+        %tr
+          %td #{user.id}
+          %td #{link_to h(user.name || user.site_name), user_url(user)}
+          %td #{best_in_place user,:email}
+          %td #{best_in_place user,:state}
+          %td #{t('misc.words.yes') if user.admin?}
+          %td #{user.created_at.to_date}
+          %td #{(user.confirmation_token.nil? ? (link_to "send invitation", invite_user_path(user)) : (link_to "resend", invite_user_path(user))) unless user.confirmed_at}
+          %td #{user.confirmed_at.to_date if user.confirmed_at}
+          %td #{user.sign_in_count if user.sign_in_count}
+          %td #{user.last_sign_in_at.to_date if user.last_sign_in_at}
+          %td #{image_tag avatar_url(user)}
+          %td 
+            - if user.pending?
+              = link_to 'Activate', activate_user_url(user), :method => :put
+              = link_to 'Suspend', suspend_user_url(user), :method => :put
+              = link_to ( image_tag("/assets/Overlay-cancel.png")), user_url(user), :method => :delete, :confirm => "Are you sure?"
+            - elsif user.passive?
+              = link_to ( image_tag("/assets/Key1.png")), activate_user_url(user), :method => :put
+              = link_to ( image_tag("/assets/Overlay-lock.png")), suspend_user_path(user), :method => :put
+              = link_to ( image_tag("/assets/Overlay-cancel.png")), user_url(user), :method => :delete, :confirm => "Are you sure?"
+            - elsif user.active?
+              = link_to ( image_tag("/assets/Overlay-lock.png")), suspend_user_path(user), :method => :put
+              = link_to ( image_tag("/assets/Overlay-cancel.png")), user_url(user), :method => :delete, :confirm => "Are you sure?"
+            - elsif user.suspended?
+              = link_to ( image_tag("/assets/Lock-Unlock-icon.png")), unsuspend_user_url(user), :method => :put
+              = link_to ( image_tag("/assets/Overlay-cancel.png")), user_url(user), :method => :delete, :confirm => "Are you sure?"

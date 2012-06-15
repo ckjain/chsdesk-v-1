@@ -1,0 +1,48 @@
+%p#notice= notice
+
+%p
+  %b Society:
+  = @bill.society_id
+%p
+  %b Bill number:
+  = @bill.bill_number
+%p
+  %b Unit:
+  = @bill.unit_id
+%p
+  %b From date:
+  = @bill.from_date
+%p
+  %b To date:
+  = @bill.to_date
+%p
+  %b Bill date:
+  = @bill.bill_date
+%p
+  %b Property tax:
+  = @bill.property_tax
+%p
+  %b Maintenance charges:
+  = @bill.maintenance_charges
+%p
+  %b Other charges:
+  = @bill.other_charges
+%p
+  %b Service tax:
+  = @bill.service_tax
+%p
+  %b Penalty interest:
+  = @bill.penalty_interest
+%p
+  %b Discount amount:
+  = @bill.discount_amount
+%p
+  %b Current bill charges:
+  = @bill.current_bill_charges
+%p
+  %b Payable amount:
+  = @bill.payable_amount
+
+= link_to 'Edit', edit_bill_path(@bill)
+\|
+= link_to 'Back', bills_path

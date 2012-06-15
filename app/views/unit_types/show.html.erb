@@ -1,0 +1,81 @@
+	    <%= render 'shared/dhtmlx_stylesheet' %>
+    	<%= render 'shared/dhtmlx_javascript' %>
+
+<div class="row-fluid">
+  <div class="span12">
+    <ul class="breadcrumb">
+    <li><a href="http://localhost:3000">Dashboard</a> <span class="divider">/</span></li>                                      
+	<li class="active">Unit Type </li>
+    	<%= render 'shared/buttons' %>
+    </ul>
+  </div><!--/span-->
+</div>
+
+  <div class="row-fluid">
+    <div class="span12">
+    <div id="recinfoArea"></div>
+    <div id="grid_unit_type" style="width:100%; height:500px; background-color:white;overflow:hidden"></div>
+    <div id="pagingArea"></div>
+    <div id="message" style="height:30px; font-weight:bold; color:red;"></div>
+	<script type="text/javascript" charset="utf-8">
+	function add_r() {
+    var ind1 = "New Unit Type";
+    var ind2 = 0.00;
+    var ind3 = 0.00;
+    var ind4 = 0.00;
+    var ind5 = 0.00;
+    var ind6 = 0.00;
+    
+    grid.addRow(grid.uid(), [ind1, ind2, ind3, ind4, ind5, ind6], 0);
+	}
+		var grid = new dhtmlXGridObject("grid_unit_type");
+		grid.setImagePath("imgs/");
+		grid.selMultiRows = true;
+		grid.enableMultiselect(true);
+		grid.enableUndoRedo();
+		grid.setHeader("Unit Type, Property Tax Area,Maintenance Area,CarpetArea,Built Up,Super Built Up,S. Id");
+		grid.setSizes();
+		grid.setColSorting("str,int,int,int,int,int,int");
+		grid.setInitWidths("200,120,120,100,100,100,*");
+		grid.setColAlign("left,right,right,right,right,right,right");
+		grid.setColTypes("clist,ed,ed,ed,ed[=c2+c3],ed,ed");
+		grid.registerCList(0,["1 Bedroom", "2 Bedroom", "3 Bedroom", "4 Bedroom", "Office", "Penthouse", "Duplex", "Bunglow", "Row House"]);
+		grid.setMathRound(2);
+		grid.enableMathEditing(true);
+		grid.enableValidation(true, true, true, true, true, true);
+		grid.setColValidators("NotEmpty,ValidNumeric,ValidNumeric,ValidNumeric,ValidNumeric,ValidNumeric");
+		grid.attachEvent("onLiveValidationError", function(id, ind, value) {
+		    document.getElementById('message').innerHTML = "Error at cell (" + id + "," + ind + "), value must " + (ind == 0 ? "not be empty": "be a valid number");
+		    return false;
+		});
+		grid.attachEvent("onLiveValidationCorrect", function(id, ind, value) {
+		    document.getElementById('message').innerHTML = "";
+		    return false;
+		});
+	   	grid.setMathRound(2);
+		grid.setSkin("sbdark");
+		grid.enablePaging(true, 15, 3, "pagingArea", true, "recinfoArea");
+		grid.setPagingSkin("bricks");
+		grid.init();
+		grid.enableCSVAutoID(true);
+		grid.load("unit_types/data.xml");
+
+		dp = new dataProcessor("unit_types/dbaction.xml/");
+		dp.init(grid);
+		
+		function clear_filter(){
+			grid.filterBy(0,"");
+			grid._f_rowsBuffer = null;
+		}
+		function add(){
+			clear_filter();
+			grid.addRow(grid.uid(), 'new Unit type');
+		}
+		function remove(){
+			clear_filter();
+			grid.deleteSelectedRows();
+		}
+
+		</script>
+    </div>
+  </div>

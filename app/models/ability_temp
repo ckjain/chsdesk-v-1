@@ -1,0 +1,151 @@
+class Ability
+  include CanCan::Ability
+
+  def initialize(user)
+    user ||= User.new # guest user (not logged in)
+    if user.has_role? :admin
+      can :manage, :all # user can perform any action on any object
+      can [:update, :destroy], [Article, Comment]
+    else
+      can :manage, Article  # user can perform any action on the article
+      can :read, :all       # user can read any object
+      can :read, Project, :active => true, :user_id => user.id
+      can :read, Project, :category => { :visible => true }
+      can :read, Project, :priority => 1..3
+      can :manage, Project, :group => { :id => user.group_ids }
+      can :read, Project, :released => true
+      can :read, Project, :preview => true
+      can :manage, Project
+      cannot :destroy, Project
+      can :update, Project do |project|
+        project.priority < 3
+      end
+            # don't do this
+            can :update, Project do |project|
+              user.admin? # this won't always get called
+            end
+            
+            # do this
+            can :update, Project if user.admin?
+            can :update, Project, ["priority < ?", 3] do |project|
+             project.priority < 3
+            end
+            can :read, Article, Article.published do |article|
+              article.published_at <= Time.now
+            end
+            cannot :read, Product, Product.where(:discontinued => false) do |product|
+              product.discontinued?
+            end
+            can do |action, subject_class, subject|
+              # ...
+            end
+<% if can? :create, Project %>
+  <%= link_to "New Project", new_project_path %>
+<% end %>
+
+
+    end
+  end
+  
+  def show
+  @project = Project.find(params[:project])
+  authorize! :show, @project
+  end
+  
+  class ProductsController < ActionController::Base
+  load_and_authorize_resource
+  end
+  
+  class ProductsController < ActionController::Base
+  load_resource
+  authorize_resource
+  end
+  
+  class ProductsController < ActionController::Base
+  load_and_authorize_resource
+  skip_authorize_resource :only => :new
+  end
+  
+  class ProductsController < ActionController::Base
+  load_and_authorize_resource
+    def discontinue
+      # Automatically does the following:
+      # @product = Product.find(params[:id])
+      # authorize! :discontinue, @product
+    end
+  end
+  
+  load_and_authorize_resource :only => [:index, :show]
+  
+  class CommentsController < ApplicationController
+  load_and_authorize_resource :post
+  load_and_authorize_resource :through => :post
+
+  skip_authorize_resource :only => :show  
+  skip_authorize_resource :post, :only => :show
+  end
+  
+  def index
+  @products = @products.includes(:category).page(params[:page])
+  end
+  
+  def show
+  # @product automatically set to Product.find(params[:id])
+  end
+  
+  can :manage, Product, :discontinued => false
+  
+  @product = Product.new(:discontinued => false)
+  
+  class ArticlesController < ApplicationController
+  load_and_authorize_resource :post, :parent => false
+  end
+  
+  class ProductsController < ApplicationController
+  load_and_authorize_resource :class => "Store::Product"
+  end
+
+  load_resource :find_by => :permalink # will use find_by_permalink!(params[:id])
+  authorize_resource
+  
+  class BooksController < ApplicationController
+    before_filter :find_published_book, :only => :show
+    load_and_authorize_resource
+  
+    private
+  
+    def find_published_book
+      @book = Book.released.find(params[:id])
+    end
+  end
+  
+  authorize!(params[:action], @product || Product)
+  
+  if @user.update_attributes(params[:user])
+  @current_ability = nil
+  @current_user = nil
+  # ...
+  end
+# Always performed
+can :access, :rails_admin # needed to access RailsAdmin
+
+# Performed checks for `root` level actions:
+can :dashboard            # dashboard access
+
+# Performed checks for `collection` scoped actions:
+can :index, Model         # included in :read
+can :new, Model           # included in :create
+can :export, Model
+can :history, Model       # for HistoryIndex
+can :destroy, Model       # for BulkDelete
+
+# Performed checks for `member` scoped actions:
+can :show, Model, object            # included in :read
+can :edit, Model, object            # included in :update
+can :destroy, Model, object         # for Delete
+can :history, Model, object         # for HistoryShow
+can :show_in_app, Model, object
+  
+  
+  
+end

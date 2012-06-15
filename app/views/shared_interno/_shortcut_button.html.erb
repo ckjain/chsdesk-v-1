@@ -1,0 +1,22 @@
+<% if user_signed_in? %>
+	<div class="row-fluid">
+	    <div class="span12 shortcut">
+	    	<a href="http://localhost:3000/" class="btn btn-shortcut">
+	    		<img src="/images/icons/grey/Home.png" alt="Dashboard" />		
+		    		<%= current_user.society_name %>
+				<span class="label label-success">9</span></a>
+	        <a href="#" class="popover_shortcut_on btn btn-shortcut"
+	        rel="popover" 
+	        data-content=
+	        '<a href="#" >Comment By Member</a><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean bibendum,...e</p><hr>
+	        <a href="#" >Comment By Member</a><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean bibendum,...e</p><hr>
+	        <a href="#" >Comment By Member</a><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean bibendum,...e</p><hr>
+	        <a href="#" >Comment By Member</a><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean bibendum,...e</p><hr>
+	        <a href="#" >Comment By Member</a><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean bibendum,...e</p>'
+	        data-original-title="New Comments"
+	        ><img src="/images/icons/grey/speech_bubbles.png" alt="Comments" />Comments<span class="label label-warning">9</span></a>
+	        <a href="#" class="btn btn-shortcut"><img src="/images/icons/grey/Graph.png" alt="Statistics" />Statistics<span class="label label-info">9</span></a>                    
+	
+	    </div><!--/span-->
+	</div>
+<% end %>
