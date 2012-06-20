@@ -5,5 +5,11 @@ class CreateMeetingTypes < ActiveRecord::Migration
 
       t.timestamps
     end
+     MeetingType.create! :name => "Managing Committee"
+     MeetingType.create! :name => "Annual General Body Committee"
+     MeetingType.create! :name => "Special General Body Committee"
+     MeetingType.create! :name => "Security Committee"
+     MeetingType.create! :name => "Housekeeping Committee"
+  
   end
 end

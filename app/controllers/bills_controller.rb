@@ -164,7 +164,7 @@ class BillsController < ApplicationController
 
     respond_to do |format|
       if @bill.update_attributes(params[:bill])
-        format.html { redirect_to @bill, notice: 'Bill was successfully updated.' }
+        format.html { redirect_to @bill, only_path: true, notice: 'Bill was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -180,7 +180,7 @@ class BillsController < ApplicationController
     @bill.destroy
 
     respond_to do |format|
-      format.html { redirect_to bills_url }
+      format.html { redirect_to bills_url, only_path: true }
       format.json { head :no_content }
     end
   end

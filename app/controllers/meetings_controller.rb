@@ -7,9 +7,12 @@ class MeetingsController < ApplicationController
 
   def index
     if current_user.has_role? :super_admin
-      @meetings = Meeting.paginate :page => params[:page], :per_page => 10
+      @meetings = Meeting.order("meeting_name").paginate :page => params[:page], :per_page => 10
+      @meeting = Meeting.find(params[:meeting_id]) if params[:meeting_id]
+
     else
       @meetings = Meeting.where("society_id like ?", current_user.society_id).paginate :page => params[:page], :per_page => 10     
+      @meeting = Meeting.where("society_id like ?", current_user.society_id).find(params[:meeting_id]) if params[:meeting_id]
     end
 
     respond_to do |format|
@@ -29,6 +32,9 @@ class MeetingsController < ApplicationController
   # GET /meetings/new.json
   def new
     @meeting = Meeting.new
+    @meeting.issue_date = Time.now.to_formatted_s(:short)
+    @meeting.meeting_date = 4.days.from_now.to_formatted_s(:short)
+    
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @meeting }
@@ -47,7 +53,7 @@ class MeetingsController < ApplicationController
     @meeting.society_id = current_user.society_id
     respond_to do |format|
       if @meeting.save
-        format.html { redirect_to @meeting, notice: 'Meeting was successfully created.' }
+        format.html { redirect_to @meeting, only_path: true , notice: 'Meeting was successfully created.' }
         format.json { render json: @meeting, status: :created, location: @meeting }
       else
         format.html { render action: "new" }
@@ -62,7 +68,7 @@ class MeetingsController < ApplicationController
     @meeting = Meeting.find(params[:id])
 
       if @meeting.update_attributes(params[:meeting])
-        redirect_to @meeting, notice: 'Meeting was successfully updated.'
+        redirect_to @meeting, only_path: true , notice: 'Meeting was successfully updated.'
       else
         render :edit
       end
@@ -74,7 +80,7 @@ class MeetingsController < ApplicationController
     @meeting.destroy
 
     respond_to do |format|
-      format.html { redirect_to meetings_url }
+      format.html { redirect_to meetings_url, only_path: true  }
       format.json { head :no_content }
     end
   end

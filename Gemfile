@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.5'
+gem 'rails', '3.2.6'
 gem 'sqlite3'
 gem 'mysql'
 
@@ -28,6 +28,9 @@ gem 'oink' #Rails plugin and log parser to help narrow down the source(s) of inc
 #gem 'httparty'
 gem 'wicked' # gem for multi step wizrd for sign up form
 gem "hominid"
+gem 'jquery-rest-rails'
+gem 'fullcalendar-rails'
+gem 'rack-pjax'
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 group :assets do
@@ -35,6 +38,8 @@ group :assets do
   gem 'coffee-rails', '~> 3.2.1'
   gem 'uglifier', '>= 1.0.3'
 end
+
+gem 'json'
 
 gem "haml", ">= 3.1.6"
 gem "haml-rails", ">= 0.3.4", :group => :development

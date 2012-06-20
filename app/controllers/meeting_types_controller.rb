@@ -31,7 +31,7 @@ class MeetingTypesController < ApplicationController
 
     respond_to do |format|
       if @meeting_type.save
-        format.html { redirect_to @meeting_type, notice: 'Meeting type was successfully created.' }
+        format.html { redirect_to @meeting_type, only_path: true, notice: 'Meeting type was successfully created.' }
         format.json { render json: @meeting_type, status: :created, location: @meeting_type }
       else
         format.html { render action: "new" }
@@ -47,7 +47,7 @@ class MeetingTypesController < ApplicationController
 
     respond_to do |format|
       if @meeting_type.update_attributes(params[:meeting_type])
-        format.html { redirect_to @meeting_type, notice: 'Meeting type was successfully updated.' }
+        format.html { redirect_to @meeting_type, only_path: true, notice: 'Meeting type was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -63,7 +63,7 @@ class MeetingTypesController < ApplicationController
     @meeting_type.destroy
 
     respond_to do |format|
-      format.html { redirect_to meeting_types_url }
+      format.html { redirect_to meeting_types_url, only_path: true }
       format.json { head :no_content }
     end
   end

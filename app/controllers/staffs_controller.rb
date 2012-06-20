@@ -27,7 +27,7 @@ class StaffsController < ApplicationController
       @staff = Staff.where("society_id like ?", current_user.society_id).find(params[:id])
     end
       if @staff.blank?
-        redirect_to staffs_url, :notice => "You don't have access to staff with this ID"
+        redirect_to staffs_url, only_path: true, :notice => "You don't have access to staff with this ID"
       else
       respond_to do |format|
         format.html # show.html.erb
@@ -61,7 +61,7 @@ class StaffsController < ApplicationController
 
     respond_to do |format|
       if @staff.save
-        format.html { redirect_to @staff, notice: 'Staff was successfully created.' }
+        format.html { redirect_to @staff, only_path: true, notice: 'Staff was successfully created.' }
         format.json { render json: @staff, status: :created, location: @staff }
       else
         format.html { render action: "new" }
@@ -77,7 +77,7 @@ class StaffsController < ApplicationController
 
     respond_to do |format|
       if @staff.update_attributes(params[:staff])
-        format.html { redirect_to @staff, notice: 'Staff was successfully updated.' }
+        format.html { redirect_to @staff, only_path: true, notice: 'Staff was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -93,7 +93,7 @@ class StaffsController < ApplicationController
     @staff.destroy
 
     respond_to do |format|
-      format.html { redirect_to staffs_url }
+      format.html { redirect_to staffs_url, only_path: true }
       format.json { head :no_content }
     end
   end

@@ -5,14 +5,12 @@
 <body>
 	<div class="container-fluid">
 		<div class="row-fluid">
-
 			<!-- side nav -->
 			<div id="side_nav" class="span2 sidebar-nav side_nav">
 				<span id="logo" class="logo">&nbsp;</span>
 				<%= render 'shared_interno/sidebar' %>
 				<a href="#" class="minimize round_bottom"><span>minimize</span></a>
 			</div><!--/span-->
-
 			<!-- main container -->
 			<div id="main_container" class="span10">
 			<!-- Shortcut buttons -->
@@ -30,9 +28,7 @@
 					<% end %>
 					<%= yield %>
 				<%= render 'shared_interno/visitor_per_day' %>
-				<%= render 'shared_interno/calendar' %>
 				<%= render 'shared_interno/widgets' %>
-
 			<!-- Content end -->
 			</div><!--/span-->
 		</div><!--/row-->

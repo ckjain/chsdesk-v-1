@@ -1,6 +1,4 @@
 
-view and controllar remains
-readme
 ________________________________________
 rails_admin added in config (?)
 
@@ -97,19 +95,18 @@ Toolbar----------------
 
     Create a User using rails console
 
-> user = User.new
-> user.email = "anyemail@ddress.com"
-> user.password = "test1234"
-> user.save
+ user = User.new
+ user.email = "anyemail@ddress.com"
+ user.password = "test1234"> user.save
 
     Add a role to the new User
 
-> user.add_role :admin
+ user.add_role :admin
 
     Check if the user has admin rights
 
-> ability = Ability.new(user)
-> ability.can? :manage, :all
+ ability = Ability.new(user)
+ ability.can? :manage, :all
   => true
 --------------------------------------------------
 

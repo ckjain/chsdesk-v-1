@@ -1,5 +1,9 @@
 RailsPrelaunchSignup::Application.routes.draw do
 
+  resource :calendar, :only => [:show]
+
+  resources :events
+
 #----- Prelaunch sign up------------------------
   authenticated :user do
     root :to => 'home#index'

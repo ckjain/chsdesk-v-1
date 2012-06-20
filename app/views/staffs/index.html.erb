@@ -49,7 +49,7 @@
 					<td><%= best_in_place staff,:staff_email, staff %></td>
 					<td><%= best_in_place staff,:staff_phone %></td>
 					<td><%= staff.active %></td>
-					<td><%= staff.joining_date.to_date %></td>
+					<td><%= staff.joining_date.to_date if staff.joining_date %></td>
 					<td><%= best_in_place staff,:staff_salary %></td>
 				    <td><%= link_to (image_tag staff.avatar.url(:thumb)), staff %></td>
 					<td><%= staff.society_id %></td>

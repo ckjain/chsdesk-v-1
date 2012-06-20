@@ -2,16 +2,16 @@ class DeviseCreateUsers < ActiveRecord::Migration
   def change
     create_table(:users) do |t|
       ## Database authenticatable
-      t.string :email,              :null => false, :default => ""
-      t.string :encrypted_password, :null => false, :default => ""
-      t.string :name, :limit => 100, :default => '', :null => true
+      t.string :email,              :null => false, :default => "example@chsdesk.com"
+      t.string :encrypted_password, :null => false, :default => "password"
+      t.string :name, :limit => 100, :default => 'Your Name', :null => true
       t.string :state, :null => :false, :default => 'passive'      
       t.datetime :activated_at
       t.datetime :deleted_at
       t.integer :society_id
       t.date :date_of_birth
-      t.string :phone_number
-      t.string :zip
+      t.string :phone_number, :limit => 20, :default => '0000000000', :null => true
+      t.string :zip, :limit => 20, :default => '400 000', :null => true
       t.text :bio
       t.string :avatar_url
 

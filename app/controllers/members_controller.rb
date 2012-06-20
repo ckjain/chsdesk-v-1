@@ -39,7 +39,7 @@ class MembersController < ApplicationController
 
     respond_to do |format|
       if @members.save
-        format.html { redirect_to @members, notice: 'Staff was successfully created.' }
+        format.html { redirect_to @members, only_path: true, notice: 'Staff was successfully created.' }
         format.json { render json: @members, status: :created, location: @members }
       else
         format.html { render action: "new" }

@@ -11,12 +11,18 @@
 // GO AFTER THE REQUIRES BELOW.
 //
 //= require jquery
-//= require jquery-ui
 //= require jquery_ujs
+//= require jquery-ui
+//= require jquery.ui.widget
+//= require jquery.ui.mouse
+//= require jquery.ui.draggable
 //= require jquery.tokeninput
 //= require jquery.purr
 //= require best_in_place
 //= require bootstrap-modal
+//= require jquery.rest
+//= require fullcalendar
+//= require jquery.pjax
 //= require_tree .
 $('document').ready(function() {
   
@@ -76,33 +82,68 @@ function loadSocial() {
     }
 }
 
-$(function() {
-  $("#users th a, #users .pagination a").live("click", function() {
-    $.getScript(this.href);
-    return false;
+if (history && history.pushState) {
+  $(function() {
+    $("#users th a, #users .pagination a").live("click", function(e) {
+      $.getScript(this.href);
+      history.pushState(null, document.title, this.href);
+      e.preventDefault();
+    });
+    $("#users_search input").keyup(function() {
+      $.get($("#users_search").attr("action"), $("#users_search").serialize(), null, "script");
+      history.replaceState(null, document.title, $("#users_search").attr("action") + "?" + $("#users_search").serialize());
+    });
+    $(window).bind("popstate", function() {
+      $.getScript(location.href);
+    });
   });
-  $("#users_search input").keyup(function() {
-    $.get($("#users_search").attr("action"), $("#users_search").serialize(), null, "script");
-    return false;
-  });
-});
-
+}
 $('.best_in_place').best_in_place()
 
 $.datepicker.setDefaults({
    showOn: 'both',
+   dateFormat: "dd-mm-yy",
+   showOtherMonths: true,
    buttonImageOnly: true,
+   changeMonth: true,
+   changeYear: true,
+   gotoCurrent: true,
+   currentText: "Now",
    buttonImage: '/assets/calendar.png',
    buttonText: 'Calendar' });
 
 $(function() {
-  $("#meeting_meeting_date").datepicker({ dateFormat: "dd-mm-yy", showOn: "both", showOtherMonths: true  });
+  $("#meeting_meeting_date").datetimepicker({ ampm: true, yearRange: "-00:+01", defaultDate: +4});
 });
 
 $(function() {
-  $("#meeting_issue_date").datepicker({ dateFormat: "dd-mm-yy", showOn: "both", showOtherMonths: true  });
+  $("#meeting_issue_date").datepicker({ yearRange: "-00:+01", appendText: "(dd-mm-yy)" });
 });
 
 $(function() {
-  $("#staff_joining_date").datepicker({ dateFormat: "dd-mm-yy", showOn: "both", showOtherMonths: true  });
+  $("#staff_joining_date").datepicker({ dateFormat: "dd-mm-yy"  });
+});
+
+$(function() {
+  $( "#draggable" ).draggable();
+});
+
+$(function() {
+	$( "#event_starts_at" ).datetimepicker({
+		changeMonth: true,
+		gotoCurrent: true,
+		showCurrentAtPos: 3,
+		numberOfMonths: 3,
+		onSelect: function( selectedDate ) {
+			$( "#event_ends_at" ).datetimepicker( "option", "minDate", selectedDate );
+		}
+	});
+	$( "#event_ends_at" ).datetimepicker({
+		defaultDate: "+4",
+		changeMonth: true,
+		numberOfMonths: 3,
+		onSelect: function( selectedDate ) {
+			$( "#event_starts_at" ).datetimepicker( "option", "maxDate", selectedDate );
+		}
+	});
 });

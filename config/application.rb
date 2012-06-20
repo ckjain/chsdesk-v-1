@@ -18,6 +18,7 @@ end
 module RailsPrelaunchSignup
   class Application < Rails::Application
 
+  config.middleware.use Rack::Pjax
     # don't generate RSpec tests for views and helpers
     config.generators do |g|
       g.view_specs false
@@ -32,7 +33,8 @@ module RailsPrelaunchSignup
     # config.autoload_paths += %W(#{config.root}/extras)
     config.autoload_paths += %W(#{config.root}/lib)
 
-
+    config.time_zone = 'Mumbai'
+    config.active_record.default_timezone = :local
     # Only load the plugins named here, in the order given (default is alphabetical).
     # :all can be used as a placeholder for all plugins not explicitly named.
     # config.plugins = [ :exception_notification, :ssl_requirement, :all ]

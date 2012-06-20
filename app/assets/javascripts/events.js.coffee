@@ -1,7 +1,5 @@
 # Place all the behaviors and hooks related to the matching controller here.
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
-#// For fixed width containers
 jQuery ->
-  $('#user_society_name').autocomplete
-    source: $('#user_society_name').data('autocomplete-source')
+  $('.event a').pjax('[data-pjax-container]')

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120608180323) do
+ActiveRecord::Schema.define(:version => 20120617174547) do
 
   create_table "agendas", :force => true do |t|
     t.text     "meeting_agendas"
@@ -78,6 +78,17 @@ ActiveRecord::Schema.define(:version => 20120608180323) do
   end
 
   add_index "bills", ["membership_id"], :name => "fk_membership_id"
+
+  create_table "events", :force => true do |t|
+    t.string   "title"
+    t.datetime "starts_at"
+    t.datetime "ends_at"
+    t.boolean  "all_day"
+    t.text     "description"
+    t.integer  "society_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
 
   create_table "meeting_members", :force => true do |t|
     t.integer  "meeting_id"
