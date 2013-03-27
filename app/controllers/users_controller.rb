@@ -136,15 +136,15 @@ class UsersController < ApplicationController
     else
     @user = current_user
     end
-    respond_to do |format|
-    if @user.update_attributes(params[:user])
-      format.html { redirect_to(@user, only_path: true , :notice => 'User was successfully updated.') }
-      format.json { respond_with_bip(@user) }
-    else
-      format.html { render :action => "edit" }
-      format.json { respond_with_bip(@user) }
-    end
-  end
+      respond_to do |format|
+        if @user.update_attributes(params[:user])
+          format.html { redirect_to(@user, only_path: true , :notice => 'User was successfully updated.') }
+          format.json { respond_with_bip(@user) }
+        else
+          format.html { render :action => "edit" }
+          format.json { respond_with_bip(@user) }
+        end
+      end
     @user.update_attributes(params[:user])
 #    respond_with @user
   end
@@ -181,7 +181,8 @@ class UsersController < ApplicationController
     data_table.new_column('date')
     data_table.new_column('number')
     users_by_day.each do |day|
-      data_table.add_row([ Date.parse(day[0]), day[1]])
+#      data_table.add_row([ Date.parse(day[0]), day[1]])
+      
     end
     @chart = GoogleVisualr::Interactive::AnnotatedTimeLine.new(data_table)
   end

@@ -7,8 +7,12 @@ class CreateMeetings < ActiveRecord::Migration
       t.string :issued_by, :default => "Hon. Secretary"
       t.datetime :issue_date
       t.integer :society_id
+      t.datetime :ends_at
+      t.boolean :all_day
+      t.text :description
 
       t.timestamps
     end
   end
 end
+

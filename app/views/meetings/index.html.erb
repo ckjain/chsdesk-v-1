@@ -8,7 +8,7 @@
 </div>
 
 <div class="row-fluid">
-	<div class="span8">
+	<div class="span5">
         <div class="box grad_colour_dark_blue" id="box_0">
             <h2 class="box_head round_top"></h2>
             <a href="#" class="settings box_button_3" title="config">&nbsp;</a>
@@ -19,20 +19,22 @@
 			<% content_for :meeting_name, @meeting ? @meeting.meeting_name : "meetings" %>
 			<% for meeting in @meetings %>
 		  <div class="event">
-                <%= link_to meeting.meeting_name, :meeting_id => meeting %>
-                meeting called by <%= meeting.issued_by %>&nbsp;&nbsp;
-                on <%= meeting.issue_date %>&nbsp;&nbsp;
-                <%= meeting.society_id %>
-	 			<%= link_to ( image_tag("/assets/Overlay-cancel.png")), meeting, :method => :delete, :confirm => "Are you sure?" %>
+            <%= link_to meeting.meeting_name, :meeting_id => meeting %>
+            on <%= l(meeting.meeting_date, :format => :long) %>&nbsp;&nbsp;
+            <%= meeting.society_id %>
+ 			<%= link_to ( image_tag("/assets/Overlay-cancel.png")), meeting, :method => :delete, :confirm => "Are you sure?" %>
 		  </div>
 			<% end %>
-          <%= will_paginate @meetings %>
-          <%= link_to 'New Meeting', new_meeting_path %>
+	        <%= will_paginate @meetings %>
+			 	<div class="form-actions">
+		        <%= link_to 'New Meeting', new_meeting_path , :class => 'btn' %>
+				</div>
+
                 </div>                                
             </div>
         </div>
 	</div>
-	<div class="span4">
+	<div class="span7">
         <div class="box grad_colour_dark_blue" id="box_0">
             <h2 class="box_head round_top"></h2>
             <a href="#" class="settings box_button_3" title="config">&nbsp;</a>
@@ -45,13 +47,15 @@
 					  <div id="event_details">
 					    <h3><%= best_in_place_if @meeting.meeting_name, @meeting, :meeting_name %></h3>
 					    <dl>
-					      <dt>Circular Date:</dt>
-					      <dd><%= best_in_place_if @meeting.issue_date, @meeting, :issue_date %></dd>
-					      <dt>Meeting Place:</dt>
-					      <dd><%= best_in_place_if @meeting.meeting_place, @meeting, :meeting_place %></dd>
+					   <dt> Circular Date:
+					      &nbsp;&nbsp;&nbsp;<%= l(@meeting.issue_date, :format => :long) %></dt>
+					      <dt>Meeting Place:
+					      &nbsp;<%= best_in_place_if @meeting.meeting_place, @meeting, :meeting_place %></dt>
+					      <dt>Called by:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					      	<%= meeting.issued_by %></dt>
 				          <dt>Agenda:</dt>
 						<% @meeting.agendas.each do |agenda| %>
-						  <li> <%= agenda.meeting_agendas %>
+						  <li> <%= agenda.meeting_agendas %></li>
 						    <ol class="resolutions">
 						      <% agenda.resolutions.each do |resolution| %>
 						        <li><%= resolution.meeting_resolutions %></li>
@@ -61,9 +65,10 @@
 						<% end %>
 
 					    </dl>
-					    <p class="actions">
-					      <%= link_to ( image_tag("/assets/Overlay-cancel.png")), @meeting, method: :delete, confirm: "Are you sure?" %>
-					    </p>
+					 	<div class="form-actions">
+						  <%= link_to ( image_tag("/assets/Overlay-edit.png")), edit_meeting_path(@meeting), :class => 'btn' %>
+					      <%= link_to ( image_tag("/assets/Overlay-cancel.png")), @meeting, method: :delete, confirm: "Are you sure?", :class => 'btn' %>
+						</div>
 					  </div>
 					  <% end %>
 					</div>

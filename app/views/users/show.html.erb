@@ -27,7 +27,7 @@
 					<p><label class="label"><%= t("activerecord.attributes.user.phone_number", :default => t("activerecord.labels.phone_number", :default => "Phone Number")) %>:</label>
 					<p><%= best_in_place_if @user.phone_number, @user, :phone_number %></p>
 					<p><label class="label"><%= t("activerecord.attributes.user.date_of_birth", :default => t("activerecord.labels.date_of_birth", :default => "Date of Birth")) %>:</label>
-					<p><%= best_in_place_if @user.date_of_birth, @user, :date_of_birth, :format => :long %></p>
+					<p><%= best_in_place_if @user.date_of_birth, @user, :date_of_birth, :type => :date,:format => :long %></p>
 					<p><label class="label"><%= t("activerecord.attributes.user.zip", :default => t("activerecord.labels.zip", :default => "Zipcode")) %>:</label>
 					<p><%= best_in_place_if @user.zip, @user, :zip %></p>
                 </div>

@@ -14,6 +14,7 @@ class CreateVendors < ActiveRecord::Migration
       t.string :section_code
       t.string :payee_name
       t.string :address
+      t.has_attached_file :avatar
       t.integer :society_id
 
       t.timestamps

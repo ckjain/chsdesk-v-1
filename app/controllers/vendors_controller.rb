@@ -1,83 +1,94 @@
 class VendorsController < ApplicationController
   # GET /vendors
   # GET /vendors.json
-  def index
-    @vendors = Vendor.all
+  before_filter :authenticate_user!
+  load_and_authorize_resource 
 
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @vendors }
+  def data
+    if current_user.has_role? :super_admin
+      @vendors = Vendor.all
+    else
+      @vendors = Vendor.where("society_id like ?", current_user.society_id)
     end
+  end
+
+  def dbaction
+    #called for all db actions
+    vendor_name     = params["c0"]
+    contact_name    = params["c1"]
+    vendor_phone    = params["c2"]
+    vendor_email    = params["c3"]
+    service_type    = params["c4"]
+    payee_name      = params["c5"]
+    address         = params["c6"]
+    stax_reg_number = params["c7"]
+    service_tax_rate = params["c8"]
+    pan_number      = params["c9"]
+    is_recurring    = params["c10"]
+    vat_number      = params["c11"]
+    section_code    = params["c12"]
+    avatar_file_name = params["c13"]
+    society_id      = params["c14"]
+     
+    @mode = params["!nativeeditor_status"]
+                  
+    @id = params["gr_id"]
+    case @mode
+      when "inserted"
+        vendor = Vendor.new
+        vendor.vendor_name = vendor_name
+        vendor.contact_name = contact_name
+        vendor.vendor_phone = vendor_phone
+        vendor.vendor_email = vendor_email
+        vendor.service_type = service_type
+        vendor.stax_reg_number = stax_reg_number
+        vendor.service_tax_rate = service_tax_rate
+        vendor.pan_number = pan_number
+        vendor.is_recurring = is_recurring
+        vendor.vat_number = vat_number
+        vendor.section_code = section_code
+        vendor.payee_name = payee_name
+        vendor.address = address
+        vendor.avatar_file_name = avatar_file_name
+        vendor.society_id = current_user.society_id
+        
+        vendor.save!
+        
+        @tid = vendor.id
+      when "deleted"
+        vendor=Vendor.find(@id)
+        vendor.destroy
+        
+        @tid = @id
+      when "updated"
+        vendor=Vendor.find(@id)
+        vendor.vendor_name = vendor_name
+        vendor.contact_name = contact_name
+        vendor.vendor_phone = vendor_phone
+        vendor.vendor_email = vendor_email
+        vendor.service_type = service_type
+        vendor.stax_reg_number = stax_reg_number
+        vendor.service_tax_rate = service_tax_rate
+        vendor.pan_number = pan_number
+        vendor.is_recurring = is_recurring
+        vendor.vat_number = vat_number
+        vendor.section_code = section_code
+        vendor.payee_name = payee_name
+        vendor.address = address
+        vendor.avatar_file_name = avatar_file_name
+        vendor.society_id = current_user.society_id
+
+        vendor.save!
+        
+        @tid = @id
+    end 
   end
 
   # GET /vendors/1
   # GET /vendors/1.json
   def show
-    @vendor = Vendor.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @vendor }
-    end
   end
 
   # GET /vendors/new
   # GET /vendors/new.json
-  def new
-    @vendor = Vendor.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @vendor }
-    end
-  end
-
-  # GET /vendors/1/edit
-  def edit
-    @vendor = Vendor.find(params[:id])
-  end
-
-  # POST /vendors
-  # POST /vendors.json
-  def create
-    @vendor = Vendor.new(params[:vendor])
-
-    respond_to do |format|
-      if @vendor.save
-        format.html { redirect_to @vendor, only_path: true, notice: 'Vendor was successfully created.' }
-        format.json { render json: @vendor, status: :created, location: @vendor }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @vendor.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # PUT /vendors/1
-  # PUT /vendors/1.json
-  def update
-    @vendor = Vendor.find(params[:id])
-
-    respond_to do |format|
-      if @vendor.update_attributes(params[:vendor])
-        format.html { redirect_to @vendor, only_path: true, notice: 'Vendor was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: "edit" }
-        format.json { render json: @vendor.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # DELETE /vendors/1
-  # DELETE /vendors/1.json
-  def destroy
-    @vendor = Vendor.find(params[:id])
-    @vendor.destroy
-
-    respond_to do |format|
-      format.html { redirect_to vendors_url, only_path: true }
-      format.json { head :no_content }
-    end
-  end
 end

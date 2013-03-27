@@ -7,11 +7,11 @@ class MeetingsController < ApplicationController
 
   def index
     if current_user.has_role? :super_admin
-      @meetings = Meeting.order("meeting_name").paginate :page => params[:page], :per_page => 10
+      @meetings = Meeting.order("id").paginate :page => params[:page], :per_page => 10
       @meeting = Meeting.find(params[:meeting_id]) if params[:meeting_id]
 
     else
-      @meetings = Meeting.where("society_id like ?", current_user.society_id).paginate :page => params[:page], :per_page => 10     
+      @meetings = Meeting.order("id").where("society_id like ?", current_user.society_id).paginate :page => params[:page], :per_page => 10     
       @meeting = Meeting.where("society_id like ?", current_user.society_id).find(params[:meeting_id]) if params[:meeting_id]
     end
 
@@ -66,12 +66,15 @@ class MeetingsController < ApplicationController
   # PUT /meetings/1.json
   def update
     @meeting = Meeting.find(params[:id])
-
+    respond_to do |format|
       if @meeting.update_attributes(params[:meeting])
-        redirect_to @meeting, only_path: true , notice: 'Meeting was successfully updated.'
+        format.html { redirect_to(@meeting, only_path: true , :notice => 'Meeting was successfully updated.') }
+        format.json { respond_with_bip(@meeting) }
       else
-        render :edit
+        format.html { render :action => "edit" }
+        format.json { respond_with_bip(@meeting) }
       end
+    end
   end
   # DELETE /meetings/1
   # DELETE /meetings/1.json

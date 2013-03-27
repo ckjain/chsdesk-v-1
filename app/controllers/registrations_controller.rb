@@ -1,9 +1,7 @@
 class RegistrationsController < Devise::RegistrationsController
-
-  # ovverride #create to respond to AJAX with a partial
+# ovverride #create to respond to AJAX with a partial
   def create
     build_resource
-
     if resource.save
       if resource.active_for_authentication?
         sign_in(resource_name, resource)
@@ -28,7 +26,7 @@ class RegistrationsController < Devise::RegistrationsController
 
   def after_sign_up_path_for(resource)
     # the page new users will see after sign up (after launch, when no invitation is needed)
-    redirect_to root_path, only_path: true 
+    redirect_to root_path
   end
 
 end

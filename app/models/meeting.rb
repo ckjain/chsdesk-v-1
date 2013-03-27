@@ -8,14 +8,6 @@ class Meeting < ActiveRecord::Base
   
   belongs_to :society
 
-#  before_create :set_issue_date_to_now
-
-#  def formatted_meeting_date
-#  meeting_date.strftime('%d/%m/%Y %H:%M')
-#  end
-#  def formatted_meeting_date=(time_str)
-#    self.meeting_date = Time.parse(time_str)
-#  end
 
   accepts_nested_attributes_for :agendas, allow_destroy: true
 #--------token-input------------------
@@ -34,6 +26,14 @@ class Meeting < ActiveRecord::Base
   def author_tokens=(tokens)
     self.member_ids = Member.ids_from_tokens(tokens)
   end
+#  before_create :set_issue_date_to_now
+
+#  def formatted_meeting_date
+#  meeting_date.strftime('%d/%m/%Y %H:%M')
+#  end
+#  def formatted_meeting_date=(time_str)
+#    self.meeting_date = Time.parse(time_str)
+#  end
 
 #----------end------------------------
 end

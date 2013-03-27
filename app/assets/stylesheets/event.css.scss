@@ -16,16 +16,11 @@
 }
 
 #event_details {
-  background-color: #E0E0E0;
-  border: solid 1px #333;
-  border-radius: 8px;
-  webkit-border-radius: 8px;
-  mozilla-border-radius: 8px;
   position: relative;
   top: 0px;
   left: 0px;
   right: 10px;
-  padding: 10px 30px;
+  padding: 0px 20px;
   dt, dd {
     margin: 0;
     padding: 0;
@@ -35,10 +30,26 @@
     margin-bottom: 4px;
   }
   dd {
-    font-weight: bold;
+    font-weight: normal;
   }
   h3 {
     margin-top: 10px;
     font-size: 16px;
   }
 }
+form > fieldset {
+  border: none;
+  border: solid 1px #CCC;
+  padding: 10px 15px;
+  margin: 15px 0;
+  fieldset {
+    border: none;
+    margin: 0;
+    margin: 10px 0;
+    padding: 0;
+  textarea {
+    height: 40px;
+    width: 350px;
+    margin-top: 3px;
+}
+}}

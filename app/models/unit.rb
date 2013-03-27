@@ -24,12 +24,9 @@ class Unit < ActiveRecord::Base
     "#{unit_number}, #{building_name}, #{wing_name}, #{floor_name}"
   end
   
-  
 #  property_tax = tax_area.first[:value] * rate_sqft_month.first[:value]
   
 #  Unit.(:property_tax) = tax_area * rate_sqft_month
 #  joins(:unit_type, :bill_setup).where("society_id like ?", current_user.society_id) 
-
-
 
 end

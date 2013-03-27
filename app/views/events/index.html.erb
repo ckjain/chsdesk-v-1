@@ -36,22 +36,23 @@
 						  </div>
 						<% end %>
 						<br>
-						<p><%= link_to "New event", new_event_path %></p></br>
+						<p><%= link_to "New event", new_event_path, :class => 'btn' %></p></br>
 					<div data-pjax-container>
 					  <% if @event %>
 					  <div id="event_details">
 					    <h3><%= best_in_place_if @event.title, @event, :title %></h3>
 					    <dl>
 					      <dt>From:</dt>
-					      <dd><%= best_in_place_if @event.starts_at, @event, :starts_at %></dd>
+					      <dd><%= l(@event.starts_at, :format => :long) %></dd>
 					      <dt>To:</dt>
-					      <dd><%= best_in_place_if @event.ends_at, @event, :ends_at %></dd>
+					      <dd><%= l(@event.ends_at, :format => :long) %></dd>
 					      <dt>Description:</dt>
-					      <dd><%= best_in_place_if @event.description, @event, :description %></dd>
+					      <dd><%= best_in_place_if @event.description, @event, :description, :type => :textarea %></dd>
 					    </dl>
-					    <p class="actions">
-					      <%= link_to ( image_tag("/assets/Overlay-cancel.png")), @event, method: :delete, confirm: "Are you sure?" %>
-					    </p>
+					    <div class="form-actions">
+		  				  <%= link_to 'Edit', edit_event_path(@event), :class => 'btn'  %> 
+		  				  <%= link_to ( image_tag("/assets/Overlay-cancel.png")), @event, method: :delete, confirm: "Are you sure?", :class => 'btn'  %>
+					    </div>
 					  </div>
 					  <% end %>
 					</div>

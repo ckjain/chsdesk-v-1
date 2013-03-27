@@ -17,6 +17,8 @@ RailsPrelaunchSignup::Application.routes.draw do
 
   devise_for :users, :controllers => { :registrations => "registrations", :confirmations => "confirmations" }
   match 'users/bulk_invite/:quantity' => 'users#bulk_invite', :via => :get, :as => :bulk_invite
+  match 'units/unit_update' => 'units#unit_update', :via => :get, :as => :unit_update
+
 #------------Baseapp2----------------
 
     match '/users/search' => 'users#search',  :requirements => { :method => :get }
@@ -117,8 +119,16 @@ RailsPrelaunchSignup::Application.routes.draw do
             get 'index'
           end
       end
+     resources :vendors do
+      match '/view_vendors',       :to => 'vendors#show',  :requirements => { :method => :get }
+          collection do
+            get 'data'
+            get 'dbaction'
+            get 'show'
+            get 'index'
+          end
+      end
   
-  resources :vendors
   resources :staffs
   resources :meetings 
   resources :meeting_types 

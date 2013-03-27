@@ -20,26 +20,33 @@
             <div class="toggle_container">					
                 <div class="block box_content round_bottom padding_20">
 
-				<p><b>Name:</b>
+				<p><b>Staff name:</b>
 				  <%= @staff.staff_name %></p>
 				<p><b>Gender:</b>
 				  <%= @staff.gender %></p>
-				<p><b>Age:</b>
-				  <%= @staff.staff_age %></p>
-				<p><b>Email:</b>
-				  <%= @staff.staff_email %></p>
-				<p><b>Phone:</b>
-				  <%= @staff.staff_phone %></p>
-				<p><b>Current address:</b>
-				  <%= @staff.staff_current_address %></p>
-				<p><b>Permamnent address:</b>
-				  <%= @staff.staff_permamnent_address %></p>
-				<p><b>Designation:</b>
+				<p><b>Staff category:</b>
 				  <%= @staff.staff_category %></p>
-				<p><b>Salary:</b>
-				  <%= @staff.staff_salary %></p>
+				<p><b>Staff age:</b>
+				  <%= @staff.staff_age %></p>
+				<p><b>Staff email:</b>
+				  <%= @staff.staff_email %></p>
+				<p><b>Staff phone:</b>
+				  <%= @staff.staff_phone %></p>
+				<p><b>Staff current address:</b>
+				  <%= @staff.staff_current_address %></p>
+				<p><b>Staff permamnent address:</b>
+				  <%= @staff.staff_permamnent_address %></p>
+				<p><b>Active:</b>
+				  <%= @staff.active %></p>
 				<p><b>Joining date:</b>
 				  <%= @staff.joining_date %></p>
+				<p><b>Staff salary:</b>
+				  <%= @staff.staff_salary %></p>
+					<%= image_tag @staff.avatar.url %>
+					<%= image_tag @staff.avatar.url(:medium) %>
+					<%= image_tag @staff.avatar.url(:thumb) %>
+				<p><b>Society:</b>
+				  <%= @staff.society_id %></p>
 				<%= link_to 'Edit', edit_staff_path(@staff) %>
 				<%= link_to 'Back', staffs_path %>
                 </div>                                
@@ -55,13 +62,6 @@
             <div class="toggle_container">					
                 <div class="block box_content round_bottom padding_20">
 					<ul>
-					<%= image_tag @staff.avatar.url %>
-					<%= image_tag @staff.avatar.url(:medium) %>
-					<%= image_tag @staff.avatar.url(:thumb) %>
-				<p><b>Active:</b>
-				  <%= @staff.active %></p>
-				<p><b>Society:</b>
-				  <%= @staff.society_id %></p>
 					</ul>
                 </div>                                
             </div>

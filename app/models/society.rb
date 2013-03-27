@@ -15,6 +15,9 @@ class Society < ActiveRecord::Base
   has_many :members, :through => :memberships
   has_many :units, :through => :memberships
 
+  def society_name
+    "#{name.capitalize}"
+  end
 
 #  accepts_nested_attributes_for :units, :allow_destroy => true
 #  attr_reader :unit_tokens

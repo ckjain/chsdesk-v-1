@@ -11,18 +11,20 @@
 // GO AFTER THE REQUIRES BELOW.
 //
 //= require jquery
-//= require jquery_ujs
 //= require jquery-ui
+//= require jquery_ujs
 //= require jquery.ui.widget
 //= require jquery.ui.mouse
 //= require jquery.ui.draggable
 //= require jquery.tokeninput
 //= require jquery.purr
 //= require best_in_place
-//= require bootstrap-modal
 //= require jquery.rest
 //= require fullcalendar
 //= require jquery.pjax
+//= require bootstrap
+//= require dataTables/jquery.dataTables
+//= require dataTables/jquery.dataTables.bootstrap
 //= require_tree .
 $('document').ready(function() {
   
@@ -34,11 +36,11 @@ $('document').ready(function() {
   // use AJAX to submit the "request invitation" form
   $('#invitation_button').live('click', function() {
     var email = $('form #user_email').val();
-    var password = $('form #user_password').val();
-    var name = $('form #user_name').val();
-    var zip = $('form #user_zip').val();
-    var phone_number = $('form #user_phone_number').val();
-    var dataString = 'user[email]='+ email + '&user[password]='+ password + '&user[name]='+ name + '&user[zip]='+ zip + '&user[phone_number]='+ phone_number + '&user[society_id]='+ society_name;
+    if($('form #user_opt_in').is(':checked'))
+        var opt_in = true;
+    else
+        var opt_in = false;
+    var dataString = 'user[email]='+ email + '&user[opt_in]=' + opt_in;
     $.ajax({
       type: "POST",
       url: "/users",
@@ -113,11 +115,11 @@ $.datepicker.setDefaults({
    buttonText: 'Calendar' });
 
 $(function() {
-  $("#meeting_meeting_date").datetimepicker({ ampm: true, yearRange: "-00:+01", defaultDate: +4});
+  $("#meeting_meeting_date").datetimepicker({ dateFormat: "dd-mm-yy", ampm: true, yearRange: "-00:+01", defaultDate: +4});
 });
 
 $(function() {
-  $("#meeting_issue_date").datepicker({ yearRange: "-00:+01", appendText: "(dd-mm-yy)" });
+  $("#meeting_issue_date").datepicker({ dateFormat: "dd-mm-yy", yearRange: "-00:+01", appendText: "(dd-mm-yy)" });
 });
 
 $(function() {
@@ -132,16 +134,16 @@ $(function() {
 	$( "#event_starts_at" ).datetimepicker({
 		changeMonth: true,
 		gotoCurrent: true,
-		showCurrentAtPos: 3,
-		numberOfMonths: 3,
+		showCurrentAtPos: 0,
+		numberOfMonths: +2,
 		onSelect: function( selectedDate ) {
 			$( "#event_ends_at" ).datetimepicker( "option", "minDate", selectedDate );
 		}
 	});
 	$( "#event_ends_at" ).datetimepicker({
-		defaultDate: "+4",
+		defaultDate: "+1",
 		changeMonth: true,
-		numberOfMonths: 3,
+		numberOfMonths: 2,
 		onSelect: function( selectedDate ) {
 			$( "#event_starts_at" ).datetimepicker( "option", "maxDate", selectedDate );
 		}
