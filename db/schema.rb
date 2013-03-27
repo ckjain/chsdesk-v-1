@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120608180323) do
+ActiveRecord::Schema.define(:version => 20120626032812) do
 
   create_table "agendas", :force => true do |t|
     t.text     "meeting_agendas"
@@ -52,32 +52,43 @@ ActiveRecord::Schema.define(:version => 20120608180323) do
   add_index "bill_setups", ["society_id"], :name => "fk_bill_setup_society_id"
 
   create_table "bills", :force => true do |t|
-    t.integer  "bill_number",          :limit => 25,                                                 :null => false
-    t.date     "from_date",                                                                          :null => false
-    t.date     "to_date",                                                                            :null => false
-    t.date     "bill_date",                                                                          :null => false
-    t.integer  "membership_id",                                                                      :null => false
-    t.decimal  "parking_charges",                    :precision => 7,  :scale => 2, :default => 0.0
-    t.decimal  "noc_charges",                        :precision => 7,  :scale => 2, :default => 0.0
-    t.decimal  "property_tax",                       :precision => 8,  :scale => 2, :default => 0.0
-    t.decimal  "sinking_fund",                       :precision => 7,  :scale => 2, :default => 0.0
-    t.decimal  "repair_fund",                        :precision => 7,  :scale => 2, :default => 0.0
-    t.decimal  "maintenance_charges",                :precision => 8,  :scale => 2, :default => 0.0
-    t.decimal  "other_charges",                      :precision => 8,  :scale => 2, :default => 0.0
+    t.integer  "bill_number",                                                          :null => false
+    t.date     "from_date",                                                            :null => false
+    t.date     "to_date",                                                              :null => false
+    t.date     "bill_date",                                                            :null => false
+    t.integer  "membership_id",                                                        :null => false
+    t.decimal  "parking_charges",      :precision => 7,  :scale => 2, :default => 0.0
+    t.decimal  "noc_charges",          :precision => 7,  :scale => 2, :default => 0.0
+    t.decimal  "property_tax",         :precision => 8,  :scale => 2, :default => 0.0
+    t.decimal  "sinking_fund",         :precision => 7,  :scale => 2, :default => 0.0
+    t.decimal  "repair_fund",          :precision => 7,  :scale => 2, :default => 0.0
+    t.decimal  "maintenance_charges",  :precision => 8,  :scale => 2, :default => 0.0
+    t.decimal  "other_charges",        :precision => 8,  :scale => 2, :default => 0.0
     t.string   "other_detail"
-    t.decimal  "service_tax",                        :precision => 8,  :scale => 2, :default => 0.0
-    t.decimal  "penalty_interest",                   :precision => 8,  :scale => 2, :default => 0.0
-    t.decimal  "discount_amount",                    :precision => 6,  :scale => 2, :default => 0.0
-    t.decimal  "current_bill_charges",               :precision => 10, :scale => 2, :default => 0.0
-    t.decimal  "payable_amount",                     :precision => 10, :scale => 2, :default => 0.0
-    t.integer  "bill_header_id",                                                                     :null => false
-    t.integer  "society_id",                                                                         :null => false
+    t.decimal  "service_tax",          :precision => 8,  :scale => 2, :default => 0.0
+    t.decimal  "penalty_interest",     :precision => 8,  :scale => 2, :default => 0.0
+    t.decimal  "discount_amount",      :precision => 6,  :scale => 2, :default => 0.0
+    t.decimal  "current_bill_charges", :precision => 10, :scale => 2, :default => 0.0
+    t.decimal  "payable_amount",       :precision => 10, :scale => 2, :default => 0.0
+    t.integer  "bill_header_id",                                                       :null => false
+    t.integer  "society_id",                                                           :null => false
     t.string   "image"
-    t.datetime "created_at",                                                                         :null => false
-    t.datetime "updated_at",                                                                         :null => false
+    t.datetime "created_at",                                                           :null => false
+    t.datetime "updated_at",                                                           :null => false
   end
 
   add_index "bills", ["membership_id"], :name => "fk_membership_id"
+
+  create_table "events", :force => true do |t|
+    t.string   "title"
+    t.datetime "starts_at"
+    t.datetime "ends_at"
+    t.boolean  "all_day"
+    t.text     "description"
+    t.integer  "society_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
 
   create_table "meeting_members", :force => true do |t|
     t.integer  "meeting_id"
@@ -98,18 +109,22 @@ ActiveRecord::Schema.define(:version => 20120608180323) do
   create_table "meetings", :force => true do |t|
     t.integer  "meeting_type_id"
     t.datetime "meeting_date"
-    t.string   "meeting_place"
-    t.string   "issued_by"
+    t.string   "meeting_place",   :default => "Society Office"
+    t.string   "issued_by",       :default => "Hon. Secretary"
     t.datetime "issue_date"
     t.integer  "society_id"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
+    t.datetime "ends_at"
+    t.boolean  "all_day"
+    t.text     "description"
+    t.datetime "created_at",                                    :null => false
+    t.datetime "updated_at",                                    :null => false
   end
 
   create_table "members", :force => true do |t|
     t.string   "name",         :limit => 50
     t.string   "mobile_phone", :limit => 20
     t.string   "email_id",     :limit => 50
+    t.string   "member_no"
     t.integer  "user_id"
     t.integer  "society_id"
     t.datetime "created_at",                 :null => false
@@ -242,16 +257,16 @@ ActiveRecord::Schema.define(:version => 20120608180323) do
   add_index "units", ["id"], :name => "index_units_on_id"
 
   create_table "users", :force => true do |t|
-    t.string   "email",                                 :default => "",        :null => false
-    t.string   "encrypted_password",                    :default => ""
-    t.string   "name",                   :limit => 100, :default => ""
+    t.string   "email",                                 :default => "example@chsdesk.com", :null => false
+    t.string   "encrypted_password",                    :default => "password"
+    t.string   "name",                   :limit => 100, :default => "Your Name"
     t.string   "state",                                 :default => "passive"
     t.datetime "activated_at"
     t.datetime "deleted_at"
     t.integer  "society_id"
     t.date     "date_of_birth"
-    t.string   "phone_number"
-    t.string   "zip"
+    t.string   "phone_number",           :limit => 20,  :default => "0000000000"
+    t.string   "zip",                    :limit => 20,  :default => "400 000"
     t.text     "bio"
     t.string   "avatar_url"
     t.string   "reset_password_token"
@@ -262,8 +277,8 @@ ActiveRecord::Schema.define(:version => 20120608180323) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.datetime "created_at",                                                   :null => false
-    t.datetime "updated_at",                                                   :null => false
+    t.datetime "created_at",                                                               :null => false
+    t.datetime "updated_at",                                                               :null => false
     t.string   "confirmation_token"
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
@@ -274,6 +289,7 @@ ActiveRecord::Schema.define(:version => 20120608180323) do
     t.integer  "invitation_limit"
     t.integer  "invited_by_id"
     t.string   "invited_by_type"
+    t.boolean  "opt_in",                                :default => false
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
@@ -295,16 +311,20 @@ ActiveRecord::Schema.define(:version => 20120608180323) do
     t.string   "vendor_email"
     t.string   "service_type"
     t.string   "stax_reg_number"
-    t.decimal  "service_tax_rate"
+    t.decimal  "service_tax_rate",    :precision => 10, :scale => 0
     t.string   "pan_number"
     t.boolean  "is_recurring"
     t.string   "vat_number"
     t.string   "section_code"
     t.string   "payee_name"
     t.string   "address"
+    t.string   "avatar_file_name"
+    t.string   "avatar_content_type"
+    t.integer  "avatar_file_size"
+    t.datetime "avatar_updated_at"
     t.integer  "society_id"
-    t.datetime "created_at",       :null => false
-    t.datetime "updated_at",       :null => false
+    t.datetime "created_at",                                         :null => false
+    t.datetime "updated_at",                                         :null => false
   end
 
 end

@@ -31,7 +31,10 @@ git init .
 git add .
 git commit -m 'Initial commit'
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> calander
 development:
   adapter: postgresql
   encoding: unicode

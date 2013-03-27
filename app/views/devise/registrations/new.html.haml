@@ -11,6 +11,7 @@
               .modal-body
                 = f.error_notification
                 = f.input :email, :placeholder => 'user@example.com'
+                = f.input :opt_in, :label => false, :inline_label => 'Please send announcements.'
                 = f.input :name, :placeholder => 'Name'
                 = f.input :password, :placeholder => 'Password'
                 = f.input :zip, :placeholder => 'Your Pincode'

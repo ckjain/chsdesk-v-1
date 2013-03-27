@@ -5,10 +5,10 @@ class Staff < ActiveRecord::Base
 
   belongs_to :society
 #---------paperclip----------------------------------
-  has_attached_file :avatar, :styles => { :medium => "200x200>", :thumb => "36x36>" }
-  validates_attachment :avatar, :presence => true
+  has_attached_file :avatar, :styles => { :medium => "200x200>", :thumb => "100x100>" }
+#  validates_attachment :avatar, :presence => true
 #  validates_attachment_size :avatar, :size => [< 1000], :message => "has to be in 1000kb size"
-  validates_attachment_content_type :avatar, :content_type => ['image/jpeg', 'image/pjpeg', 'image/jpg'], :message => "has to be in jpg/jpeg/png/gif format"
+  validates_attachment_content_type :avatar, :content_type => ['image/jpg', 'image/pjpeg', 'image/jpeg', 'image/png'], :message => "has to be in jpg/jpeg/png/gif format"
 
 #---------paperclip end-------------------------------
   protected

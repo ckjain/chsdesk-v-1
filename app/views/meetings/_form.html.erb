@@ -39,16 +39,16 @@
 		<div class="box grad_colour_dark_blue" id="box_0">
 			<h2 class="box_head round_top"><%= controller.action_name.capitalize %> meeting details</h2>
 			<div class="block box_content round_bottom padding_20">
+				<label class="control-label" for="focusedInput">Meeting Type</label>
+				<div class="controls"><%= f.text_field :meeting_name, data: {autocomplete_source: MeetingType.order(:name).map(&:name)} %></div>
+				<label class="control-label" for="focusedInput">Meeting Called by</label>
+				<div class="controls"><%= f.text_field :issued_by %></div>
+				<label class="control-label" for="focusedInput">Meeting Place</label>
+				<div class="controls"><%= f.text_field :meeting_place %></div>
 				<label class="control-label" for="focusedInput">Meeting issue date</label>
 				<div class="controls"><%= f.text_field :issue_date %></div>
 				<label class="control-label" for="focusedInput">Meeting Date</label>
 				<div class="controls"><%= f.text_field :meeting_date %></div>
-				<label class="control-label" for="focusedInput">Meeting Type</label>
-				<div class="controls"><%= f.text_field :meeting_name, data: {autocomplete_source: MeetingType.order(:name).map(&:name)} %></div>
-				<label class="control-label" for="focusedInput">Meeting Place</label>
-				<div class="controls"><%= f.text_field :meeting_place %></div>
-				<label class="control-label" for="focusedInput">Meeting Called by</label>
-				<div class="controls"><%= f.text_field :issued_by %></div>
 				<label class="control-label" for="focusedInput">Attending Members</label>
 				<div class="controls"><%= f.text_field :author_tokens, data: {load: @meeting.members} %></div>
 			 	<div class="form-actions">

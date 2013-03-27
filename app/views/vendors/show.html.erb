@@ -1,0 +1,70 @@
+		<%= render 'shared/dhtmlx_stylesheet' %>
+    	<%= render 'shared/dhtmlx_javascript' %>
+<div class="row-fluid">
+  <div class="span12">
+    <ul class="breadcrumb">
+    <li><a href="http://localhost:3000">Dashboard</a> <span class="divider">/</span></li>                                      
+	<li class="active">Vendors </li>
+    	<%= render 'shared/buttons' %>
+    </ul>
+  </div><!--/span-->
+</div>
+
+<div class="row-fluid">
+  <div class="span12">
+    <div id="recinfoArea"></div>
+    <div id="grid_vendor" style="width:100%; height:410px; background-color:white;overflow:hidden"></div>
+    <div id="pagingArea"></div>
+
+	<script type="text/javascript" charset="utf-8">
+	function add_r() {
+    var ind1 = "New Vendor";
+    var ind2 = "";
+    var ind3 = '';
+    var ind4 = "";
+    var ind5 = "";
+    var ind6 = "";
+    var ind7 = "";
+    var ind8 = "";
+    var ind9 = "";
+    var ind10 = "";
+    var ind11 = "";
+    var ind12 = "";
+    
+    grid.addRow(grid.uid(), [ind1, ind2, ind3, ind4, ind5, ind6, ind7, ind8, ind9, ind10, ind11, ind12], 0);
+	}
+		var grid = new dhtmlXGridObject("grid_vendor");
+		grid.setImagePath("imgs/");
+		grid.setHeader("Company Name, Contact name, phone, Email,Service Type, Payee name, Address, S.Tax reg.no,S.tax rate, Pan number, Is recurring?, Vat number, Section code, Photo, S Id");
+		grid.attachHeader("#text_filter,#text_filter,#text_filter,#text_filter,#select_filter,#text_filter");
+		grid.setColSorting("str,str,str,str,str,str,str,str,str,str,str,str,str,str,int");
+		grid.setInitWidths("150,100,80,140,100,140,160,70,70,60,60,60,100,60,50");
+		grid.setColAlign("left,left,left,left,left,left,left,left,right,left,center,left,left,right,center");
+		grid.setColTypes("ed,ed,ed,ed,ed,ed,txt,ed,ed,ed,acheck,ed,ed,img,ed");
+		grid.enableMultiselect(true);
+		grid.enableValidation(true);
+		grid.setSkin("sbdark");
+		grid.enablePaging(true, 15, 10, "pagingArea", true, "recinfoArea");
+		grid.setPagingSkin("bricks");
+		grid.init();
+		grid.load("vendors/data.xml");
+		
+		dp = new dataProcessor("vendors/dbaction.xml/");
+		dp.init(grid);
+
+		//link dataprocessor to the grid;
+		function clear_filter(){
+			grid.filterBy(0,"");
+			grid._f_rowsBuffer = null;
+		}
+		function add(){
+			clear_filter();
+			grid.addRow(grid.uid(), 'vendor');
+		}
+		function remove(){
+			clear_filter();
+			grid.deleteSelectedRows();
+		}
+	</script>
+  </div>
+</div>

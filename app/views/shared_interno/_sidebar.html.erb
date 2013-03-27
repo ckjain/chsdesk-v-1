@@ -12,7 +12,7 @@
               <a href="http://localhost:3000/users">Users</a>
               <a href="portlets.html">Portlets</a>
               <a href="layout.html">Box Grid</a>
-          </div>	
+          </div>
       </li>	                      
       <li><a href="typhography.html">
           <img src="/images/icons/grey/apartment_building.png">
@@ -31,7 +31,6 @@
 			    <li><a href="#"><%= link_to "Vendor", vendors_path %></a></li>
               <li><a href="#">Others
                   <span class="icon">&nbsp;</span></a>	
-                  
                   <ul>
                       <li><a href="typhography_other.html">
                           <img src="/images/icons/grey/sign_post.png">Tooltips</a></li>
@@ -45,7 +44,7 @@
               </li>
              
           </ul>
-      </li>				
+      </li>	
       <li><a href="#">
           <img src="/images/icons/grey/create_write.png">
           <span>Billing</span>
@@ -77,19 +76,19 @@
 	        <%= link_to('Stats', '/stats') %>
 	        <%= link_to('Genres', '/genres') %>  
 	        <% if user_signed_in? %>
-	          <%= link_to("Gallery", {:controller => "/items" }) %>
+	          <%= link_to("Gallery", '/genres') %>
 	          <%= link_to('My Playlists', "/#{current_user.name}/playlists") %>
 	        <% end %>
-          </div>	
+          </div>
       </li>	
       <li><a href="">
           <img src="/images/icons/grey/Images.png">
           <span>Image Gallery</span></a>
-             <%= link_to("Gallery", {:controller => "/staff_photos" }) %>
+             <%= link_to("Gallery",  "/staff_photos" ) %>
 
       </li>	
       <li><a href="#">
-         <%= link_to ( image_tag("/images/icons/grey/Exit.png")), destroy_user_session_path, :method => 'delete' %>
+         <%= link_to (image_tag("/images/icons/grey/Exit.png", :alt => "Logout", :mouseover => "Sign out")), destroy_user_session_path, :method => "delete" %>
           </a>
       </li>	
   </ul>

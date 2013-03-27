@@ -3,10 +3,10 @@
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 #// For fixed width containers
 jQuery ->
+  $('#user_society_name').autocomplete
+    source: $('#user_society_name').data('autocomplete-source')
+    
   $('.datatable').dataTable({
     "sDom": "<'row'<'span6'l><'span6'f>r>t<'row'<'span6'i><'span6'p>>",
     "sPaginationType": "bootstrap"
     });
-    
-  $('#user_society_name').autocomplete
-    source: $('#user_society_name').data('autocomplete-source')

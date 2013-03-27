@@ -7,9 +7,10 @@ class StaffsController < ApplicationController
   def index
     if current_user.has_role? :super_admin
       @staffs = Staff.order(:staff_name).paginate :page => params[:page], :per_page => 10
+      @staff  = Staff.find(params[:staff_id]) if params[:staff_id]
     else
       @staffs = Staff.where("society_id like ?", current_user.society_id).order(:staff_name).paginate :page => params[:page], :per_page => 10      
-
+      @staff  = Staff.where("society_id like ?", current_user.society_id).find(params[:staff_id]) if params[:staff_id]
     end
 
     respond_to do |format|
@@ -17,6 +18,7 @@ class StaffsController < ApplicationController
       format.json { render json: @staffs }
     end
   end
+
 
   # GET /staffs/1
   # GET /staffs/1.json

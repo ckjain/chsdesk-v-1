@@ -1,11 +1,10 @@
 class Vendor < ActiveRecord::Base
-  attr_accessible :address, :contact_name, :is_recurring, :pan_number, :payee_name, :section_code, :service_tax_rate, :service_type, :society_id, :stax_reg_number, :vat_number, :vendor_email, :vendor_name, :vendor_phone
+  attr_accessible :vendor_name, :contact_name, :vendor_phone,:vendor_email,:service_type,:address,
+  :is_recurring, :payee_name, :pan_number,  :section_code, :service_tax_rate, 
+    :stax_reg_number, :vat_number, :avatar,:avatar_file_name, :avatar_content_type,
+   :avatar_file_size, :avatar_updated_at, :society_id
 
-        belongs_to :society
+   belongs_to :society
 
-scope :vendor_search, lambda { |search| 
-  search = "%#{search}%"
-  where('vendor_name LIKE ? OR contact_name LIKE ? OR vendor_phone LIKE ? OR service_type LIKE ?', search, search, search, search)
- }
 
 end

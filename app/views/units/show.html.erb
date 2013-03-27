@@ -6,6 +6,11 @@
     <li><a href="http://localhost:3000">Dashboard</a> <span class="divider">/</span></li>                                      
 	<li class="active">Unit </li>
     	<%= render 'shared/buttons' %>
+<div class="pull-right">
+    	<a class="btn-mini" type="submit" onclick="">
+	    <i class="icon-refresh"></i><%= link_to "Update Units".html_safe, unit_update_path %></a>
+</div>
+
     </ul>
   </div><!--/span-->
 </div>
@@ -50,7 +55,7 @@
 			grid.setColSorting("na,str,str,str,str,str,int,int,int,int,int,int,int,str,int,int,int");
 			grid.setInitWidths("40,55,40,40,40,120,60,60,70,70,60,60,60,100,60,80,50");
 			grid.setColAlign("right,right,center,center,center,center,right,right,right,right,right,right,right,right,right,right,center");
-			grid.setColTypes("cntr,edtxt,ed,ed,ed,grid,edn,edn,edn,edn,edn,edn,edn,ed,edn,edn,edn");
+			grid.setColTypes("cntr,edtxt,ed,ed,ed,grid,edn,edn,edn,edn,edn,edn,edn,txt,edn,edn,edn");
 			grid.enableMultiselect(true);
 			grid.enableValidation(true);
 			grid.setMathRound(2);

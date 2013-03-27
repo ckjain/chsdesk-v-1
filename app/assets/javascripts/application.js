@@ -13,10 +13,18 @@
 //= require jquery
 //= require jquery-ui
 //= require jquery_ujs
+//= require jquery.ui.widget
+//= require jquery.ui.mouse
+//= require jquery.ui.draggable
 //= require jquery.tokeninput
 //= require jquery.purr
 //= require best_in_place
-//= require bootstrap-modal
+//= require jquery.rest
+//= require fullcalendar
+//= require jquery.pjax
+//= require bootstrap
+//= require dataTables/jquery.dataTables
+//= require dataTables/jquery.dataTables.bootstrap
 //= require_tree .
 $('document').ready(function() {
   
@@ -28,11 +36,11 @@ $('document').ready(function() {
   // use AJAX to submit the "request invitation" form
   $('#invitation_button').live('click', function() {
     var email = $('form #user_email').val();
-    var password = $('form #user_password').val();
-    var name = $('form #user_name').val();
-    var zip = $('form #user_zip').val();
-    var phone_number = $('form #user_phone_number').val();
-    var dataString = 'user[email]='+ email + '&user[password]='+ password + '&user[name]='+ name + '&user[zip]='+ zip + '&user[phone_number]='+ phone_number + '&user[society_id]='+ society_name;
+    if($('form #user_opt_in').is(':checked'))
+        var opt_in = true;
+    else
+        var opt_in = false;
+    var dataString = 'user[email]='+ email + '&user[opt_in]=' + opt_in;
     $.ajax({
       type: "POST",
       url: "/users",
@@ -76,33 +84,68 @@ function loadSocial() {
     }
 }
 
-$(function() {
-  $("#users th a, #users .pagination a").live("click", function() {
-    $.getScript(this.href);
-    return false;
+if (history && history.pushState) {
+  $(function() {
+    $("#users th a, #users .pagination a").live("click", function(e) {
+      $.getScript(this.href);
+      history.pushState(null, document.title, this.href);
+      e.preventDefault();
+    });
+    $("#users_search input").keyup(function() {
+      $.get($("#users_search").attr("action"), $("#users_search").serialize(), null, "script");
+      history.replaceState(null, document.title, $("#users_search").attr("action") + "?" + $("#users_search").serialize());
+    });
+    $(window).bind("popstate", function() {
+      $.getScript(location.href);
+    });
   });
-  $("#users_search input").keyup(function() {
-    $.get($("#users_search").attr("action"), $("#users_search").serialize(), null, "script");
-    return false;
-  });
-});
-
+}
 $('.best_in_place').best_in_place()
 
 $.datepicker.setDefaults({
    showOn: 'both',
+   dateFormat: "dd-mm-yy",
+   showOtherMonths: true,
    buttonImageOnly: true,
+   changeMonth: true,
+   changeYear: true,
+   gotoCurrent: true,
+   currentText: "Now",
    buttonImage: '/assets/calendar.png',
    buttonText: 'Calendar' });
 
 $(function() {
-  $("#meeting_meeting_date").datepicker({ dateFormat: "dd-mm-yy", showOn: "both", showOtherMonths: true  });
+  $("#meeting_meeting_date").datetimepicker({ dateFormat: "dd-mm-yy", ampm: true, yearRange: "-00:+01", defaultDate: +4});
 });
 
 $(function() {
-  $("#meeting_issue_date").datepicker({ dateFormat: "dd-mm-yy", showOn: "both", showOtherMonths: true  });
+  $("#meeting_issue_date").datepicker({ dateFormat: "dd-mm-yy", yearRange: "-00:+01", appendText: "(dd-mm-yy)" });
 });
 
 $(function() {
-  $("#staff_joining_date").datepicker({ dateFormat: "dd-mm-yy", showOn: "both", showOtherMonths: true  });
+  $("#staff_joining_date").datepicker({ dateFormat: "dd-mm-yy"  });
+});
+
+$(function() {
+  $( "#draggable" ).draggable();
+});
+
+$(function() {
+	$( "#event_starts_at" ).datetimepicker({
+		changeMonth: true,
+		gotoCurrent: true,
+		showCurrentAtPos: 0,
+		numberOfMonths: +2,
+		onSelect: function( selectedDate ) {
+			$( "#event_ends_at" ).datetimepicker( "option", "minDate", selectedDate );
+		}
+	});
+	$( "#event_ends_at" ).datetimepicker({
+		defaultDate: "+1",
+		changeMonth: true,
+		numberOfMonths: 2,
+		onSelect: function( selectedDate ) {
+			$( "#event_starts_at" ).datetimepicker( "option", "maxDate", selectedDate );
+		}
+	});
 });

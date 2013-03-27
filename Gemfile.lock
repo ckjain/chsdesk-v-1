@@ -1,8 +1,8 @@
 GIT
   remote: git://github.com/thoughtbot/paperclip.git
-  revision: 6728166896d58412e4d10276f010eca8c299890f
+  revision: b43693019d713cf89d06a172096a655990838333
   specs:
-    paperclip (3.0.4)
+    paperclip (3.1.2)
       activemodel (>= 3.0.0)
       activerecord (>= 3.0.0)
       activesupport (>= 3.0.0)
@@ -12,7 +12,7 @@ GIT
 GEM
   remote: https://rubygems.org/
   specs:
-    aasm (3.0.7)
+    aasm (3.0.8)
     actionmailer (3.2.5)
       actionpack (= 3.2.5)
       mail (~> 2.4.4)
@@ -77,11 +77,11 @@ GEM
       cucumber (>= 1.1.8)
       nokogiri (>= 1.5.0)
     database_cleaner (0.8.0)
-    devise (2.1.0)
+    devise (2.1.2)
       bcrypt-ruby (~> 3.0)
-      orm_adapter (~> 0.0.7)
+      orm_adapter (~> 0.1)
       railties (~> 3.1)
-      warden (~> 1.1.1)
+      warden (~> 1.2.1)
     devise_invitable (1.0.2)
       devise (>= 2.0.0)
       rails (~> 3.0)
@@ -94,15 +94,18 @@ GEM
     erubis (2.7.0)
     execjs (1.4.0)
       multi_json (~> 1.0)
-    factory_girl (3.3.0)
+    factory_girl (3.5.0)
       activesupport (>= 3.0.0)
-    factory_girl_rails (3.3.0)
-      factory_girl (~> 3.3.0)
+    factory_girl_rails (3.5.0)
+      factory_girl (~> 3.5.0)
       railties (>= 3.0.0)
+    faker (1.0.1)
+      i18n (~> 0.4)
     ffi (1.0.11)
-    gherkin (2.11.0)
+    fullcalendar-rails (1.5.3.0)
+    gherkin (2.11.1)
       json (>= 1.4.6)
-    gherkin (2.11.0-x86-mingw32)
+    gherkin (2.11.1-x86-mingw32)
       json (>= 1.4.6)
     google_visualr (2.1.2)
     gravatar_image_tag (1.1.2)
@@ -115,18 +118,20 @@ GEM
     hike (1.2.1)
     hodel_3000_compliant_logger (0.1.0)
     hominid (3.0.4)
+    hpricot (0.8.6)
     i18n (0.6.0)
     i18n_generators (1.2.1)
       mechanize
       rails (>= 3.0.0)
     i18n_routing (0.6.1)
       i18n (> 0.3.5)
-    journey (1.0.3)
+    journey (1.0.4)
     jquery-datatables-rails (1.10.0)
       jquery-rails
     jquery-rails (2.0.2)
       railties (>= 3.2.0, < 5.0)
       thor (~> 0.14)
+    jquery-rest-rails (1.0.0)
     json (1.7.3)
     launchy (2.1.0)
       addressable (~> 2.2.6)
@@ -144,23 +149,28 @@ GEM
       nokogiri (~> 1.4)
       ntlm-http (~> 0.1, >= 0.1.1)
       webrobots (~> 0.0, >= 0.0.9)
-    mime-types (1.18)
+    mime-types (1.19)
     multi_json (1.3.6)
     mysql (2.8.1)
     mysql (2.8.1-x86-mingw32)
     net-http-digest_auth (1.2.1)
     net-http-persistent (2.7)
-    nokogiri (1.5.3)
-    nokogiri (1.5.3-x86-mingw32)
+    nokogiri (1.5.4)
+    nokogiri (1.5.4-x86-mingw32)
     ntlm-http (0.1.1)
     oink (0.9.3)
       activerecord
       hodel_3000_compliant_logger
-    orm_adapter (0.0.7)
+    orm_adapter (0.3.0)
+    pg (0.13.2)
+    pg (0.13.2-x86-mingw32)
     polyglot (0.3.3)
     rack (1.4.1)
     rack-cache (1.2)
       rack (>= 0.4)
+    rack-pjax (0.5.9)
+      hpricot (~> 0.8.6)
+      rack (~> 1.3)
     rack-ssl (1.3.2)
       rack
     rack-test (0.6.1)
@@ -198,15 +208,14 @@ GEM
       activesupport (>= 3.0)
       railties (>= 3.0)
       rspec (~> 2.10.0)
-    rubyzip (0.9.8)
+    rubyzip (0.9.9)
     sass (3.1.19)
     sass-rails (3.2.5)
       railties (~> 3.2.0)
       sass (>= 3.1.10)
       tilt (~> 1.3)
-    selenium-webdriver (2.22.2)
+    selenium-webdriver (2.24.0)
       childprocess (>= 0.2.5)
-      ffi (~> 1.0)
       libwebsocket (~> 0.1.3)
       multi_json (~> 1.0)
       rubyzip
@@ -219,20 +228,20 @@ GEM
       tilt (~> 1.1, != 1.3.0)
     sqlite3 (1.3.6)
     sqlite3 (1.3.6-x86-mingw32)
-    thor (0.15.2)
+    thor (0.15.3)
     tilt (1.3.3)
     treetop (1.4.10)
       polyglot
       polyglot (>= 0.3.1)
     tzinfo (0.3.33)
-    uglifier (1.2.4)
+    uglifier (1.2.5)
       execjs (>= 0.3.0)
-      multi_json (>= 1.0.2)
+      multi_json (~> 1.3)
     unf (0.0.5)
       unf_ext
     unf_ext (0.0.5)
     unf_ext (0.0.5-x86-mingw32)
-    warden (1.1.1)
+    warden (1.2.1)
       rack (>= 1.0)
     webrobots (0.0.13)
     wicked (0.1.6)
@@ -259,6 +268,8 @@ DEPENDENCIES
   devise_invitable (>= 1.0.2)
   email_spec (>= 1.2.1)
   factory_girl_rails (>= 3.3.0)
+  faker
+  fullcalendar-rails
   google_visualr (>= 2.1.2)
   gravatar_image_tag
   haml (>= 3.1.6)
@@ -268,10 +279,13 @@ DEPENDENCIES
   i18n_routing
   jquery-datatables-rails (>= 1.10.0)
   jquery-rails
+  jquery-rest-rails
   launchy (>= 2.1.0)
   mysql
   oink
   paperclip!
+  pg
+  rack-pjax
   rails (= 3.2.5)
   recaptcha
   rolify (>= 3.1.0)

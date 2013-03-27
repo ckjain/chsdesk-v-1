@@ -2,7 +2,7 @@
   <div class="span12">
     <ul class="breadcrumb">
     <li><a href="http://localhost:3000">Dashboard</a> <span class="divider">/</span></li>                                      
-    <li><a href="http://localhost:3000/meetings">Meetings</a> <span class="divider">/</span></li>                                      
+    <li><a href="http://localhost:3000/staffs">Staff</a> <span class="divider">/</span></li>                                      
 	<li class="active"><%= controller.action_name.capitalize %> </li>
 	<li class="pull-right"> 
 	</li>
@@ -16,7 +16,7 @@
 			<h2 class="box_head round_top"><%= @staff.staff_name %> </h2>
 			<div class="block box_content round_bottom padding_20">
 
-<%= form_for @staff do |f| %>
+<%= form_for @staff, :html => { :multipart => true } do |f| %>
 				<% if @staff.errors.any? %>
 					<div class="error_messages">
 						<h2><%= pluralize(@staff.errors.count, "error") %> prohibited this staff from being saved:</h2>
@@ -62,7 +62,7 @@
 					<%= f.submit nil, :class => 'btn btn-primary' %>
 					<%= link_to 'Cancel', staffs_path, :class => 'btn' %>
 				</div>
-	<% end %></form>
+</form>	<% end %>
 			</div>
 		</div>
 	</div>

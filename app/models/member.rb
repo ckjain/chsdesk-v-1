@@ -3,7 +3,7 @@ class Member < ActiveRecord::Base
   attr_accessible :mobile_phone, :user_id, :society_id, :name, :counter, :email_id
 
   validates :name,
-                    :length   => { :within => 2..30 },
+                    :length   => { :within => 2..50 },
                     :allow_blank => true
   validates :mobile_phone,  :length  => { :maximum => 20 }, 
             :allow_blank => true

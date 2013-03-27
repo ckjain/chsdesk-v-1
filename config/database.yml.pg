@@ -1,0 +1,27 @@
+
+development:
+  adapter: postgresql
+  encoding: unicode
+  database: chsdesk
+  pool: 5
+  username: postgres
+  password:
+  template: template0
+
+test:
+  adapter: postgresql
+  encoding: unicode
+  database: chsdesk_test
+  pool: 5
+  username: postgres
+  password:
+  template: template0
+
+production:
+  adapter: postgresql
+  encoding: unicode
+  database: chsdesk_production
+  pool: 5
+  username: postgres
+  password:
+  template: template0
