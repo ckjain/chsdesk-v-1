@@ -13,34 +13,19 @@ user = User.create! :name => 'society_manager', :email => 'society_manager@examp
 puts 'New user created: ' << user.name
 user.add_role :society_manager
 
-puts 'SETTING UP DEFAULT USER LOGIN'
-user = User.create! :name => 'SuperAdmin', :state => 'active', :email => 'super_admin@chsdesk.com', :password => 'please', :password_confirmation => 'please', :confirmed_at => Time.now.utc
+user = User.create! :name => 'First User', :email => 'user@example.com', :password => 'please', :password_confirmation => 'please', :confirmed_at => Time.now.utc
 puts 'New user created: ' << user.name
 user.add_role :super_admin
-user2 = User.create! :name => 'SAadmin', :state => 'active', :email => 'sa_admin@chsdesk.com', :password => 'please', :password_confirmation => 'please', :society_id => 1, :confirmed_at => Time.now.utc
-puts 'New user created: ' << user2.name
-user2.add_role :society_admin
-user3 = User.create! :name => 'SAteam',  :email => 'sa_team@chsdesk.com', :password => 'please', :password_confirmation => 'please', :society_id => 1, :confirmed_at => Time.now.utc
-puts 'New user created: ' << user3.name
-user3.add_role :society_team
-user4 = User.create! :name => 'SAuser', :email => 'sa_user@chsdesk.com', :password => 'please', :password_confirmation => 'please', :society_id => 1, :confirmed_at => Time.now.utc
-puts 'New user created: ' << user4.name
-user5 = User.create! :name => 'OICadmin', :state => 'active', :email => 'oic_admin@chsdesk.com', :password => 'please', :password_confirmation => 'please', :society_id => 2, :confirmed_at => Time.now.utc
-puts 'New user created: ' << user2.name
-user5.add_role :society_admin
-user6 = User.create! :name => 'OICteam', :state => 'active', :email => 'oic_team@chsdesk.com', :password => 'please', :password_confirmation => 'please', :society_id => 2, :confirmed_at => Time.now.utc
-puts 'New user created: ' << user3.name
-user6.add_role :society_team
-user7 = User.create! :name => 'OICuser', :state => 'active', :email => 'oic_user@chsdesk.com', :password => 'please', :password_confirmation => 'please', :society_id => 2, :confirmed_at => DateTime.now
-puts 'New user created: ' << user4.name
-user8 = User.create! :name => 'BTadmin', :email => 'bt_admin@chsdesk.com', :password => 'please', :password_confirmation => 'please', :society_id => 3, :confirmed_at => DateTime.now
-puts 'New user created: ' << user2.name
-user8.add_role :society_admin
-user9 = User.create! :name => 'BTteam', :email => 'bt_team@chsdesk.com', :password => 'please', :password_confirmation => 'please', :society_id => 3, :confirmed_at => DateTime.now
-puts 'New user created: ' << user3.name
-user9.add_role :society_team
-user10 = User.create! :name => 'BTuser', :email => 'bt_user@chsdesk.com', :password => 'please', :password_confirmation => 'please', :society_id => 3, :confirmed_at => DateTime.now
-puts 'New user created: ' << user4.name
+
+user = User.create! :name => 'society_admin', :email => 'society_admin@example.com', :password => 'please', :password_confirmation => 'please', :confirmed_at => Time.now.utc
+puts 'New user created: ' << user.name
+user.add_role :society_admin
+user = User.create! :name => 'society_team', :email => 'society_team@example.com', :password => 'please', :password_confirmation => 'please', :confirmed_at => Time.now.utc
+puts 'New user created: ' << user.name
+user.add_role :society_team
+user = User.create! :name => 'society_manager', :email => 'society_manager@example.com', :password => 'please', :password_confirmation => 'please', :confirmed_at => Time.now.utc
+puts 'New user created: ' << user.name
+user.add_role :society_manager
 
 
 
@@ -431,19 +416,6 @@ puts 'New units for society 2 & 3 created: '
       Unit.create(:unit_number => '905',:wing_name => 'B',:building_name => '2',:floor_name => '9',:unit_type_id => 6,:society_id => 1)
       Unit.create(:unit_number => '906',:wing_name => 'B',:building_name => '2',:floor_name => '9',:unit_type_id => 6,:society_id => 1)
 puts 'New units for society 1 created: ' 
-
- unittype = UnitType.create! :type_name => "3-Bedroom", :carpet_area => 1680.78, :built_area => 1870.44, :super_built_area => 2050.80, :tax_area => 2050.80, :society_id => 1
- unittype = UnitType.create! :type_name => "4-Bedroom", :carpet_area => 1880.78, :built_area => 2070.44, :super_built_area => 2340.80, :tax_area => 2340.80, :society_id => 1
- unittype = UnitType.create! :type_name => "2-Bedroom", :carpet_area => 680.78, :built_area => 870.44, :super_built_area => 1050.80, :tax_area => 1050.80, :society_id => 1
- unittype = UnitType.create! :type_name => "Duplex", :carpet_area => 2380.78, :built_area => 2570.44, :super_built_area => 2890.80, :tax_area => 2890.80, :society_id => 2
- unittype = UnitType.create! :type_name => "Penthouse", :carpet_area => 3380.78, :built_area => 3870.44, :super_built_area => 4050.80, :tax_area => 4050.80, :society_id => 2
- unittype = UnitType.create! :type_name => "Terrace flat", :carpet_area => 1980.48, :built_area => 2270.00, :super_built_area => 2450.80, :tax_area => 2450.80, :society_id => 1
- unittype = UnitType.create! :type_name => "1-Bedroom", :carpet_area => 380.78, :built_area => 498.34, :super_built_area => 580.77, :tax_area => 580.77, :society_id => 2
- unittype = UnitType.create! :type_name => "Gala", :carpet_area => 480.78, :built_area => 605.44, :super_built_area => 845.80, :tax_area => 845.80, :society_id => 3
- unittype = UnitType.create! :type_name => "Small Gala", :carpet_area => 350.78, :built_area => 490.44, :super_built_area => 560.80, :tax_area => 560.80, :society_id => 1
- unittype = UnitType.create! :type_name => "Office", :carpet_area => 678.66, :built_area => 870.44, :super_built_area => 960.80, :tax_area => 960.80, :society_id => 2
- unittype = UnitType.create! :type_name => "Bunglow", :carpet_area => 3680.60, :built_area => 3970.44, :super_built_area => 4350.00, :tax_area => 4350.80, :society_id => 1
- unittype12 = UnitType.create! :type_name => "Tenament", :carpet_area => 2654.45, :built_area => 3000.44, :super_built_area => 3560.80, :tax_area => 3560.80, :society_id => 1
  member = Member.create! :mobile_phone => "0000000000", :name => "Name No", :society_id => 1
  member = Member.create! :mobile_phone => "9843707178", :name => "chandrakant Jain", :society_id => 2
  member = Member.create! :mobile_phone => "9543707178", :name => "User Example",  :society_id => 3
@@ -457,35 +429,3 @@ puts 'New units for society 1 created: '
  member = Member.create! :mobile_phone => "9711736445", :name => "Laxminarayan De Camargo", :society_id => 3
 puts 'New members created: ' 
 #puts 'New user created: ' << user.username
-
-  BillSetup.create(:society_id => 1,:head_name => "Property Tax", :sub_head_name => "Property Tax",:rate_sqft_month => 0.00, :rate_unit_month => 0.00, :service_tax_pct => 0.00, :days_to_discount => 0,:discount_pct => 0.00 )
-  BillSetup.create(:society_id => 1,:head_name => "Sinking Fund", :sub_head_name => "Sinking Fund",:rate_sqft_month => 0.25, :rate_unit_month => 0, :service_tax_pct => 0, :days_to_discount => 0,:discount_pct => 0.00)
-  BillSetup.create(:society_id => 1,:head_name => "Repair Fund", :sub_head_name => "Repair Fund",:rate_sqft_month => 0.75, :rate_unit_month => 0, :service_tax_pct => 0, :days_to_discount => 0,:discount_pct => 0.00)
-  BillSetup.create(:society_id => 1,:head_name => "Maintenance Charges", :sub_head_name => "Maintenance Charges",:rate_sqft_month => 0, :rate_unit_month => 0, :service_tax_pct => 0, :days_to_discount => 0,:discount_pct => 0.00)
-  BillSetup.create(:society_id => 1,:head_name => "Other Charges-1",  :sub_head_name => "Security Charges",:rate_sqft_month => 0, :rate_unit_month => 0, :service_tax_pct => 0, :days_to_discount => 0,:discount_pct => 0.00)
-  BillSetup.create(:society_id => 1,:head_name => "Other Charges-2", :sub_head_name => "Water Charges",:rate_sqft_month => 0, :rate_unit_month => 0, :service_tax_pct => 0, :days_to_discount => 0,:discount_pct => 0.00)
-  BillSetup.create(:society_id => 1,:head_name => "Other Charges-3", :rate_sqft_month => 0, :rate_unit_month => 0, :service_tax_pct => 0, :days_to_discount => 0,:discount_pct => 0.00)
-  BillSetup.create(:society_id => 1,:head_name => "Other Charges-4", :rate_sqft_month => 0, :rate_unit_month => 0, :service_tax_pct => 0, :days_to_discount => 0,:discount_pct => 0.00)
-  BillSetup.create(:society_id => 1,:head_name => "Other Charges-5",:rate_sqft_month => 0, :rate_unit_month => 0, :service_tax_pct => 0, :days_to_discount => 0,:discount_pct => 0.00)
-  BillSetup.create(:society_id => 1,:head_name => "Other Charges-6", :rate_sqft_month => 0, :rate_unit_month => 0, :service_tax_pct => 0, :days_to_discount => 0,:discount_pct => 0.00)
-  BillSetup.create(:society_id => 2,:head_name => "Property Tax", :sub_head_name => "Property Tax",:rate_sqft_month => 0.00, :rate_unit_month => 0.00, :service_tax_pct => 0.00, :days_to_discount => 0,:discount_pct => 0.00 )
-  BillSetup.create(:society_id => 2,:head_name => "Sinking Fund", :sub_head_name => "Sinking Fund",:rate_sqft_month => 0.25, :rate_unit_month => 0, :service_tax_pct => 0, :days_to_discount => 0,:discount_pct => 0.00)
-  BillSetup.create(:society_id => 2,:head_name => "Repair Fund", :sub_head_name => "Repair Fund",:rate_sqft_month => 0.75, :rate_unit_month => 0, :service_tax_pct => 0, :days_to_discount => 0,:discount_pct => 0.00)
-  BillSetup.create(:society_id => 2,:head_name => "Maintenance Charges", :sub_head_name => "Maintenance Charges",:rate_sqft_month => 0, :rate_unit_month => 0, :service_tax_pct => 0, :days_to_discount => 0,:discount_pct => 0.00)
-  BillSetup.create(:society_id => 2,:head_name => "Other Charges-1",  :sub_head_name => "Lift Charges",:rate_sqft_month => 0, :rate_unit_month => 0, :service_tax_pct => 0, :days_to_discount => 0,:discount_pct => 0.00)
-  BillSetup.create(:society_id => 2,:head_name => "Other Charges-2", :sub_head_name => "Water Charges",:rate_sqft_month => 0, :rate_unit_month => 0, :service_tax_pct => 0, :days_to_discount => 0,:discount_pct => 0.00)
-  BillSetup.create(:society_id => 2,:head_name => "Other Charges-3", :rate_sqft_month => 0, :rate_unit_month => 0, :service_tax_pct => 0, :days_to_discount => 0,:discount_pct => 0.00)
-  BillSetup.create(:society_id => 2,:head_name => "Other Charges-4", :rate_sqft_month => 0, :rate_unit_month => 0, :service_tax_pct => 0, :days_to_discount => 0,:discount_pct => 0.00)
-  BillSetup.create(:society_id => 2,:head_name => "Other Charges-5",:rate_sqft_month => 0, :rate_unit_month => 0, :service_tax_pct => 0, :days_to_discount => 0,:discount_pct => 0.00)
-  BillSetup.create(:society_id => 2,:head_name => "Other Charges-6", :rate_sqft_month => 0, :rate_unit_month => 0, :service_tax_pct => 0, :days_to_discount => 0,:discount_pct => 0.00)
-  BillSetup.create(:society_id => 3,:head_name => "Property Tax", :sub_head_name => "Property Tax",:rate_sqft_month => 0.00, :rate_unit_month => 0.00, :service_tax_pct => 0.00, :days_to_discount => 0,:discount_pct => 0.00 )
-  BillSetup.create(:society_id => 3,:head_name => "Sinking Fund", :sub_head_name => "Sinking Fund",:rate_sqft_month => 0.25, :rate_unit_month => 0, :service_tax_pct => 0, :days_to_discount => 0,:discount_pct => 0.00)
-  BillSetup.create(:society_id => 3,:head_name => "Repair Fund", :sub_head_name => "Repair Fund",:rate_sqft_month => 0.75, :rate_unit_month => 0, :service_tax_pct => 0, :days_to_discount => 0,:discount_pct => 0.00)
-  BillSetup.create(:society_id => 3,:head_name => "Maintenance Charges", :sub_head_name => "Maintenance Charges",:rate_sqft_month => 0, :rate_unit_month => 0, :service_tax_pct => 0, :days_to_discount => 0,:discount_pct => 0.00)
-  BillSetup.create(:society_id => 3,:head_name => "Other Charges-1",  :sub_head_name => "Security Charges",:rate_sqft_month => 0, :rate_unit_month => 0, :service_tax_pct => 0, :days_to_discount => 0,:discount_pct => 0.00)
-  BillSetup.create(:society_id => 3,:head_name => "Other Charges-2", :sub_head_name => "Loft Charges",:rate_sqft_month => 0, :rate_unit_month => 0, :service_tax_pct => 0, :days_to_discount => 0,:discount_pct => 0.00)
-  BillSetup.create(:society_id => 3,:head_name => "Other Charges-3", :rate_sqft_month => 0, :rate_unit_month => 0, :service_tax_pct => 0, :days_to_discount => 0,:discount_pct => 0.00)
-  BillSetup.create(:society_id => 3,:head_name => "Other Charges-4", :rate_sqft_month => 0, :rate_unit_month => 0, :service_tax_pct => 0, :days_to_discount => 0,:discount_pct => 0.00)
-  BillSetup.create(:society_id => 3,:head_name => "Other Charges-5",:rate_sqft_month => 0, :rate_unit_month => 0, :service_tax_pct => 0, :days_to_discount => 0,:discount_pct => 0.00)
-  BillSetup.create(:society_id => 3,:head_name => "Other Charges-6", :rate_sqft_month => 0, :rate_unit_month => 0, :service_tax_pct => 0, :days_to_discount => 0,:discount_pct => 0.00)
-puts 'New billsetup created: '

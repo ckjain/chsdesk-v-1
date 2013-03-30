@@ -5,54 +5,228 @@
 #
 #  cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #  Mayor.create(name: 'Emanuel', city: cities.first)
-puts 'SETTING UP DEFAULT USER LOGIN'
-user = User.create! :name => 'First User', :email => 'user@example.com', :password => 'please', :password_confirmation => 'please', :confirmed_at => Time.now.utc
-puts 'New user created: ' << user.name
-user.add_role :super_admin
-
-user = User.create! :name => 'society_admin', :email => 'society_admin@example.com', :password => 'please', :password_confirmation => 'please', :confirmed_at => Time.now.utc
-puts 'New user created: ' << user.name
-user.add_role :society_admin
-user = User.create! :name => 'society_team', :email => 'society_team@example.com', :password => 'please', :password_confirmation => 'please', :confirmed_at => Time.now.utc
-puts 'New user created: ' << user.name
-user.add_role :society_team
-user = User.create! :name => 'society_manager', :email => 'society_manager@example.com', :password => 'please', :password_confirmation => 'please', :confirmed_at => Time.now.utc
-puts 'New user created: ' << user.name
-user.add_role :society_manager
 
 puts 'SETTING UP DEFAULT USER LOGIN'
 user = User.create! :name => 'SuperAdmin', :state => 'active', :email => 'super_admin@chsdesk.com', :password => 'please', :password_confirmation => 'please', :confirmed_at => Time.now.utc
 puts 'New user created: ' << user.name
 user.add_role :super_admin
-user2 = User.create! :name => 'SAadmin', :state => 'active', :email => 'sa_admin@chsdesk.com', :password => 'please', :password_confirmation => 'please', :society_id => 1, :confirmed_at => Time.now.utc
-puts 'New user created: ' << user2.name
-user2.add_role :society_admin
-user3 = User.create! :name => 'SAteam', :email => 'sa_team@chsdesk.com', :password => 'please', :password_confirmation => 'please', :society_id => 1, :confirmed_at => Time.now.utc
-puts 'New user created: ' << user3.name
-user3.add_role :society_team
-user4 = User.create! :name => 'SAuser', :email => 'sa_user@chsdesk.com', :password => 'please', :password_confirmation => 'please', :society_id => 1, :confirmed_at => Time.now.utc
-puts 'New user created: ' << user4.name
-user5 = User.create! :name => 'OICadmin', :state => 'active', :email => 'oic_admin@chsdesk.com', :password => 'please', :password_confirmation => 'please', :society_id => 2, :confirmed_at => Time.now.utc
-puts 'New user created: ' << user2.name
-user5.add_role :society_admin
-user6 = User.create! :name => 'OICteam', :state => 'active', :email => 'oic_team@chsdesk.com', :password => 'please', :password_confirmation => 'please', :society_id => 2, :confirmed_at => Time.now.utc
-puts 'New user created: ' << user3.name
-user6.add_role :society_team
-user7 = User.create! :name => 'OICuser', :state => 'active', :email => 'oic_user@chsdesk.com', :password => 'please', :password_confirmation => 'please', :society_id => 2, :confirmed_at => DateTime.now
-puts 'New user created: ' << user4.name
-user8 = User.create! :name => 'BTadmin', :email => 'bt_admin@chsdesk.com', :password => 'please', :password_confirmation => 'please', :society_id => 3, :confirmed_at => DateTime.now
-puts 'New user created: ' << user2.name
-user8.add_role :society_admin
-user9 = User.create! :name => 'BTteam', :email => 'bt_team@chsdesk.com', :password => 'please', :password_confirmation => 'please', :society_id => 3, :confirmed_at => DateTime.now
-puts 'New user created: ' << user3.name
-user9.add_role :society_team
-user10 = User.create! :name => 'BTuser', :email => 'bt_user@chsdesk.com', :password => 'please', :password_confirmation => 'please', :society_id => 3, :confirmed_at => DateTime.now
-puts 'New user created: ' << user4.name
 
-society1 = Society.create! :name => 'Samarth Angan CHS', :number_of_flats => 330, :active => true, :society_address_line1 => 'Lokhandwala Complex, K.L.walawalkar road', :society_address_line2 => 'Andheri West', :society_pincode => '400053'
+
+society1 = Society.create! :name => 'Samarth Aangan CHS', :number_of_flats => 330, :active => true, :society_address_line1 => 'Lokhandwala Complex, K.L.walawalkar road', :society_address_line2 => 'Andheri West', :society_pincode => '400053'
+  user2 = User.create! :name => 'SAadmin', :state => 'active', :email => 'sa_admin@chsdesk.com', :password => 'please', :password_confirmation => 'please', :society_id => 1, :confirmed_at => Time.now.utc
+  puts 'New user created: ' << user2.name
+  user2.add_role :society_admin
+  user3 = User.create! :name => 'SAteam', :email => 'sa_team@chsdesk.com', :password => 'please', :password_confirmation => 'please', :society_id => 1, :confirmed_at => Time.now.utc
+  puts 'New user created: ' << user3.name
+  user3.add_role :society_team
+  user4 = User.create! :name => 'SAuser', :email => 'sa_user@chsdesk.com', :password => 'please', :password_confirmation => 'please', :society_id => 1, :confirmed_at => Time.now.utc
+  puts 'New user created: ' << user4.name
+  user4.add_role :society_user
+  user = User.create! :name => 'SAmanager', :email => 'sa_manager@chsdesk.com', :password => 'please', :password_confirmation => 'please', :society_id => 1,:confirmed_at => Time.now.utc
+  puts 'New user created: ' << user.name
+  user.add_role :society_manager
+
+  unittype1 = UnitType.create! :type_name => "3-Bedroom", :carpet_area => 1680.78, :built_area => 1870.44, :super_built_area => 2050.80, :tax_area => 2050.80, :society_id => 1
+  unittype2 = UnitType.create! :type_name => "4-Bedroom", :carpet_area => 1880.78, :built_area => 2070.44, :super_built_area => 2340.80, :tax_area => 2340.80, :society_id => 1
+  puts 'Unit type created: '
+
+  BillSetup.create(:society_id => 1,:head_name => "Property Tax", :sub_head_name => "Property Tax",:rate_sqft_month => 0.00, :rate_unit_month => 0.00, :service_tax_pct => 0.00, :days_to_discount => 0,:discount_pct => 0.00 )
+  BillSetup.create(:society_id => 1,:head_name => "Sinking Fund", :sub_head_name => "Sinking Fund",:rate_sqft_month => 0.25, :rate_unit_month => 0, :service_tax_pct => 0, :days_to_discount => 0,:discount_pct => 0.00)
+  BillSetup.create(:society_id => 1,:head_name => "Repair Fund", :sub_head_name => "Repair Fund",:rate_sqft_month => 0.75, :rate_unit_month => 0, :service_tax_pct => 0, :days_to_discount => 0,:discount_pct => 0.00)
+  BillSetup.create(:society_id => 1,:head_name => "Maintenance Charges", :sub_head_name => "Maintenance Charges",:rate_sqft_month => 0, :rate_unit_month => 0, :service_tax_pct => 0, :days_to_discount => 0,:discount_pct => 0.00)
+  BillSetup.create(:society_id => 1,:head_name => "Other Charges-1",  :sub_head_name => "Security Charges",:rate_sqft_month => 0, :rate_unit_month => 0, :service_tax_pct => 0, :days_to_discount => 0,:discount_pct => 0.00)
+  BillSetup.create(:society_id => 1,:head_name => "Other Charges-2", :sub_head_name => "Water Charges",:rate_sqft_month => 0, :rate_unit_month => 0, :service_tax_pct => 0, :days_to_discount => 0,:discount_pct => 0.00)
+  BillSetup.create(:society_id => 1,:head_name => "Other Charges-3", :rate_sqft_month => 0, :rate_unit_month => 0, :service_tax_pct => 0, :days_to_discount => 0,:discount_pct => 0.00)
+  BillSetup.create(:society_id => 1,:head_name => "Other Charges-4", :rate_sqft_month => 0, :rate_unit_month => 0, :service_tax_pct => 0, :days_to_discount => 0,:discount_pct => 0.00)
+  BillSetup.create(:society_id => 1,:head_name => "Other Charges-5",:rate_sqft_month => 0, :rate_unit_month => 0, :service_tax_pct => 0, :days_to_discount => 0,:discount_pct => 0.00)
+  BillSetup.create(:society_id => 1,:head_name => "Other Charges-6", :rate_sqft_month => 0, :rate_unit_month => 0, :service_tax_pct => 0, :days_to_discount => 0,:discount_pct => 0.00)
+  puts 'society1 billsetup created: '
+
 society2 = Society.create! :name => 'Oshiwara ind. Center', :number_of_flats => 270, :active => true, :society_address_line1 => 'Link Road Opp Oshiwara Bus depo', :society_address_line2 => 'Goregaon West', :society_pincode => '400104'
-society3 = Society.create! :name => 'Brighton Tower CHS', :number_of_flats => 120, :active => true, :society_address_line1 => 'Lokhandwala Complex, 2nd cross lane', :society_address_line2 => 'Andheri West', :society_pincode => '400053'
-puts 'New society created: ' 
+  user5 = User.create! :name => 'OICadmin', :state => 'active', :email => 'oic_admin@chsdesk.com', :password => 'please', :password_confirmation => 'please', :society_id => 2, :confirmed_at => Time.now.utc
+  puts 'New user created: ' << user5.name
+  user5.add_role :society_admin
+  user6 = User.create! :name => 'OICteam', :email => 'oic_team@chsdesk.com', :password => 'please', :password_confirmation => 'please', :society_id => 2, :confirmed_at => Time.now.utc
+  puts 'New user created: ' << user6.name
+  user6.add_role :society_team
+  user7 = User.create! :name => 'OICuser', :email => 'oic_user@chsdesk.com', :password => 'please', :password_confirmation => 'please', :society_id => 2, :confirmed_at => DateTime.now
+  puts 'New user created: ' << user7.name
+  user7.add_role :society_user
+  user = User.create! :name => 'OICmanager', :email => 'oic_manager@chsdesk.com', :password => 'please', :password_confirmation => 'please', :society_id => 2,:confirmed_at => Time.now.utc
+  puts 'New user created: ' << user.name
+  user.add_role :society_manager
+
+  unittype1 = UnitType.create! :type_name => "Gala", :carpet_area => 480.78, :built_area => 605.44, :super_built_area => 845.80, :tax_area => 845.80, :society_id => 2
+  unittype2 = UnitType.create! :type_name => "Small Gala", :carpet_area => 350.78, :built_area => 490.44, :super_built_area => 560.80, :tax_area => 560.80, :society_id => 2
+  unittype3 = UnitType.create! :type_name => "Office", :carpet_area => 678.66, :built_area => 870.44, :super_built_area => 960.80, :tax_area => 960.80, :society_id => 2
+  puts 'society2 Unit type created: '
+
+  BillSetup.create(:society_id => 2,:head_name => "Property Tax", :sub_head_name => "Property Tax",:rate_sqft_month => 0.00, :rate_unit_month => 0.00, :service_tax_pct => 0.00, :days_to_discount => 0,:discount_pct => 0.00 )
+  BillSetup.create(:society_id => 2,:head_name => "Sinking Fund", :sub_head_name => "Sinking Fund",:rate_sqft_month => 0.25, :rate_unit_month => 0, :service_tax_pct => 0, :days_to_discount => 0,:discount_pct => 0.00)
+  BillSetup.create(:society_id => 2,:head_name => "Repair Fund", :sub_head_name => "Repair Fund",:rate_sqft_month => 0.75, :rate_unit_month => 0, :service_tax_pct => 0, :days_to_discount => 0,:discount_pct => 0.00)
+  BillSetup.create(:society_id => 2,:head_name => "Maintenance Charges", :sub_head_name => "Maintenance Charges",:rate_sqft_month => 0, :rate_unit_month => 0, :service_tax_pct => 0, :days_to_discount => 0,:discount_pct => 0.00)
+  BillSetup.create(:society_id => 2,:head_name => "Other Charges-1",  :sub_head_name => "Lift Charges",:rate_sqft_month => 0, :rate_unit_month => 0, :service_tax_pct => 0, :days_to_discount => 0,:discount_pct => 0.00)
+  BillSetup.create(:society_id => 2,:head_name => "Other Charges-2", :sub_head_name => "Water Charges",:rate_sqft_month => 0, :rate_unit_month => 0, :service_tax_pct => 0, :days_to_discount => 0,:discount_pct => 0.00)
+  BillSetup.create(:society_id => 2,:head_name => "Other Charges-3", :rate_sqft_month => 0, :rate_unit_month => 0, :service_tax_pct => 0, :days_to_discount => 0,:discount_pct => 0.00)
+  BillSetup.create(:society_id => 2,:head_name => "Other Charges-4", :rate_sqft_month => 0, :rate_unit_month => 0, :service_tax_pct => 0, :days_to_discount => 0,:discount_pct => 0.00)
+  BillSetup.create(:society_id => 2,:head_name => "Other Charges-5",:rate_sqft_month => 0, :rate_unit_month => 0, :service_tax_pct => 0, :days_to_discount => 0,:discount_pct => 0.00)
+  BillSetup.create(:society_id => 2,:head_name => "Other Charges-6", :rate_sqft_month => 0, :rate_unit_month => 0, :service_tax_pct => 0, :days_to_discount => 0,:discount_pct => 0.00)
+  puts 'society2 billsetup created: '
+
+society3 = Society.create! :name => 'BRIGHOTN TOWER CHS',:society_address_line1 => '2ND CROSS LANE',:society_address_line2 => 'ANDHERI (W)', :society_city => 'MUMBAI',:society_pincode => '400053', :active => true, :number_of_flats => 1, :active => true, :number_of_flats => 120
+  user8 = User.create! :name => 'BTadmin', :state => 'active', :email => 'bt_admin@chsdesk.com', :password => 'please', :password_confirmation => 'please', :society_id => 3, :confirmed_at => DateTime.now
+  puts 'New user created: ' << user8.name
+  user8.add_role :society_admin
+  user9 = User.create! :name => 'BTteam', :email => 'bt_team@chsdesk.com', :password => 'please', :password_confirmation => 'please', :society_id => 3, :confirmed_at => DateTime.now
+  puts 'New user created: ' << user9.name
+  user9.add_role :society_team
+  user10 = User.create! :name => 'BTuser', :email => 'bt_user@chsdesk.com', :password => 'please', :password_confirmation => 'please', :society_id => 3, :confirmed_at => DateTime.now
+  puts 'New user created: ' << user10.name
+  user10.add_role :society_user
+  user = User.create! :name => 'BTmanager', :email => 'bt_manager@chsdesk.com', :password => 'please', :password_confirmation => 'please', :society_id => 3,:confirmed_at => Time.now.utc
+  puts 'New user created: ' << user.name
+  user.add_role :society_manager
+
+  unittype3 = UnitType.create! :type_name => "2-Bedroom", :carpet_area => 680.78, :built_area => 870.44, :super_built_area => 1050.80, :tax_area => 1050.80, :society_id => 3
+  unittype11 = UnitType.create! :type_name => "Bunglow", :carpet_area => 3680.60, :built_area => 3970.44, :super_built_area => 4350.00, :tax_area => 4350.80, :society_id => 3
+  puts 'society3 Unit type created: '
+  BillSetup.create(:society_id => 3,:head_name => "Property Tax", :sub_head_name => "Property Tax",:rate_sqft_month => 0.00, :rate_unit_month => 0.00, :service_tax_pct => 0.00, :days_to_discount => 0,:discount_pct => 0.00 )
+  BillSetup.create(:society_id => 3,:head_name => "Sinking Fund", :sub_head_name => "Sinking Fund",:rate_sqft_month => 0.25, :rate_unit_month => 0, :service_tax_pct => 0, :days_to_discount => 0,:discount_pct => 0.00)
+  BillSetup.create(:society_id => 3,:head_name => "Repair Fund", :sub_head_name => "Repair Fund",:rate_sqft_month => 0.75, :rate_unit_month => 0, :service_tax_pct => 0, :days_to_discount => 0,:discount_pct => 0.00)
+  BillSetup.create(:society_id => 3,:head_name => "Maintenance Charges", :sub_head_name => "Maintenance Charges",:rate_sqft_month => 0, :rate_unit_month => 0, :service_tax_pct => 0, :days_to_discount => 0,:discount_pct => 0.00)
+  BillSetup.create(:society_id => 3,:head_name => "Other Charges-1",  :sub_head_name => "Security Charges",:rate_sqft_month => 0, :rate_unit_month => 0, :service_tax_pct => 0, :days_to_discount => 0,:discount_pct => 0.00)
+  BillSetup.create(:society_id => 3,:head_name => "Other Charges-2", :sub_head_name => "Loft Charges",:rate_sqft_month => 0, :rate_unit_month => 0, :service_tax_pct => 0, :days_to_discount => 0,:discount_pct => 0.00)
+  BillSetup.create(:society_id => 3,:head_name => "Other Charges-3", :rate_sqft_month => 0, :rate_unit_month => 0, :service_tax_pct => 0, :days_to_discount => 0,:discount_pct => 0.00)
+  BillSetup.create(:society_id => 3,:head_name => "Other Charges-4", :rate_sqft_month => 0, :rate_unit_month => 0, :service_tax_pct => 0, :days_to_discount => 0,:discount_pct => 0.00)
+  BillSetup.create(:society_id => 3,:head_name => "Other Charges-5",:rate_sqft_month => 0, :rate_unit_month => 0, :service_tax_pct => 0, :days_to_discount => 0,:discount_pct => 0.00)
+  BillSetup.create(:society_id => 3,:head_name => "Other Charges-6", :rate_sqft_month => 0, :rate_unit_month => 0, :service_tax_pct => 0, :days_to_discount => 0,:discount_pct => 0.00)
+puts 'society3 billsetup created: '
+
+society4 = Society.create! :name => 'AARAM NAGAR CHS',:society_address_line1 => '',:society_address_line2 => 'ANDHERI (W)', :society_city => 'MUMBAI',:society_pincode => '400053', :active => true, :number_of_flats => 1, :active => true, :number_of_flats => 1
+ unittype7 = UnitType.create! :type_name => "1-Bedroom", :carpet_area => 380.78, :built_area => 498.34, :super_built_area => 580.77, :tax_area => 580.77, :society_id => 4
+puts 'society4 Unit type created: '
+
+society5 = Society.create! :name => 'AASHIRWAD CHS',:society_address_line1 => '2ND CROSS LANE',:society_address_line2 => 'ANDHERI (W)', :society_city => 'MUMBAI',:society_pincode => '400053', :active => true, :number_of_flats => 1
+ unittype12 = UnitType.create! :type_name => "Tenament", :carpet_area => 2654.45, :built_area => 3000.44, :super_built_area => 3560.80, :tax_area => 3560.80, :society_id => 5
+puts 'society5 Unit type created: '
+
+society6 = Society.create! :name => 'ACCORD CHS',:society_address_line1 => '2ND CROSS LANE',:society_address_line2 => 'ANDHERI (W)', :society_city => 'MUMBAI',:society_pincode => '400053', :active => true, :number_of_flats => 1
+society7 = Society.create! :name => 'ACROPOLIS CHS',:society_address_line1 => '3RD CROSS LANE',:society_address_line2 => 'ANDHERI (W)', :society_city => 'MUMBAI',:society_pincode => '400053', :active => true, :number_of_flats => 1
+society8 = Society.create! :name => 'AKSHARDHAM CHS',:society_address_line1 => 'VERSOVA MHADA',:society_address_line2 => 'ANDHERI (W)', :society_city => 'MUMBAI',:society_pincode => '400053', :active => true, :number_of_flats => 1
+society9 = Society.create! :name => 'AMIT ESTATE CHS',:society_address_line1 => '3RD CROSS LANE',:society_address_line2 => 'ANDHERI (W)', :society_city => 'MUMBAI',:society_pincode => '400053', :active => true, :number_of_flats => 1
+society10 = Society.create! :name => 'APNA GHAR SWATI CHS',:society_address_line1 => '1ST CROSS LANE',:society_address_line2 => 'ANDHERI (W)', :society_city => 'MUMBAI',:society_pincode => '400053', :active => true, :number_of_flats => 1
+society11 = Society.create! :name => 'ARENA CHS',:society_address_line1 => 'MAIN ROAD',:society_address_line2 => 'ANDHERI (W)', :society_city => 'MUMBAI',:society_pincode => '400053', :active => true, :number_of_flats => 1
+society12 = Society.create! :name => 'ASHISH (RBI)CHS',:society_address_line1 => '2ND CROSS LANE',:society_address_line2 => 'ANDHERI (W)', :society_city => 'MUMBAI',:society_pincode => '400053', :active => true, :number_of_flats => 1
+society13 = Society.create! :name => 'WOOD ROSE CHS',:society_address_line1 => 'MAIN ROAD',:society_address_line2 => 'ANDHERI (W)', :society_city => 'MUMBAI',:society_pincode => '400053', :active => true, :number_of_flats => 1
+society14 = Society.create! :name => 'TRISHUL CHS',:society_address_line1 => '3RD CROSS LANE',:society_address_line2 => 'ANDHERI (W)', :society_city => 'MUMBAI',:society_pincode => '400053', :active => true, :number_of_flats => 1
+society15 = Society.create! :name => 'ATLAS SKYWALKER CHS',:society_address_line1 => '4TH CROSS LANE',:society_address_line2 => 'ANDHERI (W)', :society_city => 'MUMBAI',:society_pincode => '400053', :active => true, :number_of_flats => 1
+society16 = Society.create! :name => 'TROIKA APT CHS',:society_address_line1 => '3RD CROSS LANE',:society_address_line2 => 'ANDHERI (W)', :society_city => 'MUMBAI',:society_pincode => '400053', :active => true, :number_of_flats => 1
+society17 = Society.create! :name => 'BALLERINA CHS',:society_address_line1 => '3RD CROSS LANE',:society_address_line2 => 'ANDHERI (W)', :society_city => 'MUMBAI',:society_pincode => '400053', :active => true, :number_of_flats => 1
+society18 = Society.create! :name => 'BASERA CHS',:society_address_line1 => 'MAIN ROAD',:society_address_line2 => 'ANDHERI (W)', :society_city => 'MUMBAI',:society_pincode => '400053', :active => true, :number_of_flats => 1
+society19 = Society.create! :name => 'BELMONT CHS',:society_address_line1 => '3RD CROSS LANE',:society_address_line2 => 'ANDHERI (W)', :society_city => 'MUMBAI',:society_pincode => '400053', :active => true, :number_of_flats => 1
+society20 = Society.create! :name => 'BELSCOT CHS',:society_address_line1 => 'OPP KAMAT CLUB',:society_address_line2 => 'ANDHERI (W)', :society_city => 'MUMBAI',:society_pincode => '400053', :active => true, :number_of_flats => 1
+society21 = Society.create! :name => 'BENHUR CHS',:society_address_line1 => 'OPP KAMAT CLUB',:society_address_line2 => 'ANDHERI (W)', :society_city => 'MUMBAI',:society_pincode => '400053', :active => true, :number_of_flats => 1
+society22 = Society.create! :name => 'BENZER CHS',:society_address_line1 => 'MAIN ROAD',:society_address_line2 => 'ANDHERI (W)', :society_city => 'MUMBAI',:society_pincode => '400053', :active => true, :number_of_flats => 1
+society23 = Society.create! :name => 'TWIN TOWER CHS',:society_address_line1 => '2ND CROSS LANE',:society_address_line2 => 'ANDHERI (W)', :society_city => 'MUMBAI',:society_pincode => '400053', :active => true, :number_of_flats => 1
+society24 = Society.create! :name => 'BREEZE CHS',:society_address_line1 => '3RD CROSS LANE',:society_address_line2 => 'ANDHERI (W)', :society_city => 'MUMBAI',:society_pincode => '400053', :active => true, :number_of_flats => 1
+society25 = Society.create! :name => 'VENUS CHS',:society_address_line1 => '4TH CROSS LANE',:society_address_line2 => 'ANDHERI (W)', :society_city => 'MUMBAI',:society_pincode => '400053', :active => true, :number_of_flats => 1
+society26 = Society.create! :name => 'ABHISHEK CHS',:society_address_line1 => '2ND CROSS LANE',:society_address_line2 => 'ANDHERI (W)', :society_city => 'MUMBAI',:society_pincode => '400053', :active => true, :number_of_flats => 1
+society27 = Society.create! :name => 'BROOKHILL TOWER CHS',:society_address_line1 => '3RD CROSS LANE',:society_address_line2 => 'ANDHERI (W)', :society_city => 'MUMBAI',:society_pincode => '400053', :active => true, :number_of_flats => 1
+ unittype5 = UnitType.create! :type_name => "Penthouse", :carpet_area => 3380.78, :built_area => 3870.44, :super_built_area => 4050.80, :tax_area => 4050.80, :society_id => 27
+ unittype6 = UnitType.create! :type_name => "Terrace flat", :carpet_area => 1980.48, :built_area => 2270.00, :super_built_area => 2450.80, :tax_area => 2450.80, :society_id => 27
+puts 'society27 Unit type created: '
+
+society28 = Society.create! :name => 'WEST WIND CHS',:society_address_line1 => '3RD CROSS LANE',:society_address_line2 => 'ANDHERI (W)', :society_city => 'MUMBAI',:society_pincode => '400053', :active => true, :number_of_flats => 1
+society29 = Society.create! :name => 'CITIZEN CHS',:society_address_line1 => 'MAIN ROAD',:society_address_line2 => 'ANDHERI (W)', :society_city => 'MUMBAI',:society_pincode => '400053', :active => true, :number_of_flats => 1
+society30 = Society.create! :name => 'CLARIDGE CHS',:society_address_line1 => '3RD CROSS LANE',:society_address_line2 => 'ANDHERI (W)', :society_city => 'MUMBAI',:society_pincode => '400053', :active => true, :number_of_flats => 1
+society31 = Society.create! :name => 'CLIFF TOWER CHS',:society_address_line1 => '3RD CROSS LANE',:society_address_line2 => 'ANDHERI (W)', :society_city => 'MUMBAI',:society_pincode => '400053', :active => true, :number_of_flats => 1
+society32 = Society.create! :name => 'CONCORD CHS',:society_address_line1 => '2ND CROSS LANE',:society_address_line2 => 'ANDHERI (W)', :society_city => 'MUMBAI',:society_pincode => '400053', :active => true, :number_of_flats => 1
+society33 = Society.create! :name => 'COSMOS CHS',:society_address_line1 => '3RD CROSS LANE',:society_address_line2 => 'ANDHERI (W)', :society_city => 'MUMBAI',:society_pincode => '400053', :active => true, :number_of_flats => 1
+society34 = Society.create! :name => 'CROSS GATE CHS',:society_address_line1 => '4TH CROSS LANE',:society_address_line2 => 'ANDHERI (W)', :society_city => 'MUMBAI',:society_pincode => '400053', :active => true, :number_of_flats => 1
+society35 = Society.create! :name => 'DENZIL CHS',:society_address_line1 => '3RD CROSS LANE',:society_address_line2 => 'ANDHERI (W)', :society_city => 'MUMBAI',:society_pincode => '400053', :active => true, :number_of_flats => 1
+society36 = Society.create! :name => 'WINCHESTER CHS',:society_address_line1 => '2ND CROSS LANE',:society_address_line2 => 'ANDHERI (W)', :society_city => 'MUMBAI',:society_pincode => '400053', :active => true, :number_of_flats => 1
+society37 = Society.create! :name => 'STERLING TOWER CHS',:society_address_line1 => '3RD CROSS LANE',:society_address_line2 => 'ANDHERI (W)', :society_city => 'MUMBAI',:society_pincode => '400053', :active => true, :number_of_flats => 1
+society38 = Society.create! :name => 'EDEN WOODS CHS',:society_address_line1 => 'SHASTRI NAGAR',:society_address_line2 => 'ANDHERI (W)', :society_city => 'MUMBAI',:society_pincode => '400053', :active => true, :number_of_flats => 1
+society39 = Society.create! :name => 'EXCELLENCY CHS',:society_address_line1 => '4TH CROSS LANE',:society_address_line2 => 'ANDHERI (W)', :society_city => 'MUMBAI',:society_pincode => '400053', :active => true, :number_of_flats => 1
+society40 = Society.create! :name => 'GALACTICA CHS',:society_address_line1 => '3RD CROSS LANE',:society_address_line2 => 'ANDHERI (W)', :society_city => 'MUMBAI',:society_pincode => '400053', :active => true, :number_of_flats => 1
+society41 = Society.create! :name => 'GARDEN VIEW CHS',:society_address_line1 => 'SHASTRI NAGAR',:society_address_line2 => 'ANDHERI (W)', :society_city => 'MUMBAI',:society_pincode => '400053', :active => true, :number_of_flats => 1
+society42 = Society.create! :name => 'SUMAN APT CHS',:society_address_line1 => '3RD CROSS LANE',:society_address_line2 => 'ANDHERI (W)', :society_city => 'MUMBAI',:society_pincode => '400053', :active => true, :number_of_flats => 1
+society43 = Society.create! :name => 'SUMAN TOWER CHS',:society_address_line1 => '3RD CROSS LANE',:society_address_line2 => 'ANDHERI (W)', :society_city => 'MUMBAI',:society_pincode => '400053', :active => true, :number_of_flats => 1
+society44 = Society.create! :name => 'GREEN ACRES CHS',:society_address_line1 => 'MAIN ROAD',:society_address_line2 => 'ANDHERI (W)', :society_city => 'MUMBAI',:society_pincode => '400053', :active => true, :number_of_flats => 1
+society45 = Society.create! :name => 'SUN SWEPT CHS',:society_address_line1 => 'LOKHANDWALA COMPLEX',:society_address_line2 => 'ANDHERI (W)', :society_city => 'MUMBAI',:society_pincode => '400053', :active => true, :number_of_flats => 1
+society46 = Society.create! :name => 'GREEN VILLE CHS',:society_address_line1 => '2ND CROSS LANE',:society_address_line2 => 'ANDHERI (W)', :society_city => 'MUMBAI',:society_pincode => '400053', :active => true, :number_of_flats => 1
+society47 = Society.create! :name => 'GREEN FIELD CHS',:society_address_line1 => 'MAIN ROAD',:society_address_line2 => 'ANDHERI (W)', :society_city => 'MUMBAI',:society_pincode => '400053', :active => true, :number_of_flats => 1
+society48 = Society.create! :name => 'SUNNY SIDE CHS',:society_address_line1 => '2ND CROSS LANE',:society_address_line2 => 'ANDHERI (W)', :society_city => 'MUMBAI',:society_pincode => '400053', :active => true, :number_of_flats => 1
+society49 = Society.create! :name => 'GURU DARSHAN CHS',:society_address_line1 => '2ND CROSS LANE',:society_address_line2 => 'ANDHERI (W)', :society_city => 'MUMBAI',:society_pincode => '400053', :active => true, :number_of_flats => 1
+society50 = Society.create! :name => 'GURU KRUPA CHS',:society_address_line1 => '2ND CROSS LANE',:society_address_line2 => 'ANDHERI (W)', :society_city => 'MUMBAI',:society_pincode => '400053', :active => true, :number_of_flats => 1
+society51 = Society.create! :name => 'GURU PRASAD CHS',:society_address_line1 => '2ND CROSS LANE',:society_address_line2 => 'ANDHERI (W)', :society_city => 'MUMBAI',:society_pincode => '400053', :active => true, :number_of_flats => 1
+society52 = Society.create! :name => 'GURUDARSHAN  CHS',:society_address_line1 => '2ND CROSS LANE',:society_address_line2 => 'ANDHERI (W)', :society_city => 'MUMBAI',:society_pincode => '400053', :active => true, :number_of_flats => 1
+society53 = Society.create! :name => 'HARMONY CHS',:society_address_line1 => '3RD CROSS LANE',:society_address_line2 => 'ANDHERI (W)', :society_city => 'MUMBAI',:society_pincode => '400053', :active => true, :number_of_flats => 1
+society54 = Society.create! :name => 'HERITAGE CHS',:society_address_line1 => '4TH CROSS LANE',:society_address_line2 => 'ANDHERI (W)', :society_city => 'MUMBAI',:society_pincode => '400053', :active => true, :number_of_flats => 1
+society55 = Society.create! :name => 'HIGHLAND PARK CHS',:society_address_line1 => 'MAIN ROAD',:society_address_line2 => 'ANDHERI (W)', :society_city => 'MUMBAI',:society_pincode => '400053', :active => true, :number_of_flats => 1
+society56 = Society.create! :name => 'HOME COURT CHS',:society_address_line1 => 'MAIN ROAD',:society_address_line2 => 'ANDHERI (W)', :society_city => 'MUMBAI',:society_pincode => '400053', :active => true, :number_of_flats => 1
+society57 = Society.create! :name => 'HOME LAND CHS',:society_address_line1 => 'MAIN ROAD',:society_address_line2 => 'ANDHERI (W)', :society_city => 'MUMBAI',:society_pincode => '400053', :active => true, :number_of_flats => 1
+society58 = Society.create! :name => 'HOME STEAD CHS',:society_address_line1 => 'MAIN ROAD',:society_address_line2 => 'ANDHERI (W)', :society_city => 'MUMBAI',:society_pincode => '400053', :active => true, :number_of_flats => 1
+society59 = Society.create! :name => 'SUNSWEPT CHS',:society_address_line1 => '2ND CROSS LANE',:society_address_line2 => 'ANDHERI (W)', :society_city => 'MUMBAI',:society_pincode => '400053', :active => true, :number_of_flats => 1
+society60 = Society.create! :name => 'SYMPHONY CHS',:society_address_line1 => '3RD CROSS LANE',:society_address_line2 => 'ANDHERI (W)', :society_city => 'MUMBAI',:society_pincode => '400053', :active => true, :number_of_flats => 1
+society61 = Society.create! :name => 'SANTOSH TOWER CHS',:society_address_line1 => '3RD CROSS LANE',:society_address_line2 => 'ANDHERI (W)', :society_city => 'MUMBAI',:society_pincode => '400053', :active => true, :number_of_flats => 1
+society62 = Society.create! :name => 'IVORY HEIGHT CHS',:society_address_line1 => '2ND CROSS LANE',:society_address_line2 => 'ANDHERI (W)', :society_city => 'MUMBAI',:society_pincode => '400053', :active => true, :number_of_flats => 1
+ unittype4 = UnitType.create! :type_name => "Duplex", :carpet_area => 2380.78, :built_area => 2570.44, :super_built_area => 2890.80, :tax_area => 2890.80, :society_id => 62
+puts 'society62 Unit type created: '
+
+society63 = Society.create! :name => 'JUPITER CHS',:society_address_line1 => '4TH CROSS LANE',:society_address_line2 => 'ANDHERI (W)', :society_city => 'MUMBAI',:society_pincode => '400053', :active => true, :number_of_flats => 1
+society64 = Society.create! :name => 'SARANGA TOWER CHS',:society_address_line1 => '3RD CROSS LANE',:society_address_line2 => 'ANDHERI (W)', :society_city => 'MUMBAI',:society_pincode => '400053', :active => true, :number_of_flats => 1
+society65 = Society.create! :name => 'SEA SHELL CHS',:society_address_line1 => '3RD CROSS LANE',:society_address_line2 => 'ANDHERI (W)', :society_city => 'MUMBAI',:society_pincode => '400053', :active => true, :number_of_flats => 1
+society66 = Society.create! :name => 'SHEFFEILD TOWER CHS',:society_address_line1 => '2ND CROSS LANE',:society_address_line2 => 'ANDHERI (W)', :society_city => 'MUMBAI',:society_pincode => '400053', :active => true, :number_of_flats => 1
+society67 = Society.create! :name => 'KEN MORE CHS',:society_address_line1 => '2ND CROSS LANE',:society_address_line2 => 'ANDHERI (W)', :society_city => 'MUMBAI',:society_pincode => '400053', :active => true, :number_of_flats => 1
+society68 = Society.create! :name => 'KENWOOD CHS',:society_address_line1 => 'MAIN ROAD',:society_address_line2 => 'ANDHERI (W)', :society_city => 'MUMBAI',:society_pincode => '400053', :active => true, :number_of_flats => 1
+society69 = Society.create! :name => 'KINGSTON CHS',:society_address_line1 => '4TH CROSS LANE',:society_address_line2 => 'ANDHERI (W)', :society_city => 'MUMBAI',:society_pincode => '400053', :active => true, :number_of_flats => 1
+society70 = Society.create! :name => 'SILVER SPRING CHS',:society_address_line1 => 'LOKHANDWALA COMPLEX',:society_address_line2 => 'ANDHERI (W)', :society_city => 'MUMBAI',:society_pincode => '400053', :active => true, :number_of_flats => 1
+society71 = Society.create! :name => 'KRYSTAL AVENUE CHS',:society_address_line1 => '3RD CROSS LANE',:society_address_line2 => 'ANDHERI (W)', :society_city => 'MUMBAI',:society_pincode => '400053', :active => true, :number_of_flats => 1
+society72 = Society.create! :name => 'LEGEND CHS',:society_address_line1 => 'MAIN ROAD',:society_address_line2 => 'ANDHERI (W)', :society_city => 'MUMBAI',:society_pincode => '400053', :active => true, :number_of_flats => 1
+society73 = Society.create! :name => 'LENNIE CHS',:society_address_line1 => '4TH CROSS LANE',:society_address_line2 => 'ANDHERI (W)', :society_city => 'MUMBAI',:society_pincode => '400053', :active => true, :number_of_flats => 1
+society74 = Society.create! :name => 'SKY LARK CHS',:society_address_line1 => 'LOKHANDWALA COMPLEX',:society_address_line2 => 'ANDHERI (W)', :society_city => 'MUMBAI',:society_pincode => '400053', :active => true, :number_of_flats => 1
+society75 = Society.create! :name => 'SKY WALKER CHS',:society_address_line1 => '4TH CROSS LANE',:society_address_line2 => 'ANDHERI (W)', :society_city => 'MUMBAI',:society_pincode => '400053', :active => true, :number_of_flats => 1
+society76 = Society.create! :name => 'SPRING FIELD CHS',:society_address_line1 => 'LOKHANDWALA COMPLEX',:society_address_line2 => 'ANDHERI (W)', :society_city => 'MUMBAI',:society_pincode => '400053', :active => true, :number_of_flats => 1
+society77 = Society.create! :name => 'STELLAR TOWER CHS',:society_address_line1 => '2ND CROSS LANE',:society_address_line2 => 'ANDHERI (W)', :society_city => 'MUMBAI',:society_pincode => '400053', :active => true, :number_of_flats => 1
+society78 = Society.create! :name => 'MAGNAM TOWER CHS',:society_address_line1 => '2ND CROSS LANE',:society_address_line2 => 'ANDHERI (W)', :society_city => 'MUMBAI',:society_pincode => '400053', :active => true, :number_of_flats => 1
+society79 = Society.create! :name => 'MAGNUM BUNGLOW CHS',:society_address_line1 => '2ND CROSS LANE',:society_address_line2 => 'ANDHERI (W)', :society_city => 'MUMBAI',:society_pincode => '400053', :active => true, :number_of_flats => 1
+society80 = Society.create! :name => 'PRERNA CHS',:society_address_line1 => '4TH CROSS LANE',:society_address_line2 => 'ANDHERI (W)', :society_city => 'MUMBAI',:society_pincode => '400053', :active => true, :number_of_flats => 1
+society81 = Society.create! :name => 'PRIME ROSE CHS',:society_address_line1 => 'MAIN ROAD',:society_address_line2 => 'ANDHERI (W)', :society_city => 'MUMBAI',:society_pincode => '400053', :active => true, :number_of_flats => 1
+society82 = Society.create! :name => 'MANJU TOWER CHS',:society_address_line1 => '3RD CROSS LANE',:society_address_line2 => 'ANDHERI (W)', :society_city => 'MUMBAI',:society_pincode => '400053', :active => true, :number_of_flats => 1
+society83 = Society.create! :name => 'MEDHAVI CHS',:society_address_line1 => '2ND CROSS LANE',:society_address_line2 => 'ANDHERI (W)', :society_city => 'MUMBAI',:society_pincode => '400053', :active => true, :number_of_flats => 1
+society84 = Society.create! :name => 'MEGHDOOD  CHS',:society_address_line1 => '3RD CROSS LANE',:society_address_line2 => 'ANDHERI (W)', :society_city => 'MUMBAI',:society_pincode => '400053', :active => true, :number_of_flats => 1
+society85 = Society.create! :name => 'MERCURY CHS',:society_address_line1 => '4TH CROSS LANE',:society_address_line2 => 'ANDHERI (W)', :society_city => 'MUMBAI',:society_pincode => '400053', :active => true, :number_of_flats => 1
+society86 = Society.create! :name => 'REGENCY CHS',:society_address_line1 => '3RD CROSS LANE',:society_address_line2 => 'ANDHERI (W)', :society_city => 'MUMBAI',:society_pincode => '400053', :active => true, :number_of_flats => 1
+society87 = Society.create! :name => 'RAINANSANCE CHS',:society_address_line1 => 'LOKHANDWALA COMPLEX',:society_address_line2 => 'ANDHERI (W)', :society_city => 'MUMBAI',:society_pincode => '400053', :active => true, :number_of_flats => 1
+society88 = Society.create! :name => 'RESIDENCY CHS',:society_address_line1 => '2ND CROSS LANE',:society_address_line2 => 'ANDHERI (W)', :society_city => 'MUMBAI',:society_pincode => '400053', :active => true, :number_of_flats => 1
+society89 = Society.create! :name => 'MONISHA TOWER CHS',:society_address_line1 => '4TH CROSS LANE',:society_address_line2 => 'ANDHERI (W)', :society_city => 'MUMBAI',:society_pincode => '400053', :active => true, :number_of_flats => 1
+society90 = Society.create! :name => 'MONTANA CHS',:society_address_line1 => '2ND CROSS LANE',:society_address_line2 => 'ANDHERI (W)', :society_city => 'MUMBAI',:society_pincode => '400053', :active => true, :number_of_flats => 1
+society91 = Society.create! :name => 'MOTA MAHAL CHS',:society_address_line1 => '3RD CROSS LANE',:society_address_line2 => 'ANDHERI (W)', :society_city => 'MUMBAI',:society_pincode => '400053', :active => true, :number_of_flats => 1
+society92 = Society.create! :name => 'MOTA MANSION CHS',:society_address_line1 => '4TH CROSS LANE',:society_address_line2 => 'ANDHERI (W)', :society_city => 'MUMBAI',:society_pincode => '400053', :active => true, :number_of_flats => 1
+society93 = Society.create! :name => 'NAV KARAN CHS',:society_address_line1 => 'MAIN ROAD',:society_address_line2 => 'ANDHERI (W)', :society_city => 'MUMBAI',:society_pincode => '400053', :active => true, :number_of_flats => 1
+society94 = Society.create! :name => 'NEBULA CHS',:society_address_line1 => '4TH CROSS LANE',:society_address_line2 => 'ANDHERI (W)', :society_city => 'MUMBAI',:society_pincode => '400053', :active => true, :number_of_flats => 1
+society95 = Society.create! :name => 'NEPTUNE CHS',:society_address_line1 => '4TH CROSS LANE',:society_address_line2 => 'ANDHERI (W)', :society_city => 'MUMBAI',:society_pincode => '400053', :active => true, :number_of_flats => 1
+society96 = Society.create! :name => 'NESTLE CHS',:society_address_line1 => '4TH CROSS LANE',:society_address_line2 => 'ANDHERI (W)', :society_city => 'MUMBAI',:society_pincode => '400053', :active => true, :number_of_flats => 1
+society97 = Society.create! :name => 'NORWOOD CHS',:society_address_line1 => 'MAIN ROAD',:society_address_line2 => 'ANDHERI (W)', :society_city => 'MUMBAI',:society_pincode => '400053', :active => true, :number_of_flats => 1
+society98 = Society.create! :name => 'NUTAN  ABHISHEK CHS',:society_address_line1 => '2ND CROSS LANE',:society_address_line2 => 'ANDHERI (W)', :society_city => 'MUMBAI',:society_pincode => '400053', :active => true, :number_of_flats => 1
+society99 = Society.create! :name => 'OBEROI SKY GARDEN CHS',:society_address_line1 => 'LOKHANDWALA COMPLEX',:society_address_line2 => 'ANDHERI (W)', :society_city => 'MUMBAI',:society_pincode => '400053', :active => true, :number_of_flats => 1
+society100 = Society.create! :name => 'OBEROI SKY HEIGHTS CHS',:society_address_line1 => '3RD CROSS LANE',:society_address_line2 => 'ANDHERI (W)', :society_city => 'MUMBAI',:society_pincode => '400053', :active => true, :number_of_flats => 1
+society101 = Society.create! :name => 'OBEROI SKY LARK CHS',:society_address_line1 => 'LOKHANDWALA COMPLEX',:society_address_line2 => 'ANDHERI (W)', :society_city => 'MUMBAI',:society_pincode => '400053', :active => true, :number_of_flats => 1
+society102 = Society.create! :name => 'RICHMOND CHS',:society_address_line1 => '2ND CROSS LANE',:society_address_line2 => 'ANDHERI (W)', :society_city => 'MUMBAI',:society_pincode => '400053', :active => true, :number_of_flats => 1
+society103 = Society.create! :name => 'RIYA PALACE CHS',:society_address_line1 => '4TH CROSS LANE',:society_address_line2 => 'ANDHERI (W)', :society_city => 'MUMBAI',:society_pincode => '400053', :active => true, :number_of_flats => 1
+society104 = Society.create! :name => 'RNA ARCADE CHS',:society_address_line1 => 'LOKHANDWALA COMPLEX',:society_address_line2 => 'ANDHERI (W)', :society_city => 'MUMBAI',:society_pincode => '400053', :active => true, :number_of_flats => 1
+society105 = Society.create! :name => 'ROHIT APT CHS',:society_address_line1 => '3RD CROSS LANE',:society_address_line2 => 'ANDHERI (W)', :society_city => 'MUMBAI',:society_pincode => '400053', :active => true, :number_of_flats => 1
+society106 = Society.create! :name => 'PADMAVATI APT CHS',:society_address_line1 => '3RD CROSS LANE',:society_address_line2 => 'ANDHERI (W)', :society_city => 'MUMBAI',:society_pincode => '400053', :active => true, :number_of_flats => 1
+society107 = Society.create! :name => 'PALM SPRING CHS',:society_address_line1 => 'MAIN ROAD',:society_address_line2 => 'ANDHERI (W)', :society_city => 'MUMBAI',:society_pincode => '400053', :active => true, :number_of_flats => 1
+society108 = Society.create! :name => 'PANORAMA TOWER CHS',:society_address_line1 => '4TH CROSS LANE',:society_address_line2 => 'ANDHERI (W)', :society_city => 'MUMBAI',:society_pincode => '400053', :active => true, :number_of_flats => 1
+society109 = Society.create! :name => 'PEARL APT CHS',:society_address_line1 => '3RD CROSS LANE',:society_address_line2 => 'ANDHERI (W)', :society_city => 'MUMBAI',:society_pincode => '400053', :active => true, :number_of_flats => 1
+society110 = Society.create! :name => 'RUSHI TOWER CHS',:society_address_line1 => 'LOKHANDWALA COMPLEX',:society_address_line2 => 'ANDHERI (W)', :society_city => 'MUMBAI',:society_pincode => '400053', :active => true, :number_of_flats => 1
+society111 = Society.create! :name => 'PREMIUM TOWER CHS',:society_address_line1 => 'MAIN ROAD',:society_address_line2 => 'ANDHERI (W)', :society_city => 'MUMBAI',:society_pincode => '400053', :active => true, :number_of_flats => 1
+society112 = Society.create! :name => 'SAMARTH  KRUPA CHS',:society_address_line1 => 'LOKHANDWALA COMPLEX',:society_address_line2 => 'ANDHERI (W)', :society_city => 'MUMBAI',:society_pincode => '400053', :active => true, :number_of_flats => 1
+puts '112 New society created: '
+
+
 
 Member.create! :name => "SHAGUFTA PASHA SHAIKH", :mobile_phone => "9223421211",:society_id => 4
 Member.create! :name => "SULOCHNA SHARMA", :mobile_phone => "98205 93592",:society_id => 5
@@ -67,8 +241,8 @@ Member.create! :name => "SUMIT CHAWLA", :mobile_phone => "98192 34117",:society_
 Member.create! :name => "GIRISH SHAH", :mobile_phone => "9820974999",:society_id => 5
 Member.create! :name => "MONA MALHOTRA", :mobile_phone => "9821488816",:society_id => 5
 Member.create! :name => "SANJAY BARKATAKI", :mobile_phone => "98206 08561",:society_id => 5
-Member.create! :name => "AMARDEEP SINGH HORA", :mobile_phone => "9930120424",:society_id => 0
-Member.create! :name => "B B PUNJABI", :mobile_phone => "9892599245",:society_id => 0
+Member.create! :name => "AMARDEEP SINGH HORA", :mobile_phone => "9930120424",:society_id => 3
+Member.create! :name => "B B PUNJABI", :mobile_phone => "9892599245",:society_id => 3
 Member.create! :name => "INDU WAHAL", :mobile_phone => "93235 44879",:email_id=> "walchem@vsnl.com",:society_id => 6
 Member.create! :name => "SUNIL BALI", :mobile_phone => "",:society_id => 6
 Member.create! :name => "DHARAM GULATI", :mobile_phone => "98200 57577",:email_id=> "dharamgulati@gmail.com",:society_id => 6
@@ -146,10 +320,9 @@ Member.create! :name => "NUZHAT SYED", :mobile_phone => "98204 01913",:email_id=
 Member.create! :name => "HARPREET S ANAND", :mobile_phone => "9820884410",:society_id => 11
 Member.create! :name => "DINYAR GOSHTASEBI", :mobile_phone => "9820253487",:society_id => 11
 Member.create! :name => "GIRISH KUMAR B. INNANI", :mobile_phone => "98219 30839",:society_id => 11
-Member.create! :name => "TONY SEQUEIRA", :mobile_phone => "98700 96696",:society_id => 12
-Member.create! :name => "ANIL KUMAR MENON", :mobile_phone => "98201 40030",:email_id=> "anilmenon@indiatimes.com",:society_id => 13
-Member.create! :name => "K.SUDHIR SRIDHAR", :mobile_phone => "93222 65173",:email_id=> "sudhirhsbc@rediffmail.com",:society_id => 13
-Member.create! :name => "AMIT BISWAS", :mobile_phone => "",:society_id => 14
+Member.create! :name => "TONY SEQUEIRA", :mobile_phone => "98700 96696",:society_id => 5
+Member.create! :name => "ANIL KUMAR MENON", :mobile_phone => "98201 40030",:email_id=> "anilmenon@indiatimes.com",:society_id => 12
+Member.create! :name => "K.SUDHIR SRIDHAR", :mobile_phone => "93222 65173",:email_id=> "sudhirhsbc@rediffmail.com",:society_id => 12
 Member.create! :name => "RANBIR SINGH SURI", :mobile_phone => "98200 50097",:society_id => 15
 Member.create! :name => "SIDDHARTH S. BEHERAY", :mobile_phone => "98699 76677",:society_id => 15
 Member.create! :name => "KIRAN CHHABRIA", :mobile_phone => "98205 60250",:society_id => 15
@@ -175,7 +348,6 @@ Member.create! :name => "SHASHI MANDAL", :mobile_phone => "9820857922",:society_
 Member.create! :name => "SANDEEP P ACHARYA", :mobile_phone => "9867056622",:society_id => 15
 Member.create! :name => "GARG SUBHASH CHANDRA", :mobile_phone => "",:society_id => 15
 Member.create! :name => "GANDHI MIHIR V", :mobile_phone => "98214 30893",:society_id => 15
-Member.create! :name => "YESHODDHAR PADMAKAR PHANSE", :mobile_phone => "98210 04312",:society_id => 16
 Member.create! :name => "SUNIL SABOO", :mobile_phone => "98206 36277",:email_id=> "saboosunil@hotmail.com",:society_id => 17
 Member.create! :name => "AKSHAY BAID", :mobile_phone => "",:society_id => 17
 Member.create! :name => "DR.RAMESH T. KUKREJA", :mobile_phone => "98206 98764",:society_id => 17
@@ -290,7 +462,6 @@ Member.create! :name => "PANKAJ J KEWALRAMANI", :mobile_phone => "98925 47804",:
 Member.create! :name => "DEEPAK MOTIRAM CHAWLA", :mobile_phone => "98204 86484",:society_id => 22
 Member.create! :name => "CHIRAG S CHHABRIA", :mobile_phone => "98201 94725",:society_id => 22
 Member.create! :name => "VISHAL I KEWALRAMANI", :mobile_phone => "98925 47801",:society_id => 22
-Member.create! :name => "JANVI MEHTA", :mobile_phone => "9323187478",:society_id => 23
 Member.create! :name => "DILIP MALHOTRA", :mobile_phone => "98200 61880",:society_id => 24
 Member.create! :name => "POOJA .K.MOORJANI", :mobile_phone => "99203 08623",:society_id => 24
 Member.create! :name => "KAWARJIT SINGH KHURANA", :mobile_phone => "98200 81395",:society_id => 24
@@ -313,7 +484,7 @@ Member.create! :name => "RAKESH SARANG", :mobile_phone => "98202 84248",:society
 Member.create! :name => "MR KARUNAKAR SHETTY", :mobile_phone => "98203 57696",:society_id => 24
 Member.create! :name => "HARESH N AWATRAMANI", :mobile_phone => "98200 13493",:society_id => 24
 Member.create! :name => "ABHISHEK CHAMRIYA", :mobile_phone => "9322258252",:society_id => 3
-Member.create! :name => "PRAKASH THAKAR", :mobile_phone => "9820078255",:society_id => 0
+Member.create! :name => "PRAKASH THAKAR", :mobile_phone => "9820078255",:society_id => 3
 Member.create! :name => "BHARAT BHUSHAN POPLI", :mobile_phone => "98200 41183",:society_id => 3
 Member.create! :name => "CAPT TARLOCHAN SINGH KHARA", :mobile_phone => "",:society_id => 3
 Member.create! :name => "VIJAY KUMAR MAGAN", :mobile_phone => "98200 93223",:society_id => 3
@@ -385,15 +556,15 @@ Member.create! :name => "VINOD S GOSWAMI", :mobile_phone => "98203 07974",:socie
 Member.create! :name => "NELSON VARGHESS", :mobile_phone => "98206 10380",:email_id=> "nelson@emmar.com",:society_id => 3
 Member.create! :name => "PAVAN KUMAR .M. MALPANI", :mobile_phone => "98212 11462",:society_id => 3
 Member.create! :name => "MRS. JYOTI PUNJABI", :mobile_phone => "98339 17131",:society_id => 3
-Member.create! :name => "VIJAY KUMAR ROOPCHANDANI", :mobile_phone => "98193 38880",:society_id => 26
-Member.create! :name => "NARENDRA GOEL", :mobile_phone => "",:society_id => 26
-Member.create! :name => "NEELESH N.GOEL", :mobile_phone => "",:society_id => 26
-Member.create! :name => "PRIYAVRAT GOENKA", :mobile_phone => "98211 40571",:email_id=> "pgoenka@gmail.com",:society_id => 26
-Member.create! :name => "SUDEEP MALHOTRA", :mobile_phone => "98200 20862",:email_id=> "smg@vsnl.com",:society_id => 26
-Member.create! :name => "ATUL AGARWAL", :mobile_phone => "98200 63639",:society_id => 26
-Member.create! :name => "CHHOTELAL AGARWAL", :mobile_phone => "98202 95157",:society_id => 26
-Member.create! :name => "MRS RAJ K THAKUR", :mobile_phone => "",:society_id => 26
-Member.create! :name => "VRIJESH AGARWAL", :mobile_phone => "98202 34158",:society_id => 26
+Member.create! :name => "VIJAY KUMAR ROOPCHANDANI", :mobile_phone => "98193 38880",:society_id => 3
+Member.create! :name => "NARENDRA GOEL", :mobile_phone => "",:society_id => 3
+Member.create! :name => "NEELESH N.GOEL", :mobile_phone => "",:society_id => 3
+Member.create! :name => "PRIYAVRAT GOENKA", :mobile_phone => "98211 40571",:email_id=> "pgoenka@gmail.com",:society_id => 3
+Member.create! :name => "SUDEEP MALHOTRA", :mobile_phone => "98200 20862",:email_id=> "smg@vsnl.com",:society_id => 3
+Member.create! :name => "ATUL AGARWAL", :mobile_phone => "98200 63639",:society_id => 3
+Member.create! :name => "CHHOTELAL AGARWAL", :mobile_phone => "98202 95157",:society_id => 3
+Member.create! :name => "MRS RAJ K THAKUR", :mobile_phone => "",:society_id => 3
+Member.create! :name => "VRIJESH AGARWAL", :mobile_phone => "98202 34158",:society_id => 3
 Member.create! :name => "SATYAM DINESH BANSAL", :mobile_phone => "98200 96985",:email_id=> "meterofilms@yahoo.com",:society_id => 27
 Member.create! :name => "DINESH MOHAN BANSAL", :mobile_phone => "98200 76988",:email_id=> "meterofilms@yahoo.com",:society_id => 27
 Member.create! :name => "DEEPAK MOHAN", :mobile_phone => "98203 49098",:society_id => 27
@@ -440,7 +611,6 @@ Member.create! :name => "HARESH B. JETHWANEY", :mobile_phone => "98214 14185",:s
 Member.create! :name => "NISCHAY BANSAL", :mobile_phone => "98206 22248",:email_id=> "nischaybansal@hotmail.com",:society_id => 27
 Member.create! :name => "PRADEEP J. RAICHANDANI", :mobile_phone => "98196 56652",:society_id => 27
 Member.create! :name => "SUNIL BRIJBHUSHAN MAGO", :mobile_phone => "98201 52433",:society_id => 27
-Member.create! :name => "LAXMAN RAMJI PATEL", :mobile_phone => "98207 44332",:society_id => 28
 Member.create! :name => "PRAKASH L.BHATIA", :mobile_phone => "",:society_id => 29
 Member.create! :name => "KHAN ANSAR AHMED", :mobile_phone => "98200 26561",:society_id => 29
 Member.create! :name => "SHRIDHAR POSHETTY RACHERIA", :mobile_phone => "98207 30775",:society_id => 29
@@ -604,8 +774,6 @@ Member.create! :name => "SAIPRASAD NADKARNI", :mobile_phone => "9820991083",:soc
 Member.create! :name => "RAHUL KHANNA", :mobile_phone => "9819096801",:society_id => 35
 Member.create! :name => "OM KHANNA", :mobile_phone => "",:society_id => 35
 Member.create! :name => "NISHA AHUJA", :mobile_phone => "9619554644",:society_id => 35
-Member.create! :name => "RAJEEV SEKSARIA", :mobile_phone => "94206 94549",:society_id => 36
-Member.create! :name => "NEETU HARESH VASWANI", :mobile_phone => "99308 93944",:email_id=> "hareshsv@gmail.com",:society_id => 37
 Member.create! :name => "RAJ .M.CHAWLA", :mobile_phone => "98200 21567",:email_id=> "laxmihsg@rediffmail.com",:society_id => 38
 Member.create! :name => "CHETAN DINESH OZA", :mobile_phone => "98200 69880",:email_id=> "bharticoza@yahoo.com",:society_id => 38
 Member.create! :name => "MANSUR HIRJI LAKHANI", :mobile_phone => "98202 48249",:email_id=> "hpw1978@gamil.com",:society_id => 38
@@ -670,7 +838,6 @@ Member.create! :name => "PRAKASH C JAIN", :mobile_phone => "",:society_id => 40
 Member.create! :name => "ASHOK KUMAR SEKHANI", :mobile_phone => "98211 55130",:email_id=> "kiranmumbai@rediffmail.com",:society_id => 41
 Member.create! :name => "PURVI SEKHANI", :mobile_phone => "",:society_id => 41
 Member.create! :name => "ADITI SEKHANI", :mobile_phone => "93222 79896",:society_id => 41
-Member.create! :name => "BINO JOSEPH", :mobile_phone => "98200 68837",:email_id=> "bino@chrisanindia.com",:society_id => 42
 Member.create! :name => "V S S MANI", :mobile_phone => "98202 83819",:society_id => 44
 Member.create! :name => "DWARKANATH HAIR", :mobile_phone => "98201 37738",:email_id=> "nd@lakozy.com",:society_id => 44
 Member.create! :name => "MINIMA BARBOZA", :mobile_phone => "",:society_id => 44
@@ -756,7 +923,6 @@ Member.create! :name => "ROHIT SAIGAL", :mobile_phone => "98201 29539",:society_
 Member.create! :name => "SHIVEN RAMDASSANEY", :mobile_phone => "",:society_id => 44
 Member.create! :name => "ESHAN RAMDASSANEY", :mobile_phone => "",:society_id => 44
 Member.create! :name => "CHHADULAL TRIKAMJI SUCHDE", :mobile_phone => "",:society_id => 44
-Member.create! :name => "BHAGWANJI MANJI PATEL", :mobile_phone => "98210 71715",:society_id => 45
 Member.create! :name => "DEBOTOSH KUMAR ROY", :mobile_phone => "98201 47215",:society_id => 47
 Member.create! :name => "CHRISTING RAMGOPAL", :mobile_phone => "98203 52008",:society_id => 47
 Member.create! :name => "SANJAY KHIMESRA", :mobile_phone => "98201 38472",:society_id => 47
@@ -1023,14 +1189,6 @@ Member.create! :name => "ADITYA KUIPALANI", :mobile_phone => "98191 17286",:soci
 Member.create! :name => "PRITAM UPPAL", :mobile_phone => "9820023671",:society_id => 58
 Member.create! :name => "ARYAMAN GALA", :mobile_phone => "26336464",:society_id => 57
 Member.create! :name => "SAGAR BHANSALI", :mobile_phone => "9820067370",:society_id => 58
-Member.create! :name => "PRAMOD DWARPALAK", :mobile_phone => "98211 52253",:society_id => 59
-Member.create! :name => "PANKAJ .S.ARORA", :mobile_phone => "98692 11264",:society_id => 60
-Member.create! :name => "VIVEK ARYA", :mobile_phone => "93241 19069",:email_id=> "shaluarya@hotmail.com",:society_id => 60
-Member.create! :name => "R M TURAKHIA", :mobile_phone => "99205 34351",:email_id=> "rushabht@gmail.com",:society_id => 61
-Member.create! :name => "RUCHI M TURAKHIA", :mobile_phone => "99205 34352",:email_id=> "ruchi_turakhia@hotmail.com",:society_id => 61
-Member.create! :name => "MR M M TURAKHIA", :mobile_phone => "99309 98073",:email_id=> "mayurmturakhia@hotmail.com",:society_id => 61
-Member.create! :name => "MAHESHWARI SATYANARAIN.R.", :mobile_phone => "98201 80392",:email_id=> "ambluewater@gmail.com",:society_id => 61
-Member.create! :name => "MAHESHWARI SANJAY .S.", :mobile_phone => "98202 39168",:email_id=> "shreedh333@hotmail.com",:society_id => 61
 Member.create! :name => "BALVANTRAI H AMALEAN", :mobile_phone => "98213 23967",:email_id=> "bamalean@yahoo.com",:society_id => 62
 Member.create! :name => "PANKAJ .R.GOENKA", :mobile_phone => "98201 44659",:society_id => 62
 Member.create! :name => "MANISH .R.GOENKA", :mobile_phone => "98212 29596",:society_id => 62
@@ -1062,10 +1220,6 @@ Member.create! :name => "KARAN KHANNA", :mobile_phone => "9820210827",:society_i
 Member.create! :name => "PRIYANKA CHANANA", :mobile_phone => "",:society_id => 63
 Member.create! :name => "DILIP D BHATIA", :mobile_phone => "9323552090",:society_id => 63
 Member.create! :name => "REGINA .A.SETHI", :mobile_phone => "98213 35779",:society_id => 63
-Member.create! :name => "MEHESH RATANPAL", :mobile_phone => "98214 43389",:email_id=> "ratanpalm@hotmail.com",:society_id => 64
-Member.create! :name => "BHARAT RATAN PAL", :mobile_phone => "99303 71004",:email_id=> "bhart_ratanpal@hotmail.com",:society_id => 64
-Member.create! :name => "KARAN RATANPAL", :mobile_phone => "98202 64441",:email_id=> "karan_0508@hotmail.com",:society_id => 64
-Member.create! :name => "ANISH DAYAL THAWRANI", :mobile_phone => "98704 07485",:email_id=> "anish.thawrani@hotmail.com",:society_id => 65
 Member.create! :name => "ANIL J. BABEL", :mobile_phone => "98200 40350",:society_id => 66
 Member.create! :name => "SUMEET S SHROFF", :mobile_phone => "98212 12676",:email_id=> "summet@prateeksha.com",:society_id => 66
 Member.create! :name => "SHAYAM MALPANI", :mobile_phone => "98200 30230",:email_id=> "malpani_s@vsnl.com",:society_id => 66
@@ -1126,7 +1280,6 @@ Member.create! :name => "SHIV BHAGWAN .D.MUNDHRA", :mobile_phone => "",:society_
 Member.create! :name => "ROHIT S MUNDHRA", :mobile_phone => "98673 64274",:society_id => 69
 Member.create! :name => "RAHUL MOHAN", :mobile_phone => "98200 73099",:society_id => 69
 Member.create! :name => "MANISH MITTAL", :mobile_phone => "93250 80081",:society_id => 69
-Member.create! :name => "MISHA INDRAKUMAR KARAMCHANDANI", :mobile_phone => "98923 25365",:society_id => 70
 Member.create! :name => "IVAN CASTELINO", :mobile_phone => "",:society_id => 71
 Member.create! :name => "BALDEV SINGH RANA", :mobile_phone => "",:society_id => 71
 Member.create! :name => "ASHOK BANOD", :mobile_phone => "93240 60150",:society_id => 71
@@ -1188,14 +1341,6 @@ Member.create! :name => "KAVITA KHANNA", :mobile_phone => "9869425462",:society_
 Member.create! :name => "VIJAY KUMAR JAIN", :mobile_phone => "93235 61299",:society_id => 73
 Member.create! :name => "KUNNATH ALLWYN JOHN", :mobile_phone => "93242 39701",:email_id=> "allwyn_india@hotmail.com",:society_id => 73
 Member.create! :name => "TARIQ AMIRALI MERCHANT", :mobile_phone => "98923 33786",:society_id => 73
-Member.create! :name => "KHANNA RAKESH .R.", :mobile_phone => "93237 39899",:society_id => 74
-Member.create! :name => "MUKUND SHARMA", :mobile_phone => "98673 84689",:email_id=> "anushreenmukund@gmail.com",:society_id => 75
-Member.create! :name => "RAMCHAND L. HEMDEV", :mobile_phone => "",:society_id => 76
-Member.create! :name => "RUMY FRAMROZ BHIWANDIWALA", :mobile_phone => "98201 94013",:society_id => 76
-Member.create! :name => "ABHIJIT R HEMDEV", :mobile_phone => "98336 84270",:society_id => 76
-Member.create! :name => "DIWAN RAHUL NANDA", :mobile_phone => "",:society_id => 77
-Member.create! :name => "C.R.RAJESH NAIR", :mobile_phone => "98198 43777",:society_id => 77
-Member.create! :name => "MR JAGDISH SAXENA", :mobile_phone => "",:society_id => 77
 Member.create! :name => "REKHA SAHAY", :mobile_phone => "98200 96963",:email_id=> "rekhasubodhsahay@gmail.com",:society_id => 78
 Member.create! :name => "RAMESH N. SHIVANI", :mobile_phone => "",:society_id => 78
 Member.create! :name => "DEEPAK CHUGH", :mobile_phone => "98195 43464",:email_id=> "deepak2like@yahoo.co.in",:society_id => 78
@@ -1253,10 +1398,6 @@ Member.create! :name => "AYUSHYA VARDHAN LIHALA", :mobile_phone => "98202 28083"
 Member.create! :name => "VIJAY CHANGLANI", :mobile_phone => "",:society_id => 79
 Member.create! :name => "SURINDER KAPOOR", :mobile_phone => "",:society_id => 79
 Member.create! :name => "DR ANUJ SAXENA", :mobile_phone => "93220 15407",:society_id => 79
-Member.create! :name => "KALYAN SHAH", :mobile_phone => "92244 41843",:society_id => 80
-Member.create! :name => "SHYAM RAJWANEY", :mobile_phone => "98200 49946",:society_id => 81
-Member.create! :name => "SANDEEP RASTOGI", :mobile_phone => "98200 94214",:email_id=> "sandeeprastogi100@yahoo.co.in",:society_id => 81
-Member.create! :name => "SUDHIR LUTHRA", :mobile_phone => "98922 01729",:society_id => 81
 Member.create! :name => "RACHNA D'SILVA", :mobile_phone => "98200 80515",:society_id => 82
 Member.create! :name => "VASUDEV N. PUNJABI", :mobile_phone => "",:society_id => 82
 Member.create! :name => "SHERIFF HASSAN KALMADI", :mobile_phone => "",:society_id => 82
@@ -1345,8 +1486,6 @@ Member.create! :name => "SHANKAR NARAYAN", :mobile_phone => "98202 36612",:email
 Member.create! :name => "SURYAVEER SINGH BHULLAR", :mobile_phone => "98331 13471",:society_id => 85
 Member.create! :name => "SAMEER KOHLI", :mobile_phone => "99670 17722",:society_id => 85
 Member.create! :name => "NISHANT SANTKUMAR JITANI", :mobile_phone => "98200 81690",:society_id => 85
-Member.create! :name => "RAJESH SHAH", :mobile_phone => "98690 05206",:society_id => 86
-Member.create! :name => "SANDEEP MALHOTRA", :mobile_phone => "9870141978",:society_id => 87
 Member.create! :name => "MEENA BRAHMESH PATEL", :mobile_phone => "98212 41932",:society_id => 88
 Member.create! :name => "MADHUKAR AGARWAL", :mobile_phone => "",:society_id => 88
 Member.create! :name => "SHANKAR LALCHAND KANOI", :mobile_phone => "98213 59612",:society_id => 88
@@ -1669,14 +1808,8 @@ Member.create! :name => "CHURIWALA JAGDISH B.", :mobile_phone => "",:society_id 
 Member.create! :name => "CHURIWALA SITARAM B.", :mobile_phone => "",:society_id => 101
 Member.create! :name => "CHURIWALA BANWARILAL", :mobile_phone => "",:society_id => 101
 Member.create! :name => "CHURIWALA PAVANRAJ", :mobile_phone => "",:society_id => 101
-Member.create! :name => "CHANDRAKANT V SETH", :mobile_phone => "98203 96457",:society_id => 102
-Member.create! :name => "HIMANSHU SETH", :mobile_phone => "98214 13907",:society_id => 102
-Member.create! :name => "ABDUL JALEEL BANGI", :mobile_phone => "",:society_id => 103
-Member.create! :name => "RAM N KOTAK", :mobile_phone => "9820350501",:society_id => 104
-Member.create! :name => "NIHAL KOTAK", :mobile_phone => "9820345522",:society_id => 104
-Member.create! :name => "RAMESH HIRALAL PATEL", :mobile_phone => "98200 03332",:society_id => 0
-Member.create! :name => "JAYESH HIRALAL PATEL", :mobile_phone => "98707 29236",:society_id => 0
-Member.create! :name => "SURUCHI S DHANDA", :mobile_phone => "9820629922",:society_id => 105
+Member.create! :name => "RAMESH HIRALAL PATEL", :mobile_phone => "98200 03332",:society_id => 3
+Member.create! :name => "JAYESH HIRALAL PATEL", :mobile_phone => "98707 29236",:society_id => 3
 Member.create! :name => "TUSHAR SAIGHAT", :mobile_phone => "9821043144",:society_id => 106
 Member.create! :name => "DHRUV A KAPOOR", :mobile_phone => "9820262328",:society_id => 106
 Member.create! :name => "DIGRANI A.G.", :mobile_phone => "98199 53621",:society_id => 106
@@ -1783,10 +1916,7 @@ Member.create! :name => "RENUKA ISRANI", :mobile_phone => "9821447951",:society_
 Member.create! :name => "ADITYA MEHRA", :mobile_phone => "9819853150",:society_id => 109
 Member.create! :name => "VISHNU .M.BANWARI", :mobile_phone => "98211 23406",:email_id=> "vbanwani@yahoo.co.in",:society_id => 109
 Member.create! :name => "PARAMJIT SINGH JUNEJA", :mobile_phone => "98201 06652",:society_id => 109
-Member.create! :name => "KIRLWANTRAI MALHOTRA", :mobile_phone => "9821488815",:society_id => 0
-Member.create! :name => "GURBU SINGH NAGI", :mobile_phone => "98198 93229",:society_id => 110
-Member.create! :name => "ANUJ M CHATTERJEE", :mobile_phone => "98210 78599",:society_id => 110
-Member.create! :name => "SARABJIT SINGH NAGI", :mobile_phone => "98200 63403",:society_id => 110
+Member.create! :name => "KIRLWANTRAI MALHOTRA", :mobile_phone => "9821488815",:society_id => 3
 Member.create! :name => "KHAMBATY QUREISH MOHSIN", :mobile_phone => "98211 35314",:society_id => 111
 Member.create! :name => "DEEEPAK V. GUPTA", :mobile_phone => "98210 89553",:society_id => 111
 Member.create! :name => "AGARWAL PRADIP M", :mobile_phone => "",:society_id => 111
@@ -1819,951 +1949,930 @@ Member.create! :name => "MAHENDRA M GANDHI", :mobile_phone => "98200 83581",:soc
 Member.create! :name => "JAY TEWANI", :mobile_phone => "98200 27173",:society_id => 111
 Member.create! :name => "RAJESH R RAMCHANDANI", :mobile_phone => "98704 77678",:email_id=> "rajesh1964_1@yahoo.com",:society_id => 111
 Member.create! :name => "RAJINDER PAL VOHRA", :mobile_phone => "98673 86472",:email_id=> "rajinder@rheal.com",:society_id => 111
-Member.create! :name => "SHRI GUL K. MIRCHANDANI", :mobile_phone => "98211 36334",:society_id => 112
-Member.create! :name => "SUNIL SUBRAMANIAM", :mobile_phone => "98201 32392",:society_id => 112
-Member.create! :name => "RAMASWAMI SUBRAMANIAM", :mobile_phone => "",:society_id => 112
-Member.create! :name => "PRASAD VASUDEO PARANJAPE", :mobile_phone => "",:society_id => 112
-Member.create! :name => "VASUDEO P. PARANJAPE", :mobile_phone => "",:society_id => 112
-Member.create! :name => "RAZAK NOORMOHAMED MEMON", :mobile_phone => "",:society_id => 112
-Member.create! :name => "ASIF RAZAK MEMON", :mobile_phone => "98204 44106",:email_id=> "memi29@gmail.com",:society_id => 112
-Member.create! :name => "IRFAN RAZAK MEMON", :mobile_phone => "98925 40199",:email_id=> "giza@oliviaindia.com",:society_id => 112
-Member.create! :name => "NARENDRAKUMAR SUBRAMANIAM", :mobile_phone => "98214 48305",:society_id => 112
-Member.create! :name => "RAASHID.Z.KHAN", :mobile_phone => "98210 06289",:society_id => 113
-Member.create! :name => "PREM H. MEHRA", :mobile_phone => "",:society_id => 113
-Member.create! :name => "NARENDRA CHADHA", :mobile_phone => "98210 90193",:email_id=> "nrc504@gmail.com",:society_id => 113
-Member.create! :name => "J.S.BHATIA", :mobile_phone => "",:society_id => 113
-Member.create! :name => "PRADEEP KUMAR JAIN", :mobile_phone => "93225 95295",:society_id => 113
-Member.create! :name => "JHAMANDAS K. BHALLA", :mobile_phone => "98204 25688",:email_id=> "khg@vsnl.com",:society_id => 113
-Member.create! :name => "HARESH J. BHALLA", :mobile_phone => "98920 18585",:email_id=> "khg@vsnl.com",:society_id => 113
-Member.create! :name => "NARESH.F.CHOKSEY", :mobile_phone => "98201 24141",:society_id => 113
-Member.create! :name => "NISHITH CHOKSEY", :mobile_phone => "98201 24144",:society_id => 113
-Member.create! :name => "JAWAHAR MEHRA", :mobile_phone => "98212 22605",:society_id => 113
-Member.create! :name => "ASHISH JAWAHAR MEHRA", :mobile_phone => "98702 01036",:email_id=> "ashishmehra1981@gmail.com",:society_id => 113
-Member.create! :name => "MONIKA UBEROI", :mobile_phone => "98200 37586",:society_id => 113
-Member.create! :name => "SURUCHI BHATIA", :mobile_phone => "98205 23886",:society_id => 113
-Member.create! :name => "ANUBHA PATEL", :mobile_phone => "98196 72993",:society_id => 113
-Member.create! :name => "KABIR CHADHA", :mobile_phone => "98338 90338",:email_id=> "kabir.cha87@gmail.com",:society_id => 113
-Member.create! :name => "MRS RITU MANISH GOENKA", :mobile_phone => "98332 57997",:email_id=> "manish@unitekindia.com",:society_id => 113
-Member.create! :name => "SEKHON TULIKA", :mobile_phone => "9820327710",:society_id => 113
-Member.create! :name => "PARAG D DHANAK", :mobile_phone => "9820010122",:society_id => 113
-Member.create! :name => "HARI PRASAD GOENKA", :mobile_phone => "9820226174",:society_id => 113
-Member.create! :name => "PREM PRAKASH KAPOOR", :mobile_phone => "9322822401",:society_id => 113
-Member.create! :name => "ASLAM MODH SHAIKH", :mobile_phone => "98212 27047",:society_id => 113
-Member.create! :name => "VISHESH JAWAHAR MEHRA", :mobile_phone => "98702 01036",:email_id=> "vishesh78@yahoo.com",:society_id => 113
-Member.create! :name => "ROHAN PRADEEP JAIN", :mobile_phone => "98338 46606",:email_id=> "rohanjain_20@hotmail.com",:society_id => 113
-Member.create! :name => "RAJAN L NARAYAN", :mobile_phone => "98703 90949",:email_id=> "rajan.narayan@gmail.com",:society_id => 113
-Member.create! :name => "PAWANDEEP SINGH", :mobile_phone => "",:society_id => 113
-Member.create! :name => "DEEPAN DESAI", :mobile_phone => "9833945803",:society_id => 113
-Member.create! :name => "RUPALI PATHAK", :mobile_phone => "9820440197",:society_id => 113
-Member.create! :name => "JANAK MIRCHANDANI", :mobile_phone => "9821514793",:society_id => 114
-Member.create! :name => "RAJIV SATYAPAL KUMAR", :mobile_phone => "98211 51844",:society_id => 115
-Member.create! :name => "DR. IRFAN SHAH SHAUKAT", :mobile_phone => "97686 03612",:email_id=> "sshankatumer@yahoo.com",:society_id => 118
-Member.create! :name => "NARESH SHETTY", :mobile_phone => "982110 8810",:society_id => 118
-Member.create! :name => "RIGA M MALHOTRA", :mobile_phone => "",:society_id => 118
-Member.create! :name => "PAWAN KUMAR MITTAL", :mobile_phone => "93210 26005",:society_id => 118
-Member.create! :name => "NARESH KUMAR MITTAL", :mobile_phone => "",:society_id => 118
+Member.create! :name => "SHRI GUL K. MIRCHANDANI", :mobile_phone => "98211 36334",:society_id => 80
+Member.create! :name => "SUNIL SUBRAMANIAM", :mobile_phone => "98201 32392",:society_id => 80
+Member.create! :name => "RAMASWAMI SUBRAMANIAM", :mobile_phone => "",:society_id => 80
+Member.create! :name => "PRASAD VASUDEO PARANJAPE", :mobile_phone => "",:society_id => 80
+Member.create! :name => "VASUDEO P. PARANJAPE", :mobile_phone => "",:society_id => 80
+Member.create! :name => "RAZAK NOORMOHAMED MEMON", :mobile_phone => "",:society_id => 80
+Member.create! :name => "ASIF RAZAK MEMON", :mobile_phone => "98204 44106",:email_id=> "memi29@gmail.com",:society_id => 80
+Member.create! :name => "IRFAN RAZAK MEMON", :mobile_phone => "98925 40199",:email_id=> "giza@oliviaindia.com",:society_id => 80
+Member.create! :name => "NARENDRAKUMAR SUBRAMANIAM", :mobile_phone => "98214 48305",:society_id => 80
+Member.create! :name => "RAASHID.Z.KHAN", :mobile_phone => "98210 06289",:society_id => 81
+Member.create! :name => "PREM H. MEHRA", :mobile_phone => "",:society_id => 81
+Member.create! :name => "NARENDRA CHADHA", :mobile_phone => "98210 90193",:email_id=> "nrc504@gmail.com",:society_id => 81
+Member.create! :name => "J.S.BHATIA", :mobile_phone => "",:society_id => 81
+Member.create! :name => "PRADEEP KUMAR JAIN", :mobile_phone => "93225 95295",:society_id => 81
+Member.create! :name => "JHAMANDAS K. BHALLA", :mobile_phone => "98204 25688",:email_id=> "khg@vsnl.com",:society_id => 81
+Member.create! :name => "HARESH J. BHALLA", :mobile_phone => "98920 18585",:email_id=> "khg@vsnl.com",:society_id => 81
+Member.create! :name => "NARESH.F.CHOKSEY", :mobile_phone => "98201 24141",:society_id => 81
+Member.create! :name => "NISHITH CHOKSEY", :mobile_phone => "98201 24144",:society_id => 81
+Member.create! :name => "JAWAHAR MEHRA", :mobile_phone => "98212 22605",:society_id => 81
+Member.create! :name => "ASHISH JAWAHAR MEHRA", :mobile_phone => "98702 01036",:email_id=> "ashishmehra1981@gmail.com",:society_id => 81
+Member.create! :name => "MONIKA UBEROI", :mobile_phone => "98200 37586",:society_id => 81
+Member.create! :name => "SURUCHI BHATIA", :mobile_phone => "98205 23886",:society_id => 81
+Member.create! :name => "ANUBHA PATEL", :mobile_phone => "98196 72993",:society_id => 81
+Member.create! :name => "KABIR CHADHA", :mobile_phone => "98338 90338",:email_id=> "kabir.cha87@gmail.com",:society_id => 81
+Member.create! :name => "MRS RITU MANISH GOENKA", :mobile_phone => "98332 57997",:email_id=> "manish@unitekindia.com",:society_id => 81
+Member.create! :name => "SEKHON TULIKA", :mobile_phone => "9820327710",:society_id => 81
+Member.create! :name => "PARAG D DHANAK", :mobile_phone => "9820010122",:society_id => 81
+Member.create! :name => "HARI PRASAD GOENKA", :mobile_phone => "9820226174",:society_id => 81
+Member.create! :name => "PREM PRAKASH KAPOOR", :mobile_phone => "9322822401",:society_id => 81
+Member.create! :name => "ASLAM MODH SHAIKH", :mobile_phone => "98212 27047",:society_id => 81
+Member.create! :name => "VISHESH JAWAHAR MEHRA", :mobile_phone => "98702 01036",:email_id=> "vishesh78@yahoo.com",:society_id => 81
+Member.create! :name => "ROHAN PRADEEP JAIN", :mobile_phone => "98338 46606",:email_id=> "rohanjain_20@hotmail.com",:society_id => 81
+Member.create! :name => "RAJAN L NARAYAN", :mobile_phone => "98703 90949",:email_id=> "rajan.narayan@gmail.com",:society_id => 81
+Member.create! :name => "PAWANDEEP SINGH", :mobile_phone => "",:society_id => 81
+Member.create! :name => "DEEPAN DESAI", :mobile_phone => "9833945803",:society_id => 81
+Member.create! :name => "RUPALI PATHAK", :mobile_phone => "9820440197",:society_id => 81
+Member.create! :name => "DR. IRFAN SHAH SHAUKAT", :mobile_phone => "97686 03612",:email_id=> "sshankatumer@yahoo.com",:society_id => 87
+Member.create! :name => "NARESH SHETTY", :mobile_phone => "982110 8810",:society_id => 87
+Member.create! :name => "RIGA M MALHOTRA", :mobile_phone => "",:society_id => 87
+Member.create! :name => "PAWAN KUMAR MITTAL", :mobile_phone => "93210 26005",:society_id => 87
+Member.create! :name => "NARESH KUMAR MITTAL", :mobile_phone => "",:society_id => 87
 Member.create! :name => "JAYATA SHAH", :mobile_phone => "99202 88980",:society_id => 116
-Member.create! :name => "HUSEINI A. JAGMAG", :mobile_phone => "98213 11723",:email_id=> "huseini@yahoo.com",:society_id => 117
-Member.create! :name => "TIKAM NARAINDAS SUJAN", :mobile_phone => "",:society_id => 117
-Member.create! :name => "MANOJ TIKAM SUJAN", :mobile_phone => "",:society_id => 117
-Member.create! :name => "NARESHWAR SINGH KONDAL", :mobile_phone => "98690 63036",:society_id => 117
-Member.create! :name => "HINGORANI SANTDASN", :mobile_phone => "",:society_id => 117
-Member.create! :name => "RAJU HINGORANI", :mobile_phone => "",:society_id => 117
-Member.create! :name => "JAY KUMAR MOTWANI", :mobile_phone => "98200 00812",:society_id => 117
-Member.create! :name => "DALJIT SINGH MATHAROO", :mobile_phone => "98192 62646",:email_id=> "matharoods@hotmail.com",:society_id => 117
-Member.create! :name => "MAJID MUSA MEMON", :mobile_phone => "98203 96983",:society_id => 117
-Member.create! :name => "YOGESH SAHU", :mobile_phone => "98200 63385",:email_id=> "yogeshsahu98@yahoo.com",:society_id => 117
-Member.create! :name => "JAGDISH.N.SAIGAL", :mobile_phone => "",:society_id => 117
-Member.create! :name => "KULBIR SAHNEY", :mobile_phone => "98200 18838",:society_id => 117
-Member.create! :name => "VED PRAKASH SINGH", :mobile_phone => "98208 56272",:society_id => 117
-Member.create! :name => "SHER S CHAUDHARY", :mobile_phone => "98928 10997",:society_id => 117
-Member.create! :name => "DEPAK CHHABRIA", :mobile_phone => "98206 00280",:society_id => 117
-Member.create! :name => "NAKUL KOHLI", :mobile_phone => "98703 14815",:society_id => 117
-Member.create! :name => "BHARAT SAIGAL", :mobile_phone => "93222 49739",:email_id=> "bharatsaigal@hotmail.com",:society_id => 117
-Member.create! :name => "AVINASH MAHESH SHETTY", :mobile_phone => "98196 69800",:society_id => 117
-Member.create! :name => "WAHEEDA RAZAK", :mobile_phone => "98210 20648",:society_id => 117
-Member.create! :name => "RAHAT KALIM", :mobile_phone => "98199 97566",:society_id => 117
-Member.create! :name => "PRAKASH HINGORANI", :mobile_phone => "",:society_id => 117
-Member.create! :name => "UPENDRA K SITWALA", :mobile_phone => "98702 54440",:society_id => 117
-Member.create! :name => "RAKESH .H.KHANNA", :mobile_phone => "98190 09000",:email_id=> "rakesh_khanna@syntelinc.com",:society_id => 118
-Member.create! :name => "PRAVEEN GIRDHAR HINDUJA", :mobile_phone => "98200 68350",:society_id => 118
-Member.create! :name => "FARIDA T. KOTHARI", :mobile_phone => "",:society_id => 119
-Member.create! :name => "RAKESH KUMAR SHARMA", :mobile_phone => "93232 82118",:email_id=> "rakeshkumar@hotmail.com",:society_id => 119
-Member.create! :name => "MYTHILI SANJEEV SAWANT", :mobile_phone => "",:society_id => 119
-Member.create! :name => "DR.GANESH PUTTU RANE", :mobile_phone => "98202 15330",:society_id => 119
-Member.create! :name => "SANDEEP SANCHALD CHHAJED", :mobile_phone => "98200 46219",:society_id => 119
-Member.create! :name => "SANJAY SANCHALD CHHAJED", :mobile_phone => "98200 65548",:society_id => 119
-Member.create! :name => "RAJESH.M.MAKHIJA", :mobile_phone => "98200 74949",:society_id => 119
-Member.create! :name => "SANJIV SETH", :mobile_phone => "99205 66440",:email_id=> "sanjiv_seth@hotmail.com",:society_id => 119
-Member.create! :name => "TANYA RAJIV SETH", :mobile_phone => "",:society_id => 119
-Member.create! :name => "RONAK MAKHIJA", :mobile_phone => "9820074949",:society_id => 119
-Member.create! :name => "RISHAB SETH", :mobile_phone => "9819402453",:society_id => 119
-Member.create! :name => "RACHHPAL SAINI", :mobile_phone => "9821455917",:society_id => 119
-Member.create! :name => "DINESH J NIHALANI", :mobile_phone => "9820222243",:society_id => 119
-Member.create! :name => "MIHIR ARUN SETH", :mobile_phone => "9819864447",:society_id => 119
-Member.create! :name => "PURNIMA ARUN SETH", :mobile_phone => "9322237529",:society_id => 119
-Member.create! :name => "RAJIV SETH", :mobile_phone => "93241 47305",:email_id=> "rajivplastics@hotmail.com",:society_id => 119
-Member.create! :name => "GERARAD PINTO", :mobile_phone => "9867216395",:society_id => 119
-Member.create! :name => "PARMESHWAR NILKANT", :mobile_phone => "98702 93539",:email_id=> "pnilkant@gmail.com",:society_id => 120
-Member.create! :name => "ANIL VALBH", :mobile_phone => "",:society_id => 120
-Member.create! :name => "CAPT SHIRAZ B CONTRACTOR", :mobile_phone => "",:society_id => 120
-Member.create! :name => "ARUN ARORA", :mobile_phone => "98214 16936",:society_id => 120
-Member.create! :name => "CAPT R.K.NAYAR", :mobile_phone => "98200 60695",:email_id=> "captrknayar@yahoo.co.in",:society_id => 120
-Member.create! :name => "VINAY.S.PATEL", :mobile_phone => "98200 60573",:society_id => 120
-Member.create! :name => "KIRAN.S.PATEL", :mobile_phone => "98201 21683",:society_id => 120
-Member.create! :name => "SHANTILAL.N.PATEL", :mobile_phone => "98200 60573",:society_id => 120
-Member.create! :name => "ARJUN NAYAR", :mobile_phone => "99204 02220",:email_id=> "arjunnayar@yahoo.co.in",:society_id => 120
-Member.create! :name => "RAJIV DUGGAL", :mobile_phone => "98200 12437",:email_id=> "buntyduggal@rediffmail.com",:society_id => 120
-Member.create! :name => "NARENDRA REGE", :mobile_phone => "9821211155",:society_id => 120
-Member.create! :name => "RAJU /R/ SAHEVYA", :mobile_phone => "98210 90102",:society_id => 121
-Member.create! :name => "CHANDER PRAKASH", :mobile_phone => "93221 30998",:email_id=> "cp@avalontec.com.sg",:society_id => 121
-Member.create! :name => "ANAND SHALIGRAM DAYASINGH", :mobile_phone => "98210 20175",:email_id=> "id.info@anandpan.com",:society_id => 121
-Member.create! :name => "ARORA KRISHANLAL", :mobile_phone => "93228 25708",:society_id => 121
-Member.create! :name => "CAPT R.S.SARNA", :mobile_phone => "98203 34047",:society_id => 121
-Member.create! :name => "HIRACHAND .D.DAND", :mobile_phone => "",:society_id => 121
-Member.create! :name => "SURESH PALICHA", :mobile_phone => "99301 02057",:society_id => 121
-Member.create! :name => "ASIT PALICHA", :mobile_phone => "98200 67483",:society_id => 121
-Member.create! :name => "DR. RAMKRISHNA B. M.D", :mobile_phone => "",:society_id => 121
-Member.create! :name => "HARISH TULSIANI", :mobile_phone => "",:society_id => 121
-Member.create! :name => "C.V.ISRANI", :mobile_phone => "98212 18773",:society_id => 121
-Member.create! :name => "BRIJ MOHAN MAHESHWARI", :mobile_phone => "98201 05812",:society_id => 121
-Member.create! :name => "ROHIT KAPOOR", :mobile_phone => "98922 68110",:email_id=> "srat@vsnl.com",:society_id => 121
-Member.create! :name => "ANKESH R SAHETYA", :mobile_phone => "98203 05454",:society_id => 121
-Member.create! :name => "BRIJESH ANAND", :mobile_phone => "",:society_id => 121
-Member.create! :name => "RAJIV SUBHASH SETH", :mobile_phone => "93225 10865",:society_id => 121
-Member.create! :name => "JAYSHREE S SHAH", :mobile_phone => "98202 33760",:society_id => 121
-Member.create! :name => "NUPUR S SHAH", :mobile_phone => "98202 33756",:society_id => 121
-Member.create! :name => "YOGITA A SHAH", :mobile_phone => "98219 33453",:society_id => 121
-Member.create! :name => "MEET SANJIV PAREKH", :mobile_phone => "98674 99227",:society_id => 121
-Member.create! :name => "AMRIT B SAHNI", :mobile_phone => "9867235370",:society_id => 121
-Member.create! :name => "MANJARI GURBANI", :mobile_phone => "9820529656",:society_id => 121
-Member.create! :name => "AKASH HEMRAJANI", :mobile_phone => "98920 49348",:society_id => 121
-Member.create! :name => "TANYA SARNA", :mobile_phone => "98204 75759",:society_id => 121
-Member.create! :name => "KARAN ARORA", :mobile_phone => "93228 25708",:society_id => 121
-Member.create! :name => "MANAN S PAREKH", :mobile_phone => "98670 99226",:society_id => 121
-Member.create! :name => "RAJESH .P.MANCHANDA", :mobile_phone => "98676 95545",:email_id=> "rajesh.p.manchanda@gmail.com",:society_id => 122
-Member.create! :name => "RAJESH BANKA", :mobile_phone => "998758170",:society_id => 122
-Member.create! :name => "DHANANJAY KADAM", :mobile_phone => "9930709970",:society_id => 122
-Member.create! :name => "VIKRAM KADAM", :mobile_phone => "9819822330",:society_id => 122
-Member.create! :name => "SANJAY B.ARTE", :mobile_phone => "98202 90048",:society_id => 123
-Member.create! :name => "DEEPAK R. GUPTA", :mobile_phone => "98203 10525",:society_id => 123
-Member.create! :name => "NIRANJAN S. KANDHARI", :mobile_phone => "98330 41114",:email_id=> "nirajkandhari@yahoo.com",:society_id => 123
-Member.create! :name => "NANIK TEJUMAL PUNJABI", :mobile_phone => "98211 59581",:society_id => 123
-Member.create! :name => "AJAY NANIK PUNJABI", :mobile_phone => "98211 95925",:email_id=> "ajay_punjabi2000@hotmail.com",:society_id => 123
-Member.create! :name => "IQBAL A. KHALIQ", :mobile_phone => "99300 93484",:society_id => 123
-Member.create! :name => "RAMJI NARAYAN PATEL", :mobile_phone => "",:society_id => 123
-Member.create! :name => "CHANDRU JAMAITIAI MOTWANI", :mobile_phone => "98206 84398",:society_id => 123
-Member.create! :name => "RAMESH MAGANLAL NINGOO", :mobile_phone => "98201 01535",:society_id => 123
-Member.create! :name => "SANJAY SINGH", :mobile_phone => "98207 88762",:society_id => 123
-Member.create! :name => "JEEVAN D'SA", :mobile_phone => "98204 95827",:society_id => 123
-Member.create! :name => "CHADHA RAVINDER SINGH", :mobile_phone => "98203 41757",:society_id => 123
-Member.create! :name => "CHADHA INDERPAL SINGH", :mobile_phone => "98200 44520",:society_id => 123
-Member.create! :name => "MUMTAZ. .M. SHEIKH", :mobile_phone => "98208 64959",:society_id => 123
-Member.create! :name => "KAWALJIT SINGH DHINGRA", :mobile_phone => "98198 35090",:email_id=> "san@apollointernational.net",:society_id => 123
-Member.create! :name => "JUNED RASID BADSHAH", :mobile_phone => "98200 16210",:email_id=> "junedbadshah@yahoo.com",:society_id => 123
-Member.create! :name => "AVINASH RAMESH BHAVANI", :mobile_phone => "",:society_id => 123
-Member.create! :name => "KUMAR.T.ISRANI", :mobile_phone => "98218 85016",:society_id => 123
-Member.create! :name => "DEEP KUMAR ISRANI", :mobile_phone => "93235 74536",:society_id => 123
-Member.create! :name => "KISHIN.R. JODHUN/SHAKUNTALA", :mobile_phone => "",:society_id => 123
-Member.create! :name => "HIRA CHINTAN MEHTA", :mobile_phone => "98218 96718",:society_id => 123
-Member.create! :name => "KULNEETT S CHODHA", :mobile_phone => "98206 23809",:society_id => 123
-Member.create! :name => "ALKA TANDAN", :mobile_phone => "98200 47588",:email_id=> "alkatandan@hotmail.com",:society_id => 123
-Member.create! :name => "SAURAJIT DE", :mobile_phone => "98195 44520",:society_id => 123
-Member.create! :name => "SURINDER MAHAJAN", :mobile_phone => "93223 83533",:society_id => 123
-Member.create! :name => "YATEEN KARYEKAR", :mobile_phone => "98201 29627",:society_id => 123
-Member.create! :name => "PARESH GAJWANI", :mobile_phone => "",:society_id => 123
-Member.create! :name => "ANAND MALIWAL", :mobile_phone => "93215 77508",:society_id => 123
-Member.create! :name => "VISHAL M KUKREJA", :mobile_phone => "98201 88075",:email_id=> "vishalkukreja_rocks@hotmail.com",:society_id => 123
-Member.create! :name => "ROMIT ARTE", :mobile_phone => "99200 64715",:email_id=> "romit.arte@gmail.com",:society_id => 123
-Member.create! :name => "ARSHIA NAVED KHAN", :mobile_phone => "9930093484",:society_id => 123
-Member.create! :name => "KALPITA G BHIRUEL", :mobile_phone => "9870067890",:society_id => 123
-Member.create! :name => "RAJESH DOODRAJ", :mobile_phone => "98203 36860",:society_id => 123
-Member.create! :name => "VISHAL H GARG", :mobile_phone => "98201 50790",:society_id => 123
-Member.create! :name => "VINOD BALKRISHNA VORA", :mobile_phone => "98203 63789",:society_id => 123
-Member.create! :name => "MRS VAISHALI AGGARWAL", :mobile_phone => "98204 46877",:society_id => 124
-Member.create! :name => "ARVIND BHUCHAR", :mobile_phone => "98200 24824",:email_id=> "arvindbhuchare@gmail.com",:society_id => 124
-Member.create! :name => "MADAN MOHAN SAKHALA", :mobile_phone => "98190 48006",:society_id => 124
-Member.create! :name => "DR.SAKHARCHAND C. CHHAJED", :mobile_phone => "98215 50244",:email_id=> "ashishsc@gmail.com",:society_id => 124
-Member.create! :name => "ASHISH SAKHARCHAND CHHAJED", :mobile_phone => "98204 01793",:email_id=> "ashishsc@gmail.com",:society_id => 124
-Member.create! :name => "AKASH SAKHARCHAND CHHAJED", :mobile_phone => "98192 39455",:email_id=> "ashishsc@gmail.com",:society_id => 124
-Member.create! :name => "VIKRAM KHOSLA", :mobile_phone => "98202 28757",:society_id => 124
-Member.create! :name => "IQBAL DAMANWALA", :mobile_phone => "98212 44889",:society_id => 124
-Member.create! :name => "PRABHAJOT SINGH CHANDOK", :mobile_phone => "98201 43195",:society_id => 124
-Member.create! :name => "RANJAT SINGH CHANDOK", :mobile_phone => "98210 82554",:email_id=> "ravijot_chandhok@hotmail.com",:society_id => 124
-Member.create! :name => "INDERJAT SINGH CHANDOK", :mobile_phone => "98210 82552",:society_id => 124
-Member.create! :name => "PRIMLA KHOSLA", :mobile_phone => "",:society_id => 124
-Member.create! :name => "ABILASH.K.JAIN", :mobile_phone => "98335 58870",:email_id=> "akjain117@yahoo.com",:society_id => 124
-Member.create! :name => "NARENDRA .A.JAIN", :mobile_phone => "93242 90999",:email_id=> "narendralalli@yahoo.com",:society_id => 124
-Member.create! :name => "JITENDRA.A.JAIN", :mobile_phone => "93246 46211",:email_id=> "jitenladdi@yahoo.com",:society_id => 124
-Member.create! :name => "ARUN NIRANJANLAL AGARAWAL", :mobile_phone => "",:society_id => 124
-Member.create! :name => "RAICHANDANI B. JAMNUDAS", :mobile_phone => "98210 42038",:society_id => 124
-Member.create! :name => "OM PRAKASH SHARMA", :mobile_phone => "98206 28445",:society_id => 124
-Member.create! :name => "VIJAY LALWANI", :mobile_phone => "98200 47564",:society_id => 124
-Member.create! :name => "DILIP SONI", :mobile_phone => "98206 14988",:society_id => 124
-Member.create! :name => "SANJAY JHUNJHUN WALA", :mobile_phone => "98210 19422",:society_id => 124
-Member.create! :name => "VINAY .K.DATT", :mobile_phone => "98210 10128",:society_id => 124
-Member.create! :name => "D.K. VARMA", :mobile_phone => "98208 02223",:society_id => 124
-Member.create! :name => "DR.ATUL CHANDRAKANT SHAH", :mobile_phone => "98203 07232",:society_id => 124
-Member.create! :name => "HEMLATA CHANDRAKANT SHAH", :mobile_phone => "",:society_id => 124
-Member.create! :name => "MUKESH KAURA", :mobile_phone => "98200 61207",:society_id => 124
-Member.create! :name => "KUNAL KUWADEKAR", :mobile_phone => "98201 28737",:society_id => 124
-Member.create! :name => "ARUN KUMAR MAKHIJA", :mobile_phone => "98210 90191",:society_id => 124
-Member.create! :name => "DARSHAN GOPALDAS KHANNA", :mobile_phone => "92232 43444",:society_id => 124
-Member.create! :name => "DEEPAK.D.KHANNA", :mobile_phone => "92261 71208",:society_id => 124
-Member.create! :name => "DIVESH.D.KHANNA", :mobile_phone => "98231 80581",:society_id => 124
-Member.create! :name => "RAJEEV SIKKA", :mobile_phone => "98200 57512",:society_id => 124
-Member.create! :name => "SHAIKH MOHD MUSTAHASAN", :mobile_phone => "98200 43607",:society_id => 124
-Member.create! :name => "RAJESH B ARORA", :mobile_phone => "93222 33747",:society_id => 124
-Member.create! :name => "AMALENDU JAJODIA", :mobile_phone => "",:society_id => 124
-Member.create! :name => "AJAY CHAUDHRY", :mobile_phone => "98211 22445",:email_id=> "ajay080808@gmail.com",:society_id => 124
-Member.create! :name => "SANDEEP ARORA", :mobile_phone => "93222 50528",:society_id => 124
-Member.create! :name => "ALOK GUPTA", :mobile_phone => "98213 54051",:society_id => 124
-Member.create! :name => "ASHMA DAMANWALA", :mobile_phone => "98672 23013",:society_id => 124
-Member.create! :name => "SAMEER R ARORA", :mobile_phone => "98214 47632",:society_id => 124
-Member.create! :name => "SATISH KHANNA", :mobile_phone => "98200 26856",:society_id => 124
-Member.create! :name => "SHILPA KHANNA THAKKAR", :mobile_phone => "98207 12107",:society_id => 124
-Member.create! :name => "NARESH B SHARMA", :mobile_phone => "98201 26050",:society_id => 124
-Member.create! :name => "MR HANSVEER SINGH CHANDOK", :mobile_phone => "98212 72554",:email_id=> "scurycur@hotmail.com",:society_id => 124
-Member.create! :name => "SUMMEET SINGH CHANDHOK", :mobile_phone => "98200 03080",:society_id => 124
-Member.create! :name => "SANMEET SINGH CHANDHOK", :mobile_phone => "98197 66998",:email_id=> "sanmeet.chandhok@gmail.com",:society_id => 124
-Member.create! :name => "MS AVNEET KAUR CHANDHOK", :mobile_phone => "98920 88888",:society_id => 124
-Member.create! :name => "ANSH MAKHIJA", :mobile_phone => "98210 18891",:email_id=> "ansh2009@hotmail.com",:society_id => 124
-Member.create! :name => "ZIAUS SAYYADAIN", :mobile_phone => "98210 76268",:society_id => 124
-Member.create! :name => "HARSH KHOSLA", :mobile_phone => "93244 59270",:society_id => 124
-Member.create! :name => "CHIRAG KHOSLA", :mobile_phone => "93240 08630",:society_id => 124
-Member.create! :name => "ANIRUDH BHUCHAR", :mobile_phone => "9819420424",:society_id => 124
-Member.create! :name => "ASHUTOSH BHUCHAR", :mobile_phone => "9820176513",:society_id => 124
-Member.create! :name => "SANIL R KALRA", :mobile_phone => "9374011111",:society_id => 124
-Member.create! :name => "JITESH KALRA", :mobile_phone => "9323477777",:society_id => 124
-Member.create! :name => "JAY KALRA", :mobile_phone => "",:society_id => 124
-Member.create! :name => "SAHIL KALRA", :mobile_phone => "9022755533",:society_id => 124
-Member.create! :name => "SHRI JAMNADAS RAICHANDANI", :mobile_phone => "",:society_id => 124
-Member.create! :name => "ASLAM DAMANWALA", :mobile_phone => "98210 11525",:society_id => 124
-Member.create! :name => "PANKAJ U. TRIVEDI", :mobile_phone => "98201 23364",:society_id => 125
-Member.create! :name => "SURENDRA KUMAR R. ARORA", :mobile_phone => "98200 65406",:email_id=> "arapf@rediffmail.com",:society_id => 125
-Member.create! :name => "TARUN KUMAR PODDAR", :mobile_phone => "98201 54269",:email_id=> "tkpoddar@yahoo.com",:society_id => 125
-Member.create! :name => "NAJMUDDIN ROOPAWALLA", :mobile_phone => "98210 19460",:society_id => 125
-Member.create! :name => "RAJESH NARANG", :mobile_phone => "98209 92523",:society_id => 125
-Member.create! :name => "Y USUF H ROOPAWALLA", :mobile_phone => "98210 19460",:society_id => 125
-Member.create! :name => "PANKAJ S MAJITHIA", :mobile_phone => "98218 88256",:email_id=> "majithia_pankaj@yahoo.com",:society_id => 125
-Member.create! :name => "MANISH MEHRA", :mobile_phone => "98202 35090",:email_id=> "manish.d.mehra@aexp.com",:society_id => 126
-Member.create! :name => "GAUTAM PODDAR", :mobile_phone => "9820154269",:society_id => 125
+Member.create! :name => "HUSEINI A. JAGMAG", :mobile_phone => "98213 11723",:email_id=> "huseini@yahoo.com",:society_id => 86
+Member.create! :name => "TIKAM NARAINDAS SUJAN", :mobile_phone => "",:society_id => 86
+Member.create! :name => "MANOJ TIKAM SUJAN", :mobile_phone => "",:society_id => 86
+Member.create! :name => "NARESHWAR SINGH KONDAL", :mobile_phone => "98690 63036",:society_id => 86
+Member.create! :name => "HINGORANI SANTDASN", :mobile_phone => "",:society_id => 86
+Member.create! :name => "RAJU HINGORANI", :mobile_phone => "",:society_id => 86
+Member.create! :name => "JAY KUMAR MOTWANI", :mobile_phone => "98200 00812",:society_id => 86
+Member.create! :name => "DALJIT SINGH MATHAROO", :mobile_phone => "98192 62646",:email_id=> "matharoods@hotmail.com",:society_id => 86
+Member.create! :name => "MAJID MUSA MEMON", :mobile_phone => "98203 96983",:society_id => 86
+Member.create! :name => "YOGESH SAHU", :mobile_phone => "98200 63385",:email_id=> "yogeshsahu98@yahoo.com",:society_id => 86
+Member.create! :name => "JAGDISH.N.SAIGAL", :mobile_phone => "",:society_id => 86
+Member.create! :name => "KULBIR SAHNEY", :mobile_phone => "98200 18838",:society_id => 86
+Member.create! :name => "VED PRAKASH SINGH", :mobile_phone => "98208 56272",:society_id => 86
+Member.create! :name => "SHER S CHAUDHARY", :mobile_phone => "98928 10997",:society_id => 86
+Member.create! :name => "DEPAK CHHABRIA", :mobile_phone => "98206 00280",:society_id => 86
+Member.create! :name => "NAKUL KOHLI", :mobile_phone => "98703 14815",:society_id => 86
+Member.create! :name => "BHARAT SAIGAL", :mobile_phone => "93222 49739",:email_id=> "bharatsaigal@hotmail.com",:society_id => 86
+Member.create! :name => "AVINASH MAHESH SHETTY", :mobile_phone => "98196 69800",:society_id => 86
+Member.create! :name => "WAHEEDA RAZAK", :mobile_phone => "98210 20648",:society_id => 86
+Member.create! :name => "RAHAT KALIM", :mobile_phone => "98199 97566",:society_id => 86
+Member.create! :name => "PRAKASH HINGORANI", :mobile_phone => "",:society_id => 86
+Member.create! :name => "UPENDRA K SITWALA", :mobile_phone => "98702 54440",:society_id => 86
+Member.create! :name => "RAKESH .H.KHANNA", :mobile_phone => "98190 09000",:email_id=> "rakesh_khanna@syntelinc.com",:society_id => 87
+Member.create! :name => "PRAVEEN GIRDHAR HINDUJA", :mobile_phone => "98200 68350",:society_id => 87
+Member.create! :name => "FARIDA T. KOTHARI", :mobile_phone => "",:society_id => 88
+Member.create! :name => "RAKESH KUMAR SHARMA", :mobile_phone => "93232 82118",:email_id=> "rakeshkumar@hotmail.com",:society_id => 88
+Member.create! :name => "MYTHILI SANJEEV SAWANT", :mobile_phone => "",:society_id => 88
+Member.create! :name => "DR.GANESH PUTTU RANE", :mobile_phone => "98202 15330",:society_id => 88
+Member.create! :name => "SANDEEP SANCHALD CHHAJED", :mobile_phone => "98200 46219",:society_id => 88
+Member.create! :name => "SANJAY SANCHALD CHHAJED", :mobile_phone => "98200 65548",:society_id => 88
+Member.create! :name => "RAJESH.M.MAKHIJA", :mobile_phone => "98200 74949",:society_id => 88
+Member.create! :name => "SANJIV SETH", :mobile_phone => "99205 66440",:email_id=> "sanjiv_seth@hotmail.com",:society_id => 88
+Member.create! :name => "TANYA RAJIV SETH", :mobile_phone => "",:society_id => 88
+Member.create! :name => "RONAK MAKHIJA", :mobile_phone => "9820074949",:society_id => 88
+Member.create! :name => "RISHAB SETH", :mobile_phone => "9819402453",:society_id => 88
+Member.create! :name => "RACHHPAL SAINI", :mobile_phone => "9821455917",:society_id => 88
+Member.create! :name => "DINESH J NIHALANI", :mobile_phone => "9820222243",:society_id => 88
+Member.create! :name => "MIHIR ARUN SETH", :mobile_phone => "9819864447",:society_id => 88
+Member.create! :name => "PURNIMA ARUN SETH", :mobile_phone => "9322237529",:society_id => 88
+Member.create! :name => "RAJIV SETH", :mobile_phone => "93241 47305",:email_id=> "rajivplastics@hotmail.com",:society_id => 88
+Member.create! :name => "GERARAD PINTO", :mobile_phone => "9867216395",:society_id => 88
+Member.create! :name => "PARMESHWAR NILKANT", :mobile_phone => "98702 93539",:email_id=> "pnilkant@gmail.com",:society_id => 102
+Member.create! :name => "ANIL VALBH", :mobile_phone => "",:society_id => 102
+Member.create! :name => "CAPT SHIRAZ B CONTRACTOR", :mobile_phone => "",:society_id => 102
+Member.create! :name => "ARUN ARORA", :mobile_phone => "98214 16936",:society_id => 102
+Member.create! :name => "CAPT R.K.NAYAR", :mobile_phone => "98200 60695",:email_id=> "captrknayar@yahoo.co.in",:society_id => 102
+Member.create! :name => "VINAY.S.PATEL", :mobile_phone => "98200 60573",:society_id => 102
+Member.create! :name => "KIRAN.S.PATEL", :mobile_phone => "98201 21683",:society_id => 102
+Member.create! :name => "SHANTILAL.N.PATEL", :mobile_phone => "98200 60573",:society_id => 102
+Member.create! :name => "ARJUN NAYAR", :mobile_phone => "99204 02220",:email_id=> "arjunnayar@yahoo.co.in",:society_id => 102
+Member.create! :name => "RAJIV DUGGAL", :mobile_phone => "98200 12437",:email_id=> "buntyduggal@rediffmail.com",:society_id => 102
+Member.create! :name => "NARENDRA REGE", :mobile_phone => "9821211155",:society_id => 102
+Member.create! :name => "RAJU /R/ SAHEVYA", :mobile_phone => "98210 90102",:society_id => 103
+Member.create! :name => "CHANDER PRAKASH", :mobile_phone => "93221 30998",:email_id=> "cp@avalontec.com.sg",:society_id => 103
+Member.create! :name => "ANAND SHALIGRAM DAYASINGH", :mobile_phone => "98210 20175",:email_id=> "id.info@anandpan.com",:society_id => 103
+Member.create! :name => "ARORA KRISHANLAL", :mobile_phone => "93228 25708",:society_id => 103
+Member.create! :name => "CAPT R.S.SARNA", :mobile_phone => "98203 34047",:society_id => 103
+Member.create! :name => "HIRACHAND .D.DAND", :mobile_phone => "",:society_id => 103
+Member.create! :name => "SURESH PALICHA", :mobile_phone => "99301 02057",:society_id => 103
+Member.create! :name => "ASIT PALICHA", :mobile_phone => "98200 67483",:society_id => 103
+Member.create! :name => "DR. RAMKRISHNA B. M.D", :mobile_phone => "",:society_id => 103
+Member.create! :name => "HARISH TULSIANI", :mobile_phone => "",:society_id => 103
+Member.create! :name => "C.V.ISRANI", :mobile_phone => "98212 18773",:society_id => 103
+Member.create! :name => "BRIJ MOHAN MAHESHWARI", :mobile_phone => "98201 05812",:society_id => 103
+Member.create! :name => "ROHIT KAPOOR", :mobile_phone => "98922 68110",:email_id=> "srat@vsnl.com",:society_id => 103
+Member.create! :name => "ANKESH R SAHETYA", :mobile_phone => "98203 05454",:society_id => 103
+Member.create! :name => "BRIJESH ANAND", :mobile_phone => "",:society_id => 103
+Member.create! :name => "RAJIV SUBHASH SETH", :mobile_phone => "93225 10865",:society_id => 103
+Member.create! :name => "JAYSHREE S SHAH", :mobile_phone => "98202 33760",:society_id => 103
+Member.create! :name => "NUPUR S SHAH", :mobile_phone => "98202 33756",:society_id => 103
+Member.create! :name => "YOGITA A SHAH", :mobile_phone => "98219 33453",:society_id => 103
+Member.create! :name => "MEET SANJIV PAREKH", :mobile_phone => "98674 99227",:society_id => 103
+Member.create! :name => "AMRIT B SAHNI", :mobile_phone => "9867235370",:society_id => 103
+Member.create! :name => "MANJARI GURBANI", :mobile_phone => "9820529656",:society_id => 103
+Member.create! :name => "AKASH HEMRAJANI", :mobile_phone => "98920 49348",:society_id => 103
+Member.create! :name => "TANYA SARNA", :mobile_phone => "98204 75759",:society_id => 103
+Member.create! :name => "KARAN ARORA", :mobile_phone => "93228 25708",:society_id => 103
+Member.create! :name => "MANAN S PAREKH", :mobile_phone => "98670 99226",:society_id => 103
+Member.create! :name => "RAJESH .P.MANCHANDA", :mobile_phone => "98676 95545",:email_id=> "rajesh.p.manchanda@gmail.com",:society_id => 104
+Member.create! :name => "RAJESH BANKA", :mobile_phone => "998758170",:society_id => 104
+Member.create! :name => "DHANANJAY KADAM", :mobile_phone => "9930709970",:society_id => 104
+Member.create! :name => "VIKRAM KADAM", :mobile_phone => "9819822330",:society_id => 104
+Member.create! :name => "SANJAY B.ARTE", :mobile_phone => "98202 90048",:society_id => 105
+Member.create! :name => "DEEPAK R. GUPTA", :mobile_phone => "98203 10525",:society_id => 105
+Member.create! :name => "NIRANJAN S. KANDHARI", :mobile_phone => "98330 41114",:email_id=> "nirajkandhari@yahoo.com",:society_id => 105
+Member.create! :name => "NANIK TEJUMAL PUNJABI", :mobile_phone => "98211 59581",:society_id => 105
+Member.create! :name => "AJAY NANIK PUNJABI", :mobile_phone => "98211 95925",:email_id=> "ajay_punjabi2000@hotmail.com",:society_id => 105
+Member.create! :name => "IQBAL A. KHALIQ", :mobile_phone => "99300 93484",:society_id => 105
+Member.create! :name => "RAMJI NARAYAN PATEL", :mobile_phone => "",:society_id => 105
+Member.create! :name => "CHANDRU JAMAITIAI MOTWANI", :mobile_phone => "98206 84398",:society_id => 105
+Member.create! :name => "RAMESH MAGANLAL NINGOO", :mobile_phone => "98201 01535",:society_id => 105
+Member.create! :name => "SANJAY SINGH", :mobile_phone => "98207 88762",:society_id => 105
+Member.create! :name => "JEEVAN D'SA", :mobile_phone => "98204 95827",:society_id => 105
+Member.create! :name => "CHADHA RAVINDER SINGH", :mobile_phone => "98203 41757",:society_id => 105
+Member.create! :name => "CHADHA INDERPAL SINGH", :mobile_phone => "98200 44520",:society_id => 105
+Member.create! :name => "MUMTAZ. .M. SHEIKH", :mobile_phone => "98208 64959",:society_id => 105
+Member.create! :name => "KAWALJIT SINGH DHINGRA", :mobile_phone => "98198 35090",:email_id=> "san@apollointernational.net",:society_id => 105
+Member.create! :name => "JUNED RASID BADSHAH", :mobile_phone => "98200 16210",:email_id=> "junedbadshah@yahoo.com",:society_id => 105
+Member.create! :name => "AVINASH RAMESH BHAVANI", :mobile_phone => "",:society_id => 105
+Member.create! :name => "KUMAR.T.ISRANI", :mobile_phone => "98218 85016",:society_id => 105
+Member.create! :name => "DEEP KUMAR ISRANI", :mobile_phone => "93235 74536",:society_id => 105
+Member.create! :name => "KISHIN.R. JODHUN/SHAKUNTALA", :mobile_phone => "",:society_id => 105
+Member.create! :name => "HIRA CHINTAN MEHTA", :mobile_phone => "98218 96718",:society_id => 105
+Member.create! :name => "KULNEETT S CHODHA", :mobile_phone => "98206 23809",:society_id => 105
+Member.create! :name => "ALKA TANDAN", :mobile_phone => "98200 47588",:email_id=> "alkatandan@hotmail.com",:society_id => 105
+Member.create! :name => "SAURAJIT DE", :mobile_phone => "98195 44520",:society_id => 105
+Member.create! :name => "SURINDER MAHAJAN", :mobile_phone => "93223 83533",:society_id => 105
+Member.create! :name => "YATEEN KARYEKAR", :mobile_phone => "98201 29627",:society_id => 105
+Member.create! :name => "PARESH GAJWANI", :mobile_phone => "",:society_id => 105
+Member.create! :name => "ANAND MALIWAL", :mobile_phone => "93215 77508",:society_id => 105
+Member.create! :name => "VISHAL M KUKREJA", :mobile_phone => "98201 88075",:email_id=> "vishalkukreja_rocks@hotmail.com",:society_id => 105
+Member.create! :name => "ROMIT ARTE", :mobile_phone => "99200 64715",:email_id=> "romit.arte@gmail.com",:society_id => 105
+Member.create! :name => "ARSHIA NAVED KHAN", :mobile_phone => "9930093484",:society_id => 105
+Member.create! :name => "KALPITA G BHIRUEL", :mobile_phone => "9870067890",:society_id => 105
+Member.create! :name => "RAJESH DOODRAJ", :mobile_phone => "98203 36860",:society_id => 105
+Member.create! :name => "VISHAL H GARG", :mobile_phone => "98201 50790",:society_id => 105
+Member.create! :name => "VINOD BALKRISHNA VORA", :mobile_phone => "98203 63789",:society_id => 105
+Member.create! :name => "MRS VAISHALI AGGARWAL", :mobile_phone => "98204 46877",:society_id => 110
+Member.create! :name => "ARVIND BHUCHAR", :mobile_phone => "98200 24824",:email_id=> "arvindbhuchare@gmail.com",:society_id => 110
+Member.create! :name => "MADAN MOHAN SAKHALA", :mobile_phone => "98190 48006",:society_id => 110
+Member.create! :name => "DR.SAKHARCHAND C. CHHAJED", :mobile_phone => "98215 50244",:email_id=> "ashishsc@gmail.com",:society_id => 110
+Member.create! :name => "ASHISH SAKHARCHAND CHHAJED", :mobile_phone => "98204 01793",:email_id=> "ashishsc@gmail.com",:society_id => 110
+Member.create! :name => "AKASH SAKHARCHAND CHHAJED", :mobile_phone => "98192 39455",:email_id=> "ashishsc@gmail.com",:society_id => 110
+Member.create! :name => "VIKRAM KHOSLA", :mobile_phone => "98202 28757",:society_id => 110
+Member.create! :name => "IQBAL DAMANWALA", :mobile_phone => "98212 44889",:society_id => 110
+Member.create! :name => "PRABHAJOT SINGH CHANDOK", :mobile_phone => "98201 43195",:society_id => 110
+Member.create! :name => "RANJAT SINGH CHANDOK", :mobile_phone => "98210 82554",:email_id=> "ravijot_chandhok@hotmail.com",:society_id => 110
+Member.create! :name => "INDERJAT SINGH CHANDOK", :mobile_phone => "98210 82552",:society_id => 110
+Member.create! :name => "PRIMLA KHOSLA", :mobile_phone => "",:society_id => 110
+Member.create! :name => "ABILASH.K.JAIN", :mobile_phone => "98335 58870",:email_id=> "akjain117@yahoo.com",:society_id => 110
+Member.create! :name => "NARENDRA .A.JAIN", :mobile_phone => "93242 90999",:email_id=> "narendralalli@yahoo.com",:society_id => 110
+Member.create! :name => "JITENDRA.A.JAIN", :mobile_phone => "93246 46211",:email_id=> "jitenladdi@yahoo.com",:society_id => 110
+Member.create! :name => "ARUN NIRANJANLAL AGARAWAL", :mobile_phone => "",:society_id => 110
+Member.create! :name => "RAICHANDANI B. JAMNUDAS", :mobile_phone => "98210 42038",:society_id => 110
+Member.create! :name => "OM PRAKASH SHARMA", :mobile_phone => "98206 28445",:society_id => 110
+Member.create! :name => "VIJAY LALWANI", :mobile_phone => "98200 47564",:society_id => 110
+Member.create! :name => "DILIP SONI", :mobile_phone => "98206 14988",:society_id => 110
+Member.create! :name => "SANJAY JHUNJHUN WALA", :mobile_phone => "98210 19422",:society_id => 110
+Member.create! :name => "VINAY .K.DATT", :mobile_phone => "98210 10128",:society_id => 110
+Member.create! :name => "D.K. VARMA", :mobile_phone => "98208 02223",:society_id => 110
+Member.create! :name => "DR.ATUL CHANDRAKANT SHAH", :mobile_phone => "98203 07232",:society_id => 110
+Member.create! :name => "HEMLATA CHANDRAKANT SHAH", :mobile_phone => "",:society_id => 110
+Member.create! :name => "MUKESH KAURA", :mobile_phone => "98200 61207",:society_id => 110
+Member.create! :name => "KUNAL KUWADEKAR", :mobile_phone => "98201 28737",:society_id => 110
+Member.create! :name => "ARUN KUMAR MAKHIJA", :mobile_phone => "98210 90191",:society_id => 110
+Member.create! :name => "DARSHAN GOPALDAS KHANNA", :mobile_phone => "92232 43444",:society_id => 110
+Member.create! :name => "DEEPAK.D.KHANNA", :mobile_phone => "92261 71208",:society_id => 110
+Member.create! :name => "DIVESH.D.KHANNA", :mobile_phone => "98231 80581",:society_id => 110
+Member.create! :name => "RAJEEV SIKKA", :mobile_phone => "98200 57512",:society_id => 110
+Member.create! :name => "SHAIKH MOHD MUSTAHASAN", :mobile_phone => "98200 43607",:society_id => 110
+Member.create! :name => "RAJESH B ARORA", :mobile_phone => "93222 33747",:society_id => 110
+Member.create! :name => "AMALENDU JAJODIA", :mobile_phone => "",:society_id => 110
+Member.create! :name => "AJAY CHAUDHRY", :mobile_phone => "98211 22445",:email_id=> "ajay080808@gmail.com",:society_id => 110
+Member.create! :name => "SANDEEP ARORA", :mobile_phone => "93222 50528",:society_id => 110
+Member.create! :name => "ALOK GUPTA", :mobile_phone => "98213 54051",:society_id => 110
+Member.create! :name => "ASHMA DAMANWALA", :mobile_phone => "98672 23013",:society_id => 110
+Member.create! :name => "SAMEER R ARORA", :mobile_phone => "98214 47632",:society_id => 110
+Member.create! :name => "SATISH KHANNA", :mobile_phone => "98200 26856",:society_id => 110
+Member.create! :name => "SHILPA KHANNA THAKKAR", :mobile_phone => "98207 12107",:society_id => 110
+Member.create! :name => "NARESH B SHARMA", :mobile_phone => "98201 26050",:society_id => 110
+Member.create! :name => "MR HANSVEER SINGH CHANDOK", :mobile_phone => "98212 72554",:email_id=> "scurycur@hotmail.com",:society_id => 110
+Member.create! :name => "SUMMEET SINGH CHANDHOK", :mobile_phone => "98200 03080",:society_id => 110
+Member.create! :name => "SANMEET SINGH CHANDHOK", :mobile_phone => "98197 66998",:email_id=> "sanmeet.chandhok@gmail.com",:society_id => 110
+Member.create! :name => "MS AVNEET KAUR CHANDHOK", :mobile_phone => "98920 88888",:society_id => 110
+Member.create! :name => "ANSH MAKHIJA", :mobile_phone => "98210 18891",:email_id=> "ansh2009@hotmail.com",:society_id => 110
+Member.create! :name => "ZIAUS SAYYADAIN", :mobile_phone => "98210 76268",:society_id => 110
+Member.create! :name => "HARSH KHOSLA", :mobile_phone => "93244 59270",:society_id => 110
+Member.create! :name => "CHIRAG KHOSLA", :mobile_phone => "93240 08630",:society_id => 110
+Member.create! :name => "ANIRUDH BHUCHAR", :mobile_phone => "9819420424",:society_id => 110
+Member.create! :name => "ASHUTOSH BHUCHAR", :mobile_phone => "9820176513",:society_id => 110
+Member.create! :name => "SANIL R KALRA", :mobile_phone => "9374011111",:society_id => 110
+Member.create! :name => "JITESH KALRA", :mobile_phone => "9323477777",:society_id => 110
+Member.create! :name => "JAY KALRA", :mobile_phone => "",:society_id => 110
+Member.create! :name => "SAHIL KALRA", :mobile_phone => "9022755533",:society_id => 110
+Member.create! :name => "SHRI JAMNADAS RAICHANDANI", :mobile_phone => "",:society_id => 110
+Member.create! :name => "ASLAM DAMANWALA", :mobile_phone => "98210 11525",:society_id => 110
+Member.create! :name => "PANKAJ U. TRIVEDI", :mobile_phone => "98201 23364",:society_id => 111
+Member.create! :name => "SURENDRA KUMAR R. ARORA", :mobile_phone => "98200 65406",:email_id=> "arapf@rediffmail.com",:society_id => 111
+Member.create! :name => "TARUN KUMAR PODDAR", :mobile_phone => "98201 54269",:email_id=> "tkpoddar@yahoo.com",:society_id => 111
+Member.create! :name => "NAJMUDDIN ROOPAWALLA", :mobile_phone => "98210 19460",:society_id => 111
+Member.create! :name => "RAJESH NARANG", :mobile_phone => "98209 92523",:society_id => 111
+Member.create! :name => "Y USUF H ROOPAWALLA", :mobile_phone => "98210 19460",:society_id => 111
+Member.create! :name => "PANKAJ S MAJITHIA", :mobile_phone => "98218 88256",:email_id=> "majithia_pankaj@yahoo.com",:society_id => 111
+Member.create! :name => "GAUTAM PODDAR", :mobile_phone => "9820154269",:society_id => 111
 Member.create! :name => "MRITUNJAY PANDEY", :mobile_phone => "98922 36900",:email_id=> "mritunjay.pandey@gmail.com",:society_id => 1
-Member.create! :name => "DR. ASPI JAMSHED IRANI", :mobile_phone => "93222 27460",:email_id=> "aspi131@hotmail.com",:society_id => 125
-Member.create! :name => "NARENDRA C. BHANDARI", :mobile_phone => "",:society_id => 128
-Member.create! :name => "NITYANAND HANUMAIAH", :mobile_phone => "98210 30272",:society_id => 128
-Member.create! :name => "UMESH SETH", :mobile_phone => "",:society_id => 128
-Member.create! :name => "RAJESH SETH", :mobile_phone => "98212 96695",:society_id => 128
-Member.create! :name => "SANJAY .G.PANJNANI", :mobile_phone => "98204 68740",:society_id => 128
-Member.create! :name => "SNEHLATA DAGA", :mobile_phone => "",:society_id => 128
-Member.create! :name => "DR.GAURAV DAGA", :mobile_phone => "",:society_id => 128
-Member.create! :name => "SAHARSH DAGA", :mobile_phone => "",:society_id => 128
-Member.create! :name => "LEELAVATI .S.PARMAR", :mobile_phone => "93235 15069",:email_id=> "mazaamumbai@rediffmailcom",:society_id => 128
-Member.create! :name => "PARMAR RAVINDRA S.", :mobile_phone => "",:society_id => 128
-Member.create! :name => "PARMAR PRAVINCHAND S.", :mobile_phone => "93227 11252",:society_id => 128
-Member.create! :name => "PARMAR MAHENDRA S.", :mobile_phone => "93242 57261",:email_id=> "maazamumbai@rediffmail.com",:society_id => 128
-Member.create! :name => "PARMAR RAJENDRA", :mobile_phone => "93246 37226",:email_id=> "maazamumbai@rediffmail.com",:society_id => 128
-Member.create! :name => "SUNIL VALECHA", :mobile_phone => "93469 85289",:society_id => 128
-Member.create! :name => "SAROJ SAMTANI", :mobile_phone => "98922 55299",:society_id => 128
-Member.create! :name => "MAJOR GURDAS SHOURIE", :mobile_phone => "",:society_id => 128
-Member.create! :name => "HETAL VASANT HAKANI", :mobile_phone => "98923 33337",:society_id => 128
-Member.create! :name => "YAASHMIN GIANI", :mobile_phone => "98201 82088",:email_id=> "yaashmin@yahoo.co.in",:society_id => 128
-Member.create! :name => "ROHAN SAMTANI", :mobile_phone => "98215 66789",:email_id=> "rohansamtani45@yahoo.com",:society_id => 128
-Member.create! :name => "SHOBA SRIVASTAVA", :mobile_phone => "",:society_id => 128
-Member.create! :name => "DILIP K MEHERISH", :mobile_phone => "",:society_id => 128
-Member.create! :name => "KANWAL KISHOR SETH", :mobile_phone => "98928 54197",:society_id => 128
-Member.create! :name => "RAHUL SAUNIK", :mobile_phone => "92233 49010",:society_id => 128
-Member.create! :name => "NAROTTAMDAS MEHRA", :mobile_phone => "98218 55406",:society_id => 128
-Member.create! :name => "VISHAL N MEHRA", :mobile_phone => "98212 45406",:society_id => 128
-Member.create! :name => "RAJESH N MEHRA", :mobile_phone => "98707 55406",:society_id => 128
-Member.create! :name => "SHAUKHAT AHMED", :mobile_phone => "98929 09050",:society_id => 128
-Member.create! :name => "MEGHA BHANDARI", :mobile_phone => "9820744311",:society_id => 128
-Member.create! :name => "VIRANDER BEHL", :mobile_phone => "9870023388",:society_id => 128
-Member.create! :name => "SHRADDHA SETH", :mobile_phone => "9821318586",:society_id => 128
-Member.create! :name => "AKHIL SETH", :mobile_phone => "9821223901",:society_id => 128
-Member.create! :name => "KASHVI KAPOOR", :mobile_phone => "9820180212",:society_id => 128
-Member.create! :name => "SUNNY PARMAR", :mobile_phone => "9892367284",:society_id => 128
-Member.create! :name => "VINOD KUMRA MEHRA", :mobile_phone => "93241 19795",:society_id => 128
-Member.create! :name => "AAHANA SAMTANI", :mobile_phone => "98197 24442",:email_id=> "sweetaahan@hotmail.com",:society_id => 128
-Member.create! :name => "SUBHASH MEHRA", :mobile_phone => "932346 54741",:society_id => 129
-Member.create! :name => "PRAKASH TATIA", :mobile_phone => "98201 55546",:society_id => 129
-Member.create! :name => "ROHIT MAGANLAL SHAH", :mobile_phone => "98922 22108",:society_id => 129
-Member.create! :name => "PRASHANT AHUJA", :mobile_phone => "98211 75505",:society_id => 129
-Member.create! :name => "ANUP MULKHRAJ BAJAJ", :mobile_phone => "98213 30984",:society_id => 129
-Member.create! :name => "ASHA KRIPALANI", :mobile_phone => "98207 87160",:email_id=> "ashkrip@hotmail.com",:society_id => 129
-Member.create! :name => "AJAY PAUL", :mobile_phone => "98202 10505",:email_id=> "ajaypaul55@yahoo.com",:society_id => 129
-Member.create! :name => "HASSO GULABRAI JAIRAM", :mobile_phone => "",:society_id => 129
-Member.create! :name => "SUNITAGOPALDAS RAJWANI", :mobile_phone => "98673 57218",:society_id => 129
-Member.create! :name => "SURINDER KUMAR TILAK", :mobile_phone => "93241 69705",:email_id=> "amantilak@hotmail.com",:society_id => 129
-Member.create! :name => "CAPT AMAN TILAK", :mobile_phone => "93237 47400",:email_id=> "amantilak@hotmail.com",:society_id => 129
-Member.create! :name => "RAJEEV SETHI", :mobile_phone => "98203 29137",:society_id => 129
-Member.create! :name => "SANJAY ARYA", :mobile_phone => "93245 20518",:email_id=> "shreeomshirting@mtnl.net.in",:society_id => 129
-Member.create! :name => "NARENDRA RAJWANI", :mobile_phone => "98925 29903",:society_id => 129
-Member.create! :name => "JEET SHAH", :mobile_phone => "",:society_id => 129
-Member.create! :name => "JAINENDRA KUMAR", :mobile_phone => "9769547165",:society_id => 129
-Member.create! :name => "MANAV SHAH", :mobile_phone => "9867004800",:society_id => 129
-Member.create! :name => "RAMNEET BHATIA", :mobile_phone => "9223301119",:society_id => 129
-Member.create! :name => "DR.SHRENIK A. DOSHI", :mobile_phone => "98201 45499",:society_id => 130
-Member.create! :name => "PARESH VINOD MEHTA", :mobile_phone => "93770 01223",:email_id=> "paresh@pollycab.com",:society_id => 130
-Member.create! :name => "HEMANT HARIDAS SHAH", :mobile_phone => "",:society_id => 130
-Member.create! :name => "KARAN ARORA", :mobile_phone => "98215 09100",:email_id=> "watsinaname1@rediffmail.com",:society_id => 130
-Member.create! :name => "PATEL YOGESH B.", :mobile_phone => "",:society_id => 130
-Member.create! :name => "GAUTAM KUMAR D. JAIN", :mobile_phone => "98210 16158",:society_id => 130
-Member.create! :name => "DHANJI GELA PATEL", :mobile_phone => "98672 28846",:email_id=> "justyog2@gmail.com",:society_id => 130
-Member.create! :name => "SANGEETA VARYANI", :mobile_phone => "",:society_id => 130
-Member.create! :name => "KISHOR C. SHAH", :mobile_phone => "98205 70266",:society_id => 130
-Member.create! :name => "MEDHA ARORA", :mobile_phone => "98200 64460",:society_id => 130
-Member.create! :name => "RAMESH PURAVANKNU", :mobile_phone => "98200 72493",:email_id=> "rpuravankara60@gmail.com",:society_id => 130
-Member.create! :name => "RAJPAL BRIKH AGGARWAL", :mobile_phone => "",:society_id => 130
-Member.create! :name => "BAFNA ASHOK H.", :mobile_phone => "98201 45355",:society_id => 130
-Member.create! :name => "AMBALAL.K. PATEL", :mobile_phone => "98200 28531",:email_id=> "ambalal.patel@hotmail.com",:society_id => 130
-Member.create! :name => "ASHISH .A.PATEL", :mobile_phone => "98201 84703",:email_id=> "ashish_a_patel@hotmail.com",:society_id => 130
-Member.create! :name => "MR MANISH Y THAKKAR", :mobile_phone => "98200 13324",:society_id => 130
-Member.create! :name => "SANJEEV VASANT JOSHI", :mobile_phone => "93248 60660",:society_id => 130
-Member.create! :name => "MRS PRAGNA SAILESH BHATIA", :mobile_phone => "",:society_id => 130
-Member.create! :name => "SAVITA D PATEL", :mobile_phone => "",:society_id => 130
-Member.create! :name => "YOGESH PATEL", :mobile_phone => "9920659880",:society_id => 130
-Member.create! :name => "NITIN D PATEL", :mobile_phone => "9819244112",:society_id => 130
-Member.create! :name => "BRINDA P MEHTA", :mobile_phone => "9833040002",:society_id => 130
-Member.create! :name => "BAFNA MAHENDRA H.", :mobile_phone => "",:society_id => 130
-Member.create! :name => "SHAILESH GAGLANI", :mobile_phone => "98200 16306",:society_id => 130
-Member.create! :name => "UPENDRA B TRIPATHI", :mobile_phone => "98211 14895",:society_id => 130
-Member.create! :name => "RAJ YOGESH PATEL", :mobile_phone => "",:society_id => 130
-Member.create! :name => "AKHIL KAPUR", :mobile_phone => "98200 53961",:society_id => 130
-Member.create! :name => "BHRUGAL YOGESH PATEL", :mobile_phone => "93222 43628",:society_id => 130
-Member.create! :name => "MANISH C SHAH", :mobile_phone => "98208 00992",:society_id => 130
-Member.create! :name => "HARISH M. UDESHI", :mobile_phone => "98202 22067",:society_id => 130
-Member.create! :name => "ADI TASLEEM CHOUGLE", :mobile_phone => "98202 94264",:society_id => 131
-Member.create! :name => "NAKI TASLEEM CHOUGLE", :mobile_phone => "99201 42333",:society_id => 131
-Member.create! :name => "BOHRA SUBHASH BRIJMOHAN", :mobile_phone => "98200 27042",:society_id => 132
-Member.create! :name => "GOTHI PARBAT MANJI", :mobile_phone => "98202 87327",:society_id => 133
-Member.create! :name => "PATEL VALAJI MANJI", :mobile_phone => "98200 25038",:society_id => 133
-Member.create! :name => "RANCHHOD MANJI PATEL", :mobile_phone => "98200 00452",:society_id => 133
-Member.create! :name => "MANOJ G LALWANI", :mobile_phone => "98200 99584",:email_id=> "manojlalwani@gmail.com",:society_id => 134
-Member.create! :name => "PRADIP R SHAH", :mobile_phone => "98202 49571",:email_id=> "pradipshah100@yahoo.com",:society_id => 134
-Member.create! :name => "SIDHHARTH P SHAH", :mobile_phone => "98202 49571",:email_id=> "pradipshah100@yahoo.com",:society_id => 134
-Member.create! :name => "KULDIP SINGH LATHAR", :mobile_phone => "",:society_id => 134
-Member.create! :name => "RITA SETH", :mobile_phone => "9820022404",:society_id => 136
-Member.create! :name => "PRAKASH GAIKWAD", :mobile_phone => "9892486371",:society_id => 136
-Member.create! :name => "HARDIK TEWARI", :mobile_phone => "9833592253",:society_id => 136
-Member.create! :name => "ASHOK RAJA", :mobile_phone => "9820194347",:society_id => 136
-Member.create! :name => "MEETI P MANDANZ", :mobile_phone => "9819801707",:society_id => 136
-Member.create! :name => "SACHIN GUPTA", :mobile_phone => "9820058034",:society_id => 136
-Member.create! :name => "DR SYEDA VAKIL", :mobile_phone => "9820219296",:society_id => 136
-Member.create! :name => "NIHAL PANDA", :mobile_phone => "9820182532",:society_id => 136
-Member.create! :name => "PRAFUL H DAVE", :mobile_phone => "9867111001",:society_id => 136
-Member.create! :name => "GUNVANTLAL K.SHAH", :mobile_phone => "98215 44562",:email_id=> "samarth@samarthpharma.com",:society_id => 135
-Member.create! :name => "RAJIV GUNVANTLAL SHAH", :mobile_phone => "98213 54751",:society_id => 135
-Member.create! :name => "DR.S.H.MALIK", :mobile_phone => "98691 15988",:email_id=> "31saleem@gmail.com",:society_id => 136
-Member.create! :name => "ASHOK SUKHIJA", :mobile_phone => "98197 00151",:email_id=> "asukhija@indussystem.com",:society_id => 136
-Member.create! :name => "K.N. KUNDER", :mobile_phone => "",:society_id => 136
-Member.create! :name => "CAP SIDDHARTH BHARDVAJ", :mobile_phone => "98205 14854",:society_id => 136
-Member.create! :name => "VIJITA TEWARI", :mobile_phone => "98335 92253",:society_id => 136
-Member.create! :name => "MANISH .B.MORDANI", :mobile_phone => "98212 17144",:society_id => 136
-Member.create! :name => "PARAG VAIIABHDAS DESAI", :mobile_phone => "98211 71626",:society_id => 136
-Member.create! :name => "KRIPALCHAND .J. DEVNANI", :mobile_phone => "",:society_id => 136
-Member.create! :name => "SHIV KUMAR BAGRI", :mobile_phone => "98200 04764",:society_id => 136
-Member.create! :name => "DEBENDRA .K. MODI", :mobile_phone => "98201 24085",:society_id => 136
-Member.create! :name => "MANDANI PANKAJ .J.", :mobile_phone => "98202 21775",:email_id=> "pankajstar2000@yahoo.com",:society_id => 136
-Member.create! :name => "MAHESH MURLIDHAR HINDUJA", :mobile_phone => "",:society_id => 136
-Member.create! :name => "LALIT MALIWAL", :mobile_phone => "",:society_id => 136
-Member.create! :name => "VEENA RAJBIR AGARWAL", :mobile_phone => "",:society_id => 136
-Member.create! :name => "RAJESH SURESH WASWANI", :mobile_phone => "",:society_id => 136
-Member.create! :name => "SHALEEN BAHADUR", :mobile_phone => "98210 12304",:society_id => 136
-Member.create! :name => "PREM GUPTA", :mobile_phone => "98200 28166",:email_id=> "prem@miraclelifestyle.com",:society_id => 136
-Member.create! :name => "ZARIMA MAHMOOD", :mobile_phone => "",:society_id => 136
-Member.create! :name => "CAPT JEETENDRASINGH K.", :mobile_phone => "98202 90261",:society_id => 136
-Member.create! :name => "GUL.K.MELWANI", :mobile_phone => "98211 10719",:society_id => 136
-Member.create! :name => "VIROOMAL.H.MANVANI", :mobile_phone => "98201 25661",:society_id => 136
-Member.create! :name => "MEENA MELWANI", :mobile_phone => "98211 18695",:society_id => 136
-Member.create! :name => "CHANDRA.V. MANVANI", :mobile_phone => "98201 25661",:society_id => 136
-Member.create! :name => "CHANDER G. PURSNANI", :mobile_phone => "",:society_id => 136
-Member.create! :name => "SOMDATT .P.GUPTA", :mobile_phone => "",:society_id => 136
-Member.create! :name => "MAHESH K. ASSUDANI", :mobile_phone => "98201 51534",:email_id=> "mahesh_bmc@hotmail.com",:society_id => 136
-Member.create! :name => "NIRAJ BAGRI", :mobile_phone => "98209 88493",:society_id => 136
-Member.create! :name => "SANJOG MAHESH HINDUJA", :mobile_phone => "98215 95919",:society_id => 136
-Member.create! :name => "CAPT ARUN KUMAR D", :mobile_phone => "98213 61181",:society_id => 136
-Member.create! :name => "PATEL RAJESH HIRALAL", :mobile_phone => "98212 83969",:email_id=> "rajeshgothi@rediffmail.com",:society_id => 136
-Member.create! :name => "SHAGUN D HINDUJA", :mobile_phone => "",:society_id => 136
-Member.create! :name => "DISHA D HINDUJA", :mobile_phone => "",:society_id => 136
-Member.create! :name => "G FERNANDES", :mobile_phone => "98206 44057",:society_id => 136
-Member.create! :name => "VEDDNT GUPTA", :mobile_phone => "",:society_id => 136
-Member.create! :name => "KHETAN ANKIT LALIT", :mobile_phone => "98203 64917",:society_id => 136
-Member.create! :name => "BHARAT VASANT GAIKWAD", :mobile_phone => "98330 06803",:society_id => 136
-Member.create! :name => "MANOJ K PARWANI", :mobile_phone => "98212 49431",:society_id => 136
-Member.create! :name => "JANAK TAPRANI", :mobile_phone => "98212 87751",:society_id => 136
-Member.create! :name => "SUSHANT PANDA", :mobile_phone => "98210 28644",:society_id => 136
-Member.create! :name => "RAJENDRA PRASAD JHANWAR", :mobile_phone => "98202 89938",:society_id => 136
-Member.create! :name => "MONICA GROVER", :mobile_phone => "98203 35797",:society_id => 136
-Member.create! :name => "DHAVAL BAKUL SHAH", :mobile_phone => "98206 74007",:society_id => 136
-Member.create! :name => "UDHAV OJHA", :mobile_phone => "98677 88822",:society_id => 136
-Member.create! :name => "PUNEET DAWAR", :mobile_phone => "99676 22900",:society_id => 136
-Member.create! :name => "RAJAN GUPTA", :mobile_phone => "98200 80669",:society_id => 136
-Member.create! :name => "ATIF SALEEM MALIK", :mobile_phone => "99679 75429",:society_id => 136
-Member.create! :name => "GIRISH HANSRAJ", :mobile_phone => "98210 17969",:email_id=> "girish@clapstem.com",:society_id => 136
-Member.create! :name => "SANJAY BALRAM RAMCHANDANI", :mobile_phone => "9821033373",:society_id => 136
-Member.create! :name => "SUMIT R AGGARWAL", :mobile_phone => "9930093670",:society_id => 136
-Member.create! :name => "DEEPAK K. DEVNANI", :mobile_phone => "",:society_id => 136
-Member.create! :name => "LALIT .S. KHETAN", :mobile_phone => "93222 63395",:society_id => 136
-Member.create! :name => "CHANDRU R. GULRAJNI", :mobile_phone => "98203 29771",:society_id => 136
-Member.create! :name => "DILIP.M.HINDUJA", :mobile_phone => "",:society_id => 136
-Member.create! :name => "NORBERT FERNANDES", :mobile_phone => "",:society_id => 136
-Member.create! :name => "PANKAJ BAGRI", :mobile_phone => "",:society_id => 136
-Member.create! :name => "MRS ANJUM SHAIKH", :mobile_phone => "98213 61300",:society_id => 136
-Member.create! :name => "DEEPAK JOSHI", :mobile_phone => "98211 18651",:society_id => 136
-Member.create! :name => "KAMAL G. GULRAJANI", :mobile_phone => "98200 84159",:email_id=> "gulrajani_kamal@vsnl.net",:society_id => 136
-Member.create! :name => "VASNANI M. ASSONDAS", :mobile_phone => "98205 75140",:society_id => 136
-Member.create! :name => "PRANAV G. SHAH", :mobile_phone => "98670 50229",:email_id=> "pranav@samarthpharma.com",:society_id => 135
-Member.create! :name => "AMARJEET SINGH SETHI", :mobile_phone => "98204 19805",:society_id => 137
-Member.create! :name => "HARVINDER SINGH SETHI", :mobile_phone => "",:society_id => 137
-Member.create! :name => "ATUL MEDIRATTA", :mobile_phone => "",:society_id => 137
-Member.create! :name => "TARUN K. MEDIRATTA", :mobile_phone => "98201 49105",:society_id => 137
-Member.create! :name => "SUNDEEP MEDIRATTA", :mobile_phone => "98210 17181",:society_id => 137
-Member.create! :name => "RAJ NARAYAN TAPARIA", :mobile_phone => "98200 78451",:society_id => 137
-Member.create! :name => "SYED ABDUR RASHEED", :mobile_phone => "98202 11695",:society_id => 137
-Member.create! :name => "SYEDA RUKSHEDA NAZLI", :mobile_phone => "92237 01812",:society_id => 137
-Member.create! :name => "SYED ABDUR UMAIR", :mobile_phone => "98201 06122",:society_id => 137
-Member.create! :name => "SYED ABDUR ZUBAIR", :mobile_phone => "98202 97433",:society_id => 137
-Member.create! :name => "KRISHANLAL R. MEDIRATTA", :mobile_phone => "98211 41696",:society_id => 137
-Member.create! :name => "DR A. A. PATEL", :mobile_phone => "98213 12711",:society_id => 137
+Member.create! :name => "DR. ASPI JAMSHED IRANI", :mobile_phone => "93222 27460",:email_id=> "aspi131@hotmail.com",:society_id => 111
+Member.create! :name => "NARENDRA C. BHANDARI", :mobile_phone => "",:society_id => 61
+Member.create! :name => "NITYANAND HANUMAIAH", :mobile_phone => "98210 30272",:society_id => 61
+Member.create! :name => "UMESH SETH", :mobile_phone => "",:society_id => 61
+Member.create! :name => "RAJESH SETH", :mobile_phone => "98212 96695",:society_id => 61
+Member.create! :name => "SANJAY .G.PANJNANI", :mobile_phone => "98204 68740",:society_id => 61
+Member.create! :name => "SNEHLATA DAGA", :mobile_phone => "",:society_id => 61
+Member.create! :name => "DR.GAURAV DAGA", :mobile_phone => "",:society_id => 61
+Member.create! :name => "SAHARSH DAGA", :mobile_phone => "",:society_id => 61
+Member.create! :name => "LEELAVATI .S.PARMAR", :mobile_phone => "93235 15069",:email_id=> "mazaamumbai@rediffmailcom",:society_id => 61
+Member.create! :name => "PARMAR RAVINDRA S.", :mobile_phone => "",:society_id => 61
+Member.create! :name => "PARMAR PRAVINCHAND S.", :mobile_phone => "93227 11252",:society_id => 61
+Member.create! :name => "PARMAR MAHENDRA S.", :mobile_phone => "93242 57261",:email_id=> "maazamumbai@rediffmail.com",:society_id => 61
+Member.create! :name => "PARMAR RAJENDRA", :mobile_phone => "93246 37226",:email_id=> "maazamumbai@rediffmail.com",:society_id => 61
+Member.create! :name => "SUNIL VALECHA", :mobile_phone => "93469 85289",:society_id => 61
+Member.create! :name => "SAROJ SAMTANI", :mobile_phone => "98922 55299",:society_id => 61
+Member.create! :name => "MAJOR GURDAS SHOURIE", :mobile_phone => "",:society_id => 61
+Member.create! :name => "HETAL VASANT HAKANI", :mobile_phone => "98923 33337",:society_id => 61
+Member.create! :name => "YAASHMIN GIANI", :mobile_phone => "98201 82088",:email_id=> "yaashmin@yahoo.co.in",:society_id => 61
+Member.create! :name => "ROHAN SAMTANI", :mobile_phone => "98215 66789",:email_id=> "rohansamtani45@yahoo.com",:society_id => 61
+Member.create! :name => "SHOBA SRIVASTAVA", :mobile_phone => "",:society_id => 61
+Member.create! :name => "DILIP K MEHERISH", :mobile_phone => "",:society_id => 61
+Member.create! :name => "KANWAL KISHOR SETH", :mobile_phone => "98928 54197",:society_id => 61
+Member.create! :name => "RAHUL SAUNIK", :mobile_phone => "92233 49010",:society_id => 61
+Member.create! :name => "NAROTTAMDAS MEHRA", :mobile_phone => "98218 55406",:society_id => 61
+Member.create! :name => "VISHAL N MEHRA", :mobile_phone => "98212 45406",:society_id => 61
+Member.create! :name => "RAJESH N MEHRA", :mobile_phone => "98707 55406",:society_id => 61
+Member.create! :name => "SHAUKHAT AHMED", :mobile_phone => "98929 09050",:society_id => 61
+Member.create! :name => "MEGHA BHANDARI", :mobile_phone => "9820744311",:society_id => 61
+Member.create! :name => "VIRANDER BEHL", :mobile_phone => "9870023388",:society_id => 61
+Member.create! :name => "SHRADDHA SETH", :mobile_phone => "9821318586",:society_id => 61
+Member.create! :name => "AKHIL SETH", :mobile_phone => "9821223901",:society_id => 61
+Member.create! :name => "KASHVI KAPOOR", :mobile_phone => "9820180212",:society_id => 61
+Member.create! :name => "SUNNY PARMAR", :mobile_phone => "9892367284",:society_id => 61
+Member.create! :name => "VINOD KUMRA MEHRA", :mobile_phone => "93241 19795",:society_id => 61
+Member.create! :name => "AAHANA SAMTANI", :mobile_phone => "98197 24442",:email_id=> "sweetaahan@hotmail.com",:society_id => 61
+Member.create! :name => "SUBHASH MEHRA", :mobile_phone => "932346 54741",:society_id => 64
+Member.create! :name => "PRAKASH TATIA", :mobile_phone => "98201 55546",:society_id => 64
+Member.create! :name => "ROHIT MAGANLAL SHAH", :mobile_phone => "98922 22108",:society_id => 64
+Member.create! :name => "PRASHANT AHUJA", :mobile_phone => "98211 75505",:society_id => 64
+Member.create! :name => "ANUP MULKHRAJ BAJAJ", :mobile_phone => "98213 30984",:society_id => 64
+Member.create! :name => "ASHA KRIPALANI", :mobile_phone => "98207 87160",:email_id=> "ashkrip@hotmail.com",:society_id => 64
+Member.create! :name => "AJAY PAUL", :mobile_phone => "98202 10505",:email_id=> "ajaypaul55@yahoo.com",:society_id => 64
+Member.create! :name => "HASSO GULABRAI JAIRAM", :mobile_phone => "",:society_id => 64
+Member.create! :name => "SUNITAGOPALDAS RAJWANI", :mobile_phone => "98673 57218",:society_id => 64
+Member.create! :name => "SURINDER KUMAR TILAK", :mobile_phone => "93241 69705",:email_id=> "amantilak@hotmail.com",:society_id => 64
+Member.create! :name => "CAPT AMAN TILAK", :mobile_phone => "93237 47400",:email_id=> "amantilak@hotmail.com",:society_id => 64
+Member.create! :name => "RAJEEV SETHI", :mobile_phone => "98203 29137",:society_id => 64
+Member.create! :name => "SANJAY ARYA", :mobile_phone => "93245 20518",:email_id=> "shreeomshirting@mtnl.net.in",:society_id => 64
+Member.create! :name => "NARENDRA RAJWANI", :mobile_phone => "98925 29903",:society_id => 64
+Member.create! :name => "JEET SHAH", :mobile_phone => "",:society_id => 64
+Member.create! :name => "JAINENDRA KUMAR", :mobile_phone => "9769547165",:society_id => 64
+Member.create! :name => "MANAV SHAH", :mobile_phone => "9867004800",:society_id => 64
+Member.create! :name => "RAMNEET BHATIA", :mobile_phone => "9223301119",:society_id => 64
+Member.create! :name => "DR.SHRENIK A. DOSHI", :mobile_phone => "98201 45499",:society_id => 65
+Member.create! :name => "PARESH VINOD MEHTA", :mobile_phone => "93770 01223",:email_id=> "paresh@pollycab.com",:society_id => 65
+Member.create! :name => "HEMANT HARIDAS SHAH", :mobile_phone => "",:society_id => 65
+Member.create! :name => "KARAN ARORA", :mobile_phone => "98215 09100",:email_id=> "watsinaname1@rediffmail.com",:society_id => 65
+Member.create! :name => "PATEL YOGESH B.", :mobile_phone => "",:society_id => 65
+Member.create! :name => "GAUTAM KUMAR D. JAIN", :mobile_phone => "98210 16158",:society_id => 65
+Member.create! :name => "DHANJI GELA PATEL", :mobile_phone => "98672 28846",:email_id=> "justyog2@gmail.com",:society_id => 65
+Member.create! :name => "SANGEETA VARYANI", :mobile_phone => "",:society_id => 65
+Member.create! :name => "KISHOR C. SHAH", :mobile_phone => "98205 70266",:society_id => 65
+Member.create! :name => "MEDHA ARORA", :mobile_phone => "98200 64460",:society_id => 65
+Member.create! :name => "RAMESH PURAVANKNU", :mobile_phone => "98200 72493",:email_id=> "rpuravankara60@gmail.com",:society_id => 65
+Member.create! :name => "RAJPAL BRIKH AGGARWAL", :mobile_phone => "",:society_id => 65
+Member.create! :name => "BAFNA ASHOK H.", :mobile_phone => "98201 45355",:society_id => 65
+Member.create! :name => "AMBALAL.K. PATEL", :mobile_phone => "98200 28531",:email_id=> "ambalal.patel@hotmail.com",:society_id => 65
+Member.create! :name => "ASHISH .A.PATEL", :mobile_phone => "98201 84703",:email_id=> "ashish_a_patel@hotmail.com",:society_id => 65
+Member.create! :name => "MR MANISH Y THAKKAR", :mobile_phone => "98200 13324",:society_id => 65
+Member.create! :name => "SANJEEV VASANT JOSHI", :mobile_phone => "93248 60660",:society_id => 65
+Member.create! :name => "MRS PRAGNA SAILESH BHATIA", :mobile_phone => "",:society_id => 65
+Member.create! :name => "SAVITA D PATEL", :mobile_phone => "",:society_id => 65
+Member.create! :name => "YOGESH PATEL", :mobile_phone => "9920659880",:society_id => 65
+Member.create! :name => "NITIN D PATEL", :mobile_phone => "9819244112",:society_id => 65
+Member.create! :name => "BRINDA P MEHTA", :mobile_phone => "9833040002",:society_id => 65
+Member.create! :name => "BAFNA MAHENDRA H.", :mobile_phone => "",:society_id => 65
+Member.create! :name => "SHAILESH GAGLANI", :mobile_phone => "98200 16306",:society_id => 65
+Member.create! :name => "UPENDRA B TRIPATHI", :mobile_phone => "98211 14895",:society_id => 65
+Member.create! :name => "RAJ YOGESH PATEL", :mobile_phone => "",:society_id => 65
+Member.create! :name => "AKHIL KAPUR", :mobile_phone => "98200 53961",:society_id => 65
+Member.create! :name => "BHRUGAL YOGESH PATEL", :mobile_phone => "93222 43628",:society_id => 65
+Member.create! :name => "MANISH C SHAH", :mobile_phone => "98208 00992",:society_id => 65
+Member.create! :name => "HARISH M. UDESHI", :mobile_phone => "98202 22067",:society_id => 65
+Member.create! :name => "RITA SETH", :mobile_phone => "9820022404",:society_id => 66
+Member.create! :name => "PRAKASH GAIKWAD", :mobile_phone => "9892486371",:society_id => 66
+Member.create! :name => "HARDIK TEWARI", :mobile_phone => "9833592253",:society_id => 66
+Member.create! :name => "ASHOK RAJA", :mobile_phone => "9820194347",:society_id => 66
+Member.create! :name => "MEETI P MANDANZ", :mobile_phone => "9819801707",:society_id => 66
+Member.create! :name => "SACHIN GUPTA", :mobile_phone => "9820058034",:society_id => 66
+Member.create! :name => "DR SYEDA VAKIL", :mobile_phone => "9820219296",:society_id => 66
+Member.create! :name => "NIHAL PANDA", :mobile_phone => "9820182532",:society_id => 66
+Member.create! :name => "PRAFUL H DAVE", :mobile_phone => "9867111001",:society_id => 66
+Member.create! :name => "DR.S.H.MALIK", :mobile_phone => "98691 15988",:email_id=> "31saleem@gmail.com",:society_id => 66
+Member.create! :name => "ASHOK SUKHIJA", :mobile_phone => "98197 00151",:email_id=> "asukhija@indussystem.com",:society_id => 66
+Member.create! :name => "K.N. KUNDER", :mobile_phone => "",:society_id => 66
+Member.create! :name => "CAP SIDDHARTH BHARDVAJ", :mobile_phone => "98205 14854",:society_id => 66
+Member.create! :name => "VIJITA TEWARI", :mobile_phone => "98335 92253",:society_id => 66
+Member.create! :name => "MANISH .B.MORDANI", :mobile_phone => "98212 17144",:society_id => 66
+Member.create! :name => "PARAG VAIIABHDAS DESAI", :mobile_phone => "98211 71626",:society_id => 66
+Member.create! :name => "KRIPALCHAND .J. DEVNANI", :mobile_phone => "",:society_id => 66
+Member.create! :name => "SHIV KUMAR BAGRI", :mobile_phone => "98200 04764",:society_id => 66
+Member.create! :name => "DEBENDRA .K. MODI", :mobile_phone => "98201 24085",:society_id => 66
+Member.create! :name => "MANDANI PANKAJ .J.", :mobile_phone => "98202 21775",:email_id=> "pankajstar2000@yahoo.com",:society_id => 66
+Member.create! :name => "MAHESH MURLIDHAR HINDUJA", :mobile_phone => "",:society_id => 66
+Member.create! :name => "LALIT MALIWAL", :mobile_phone => "",:society_id => 66
+Member.create! :name => "VEENA RAJBIR AGARWAL", :mobile_phone => "",:society_id => 66
+Member.create! :name => "RAJESH SURESH WASWANI", :mobile_phone => "",:society_id => 66
+Member.create! :name => "SHALEEN BAHADUR", :mobile_phone => "98210 12304",:society_id => 66
+Member.create! :name => "PREM GUPTA", :mobile_phone => "98200 28166",:email_id=> "prem@miraclelifestyle.com",:society_id => 66
+Member.create! :name => "ZARIMA MAHMOOD", :mobile_phone => "",:society_id => 66
+Member.create! :name => "CAPT JEETENDRASINGH K.", :mobile_phone => "98202 90261",:society_id => 66
+Member.create! :name => "GUL.K.MELWANI", :mobile_phone => "98211 10719",:society_id => 66
+Member.create! :name => "VIROOMAL.H.MANVANI", :mobile_phone => "98201 25661",:society_id => 66
+Member.create! :name => "MEENA MELWANI", :mobile_phone => "98211 18695",:society_id => 66
+Member.create! :name => "CHANDRA.V. MANVANI", :mobile_phone => "98201 25661",:society_id => 66
+Member.create! :name => "CHANDER G. PURSNANI", :mobile_phone => "",:society_id => 66
+Member.create! :name => "SOMDATT .P.GUPTA", :mobile_phone => "",:society_id => 66
+Member.create! :name => "MAHESH K. ASSUDANI", :mobile_phone => "98201 51534",:email_id=> "mahesh_bmc@hotmail.com",:society_id => 66
+Member.create! :name => "NIRAJ BAGRI", :mobile_phone => "98209 88493",:society_id => 66
+Member.create! :name => "SANJOG MAHESH HINDUJA", :mobile_phone => "98215 95919",:society_id => 66
+Member.create! :name => "CAPT ARUN KUMAR D", :mobile_phone => "98213 61181",:society_id => 66
+Member.create! :name => "PATEL RAJESH HIRALAL", :mobile_phone => "98212 83969",:email_id=> "rajeshgothi@rediffmail.com",:society_id => 66
+Member.create! :name => "SHAGUN D HINDUJA", :mobile_phone => "",:society_id => 66
+Member.create! :name => "DISHA D HINDUJA", :mobile_phone => "",:society_id => 66
+Member.create! :name => "G FERNANDES", :mobile_phone => "98206 44057",:society_id => 66
+Member.create! :name => "VEDDNT GUPTA", :mobile_phone => "",:society_id => 66
+Member.create! :name => "KHETAN ANKIT LALIT", :mobile_phone => "98203 64917",:society_id => 66
+Member.create! :name => "BHARAT VASANT GAIKWAD", :mobile_phone => "98330 06803",:society_id => 66
+Member.create! :name => "MANOJ K PARWANI", :mobile_phone => "98212 49431",:society_id => 66
+Member.create! :name => "JANAK TAPRANI", :mobile_phone => "98212 87751",:society_id => 66
+Member.create! :name => "SUSHANT PANDA", :mobile_phone => "98210 28644",:society_id => 66
+Member.create! :name => "RAJENDRA PRASAD JHANWAR", :mobile_phone => "98202 89938",:society_id => 66
+Member.create! :name => "MONICA GROVER", :mobile_phone => "98203 35797",:society_id => 66
+Member.create! :name => "DHAVAL BAKUL SHAH", :mobile_phone => "98206 74007",:society_id => 66
+Member.create! :name => "UDHAV OJHA", :mobile_phone => "98677 88822",:society_id => 66
+Member.create! :name => "PUNEET DAWAR", :mobile_phone => "99676 22900",:society_id => 66
+Member.create! :name => "RAJAN GUPTA", :mobile_phone => "98200 80669",:society_id => 66
+Member.create! :name => "ATIF SALEEM MALIK", :mobile_phone => "99679 75429",:society_id => 66
+Member.create! :name => "GIRISH HANSRAJ", :mobile_phone => "98210 17969",:email_id=> "girish@clapstem.com",:society_id => 66
+Member.create! :name => "SANJAY BALRAM RAMCHANDANI", :mobile_phone => "9821033373",:society_id => 66
+Member.create! :name => "SUMIT R AGGARWAL", :mobile_phone => "9930093670",:society_id => 66
+Member.create! :name => "DEEPAK K. DEVNANI", :mobile_phone => "",:society_id => 66
+Member.create! :name => "LALIT .S. KHETAN", :mobile_phone => "93222 63395",:society_id => 66
+Member.create! :name => "CHANDRU R. GULRAJNI", :mobile_phone => "98203 29771",:society_id => 66
+Member.create! :name => "DILIP.M.HINDUJA", :mobile_phone => "",:society_id => 66
+Member.create! :name => "NORBERT FERNANDES", :mobile_phone => "",:society_id => 66
+Member.create! :name => "PANKAJ BAGRI", :mobile_phone => "",:society_id => 66
+Member.create! :name => "MRS ANJUM SHAIKH", :mobile_phone => "98213 61300",:society_id => 66
+Member.create! :name => "DEEPAK JOSHI", :mobile_phone => "98211 18651",:society_id => 66
+Member.create! :name => "KAMAL G. GULRAJANI", :mobile_phone => "98200 84159",:email_id=> "gulrajani_kamal@vsnl.net",:society_id => 66
+Member.create! :name => "VASNANI M. ASSONDAS", :mobile_phone => "98205 75140",:society_id => 66
+Member.create! :name => "AMARJEET SINGH SETHI", :mobile_phone => "98204 19805",:society_id => 66
+Member.create! :name => "HARVINDER SINGH SETHI", :mobile_phone => "",:society_id => 66
+Member.create! :name => "ATUL MEDIRATTA", :mobile_phone => "",:society_id => 66
+Member.create! :name => "TARUN K. MEDIRATTA", :mobile_phone => "98201 49105",:society_id => 66
+Member.create! :name => "SUNDEEP MEDIRATTA", :mobile_phone => "98210 17181",:society_id => 66
+Member.create! :name => "RAJ NARAYAN TAPARIA", :mobile_phone => "98200 78451",:society_id => 66
+Member.create! :name => "SYED ABDUR RASHEED", :mobile_phone => "98202 11695",:society_id => 66
+Member.create! :name => "SYEDA RUKSHEDA NAZLI", :mobile_phone => "92237 01812",:society_id => 66
+Member.create! :name => "SYED ABDUR UMAIR", :mobile_phone => "98201 06122",:society_id => 66
+Member.create! :name => "SYED ABDUR ZUBAIR", :mobile_phone => "98202 97433",:society_id => 66
+Member.create! :name => "KRISHANLAL R. MEDIRATTA", :mobile_phone => "98211 41696",:society_id => 66
+Member.create! :name => "DR A. A. PATEL", :mobile_phone => "98213 12711",:society_id => 66
 Member.create! :name => "SURESH MOTIRAM LALWANI", :mobile_phone => "98201 36789",:email_id=> "lalwanisin@hotmail.com",:society_id => 138
 Member.create! :name => "LALWANI MOTI HOTCHAND", :mobile_phone => "",:society_id => 138
-Member.create! :name => "KAZI SAYEED MUSHTAQALI", :mobile_phone => "98702 11007",:society_id => 139
-Member.create! :name => "DALAL HARENDRA K.", :mobile_phone => "98205 48205",:society_id => 139
-Member.create! :name => "DHARAMJIT SINGH", :mobile_phone => "98200 63902",:society_id => 139
-Member.create! :name => "SANJAY CHOWDHARY", :mobile_phone => "98923 28064",:society_id => 139
-Member.create! :name => "ANISHA SUSHIL GHARAT", :mobile_phone => "98212 40498",:society_id => 139
-Member.create! :name => "ASHOTOSH CHANDRA", :mobile_phone => "99300 47001",:email_id=> "ashutosh_railways@yahoo.com",:society_id => 139
-Member.create! :name => "HEMANSHU HASMUKH SHETH", :mobile_phone => "98676 55131",:society_id => 139
-Member.create! :name => "ATIL PARIKH", :mobile_phone => "9819235090",:society_id => 139
-Member.create! :name => "ASHOK KUMAR SWAMY", :mobile_phone => "98204 44619",:email_id=> "aswamy@vsnl.com",:society_id => 139
-Member.create! :name => "RAKESH ATMARAM ARORA", :mobile_phone => "98200 97590",:society_id => 140
-Member.create! :name => "DWARKANATH MAKKER", :mobile_phone => "99673 61743",:email_id=> "kushdmakker@gmail.com",:society_id => 141
-Member.create! :name => "RAJ KUMAR MAKHARIA", :mobile_phone => "93225 09270",:email_id=> "raj@gdesignindia.com",:society_id => 141
-Member.create! :name => "SAJJAN KUMAR MAKHARIA", :mobile_phone => "98200 30033",:email_id=> "sajjan.makharia@gmail.com",:society_id => 141
-Member.create! :name => "PREMOD GOPINATH", :mobile_phone => "98206 32590",:society_id => 142
-Member.create! :name => "MOHAN DUDANEY", :mobile_phone => "9819058519",:society_id => 142
-Member.create! :name => "VASAKH.S.MADHAN", :mobile_phone => "98701 77703",:society_id => 141
-Member.create! :name => "SANJAY DUTTA", :mobile_phone => "99675 30059",:society_id => 142
-Member.create! :name => "RAJAT KAPUR", :mobile_phone => "98211 45575",:email_id=> "rajatkapur@hotmail.com",:society_id => 142
-Member.create! :name => "UMANG BUDHRAJA", :mobile_phone => "98672 36594",:society_id => 142
-Member.create! :name => "SAKET MAKHARIA", :mobile_phone => "98191 93309",:society_id => 142
-Member.create! :name => "CHANDRASEN SOBHANI", :mobile_phone => "9819344175",:society_id => 142
-Member.create! :name => "ROMESH KAPUR", :mobile_phone => "9820625822",:society_id => 142
-Member.create! :name => "GANESH WAGHJI PATEL", :mobile_phone => "98690 32502",:society_id => 143
-Member.create! :name => "P. BHASKAR SHETTY", :mobile_phone => "98200 39263",:society_id => 144
-Member.create! :name => "SURESH KUMAR BATRA", :mobile_phone => "98201 44437",:society_id => 144
-Member.create! :name => "RAMESH KUMAR AGARWAL", :mobile_phone => "9892075158",:society_id => 144
-Member.create! :name => "AVADH KISHOR SAHDEV", :mobile_phone => "9967061475",:society_id => 144
-Member.create! :name => "ANANT D THAKRE", :mobile_phone => "9819573499",:society_id => 144
-Member.create! :name => "LIPIKA SHARMA", :mobile_phone => "98202 86292",:society_id => 144
-Member.create! :name => "KETAN M THAKKAR", :mobile_phone => "98211 32939",:society_id => 144
-Member.create! :name => "ASHIT M THAKKAR", :mobile_phone => "",:society_id => 144
-Member.create! :name => "ADVANI ISHWAR", :mobile_phone => "",:society_id => 144
-Member.create! :name => "VICKY D. JAIN", :mobile_phone => "98193 32281",:society_id => 144
-Member.create! :name => "CHANDRAPRAKASH SAROJ", :mobile_phone => "98204 10005",:society_id => 144
-Member.create! :name => "CHANDRAPRAKASH DWIVEDI", :mobile_phone => "98200 58853",:society_id => 144
-Member.create! :name => "SHYAM H MALIK", :mobile_phone => "98210 69915",:society_id => 144
-Member.create! :name => "DEVASHISH MALIK", :mobile_phone => "98216 06434",:society_id => 144
-Member.create! :name => "ADHAR AGGARWAL", :mobile_phone => "9892075158",:society_id => 144
-Member.create! :name => "VIKAS R GANERIWAL", :mobile_phone => "9819607004",:society_id => 144
-Member.create! :name => "ARADHANA SAHDEV MATHUR", :mobile_phone => "9324645754",:society_id => 144
-Member.create! :name => "ABHISHEK AGGARWAL", :mobile_phone => "9892075158",:society_id => 144
-Member.create! :name => "AMIT SAHDEV", :mobile_phone => "9930266067",:society_id => 144
-Member.create! :name => "KETAN PARIKH", :mobile_phone => "9820224967",:society_id => 144
+Member.create! :name => "KAZI SAYEED MUSHTAQALI", :mobile_phone => "98702 11007",:society_id => 70
+Member.create! :name => "DALAL HARENDRA K.", :mobile_phone => "98205 48205",:society_id => 70
+Member.create! :name => "DHARAMJIT SINGH", :mobile_phone => "98200 63902",:society_id => 70
+Member.create! :name => "SANJAY CHOWDHARY", :mobile_phone => "98923 28064",:society_id => 70
+Member.create! :name => "ANISHA SUSHIL GHARAT", :mobile_phone => "98212 40498",:society_id => 70
+Member.create! :name => "ASHOTOSH CHANDRA", :mobile_phone => "99300 47001",:email_id=> "ashutosh_railways@yahoo.com",:society_id => 70
+Member.create! :name => "HEMANSHU HASMUKH SHETH", :mobile_phone => "98676 55131",:society_id => 70
+Member.create! :name => "ATIL PARIKH", :mobile_phone => "9819235090",:society_id => 70
+Member.create! :name => "ASHOK KUMAR SWAMY", :mobile_phone => "98204 44619",:email_id=> "aswamy@vsnl.com",:society_id => 70
+Member.create! :name => "DWARKANATH MAKKER", :mobile_phone => "99673 61743",:email_id=> "kushdmakker@gmail.com",:society_id => 74
+Member.create! :name => "RAJ KUMAR MAKHARIA", :mobile_phone => "93225 09270",:email_id=> "raj@gdesignindia.com",:society_id => 74
+Member.create! :name => "SAJJAN KUMAR MAKHARIA", :mobile_phone => "98200 30033",:email_id=> "sajjan.makharia@gmail.com",:society_id => 74
+Member.create! :name => "PREMOD GOPINATH", :mobile_phone => "98206 32590",:society_id => 75
+Member.create! :name => "MOHAN DUDANEY", :mobile_phone => "9819058519",:society_id => 75
+Member.create! :name => "VASAKH.S.MADHAN", :mobile_phone => "98701 77703",:society_id => 74
+Member.create! :name => "SANJAY DUTTA", :mobile_phone => "99675 30059",:society_id => 75
+Member.create! :name => "RAJAT KAPUR", :mobile_phone => "98211 45575",:email_id=> "rajatkapur@hotmail.com",:society_id => 75
+Member.create! :name => "UMANG BUDHRAJA", :mobile_phone => "98672 36594",:society_id => 75
+Member.create! :name => "SAKET MAKHARIA", :mobile_phone => "98191 93309",:society_id => 75
+Member.create! :name => "CHANDRASEN SOBHANI", :mobile_phone => "9819344175",:society_id => 75
+Member.create! :name => "ROMESH KAPUR", :mobile_phone => "9820625822",:society_id => 75
+Member.create! :name => "P. BHASKAR SHETTY", :mobile_phone => "98200 39263",:society_id => 76
+Member.create! :name => "SURESH KUMAR BATRA", :mobile_phone => "98201 44437",:society_id => 76
+Member.create! :name => "RAMESH KUMAR AGARWAL", :mobile_phone => "9892075158",:society_id => 76
+Member.create! :name => "AVADH KISHOR SAHDEV", :mobile_phone => "9967061475",:society_id => 76
+Member.create! :name => "ANANT D THAKRE", :mobile_phone => "9819573499",:society_id => 76
+Member.create! :name => "LIPIKA SHARMA", :mobile_phone => "98202 86292",:society_id => 76
+Member.create! :name => "KETAN M THAKKAR", :mobile_phone => "98211 32939",:society_id => 76
+Member.create! :name => "ASHIT M THAKKAR", :mobile_phone => "",:society_id => 76
+Member.create! :name => "ADVANI ISHWAR", :mobile_phone => "",:society_id => 76
+Member.create! :name => "VICKY D. JAIN", :mobile_phone => "98193 32281",:society_id => 76
+Member.create! :name => "CHANDRAPRAKASH SAROJ", :mobile_phone => "98204 10005",:society_id => 76
+Member.create! :name => "CHANDRAPRAKASH DWIVEDI", :mobile_phone => "98200 58853",:society_id => 76
+Member.create! :name => "SHYAM H MALIK", :mobile_phone => "98210 69915",:society_id => 76
+Member.create! :name => "DEVASHISH MALIK", :mobile_phone => "98216 06434",:society_id => 76
+Member.create! :name => "ADHAR AGGARWAL", :mobile_phone => "9892075158",:society_id => 76
+Member.create! :name => "VIKAS R GANERIWAL", :mobile_phone => "9819607004",:society_id => 76
+Member.create! :name => "ARADHANA SAHDEV MATHUR", :mobile_phone => "9324645754",:society_id => 76
+Member.create! :name => "ABHISHEK AGGARWAL", :mobile_phone => "9892075158",:society_id => 76
+Member.create! :name => "AMIT SAHDEV", :mobile_phone => "9930266067",:society_id => 76
+Member.create! :name => "KETAN PARIKH", :mobile_phone => "9820224967",:society_id => 76
 Member.create! :name => "PARUL K. NIGAM", :mobile_phone => "98923 92281",:email_id=> "capco_in@hotmail.com",:society_id => 145
-Member.create! :name => "ANJUM M.SAMEL", :mobile_phone => "",:society_id => 146
-Member.create! :name => "PRITAM .B. LUDHANI", :mobile_phone => "98210 32269",:email_id=> "pritamludhanigood_deal@hotmail.com",:society_id => 146
-Member.create! :name => "DINESH B. PATEL", :mobile_phone => "93240 64054",:society_id => 146
-Member.create! :name => "MURLIDHAR T. CHUGH", :mobile_phone => "98672 61758",:email_id=> "murlidharchugh@yahoo.co.in",:society_id => 146
-Member.create! :name => "AMARPRAKASH AGARWAL", :mobile_phone => "98216 20171",:email_id=> "contact@satec.co.in",:society_id => 146
-Member.create! :name => "PARVEEN SINGLA", :mobile_phone => "",:society_id => 146
-Member.create! :name => "KISHAN.H.CHANDNANI", :mobile_phone => "",:society_id => 146
-Member.create! :name => "VIPAN KUMAR C. SEHGAL", :mobile_phone => "98205 89939",:society_id => 146
-Member.create! :name => "SARABJEET KALRA", :mobile_phone => "98200 49419",:society_id => 146
-Member.create! :name => "WARYAM SINGH", :mobile_phone => "98200 71208",:email_id=> "waryam.singh@hotmail.com",:society_id => 146
-Member.create! :name => "SURESH PREHAR", :mobile_phone => "98200 50960",:society_id => 146
-Member.create! :name => "SURENDER KUMAR CHHOPRA", :mobile_phone => "98200 83673",:society_id => 146
-Member.create! :name => "BHARAT ARORA", :mobile_phone => "98203 28486",:society_id => 146
-Member.create! :name => "NARESH.A.GOOMER", :mobile_phone => "98210 87222",:society_id => 146
-Member.create! :name => "RAM KANYALAL ASWANI", :mobile_phone => "98200 62693",:society_id => 146
-Member.create! :name => "KANYALAL NARAIN ASWANI", :mobile_phone => "98190 19999",:society_id => 146
-Member.create! :name => "DAVINDER RAMPRAKASH SURI", :mobile_phone => "98200 63387",:society_id => 146
-Member.create! :name => "RITU DEWAN", :mobile_phone => "",:society_id => 146
-Member.create! :name => "DILIP KUMAR R. SANGANERIA", :mobile_phone => "98200 63173",:society_id => 146
-Member.create! :name => "NARINDER SINGH CHHATWAL", :mobile_phone => "",:society_id => 146
-Member.create! :name => "NISHA .S. KARANDE", :mobile_phone => "98200 70834",:email_id=> "prink4K@yahoo.com",:society_id => 146
-Member.create! :name => "BHAGWATIDEVI DALMIA", :mobile_phone => "",:society_id => 146
-Member.create! :name => "AJAY KUMAR DALMIA", :mobile_phone => "",:society_id => 146
-Member.create! :name => "VINOD KUMAR SEHGAL", :mobile_phone => "",:society_id => 146
-Member.create! :name => "UJJVAL KUMAR SEHGAL", :mobile_phone => "",:society_id => 146
-Member.create! :name => "PRADEEP R. ARORA", :mobile_phone => "98200 59120",:society_id => 146
-Member.create! :name => "ANIL.H.TURAKHIA", :mobile_phone => "",:society_id => 146
-Member.create! :name => "SOAMNATH BHATIA", :mobile_phone => "98204 30825",:society_id => 146
-Member.create! :name => "AMAN SINGH", :mobile_phone => "98204 01833",:society_id => 146
-Member.create! :name => "SUNPREET SINGH", :mobile_phone => "98200 82162",:society_id => 146
-Member.create! :name => "HARILAL SHAH", :mobile_phone => "9819 71027",:society_id => 146
-Member.create! :name => "CHIRAG ANIL TURAKHIA", :mobile_phone => "98332 78332",:society_id => 146
-Member.create! :name => "AMAR ANIL TURAKHIA", :mobile_phone => "98200 39010",:society_id => 146
-Member.create! :name => "BHARATHI V MUDALIAR", :mobile_phone => "93213 73677",:society_id => 146
-Member.create! :name => "MOHIT ARORA", :mobile_phone => "98920 93454",:email_id=> "mohit77arora@gmail.com",:society_id => 146
-Member.create! :name => "ARUN BHATIA", :mobile_phone => "98205 53478",:society_id => 146
-Member.create! :name => "VIRAL SHAH", :mobile_phone => "98200 88566",:email_id=> "vshah123@gmail.com",:society_id => 146
-Member.create! :name => "SHADAAB Z HAVA", :mobile_phone => "98204 07630",:society_id => 146
-Member.create! :name => "KISHORI LAL SANGANERIA", :mobile_phone => "98200 60681",:society_id => 146
-Member.create! :name => "NIKUNJ K SANGANERIA", :mobile_phone => "98198 61626",:society_id => 146
-Member.create! :name => "HITESH K SANGANERIA", :mobile_phone => "98335 60680",:society_id => 146
-Member.create! :name => "KARAN DINESH PATEL", :mobile_phone => "93240 64051",:email_id=> "karan5557@hotmail.com",:society_id => 146
-Member.create! :name => "AMIT SURI", :mobile_phone => "9820295146",:society_id => 146
-Member.create! :name => "SAHIL D SURI", :mobile_phone => "26812698",:society_id => 146
-Member.create! :name => "ASHISH R SINGLA", :mobile_phone => "9820667745",:society_id => 146
-Member.create! :name => "GAURANG D SANGANERIA", :mobile_phone => "9819814183",:society_id => 146
-Member.create! :name => "ANUSHREE SANGANERIA", :mobile_phone => "9819878437",:society_id => 146
-Member.create! :name => "DR.RAJESH G. KEWALRAMNI", :mobile_phone => "98204 98254",:email_id=> "drkewal@rediffmail.com",:society_id => 146
-Member.create! :name => "JASPAL SINGH CHHATWAL", :mobile_phone => "98200 63322",:society_id => 146
-Member.create! :name => "KAPAL S. ARORA", :mobile_phone => "98213 41180",:society_id => 146
-Member.create! :name => "HARESH PRITAMDAS LUDHANI", :mobile_phone => "98210 32249",:society_id => 146
-Member.create! :name => "TORAL A TURAKHIA", :mobile_phone => "98210 48803",:society_id => 146
-Member.create! :name => "RAJAN GROVER", :mobile_phone => "98205 30008",:society_id => 146
-Member.create! :name => "RAKESH GOPAL KEWALRAMANI", :mobile_phone => "98205 69895",:email_id=> "formulacar@rediffmail.com",:society_id => 146
-Member.create! :name => "NITIN SEHGAL", :mobile_phone => "98211 22766",:society_id => 146
-Member.create! :name => "SUNIL HASANAND VAZIRANI", :mobile_phone => "98920 66660",:society_id => 146
-Member.create! :name => "MEHDI DABIR NAQUI", :mobile_phone => "98213 64061",:society_id => 146
-Member.create! :name => "J G BHATIA", :mobile_phone => "98201 93556",:society_id => 146
-Member.create! :name => "K J BHATIA", :mobile_phone => "92234 33543",:society_id => 146
-Member.create! :name => "CHANDAN SUNIL VAZIRANI", :mobile_phone => "",:society_id => 146
-Member.create! :name => "PRIYANKA S VARIRANI", :mobile_phone => "98211 83440",:society_id => 146
-Member.create! :name => "DR SUNIL C ULLAL", :mobile_phone => "98218 74964",:email_id=> "psullal@hotmail.com",:society_id => 146
-Member.create! :name => "HIMANSHU BHATIA", :mobile_phone => "98208 03661",:society_id => 146
-Member.create! :name => "RAMSUNDER.B.AGARWALA", :mobile_phone => "",:society_id => 146
-Member.create! :name => "PRANAV KUMAR SEHGAL", :mobile_phone => "",:society_id => 146
-Member.create! :name => "GUPTA MONICA", :mobile_phone => "98210 51674",:society_id => 147
-Member.create! :name => "GUPTA NITTISH VIJAY", :mobile_phone => "98200 72151",:email_id=> "nvsdiamond@yahoo.co.in",:society_id => 147
-Member.create! :name => "VARMA RADHAKRISHNA B.", :mobile_phone => "98201 00890",:email_id=> "rbvarma@bisleri.co.in",:society_id => 147
-Member.create! :name => "VARMA VISHAL R.", :mobile_phone => "98211 51826",:email_id=> "varmainternational@gmail.com",:society_id => 147
-Member.create! :name => "CHURIWALA SUSHIL B.", :mobile_phone => "",:society_id => 147
-Member.create! :name => "PREM ARORA", :mobile_phone => "98201 71085",:email_id=> "fizzicaltshirt@yahoo.co.in",:society_id => 147
-Member.create! :name => "VISHAL ARORA", :mobile_phone => "98200 35096",:society_id => 147
-Member.create! :name => "SURJIT SINGH GANDHI", :mobile_phone => "",:society_id => 147
-Member.create! :name => "ARVINDER SINGH GANDHI", :mobile_phone => "98200 48605",:society_id => 147
-Member.create! :name => "JUGAL KISHOR .S. MEHRA", :mobile_phone => "93241 62611",:society_id => 147
-Member.create! :name => "ASHISH .J.MEHRA", :mobile_phone => "98202 16122",:society_id => 147
-Member.create! :name => "M. SALIM KALLAN", :mobile_phone => "98211 11388",:society_id => 147
-Member.create! :name => "MR DESIKAN VELUSWAMI M", :mobile_phone => "98191 27788",:society_id => 147
-Member.create! :name => "CAPT MUDULIAN N VELUSWANI", :mobile_phone => "98210 93505",:society_id => 147
+Member.create! :name => "ANJUM M.SAMEL", :mobile_phone => "",:society_id => 77
+Member.create! :name => "PRITAM .B. LUDHANI", :mobile_phone => "98210 32269",:email_id=> "pritamludhanigood_deal@hotmail.com",:society_id => 77
+Member.create! :name => "DINESH B. PATEL", :mobile_phone => "93240 64054",:society_id => 77
+Member.create! :name => "MURLIDHAR T. CHUGH", :mobile_phone => "98672 61758",:email_id=> "murlidharchugh@yahoo.co.in",:society_id => 77
+Member.create! :name => "AMARPRAKASH AGARWAL", :mobile_phone => "98216 20171",:email_id=> "contact@satec.co.in",:society_id => 77
+Member.create! :name => "PARVEEN SINGLA", :mobile_phone => "",:society_id => 77
+Member.create! :name => "KISHAN.H.CHANDNANI", :mobile_phone => "",:society_id => 77
+Member.create! :name => "VIPAN KUMAR C. SEHGAL", :mobile_phone => "98205 89939",:society_id => 77
+Member.create! :name => "SARABJEET KALRA", :mobile_phone => "98200 49419",:society_id => 77
+Member.create! :name => "WARYAM SINGH", :mobile_phone => "98200 71208",:email_id=> "waryam.singh@hotmail.com",:society_id => 77
+Member.create! :name => "SURESH PREHAR", :mobile_phone => "98200 50960",:society_id => 77
+Member.create! :name => "SURENDER KUMAR CHHOPRA", :mobile_phone => "98200 83673",:society_id => 77
+Member.create! :name => "BHARAT ARORA", :mobile_phone => "98203 28486",:society_id => 77
+Member.create! :name => "NARESH.A.GOOMER", :mobile_phone => "98210 87222",:society_id => 77
+Member.create! :name => "RAM KANYALAL ASWANI", :mobile_phone => "98200 62693",:society_id => 77
+Member.create! :name => "KANYALAL NARAIN ASWANI", :mobile_phone => "98190 19999",:society_id => 77
+Member.create! :name => "DAVINDER RAMPRAKASH SURI", :mobile_phone => "98200 63387",:society_id => 77
+Member.create! :name => "RITU DEWAN", :mobile_phone => "",:society_id => 77
+Member.create! :name => "DILIP KUMAR R. SANGANERIA", :mobile_phone => "98200 63173",:society_id => 77
+Member.create! :name => "NARINDER SINGH CHHATWAL", :mobile_phone => "",:society_id => 77
+Member.create! :name => "NISHA .S. KARANDE", :mobile_phone => "98200 70834",:email_id=> "prink4K@yahoo.com",:society_id => 77
+Member.create! :name => "BHAGWATIDEVI DALMIA", :mobile_phone => "",:society_id => 77
+Member.create! :name => "AJAY KUMAR DALMIA", :mobile_phone => "",:society_id => 77
+Member.create! :name => "VINOD KUMAR SEHGAL", :mobile_phone => "",:society_id => 77
+Member.create! :name => "UJJVAL KUMAR SEHGAL", :mobile_phone => "",:society_id => 77
+Member.create! :name => "PRADEEP R. ARORA", :mobile_phone => "98200 59120",:society_id => 77
+Member.create! :name => "ANIL.H.TURAKHIA", :mobile_phone => "",:society_id => 77
+Member.create! :name => "SOAMNATH BHATIA", :mobile_phone => "98204 30825",:society_id => 77
+Member.create! :name => "AMAN SINGH", :mobile_phone => "98204 01833",:society_id => 77
+Member.create! :name => "SUNPREET SINGH", :mobile_phone => "98200 82162",:society_id => 77
+Member.create! :name => "HARILAL SHAH", :mobile_phone => "9819 71027",:society_id => 77
+Member.create! :name => "CHIRAG ANIL TURAKHIA", :mobile_phone => "98332 78332",:society_id => 77
+Member.create! :name => "AMAR ANIL TURAKHIA", :mobile_phone => "98200 39010",:society_id => 77
+Member.create! :name => "BHARATHI V MUDALIAR", :mobile_phone => "93213 73677",:society_id => 77
+Member.create! :name => "MOHIT ARORA", :mobile_phone => "98920 93454",:email_id=> "mohit77arora@gmail.com",:society_id => 77
+Member.create! :name => "ARUN BHATIA", :mobile_phone => "98205 53478",:society_id => 77
+Member.create! :name => "VIRAL SHAH", :mobile_phone => "98200 88566",:email_id=> "vshah123@gmail.com",:society_id => 77
+Member.create! :name => "SHADAAB Z HAVA", :mobile_phone => "98204 07630",:society_id => 77
+Member.create! :name => "KISHORI LAL SANGANERIA", :mobile_phone => "98200 60681",:society_id => 77
+Member.create! :name => "NIKUNJ K SANGANERIA", :mobile_phone => "98198 61626",:society_id => 77
+Member.create! :name => "HITESH K SANGANERIA", :mobile_phone => "98335 60680",:society_id => 77
+Member.create! :name => "KARAN DINESH PATEL", :mobile_phone => "93240 64051",:email_id=> "karan5557@hotmail.com",:society_id => 77
+Member.create! :name => "AMIT SURI", :mobile_phone => "9820295146",:society_id => 77
+Member.create! :name => "SAHIL D SURI", :mobile_phone => "26812698",:society_id => 77
+Member.create! :name => "ASHISH R SINGLA", :mobile_phone => "9820667745",:society_id => 77
+Member.create! :name => "GAURANG D SANGANERIA", :mobile_phone => "9819814183",:society_id => 77
+Member.create! :name => "ANUSHREE SANGANERIA", :mobile_phone => "9819878437",:society_id => 77
+Member.create! :name => "DR.RAJESH G. KEWALRAMNI", :mobile_phone => "98204 98254",:email_id=> "drkewal@rediffmail.com",:society_id => 77
+Member.create! :name => "JASPAL SINGH CHHATWAL", :mobile_phone => "98200 63322",:society_id => 77
+Member.create! :name => "KAPAL S. ARORA", :mobile_phone => "98213 41180",:society_id => 77
+Member.create! :name => "HARESH PRITAMDAS LUDHANI", :mobile_phone => "98210 32249",:society_id => 77
+Member.create! :name => "TORAL A TURAKHIA", :mobile_phone => "98210 48803",:society_id => 77
+Member.create! :name => "RAJAN GROVER", :mobile_phone => "98205 30008",:society_id => 77
+Member.create! :name => "RAKESH GOPAL KEWALRAMANI", :mobile_phone => "98205 69895",:email_id=> "formulacar@rediffmail.com",:society_id => 77
+Member.create! :name => "NITIN SEHGAL", :mobile_phone => "98211 22766",:society_id => 77
+Member.create! :name => "SUNIL HASANAND VAZIRANI", :mobile_phone => "98920 66660",:society_id => 77
+Member.create! :name => "MEHDI DABIR NAQUI", :mobile_phone => "98213 64061",:society_id => 77
+Member.create! :name => "J G BHATIA", :mobile_phone => "98201 93556",:society_id => 77
+Member.create! :name => "K J BHATIA", :mobile_phone => "92234 33543",:society_id => 77
+Member.create! :name => "CHANDAN SUNIL VAZIRANI", :mobile_phone => "",:society_id => 77
+Member.create! :name => "PRIYANKA S VARIRANI", :mobile_phone => "98211 83440",:society_id => 77
+Member.create! :name => "DR SUNIL C ULLAL", :mobile_phone => "98218 74964",:email_id=> "psullal@hotmail.com",:society_id => 77
+Member.create! :name => "HIMANSHU BHATIA", :mobile_phone => "98208 03661",:society_id => 77
+Member.create! :name => "RAMSUNDER.B.AGARWALA", :mobile_phone => "",:society_id => 77
+Member.create! :name => "PRANAV KUMAR SEHGAL", :mobile_phone => "",:society_id => 77
+Member.create! :name => "GUPTA MONICA", :mobile_phone => "98210 51674",:society_id => 77
+Member.create! :name => "GUPTA NITTISH VIJAY", :mobile_phone => "98200 72151",:email_id=> "nvsdiamond@yahoo.co.in",:society_id => 77
+Member.create! :name => "VARMA RADHAKRISHNA B.", :mobile_phone => "98201 00890",:email_id=> "rbvarma@bisleri.co.in",:society_id => 77
+Member.create! :name => "VARMA VISHAL R.", :mobile_phone => "98211 51826",:email_id=> "varmainternational@gmail.com",:society_id => 77
+Member.create! :name => "CHURIWALA SUSHIL B.", :mobile_phone => "",:society_id => 77
+Member.create! :name => "PREM ARORA", :mobile_phone => "98201 71085",:email_id=> "fizzicaltshirt@yahoo.co.in",:society_id => 77
+Member.create! :name => "VISHAL ARORA", :mobile_phone => "98200 35096",:society_id => 77
+Member.create! :name => "SURJIT SINGH GANDHI", :mobile_phone => "",:society_id => 77
+Member.create! :name => "ARVINDER SINGH GANDHI", :mobile_phone => "98200 48605",:society_id => 77
+Member.create! :name => "JUGAL KISHOR .S. MEHRA", :mobile_phone => "93241 62611",:society_id => 77
+Member.create! :name => "ASHISH .J.MEHRA", :mobile_phone => "98202 16122",:society_id => 77
+Member.create! :name => "M. SALIM KALLAN", :mobile_phone => "98211 11388",:society_id => 77
+Member.create! :name => "MR DESIKAN VELUSWAMI M", :mobile_phone => "98191 27788",:society_id => 77
+Member.create! :name => "CAPT MUDULIAN N VELUSWANI", :mobile_phone => "98210 93505",:society_id => 77
 Member.create! :name => "CHURIWALA RACHMIKANT B.", :mobile_phone => "98927 28291",:society_id => 147
-Member.create! :name => "VIJAY B.KHANDELWAL", :mobile_phone => "",:society_id => 148
-Member.create! :name => "VIKAS B.KHANDELWAL", :mobile_phone => "",:society_id => 148
-Member.create! :name => "BABULAL KHANDELWAL", :mobile_phone => "",:society_id => 148
-Member.create! :name => "RAJLAL CHANDANI", :mobile_phone => "98210 49918",:society_id => 148
-Member.create! :name => "KANHIAVALAL.C.HEMNANI", :mobile_phone => "98211 31952",:society_id => 148
-Member.create! :name => "KHANNA NITIN BHISHMA", :mobile_phone => "93222 20163",:email_id=> "khanna@vsnl.com",:society_id => 148
-Member.create! :name => "KHANNA PANKAJ BHISHMA", :mobile_phone => "98210 34798",:email_id=> "khanna@vsnl.com",:society_id => 148
-Member.create! :name => "RAMESH SHARMA", :mobile_phone => "",:society_id => 148
-Member.create! :name => "OM PRAKASH AGRAWAL", :mobile_phone => "98201 22434",:society_id => 148
-Member.create! :name => "KRISHAN PRATAP MALIK", :mobile_phone => "98334 20261",:email_id=> "kpmalik@gmail.com",:society_id => 148
-Member.create! :name => "TEKOO I. MAHBOOBONI", :mobile_phone => "98200 69127",:society_id => 148
-Member.create! :name => "KETAKI S DESAI", :mobile_phone => "98210 13769",:society_id => 148
-Member.create! :name => "VIJAY KODUMAL SHEWANI", :mobile_phone => "98190 50882",:society_id => 148
-Member.create! :name => "SACHIN MANSOTRA", :mobile_phone => "98201 38632",:society_id => 148
-Member.create! :name => "MUKESH KAPOOR", :mobile_phone => "98200 62660",:email_id=> "mickykapoor@hotmail.com",:society_id => 148
-Member.create! :name => "ATUL KUMAR M SHAH", :mobile_phone => "93232 87266",:society_id => 148
-Member.create! :name => "ALOK KUMAR TEWARI", :mobile_phone => "982111 3919",:society_id => 148
-Member.create! :name => "VIJAY CHARAMDAS KHANNA", :mobile_phone => "93249 63869",:society_id => 148
-Member.create! :name => "RISHI VIJAY KHANNA", :mobile_phone => "98200 67723",:email_id=> "rishikhanna@hotmail.com",:society_id => 148
-Member.create! :name => "SMIT KANTILAL JAIN", :mobile_phone => "",:society_id => 148
-Member.create! :name => "ARTI GIRISH HINGORANI", :mobile_phone => "9820610667",:society_id => 148
-Member.create! :name => "BHARAT RAJ LALCHANDANI", :mobile_phone => "9820843417",:society_id => 148
-Member.create! :name => "DARSHAN DALAL", :mobile_phone => "9820298114",:society_id => 148
-Member.create! :name => "JAGDISH GANDHI", :mobile_phone => "9987522887",:society_id => 148
-Member.create! :name => "DEEP KHANNA", :mobile_phone => "9322220163",:society_id => 148
-Member.create! :name => "RAJESH WAZIR", :mobile_phone => "",:society_id => 148
-Member.create! :name => "KANTI .B.JAIN", :mobile_phone => "",:society_id => 148
-Member.create! :name => "MANISH KUBRA", :mobile_phone => "98200 89589",:society_id => 149
-Member.create! :name => "VIKAS MUNOT", :mobile_phone => "98200 89015",:society_id => 149
-Member.create! :name => "NARSHIV MUKUND PRABHU", :mobile_phone => "98212 59280",:society_id => 149
-Member.create! :name => "PRATHL B BRAHM BHATT", :mobile_phone => "",:society_id => 149
-Member.create! :name => "MANGHARAM G. SAKHRANI", :mobile_phone => "",:society_id => 149
-Member.create! :name => "SMITA RAVINDRA BHIVAGAJE", :mobile_phone => "98921 03482",:society_id => 149
-Member.create! :name => "AVAD SHAH", :mobile_phone => "98201 25432",:society_id => 149
-Member.create! :name => "DR.SANJAY CHAUDHARI", :mobile_phone => "98201 29123",:email_id=> "drsbchaudhari@gmail.com",:society_id => 149
-Member.create! :name => "KANCHAN.S.SAMTANI", :mobile_phone => "982021 9281",:society_id => 149
-Member.create! :name => "MURLINARAYAN KUBRA", :mobile_phone => "",:society_id => 149
-Member.create! :name => "MUKESH KUBRA", :mobile_phone => "98207 07510",:society_id => 149
-Member.create! :name => "MANOJ KUBRA", :mobile_phone => "",:society_id => 149
-Member.create! :name => "POONAM MEHROTRA", :mobile_phone => "98218 70432",:email_id=> "mehrotra.poonam@gmail.com",:society_id => 149
-Member.create! :name => "KAMLA RATADIYA", :mobile_phone => "",:society_id => 149
-Member.create! :name => "MANISH KANU BHAI DANI", :mobile_phone => "98207 09492",:society_id => 149
-Member.create! :name => "GAURAV KABRA", :mobile_phone => "",:society_id => 149
-Member.create! :name => "EKLAVYA JAI N", :mobile_phone => "98672 21465",:society_id => 149
-Member.create! :name => "SUSHILAA R PATHAK", :mobile_phone => "98216 23741",:email_id=> "sushipat@hotmail.com",:society_id => 149
-Member.create! :name => "DEEPA SAMTANI", :mobile_phone => "98202 19281",:society_id => 149
-Member.create! :name => "AANCHAL SAXENA KANNAN", :mobile_phone => "98214 44945",:email_id=> "aanchalsaxena@hotmail.com",:society_id => 149
-Member.create! :name => "ALOK T. RATADIYA", :mobile_phone => "98202 19534",:society_id => 149
-Member.create! :name => "SUNITA B. MIRCHANDANI", :mobile_phone => "98200 69432",:society_id => 149
-Member.create! :name => "ISHAN N PRABHU", :mobile_phone => "98194 84919",:society_id => 149
-Member.create! :name => "DEEP KABRA", :mobile_phone => "",:society_id => 149
-Member.create! :name => "SHUBHAM KABRA", :mobile_phone => "",:society_id => 149
-Member.create! :name => "OM PRAKASH SHAH", :mobile_phone => "9323947933",:society_id => 149
-Member.create! :name => "SANJAY O SHAH", :mobile_phone => "9324275085",:society_id => 149
-Member.create! :name => "SARAS SHAH", :mobile_phone => "9821252565",:society_id => 149
-Member.create! :name => "VEDANT CHAUDHARI", :mobile_phone => "",:society_id => 149
-Member.create! :name => "SURAJ SAMTANI", :mobile_phone => "9820219281",:society_id => 149
-Member.create! :name => "AJAY GUPTA", :mobile_phone => "",:society_id => 150
-Member.create! :name => "ALI KHAN G. MAHAWLA", :mobile_phone => "98677 54648",:email_id=> "ali_valik@yahoo.com",:society_id => 150
-Member.create! :name => "MOHAN K. ADVANI", :mobile_phone => "98200 81073",:society_id => 150
-Member.create! :name => "C SUBOTH LAROYA", :mobile_phone => "98214 44942",:society_id => 150
-Member.create! :name => "BIMAL KUMAR SONI", :mobile_phone => "98690 00234",:society_id => 150
-Member.create! :name => "BHANU KUMAR NAHATA", :mobile_phone => "98201 55228",:society_id => 150
-Member.create! :name => "BRIJ BHUSHAN .M.SHARMA", :mobile_phone => "98690 14736",:email_id=> "shape_india@rediffmail.com",:society_id => 150
-Member.create! :name => "AMARJIT SINGH GUJRAL", :mobile_phone => "98211 04298",:society_id => 150
-Member.create! :name => "AJIT PENDHARKAR", :mobile_phone => "98922 26284",:email_id=> "ajit.pendkar@rediffmail.com",:society_id => 150
-Member.create! :name => "ROHIT SAMANT", :mobile_phone => "98206 14300",:society_id => 150
-Member.create! :name => "HANUMANMAL SHAYMSUKHA", :mobile_phone => "98921 36249",:society_id => 150
-Member.create! :name => "ANIL.R.SETHI", :mobile_phone => "98212 88551",:email_id=> "anilrsethi@hotmail.com",:society_id => 150
-Member.create! :name => "ANOOP.V.HINGORANI", :mobile_phone => "98211 08597",:society_id => 150
-Member.create! :name => "ASHOK MISHRA", :mobile_phone => "98206 00676",:society_id => 150
-Member.create! :name => "RAJ KUMARI BOTHRA", :mobile_phone => "93226 07024",:society_id => 150
-Member.create! :name => "GERA GULSHAN LAL", :mobile_phone => "98201 81073",:society_id => 150
-Member.create! :name => "HANISH .K.MEHTA", :mobile_phone => "98210 50423",:society_id => 150
-Member.create! :name => "RAMAN.S.GROVER", :mobile_phone => "98200 94493",:society_id => 150
-Member.create! :name => "NAHATA P. BHANUKUMAR", :mobile_phone => "98210 33283",:society_id => 150
-Member.create! :name => "JAIKISHAN S. MANSHARAMUNI", :mobile_phone => "93222 24226",:society_id => 150
-Member.create! :name => "MRS NEHA P. MELWANI", :mobile_phone => "98701 89780",:society_id => 150
-Member.create! :name => "KARAN H MEHTA", :mobile_phone => "",:society_id => 150
-Member.create! :name => "AAYUSH H MEHTA", :mobile_phone => "",:society_id => 150
-Member.create! :name => "SOMYA GUPTA", :mobile_phone => "98200 90888",:society_id => 150
-Member.create! :name => "AMOL ANAND INAMDAR", :mobile_phone => "98190 49789",:society_id => 150
-Member.create! :name => "SUDEEP SAHIR", :mobile_phone => "98203 17734",:society_id => 150
-Member.create! :name => "RAKHI GERA BANDARI", :mobile_phone => "98203 17434",:society_id => 150
-Member.create! :name => "NIDHI GERA", :mobile_phone => "98923 03552",:society_id => 150
-Member.create! :name => "ATUL D SHAH", :mobile_phone => "98206 11211",:society_id => 150
-Member.create! :name => "HARKIRATH SINGH GUJRAL", :mobile_phone => "98211 04298",:society_id => 150
-Member.create! :name => "RAHUL BIMAL KUMAR SONI", :mobile_phone => "93225 10922",:society_id => 150
-Member.create! :name => "SUNIL RAJADAKSHAYA", :mobile_phone => "98231 12402",:email_id=> "sunilrajadhyksha@hotmail.com",:society_id => 150
-Member.create! :name => "RAJESH LEHR", :mobile_phone => "9930041571",:society_id => 150
-Member.create! :name => "SANJAY M ADVANI", :mobile_phone => "9819381074",:society_id => 150
-Member.create! :name => "BIJOY METHIL", :mobile_phone => "9867725677",:society_id => 150
-Member.create! :name => "VENITA VASWANI", :mobile_phone => "9552123856",:society_id => 150
-Member.create! :name => "KARTIK PENDHARKAR", :mobile_phone => "9869067163",:society_id => 150
-Member.create! :name => "PRIYANKA KGUPATA", :mobile_phone => "98200 90888",:society_id => 150
-Member.create! :name => "NIKUNJ BIMAL KUMAR SONI", :mobile_phone => "",:society_id => 150
-Member.create! :name => "RISHABH BIMAL KUMAR SONI", :mobile_phone => "",:society_id => 150
-Member.create! :name => "KOMAL DEEPAK THARANI", :mobile_phone => "98202 12617",:society_id => 151
-Member.create! :name => "BANWARILAL R. BAJAJ", :mobile_phone => "",:society_id => 151
-Member.create! :name => "CHARAN BIRSINGH ANAND", :mobile_phone => "",:society_id => 151
-Member.create! :name => "NIRAJ BHATIA", :mobile_phone => "98201 85601",:society_id => 151
-Member.create! :name => "VINAY GUPTA", :mobile_phone => "",:society_id => 151
-Member.create! :name => "MEHRA ARUN KUMAR J.", :mobile_phone => "99206 91679",:society_id => 151
-Member.create! :name => "JAISINGH RAMESH S.", :mobile_phone => "98205 94057",:society_id => 151
-Member.create! :name => "KHEMJI.R. PATEL", :mobile_phone => "98200 77964",:society_id => 151
-Member.create! :name => "DEV NAIR", :mobile_phone => "98210 19469",:society_id => 151
-Member.create! :name => "PRABHJOYT SINGH RAJPAL", :mobile_phone => "93226 99227",:society_id => 151
-Member.create! :name => "BHAGIRATH.V.GANDHI", :mobile_phone => "93222 22922",:email_id=> "bhagirathgandhi@yahoo.com",:society_id => 151
-Member.create! :name => "SURESH LALWANI", :mobile_phone => "99696 18792",:email_id=> "sureshlalwani123@rediffmail.com",:society_id => 151
-Member.create! :name => "CHUHARMAL LALWANI", :mobile_phone => "92244 16434",:society_id => 151
-Member.create! :name => "GANDHI JITENDRA .B.", :mobile_phone => "",:society_id => 151
-Member.create! :name => "MANOHARLAL J. HINDUJA", :mobile_phone => "",:society_id => 151
-Member.create! :name => "KUNWARJIT PAINTAL", :mobile_phone => "98200 92598",:society_id => 151
-Member.create! :name => "KAWALJIT KAUR SABHARWAL", :mobile_phone => "",:society_id => 151
-Member.create! :name => "ASHWIN SOMALAL SHAH", :mobile_phone => "98213 30987",:society_id => 151
-Member.create! :name => "HIRALAL CHAGANLAL JAIN", :mobile_phone => "98694 43651",:society_id => 151
-Member.create! :name => "MAHAVIR SHANTILAL JAIN", :mobile_phone => "98692 50470",:society_id => 151
-Member.create! :name => "SURESH JALAN", :mobile_phone => "",:society_id => 151
-Member.create! :name => "MAMTA R BHOJWANI", :mobile_phone => "9820153058",:society_id => 151
-Member.create! :name => "PULIN N KUSUMGAR", :mobile_phone => "98219 33333",:society_id => 151
-Member.create! :name => "HARJEET SINGH NARANG", :mobile_phone => "93245 45219",:society_id => 151
-Member.create! :name => "RANDEEP SINGH ANAND", :mobile_phone => "982094 8887",:society_id => 151
-Member.create! :name => "KARAN A MEHRA", :mobile_phone => "",:society_id => 151
-Member.create! :name => "MAHEK MANDLIK", :mobile_phone => "93234 69312",:society_id => 152
-Member.create! :name => "SIDDHARTH AURORA", :mobile_phone => "98214 47985",:society_id => 152
-Member.create! :name => "DARSHAN AURORA", :mobile_phone => "98208 64959",:society_id => 152
-Member.create! :name => "BIPIN Kotak", :mobile_phone => "98922 41111",:society_id => 152
-Member.create! :name => "ARUN R.MEHRA", :mobile_phone => "98213 35419",:society_id => 152
-Member.create! :name => "SANJAY LALCHAND CHHABRIA", :mobile_phone => "98210 19218",:society_id => 152
-Member.create! :name => "ASHISH SANJAY CHHABRIA", :mobile_phone => "98210 19218",:society_id => 152
-Member.create! :name => "SHRADDHA SANJAY CHHABRIA", :mobile_phone => "98210 19218",:society_id => 152
-Member.create! :name => "RAICHAND D. JAIN", :mobile_phone => "98203 33578",:society_id => 153
-Member.create! :name => "JAGDUL P. KHANDEIWAL", :mobile_phone => "98200 30256",:society_id => 153
-Member.create! :name => "SAKET BATRA", :mobile_phone => "98200 88410",:society_id => 153
-Member.create! :name => "M.M. RANGWALA", :mobile_phone => "",:society_id => 153
-Member.create! :name => "RAJESH RAM GEHANI", :mobile_phone => "99204 77320",:email_id=> "rrgehani@gmail.com",:society_id => 153
-Member.create! :name => "KETAN C. AVLANI", :mobile_phone => "98210 30286",:society_id => 153
-Member.create! :name => "KRISHANLAL ROATRA", :mobile_phone => "",:society_id => 153
-Member.create! :name => "RAJIV C. CHODDHARY", :mobile_phone => "",:society_id => 153
-Member.create! :name => "CHANDRN C. CHODDHARY", :mobile_phone => "",:society_id => 153
-Member.create! :name => "RAJENDRA R. SINGH", :mobile_phone => "98206 42478",:society_id => 153
-Member.create! :name => "R.K. SUNDARAM", :mobile_phone => "93235 87595",:email_id=> "aarkayess2003@yahoo.co.in",:society_id => 153
-Member.create! :name => "CAPT RAVINDERPAL SINGH", :mobile_phone => "",:society_id => 153
-Member.create! :name => "VINAY M. SAHNI", :mobile_phone => "98204 07058",:email_id=> "vinay@horizzon.com",:society_id => 153
-Member.create! :name => "SUBHASH R. DOLE", :mobile_phone => "98200 54986",:society_id => 153
-Member.create! :name => "VIVEK SHETH", :mobile_phone => "98215 95925",:society_id => 153
-Member.create! :name => "NASEEM SIKANDER KAZI", :mobile_phone => "98212 88934",:society_id => 153
-Member.create! :name => "JAISINGH SANWALDAS P.", :mobile_phone => "",:society_id => 153
-Member.create! :name => "JAISINGH RAJU SANWALDAS", :mobile_phone => "98202 26377",:society_id => 153
-Member.create! :name => "JAISINGH DILIP SANWALDAS", :mobile_phone => "98202 26608",:society_id => 153
-Member.create! :name => "ADVANI BHOJRAJ DHALMAL", :mobile_phone => "",:society_id => 153
-Member.create! :name => "VIRAL PRAVIN MEHTA", :mobile_phone => "98210 21263",:society_id => 153
-Member.create! :name => "TUSHAR PRAVIN MEHTA", :mobile_phone => "98200 60056",:society_id => 153
-Member.create! :name => "DR.NICHANI KISHOR TULSIDAS", :mobile_phone => "98200 66051",:email_id=> "kishorenichani@gmail.com",:society_id => 153
-Member.create! :name => "VIJAY SINGH RAJAWAT", :mobile_phone => "98200 36943",:society_id => 153
-Member.create! :name => "GURBACHAN SINGH", :mobile_phone => "",:society_id => 153
-Member.create! :name => "RANJIT SINGH", :mobile_phone => "98201 55645",:society_id => 153
-Member.create! :name => "RINKU VIKAS ARORA", :mobile_phone => "98690 50330",:society_id => 153
-Member.create! :name => "SANJEEV MEHTA", :mobile_phone => "",:society_id => 153
-Member.create! :name => "BHARAT NAYAR", :mobile_phone => "98205 00391",:email_id=> "bharatnayar@hotmail.com",:society_id => 153
-Member.create! :name => "SUBHASH ARYA", :mobile_phone => "98216 29895",:society_id => 153
-Member.create! :name => "VINEET ARYA", :mobile_phone => "",:society_id => 153
-Member.create! :name => "JIVANI NOORUDIN .V.", :mobile_phone => "98200 52158",:society_id => 153
-Member.create! :name => "BHARAT .N.KACHWALA", :mobile_phone => "98202 97244",:society_id => 153
-Member.create! :name => "MANISH KACHWALA", :mobile_phone => "",:society_id => 153
-Member.create! :name => "ATUL ARYA", :mobile_phone => "98210 92959",:society_id => 153
-Member.create! :name => "CHETAN PRAKASH KAINATH", :mobile_phone => "98203 99190",:society_id => 153
-Member.create! :name => "LOVAI RAJABALI DALAL", :mobile_phone => "98200 27985",:society_id => 153
-Member.create! :name => "PARUL ASHWIN MANIAR", :mobile_phone => "98200 35375",:society_id => 153
-Member.create! :name => "SALIL - E - JANARDANAN", :mobile_phone => "99305 83848",:email_id=> "deepz.salil@gmail.com",:society_id => 153
-Member.create! :name => "GAURAV MEHRA", :mobile_phone => "98214 17188",:society_id => 153
-Member.create! :name => "SAURABH MEHRA", :mobile_phone => "98214 17188",:society_id => 153
-Member.create! :name => "IMRAN R SIDDIQUI", :mobile_phone => "98206 87407",:society_id => 153
-Member.create! :name => "VIPUL KULSHRESHTHA", :mobile_phone => "98214 25998",:society_id => 153
-Member.create! :name => "NIDHI MATHUR", :mobile_phone => "",:email_id=> "canthess@gmail.com",:society_id => 153
-Member.create! :name => "AVI S RAJAWAT", :mobile_phone => "9820036943",:society_id => 153
-Member.create! :name => "YASH T MEHTA", :mobile_phone => "9819595400",:society_id => 153
-Member.create! :name => "TANVI T MEHTA", :mobile_phone => "9819554440",:society_id => 153
-Member.create! :name => "TEENA SURENDER AHUJA", :mobile_phone => "9821629964",:society_id => 153
-Member.create! :name => "SUMIT GUPTA", :mobile_phone => "9819102949",:society_id => 153
-Member.create! :name => "RAKESH .U.MEHRA", :mobile_phone => "98214 17388",:email_id=> "mehrarakesh@hotmail.com",:society_id => 153
-Member.create! :name => "A.V.GOPALKRISHNAN", :mobile_phone => "",:society_id => 154
-Member.create! :name => "SURENDER KUMAR AHUJA", :mobile_phone => "98211 12903",:society_id => 154
-Member.create! :name => "MANILAL RAMJI FARIA", :mobile_phone => "98200 27471",:society_id => 155
-Member.create! :name => "RUMANA KHAN", :mobile_phone => "98213 03765",:society_id => 155
-Member.create! :name => "RITA SHAHANI", :mobile_phone => "9930777374",:society_id => 155
-Member.create! :name => "POONAM SHAHANI", :mobile_phone => "9769879499",:society_id => 155
-Member.create! :name => "SANJAY CHATURVEDI", :mobile_phone => "9820036161",:society_id => 155
-Member.create! :name => "HARPREET S SETHI", :mobile_phone => "9820770771",:society_id => 155
-Member.create! :name => "TARANJIT S SETHI", :mobile_phone => "9820105605",:society_id => 155
-Member.create! :name => "SIRAJAHMED BORA", :mobile_phone => "9920121126",:society_id => 155
-Member.create! :name => "IKRAM AHMEDI", :mobile_phone => "9867950686",:society_id => 155
-Member.create! :name => "HARISH CHANDER KUMAR", :mobile_phone => "93242 81151",:society_id => 155
-Member.create! :name => "JOGENDRA SETHI", :mobile_phone => "99675 91403",:email_id=> "jogendra@yahoo.com",:society_id => 155
-Member.create! :name => "RAUF HAMIDULLA KHAN", :mobile_phone => "98204 07630",:society_id => 155
-Member.create! :name => "TARIQ KHAN", :mobile_phone => "98191 46429",:society_id => 156
-Member.create! :name => "ANWAR KHAN", :mobile_phone => "",:society_id => 157
-Member.create! :name => "ELIZABETH S.DAFONSECA", :mobile_phone => "",:society_id => 157
-Member.create! :name => "E.V.RAMANNA", :mobile_phone => "98702 46048",:society_id => 157
-Member.create! :name => "RAMESH..L.MUTREJA", :mobile_phone => "99300 24446",:society_id => 157
-Member.create! :name => "AJAY WADHWA", :mobile_phone => "98215 55466",:email_id=> "aj_wadhwa@yahoo.com",:society_id => 157
-Member.create! :name => "CHHEDA BHARAT KESHAVJI", :mobile_phone => "98210 41235",:email_id=> "bkchhsarv@gmail.com",:society_id => 157
-Member.create! :name => "MISHRA RAJESH .B.", :mobile_phone => "",:society_id => 157
-Member.create! :name => "RUNJIT SINGH NAGI", :mobile_phone => "98202 93092",:email_id=> "ranjitnagi@gmail.com",:society_id => 157
-Member.create! :name => "KAMLESH R. LAHORI", :mobile_phone => "98923 08374",:society_id => 157
-Member.create! :name => "LALITA G.JAIN", :mobile_phone => "98202 96099",:society_id => 157
-Member.create! :name => "VIDHANI KISHORE MOTILAL", :mobile_phone => "98201 00489",:society_id => 157
-Member.create! :name => "NIRANJAN PODDAR", :mobile_phone => "",:society_id => 157
-Member.create! :name => "OM KATARE", :mobile_phone => "98200 52627",:email_id=> "omkatare@hotmail.com",:society_id => 157
-Member.create! :name => "MUKESH S. KANDHARI", :mobile_phone => "98678 79747",:email_id=> "mukeshsk@yahoo.co.in",:society_id => 157
-Member.create! :name => "CHETAN V. KESHARIA", :mobile_phone => "98210 14558",:email_id=> "satyamestate@hotmail.com",:society_id => 157
-Member.create! :name => "NAVIN SADARANGNI", :mobile_phone => "",:society_id => 157
-Member.create! :name => "BINU KAUSAL", :mobile_phone => "",:society_id => 157
-Member.create! :name => "RAHUL CHETAN KESHARIA", :mobile_phone => "98200 99788",:email_id=> "keshariarahul@hotmail.com",:society_id => 157
-Member.create! :name => "PRAKASH HANSRAJANI", :mobile_phone => "98670 17477",:society_id => 157
-Member.create! :name => "SHAILESH S. KISHNANI", :mobile_phone => "98604 46789",:society_id => 157
-Member.create! :name => "ANUJ KATARE", :mobile_phone => "99303 52626",:society_id => 157
-Member.create! :name => "APURVA KATARE", :mobile_phone => "98200 52627",:society_id => 157
-Member.create! :name => "KIMI SHARMA", :mobile_phone => "98332 51936",:society_id => 157
-Member.create! :name => "Ms SUSHEEL JANGIRA", :mobile_phone => "98211 15553",:society_id => 157
-Member.create! :name => "DEEPALI PAL", :mobile_phone => "9820246164",:society_id => 157
-Member.create! :name => "SRINIVAS ERANKI", :mobile_phone => "26363891",:society_id => 157
-Member.create! :name => "RAJ DINESHBHAI TRIVEDI", :mobile_phone => "98209 46284",:society_id => 157
-Member.create! :name => "ASHOK KUMAR SHARMA", :mobile_phone => "98209 59355",:society_id => 157
-Member.create! :name => "SURESH H.VAZIRANI", :mobile_phone => "98200 86004",:email_id=> "s.vazirani@transasia.co.in",:society_id => 158
-Member.create! :name => "CAPT PRABHASH KANTIPAL", :mobile_phone => "98191 27787",:society_id => 159
-Member.create! :name => "CAPT S.M. MEHRA", :mobile_phone => "",:society_id => 159
-Member.create! :name => "NARSIAN S. AJIT KUMAR", :mobile_phone => "96190 83319",:email_id=> "vivi_india@rediffmail.com",:society_id => 159
-Member.create! :name => "CAPT TANUJ CHOPRA", :mobile_phone => "98205 00919",:society_id => 159
-Member.create! :name => "CAPT K. R. PAWA", :mobile_phone => "98208 27429",:society_id => 159
-Member.create! :name => "ANUJ PAWA", :mobile_phone => "98204 40746",:society_id => 159
-Member.create! :name => "ATUL CHOPRA", :mobile_phone => "98203 37697",:society_id => 159
-Member.create! :name => "CAPT R P CHOPRA", :mobile_phone => "98203 37697",:society_id => 159
-Member.create! :name => "V.SUBRAMANIAN", :mobile_phone => "98204 26830",:email_id=> "subs_2005@yahoo.com",:society_id => 159
-Member.create! :name => "WANVARI MOOLCHAND TAKURDAS", :mobile_phone => "98701 43431",:society_id => 159
-Member.create! :name => "YAZDI RUSTOM ERANEE", :mobile_phone => "98210 55455",:email_id=> "yreranee@gmail.com",:society_id => 159
-Member.create! :name => "DEREK DANIEL ARANHA", :mobile_phone => "98214 37730",:society_id => 159
-Member.create! :name => "VISHAL NARSSIAN", :mobile_phone => "98209 83319",:email_id=> "vishy1984@in.com",:society_id => 159
-Member.create! :name => "SUDEEP NAGAR", :mobile_phone => "98200 25792",:email_id=> "sudeepnagar@hotmail.com",:society_id => 159
-Member.create! :name => "YASH PAL SHARMA", :mobile_phone => "",:society_id => 159
-Member.create! :name => "ARPAN SHARMA", :mobile_phone => "9920010889",:society_id => 159
-Member.create! :name => "PRAKASH VAIJANATH JOSHI", :mobile_phone => "9820447246",:society_id => 159
-Member.create! :name => "PARIKSHIT JOSHI", :mobile_phone => "",:society_id => 159
-Member.create! :name => "NAVZAR ERANEE", :mobile_phone => "26310998",:society_id => 159
-Member.create! :name => "FARZAN ERANEE", :mobile_phone => "9820103077",:society_id => 159
-Member.create! :name => "IPSHITA RAY", :mobile_phone => "9673331990",:society_id => 159
-Member.create! :name => "HIMANSHU SHETH", :mobile_phone => "9820894171",:society_id => 159
-Member.create! :name => "MR VINOD KUMAR KHANNA", :mobile_phone => "98200 31914",:society_id => 159
-Member.create! :name => "MR GOUTAM KHANNA", :mobile_phone => "98209 88220",:society_id => 159
-Member.create! :name => "NEELMANI SMGH", :mobile_phone => "98211 78129",:society_id => 159
-Member.create! :name => "PUNIT CHOPRA", :mobile_phone => "98200 41034",:society_id => 159
-Member.create! :name => "ANIL WANVARI", :mobile_phone => "98203 56845",:society_id => 159
-Member.create! :name => "CAPT ROHIT MAYADEV", :mobile_phone => "98200 16527",:society_id => 159
-Member.create! :name => "SUBBHASH MEHTA", :mobile_phone => "98198 14301",:society_id => 159
-Member.create! :name => "AMITABHA RAY", :mobile_phone => "98213 43916",:society_id => 159
-Member.create! :name => "VIVEK NARSIAN", :mobile_phone => "9920910073",:society_id => 159
-Member.create! :name => "DR. HARISHIKESH B PARIKH", :mobile_phone => "98206 58131",:society_id => 160
-Member.create! :name => "RAGNI .S. VORA", :mobile_phone => "98926 20707",:society_id => 160
-Member.create! :name => "RAJENDRA. M. KAUSHIK", :mobile_phone => "98212 07173",:society_id => 160
-Member.create! :name => "RAMESH CHIMANLAL MEHTA", :mobile_phone => "98211 50112",:society_id => 160
-Member.create! :name => "WARADE DINKAR R.", :mobile_phone => "98210 21205",:society_id => 160
-Member.create! :name => "WARADE RUTU", :mobile_phone => "",:society_id => 160
-Member.create! :name => "APARNA WARADE", :mobile_phone => "",:society_id => 160
-Member.create! :name => "WARADE KASHINATH R.", :mobile_phone => "",:society_id => 160
-Member.create! :name => "WARADE RITESH KASHINATH", :mobile_phone => "",:society_id => 160
-Member.create! :name => "VASANT .C.BAMBOLKER", :mobile_phone => "98205 70228",:society_id => 160
-Member.create! :name => "PARESH.V. BAMBOLKAR", :mobile_phone => "",:society_id => 160
-Member.create! :name => "HOMI PHIROZE WADIA", :mobile_phone => "98211 67147",:society_id => 160
-Member.create! :name => "PRANAV .K.JHAVERI", :mobile_phone => "98194 13612",:society_id => 160
-Member.create! :name => "ABHAY BEHERE", :mobile_phone => "98212 464459",:society_id => 160
-Member.create! :name => "RAJEEV CHHIBBER", :mobile_phone => "98200 87656",:society_id => 160
-Member.create! :name => "BHAI MADAN M. CHHIBBER", :mobile_phone => "",:society_id => 160
-Member.create! :name => "JESWANI DOULAT CHATRUMAL", :mobile_phone => "98207 67711",:society_id => 160
-Member.create! :name => "RAVI .H. CHANDIRAMNI", :mobile_phone => "98210 48795",:society_id => 160
-Member.create! :name => "MIRCHANDANI NAVIN HARISH", :mobile_phone => "98200 46705",:society_id => 160
-Member.create! :name => "MIRCHANDANI HARISH B.", :mobile_phone => "98201 46705",:society_id => 160
-Member.create! :name => "MUKESH .H.SHAH", :mobile_phone => "98206 40572",:society_id => 160
-Member.create! :name => "MANOHARLAL R. GIYAMALANI", :mobile_phone => "93230 72661",:email_id=> "manoharlalg@gmail.com",:society_id => 160
-Member.create! :name => "ANUJ TIPINS", :mobile_phone => "98204 63661",:society_id => 160
-Member.create! :name => "RAMESH DEVJI PATEL", :mobile_phone => "98201 51936",:society_id => 160
-Member.create! :name => "JAGDISH .C.GODIWALA", :mobile_phone => "98211 86693",:society_id => 160
-Member.create! :name => "SANJAY JAYESHPURI GOSAI", :mobile_phone => "98198 65602",:society_id => 160
-Member.create! :name => "MR ADITYA R KAUSHIK", :mobile_phone => "",:society_id => 160
-Member.create! :name => "SANJAY UDAY SAGAR", :mobile_phone => "98205 06226",:society_id => 160
-Member.create! :name => "PRIYANKA K. WARADE", :mobile_phone => "",:society_id => 160
-Member.create! :name => "APEKSHA R KAUSHIK", :mobile_phone => "98212 07173",:society_id => 160
-Member.create! :name => "SANDER J GOLANI", :mobile_phone => "98670 24052",:society_id => 160
-Member.create! :name => "MONA INRANI", :mobile_phone => "98200 87854",:society_id => 160
-Member.create! :name => "AARIF SHEIKH", :mobile_phone => "98201 62177",:society_id => 160
-Member.create! :name => "PREMAL K BETAI", :mobile_phone => "93237 33446",:society_id => 160
-Member.create! :name => "RAVI KUMAR SINGH", :mobile_phone => "98207 88872",:society_id => 160
-Member.create! :name => "MEENA ASHOK KHARE", :mobile_phone => "93241 72351",:email_id=> "manikhare42@gmail.com",:society_id => 160
-Member.create! :name => "SUNIL ASHOK KHARE", :mobile_phone => "98675 56100",:email_id=> "khare201@yahoo.co.uk",:society_id => 160
-Member.create! :name => "BINDU IDRUS SHAIKH", :mobile_phone => "98332 12250",:society_id => 160
-Member.create! :name => "MAHENDRA M ASRANI", :mobile_phone => "98212 27128",:society_id => 160
-Member.create! :name => "INDRU HARISH MIRCHANDANI", :mobile_phone => "99206 25027",:society_id => 160
-Member.create! :name => "VIJAY R PATEL", :mobile_phone => "9820151936",:society_id => 160
-Member.create! :name => "NIKITA BAMBOLKAR", :mobile_phone => "9867596801",:society_id => 160
-Member.create! :name => "NIKIT M SHAH", :mobile_phone => "9819949699",:society_id => 160
-Member.create! :name => "MONICA GYAMLANI", :mobile_phone => "9029404629",:society_id => 160
-Member.create! :name => "CHINMAY GYAMLANI", :mobile_phone => "9323072661",:society_id => 160
-Member.create! :name => "KAMAL CHOWHAN", :mobile_phone => "",:society_id => 161
-Member.create! :name => "B.D.KHADUBAD", :mobile_phone => "96890 02637",:society_id => 161
-Member.create! :name => "HARIBHAI BHIKA BHAI PATEL", :mobile_phone => "98210 45951",:society_id => 161
-Member.create! :name => "PATEL RAMESH BHIKABHAI", :mobile_phone => "98212 64055",:society_id => 161
-Member.create! :name => "PATEL KANTI BHIKABHAI", :mobile_phone => "",:society_id => 161
-Member.create! :name => "PATEL KISHOR BHIKABHAI", :mobile_phone => "98212 14258",:society_id => 161
-Member.create! :name => "BHIKABHAI MEYHI PATEL", :mobile_phone => "",:society_id => 161
-Member.create! :name => "MAVJI WAGHJI PATEL", :mobile_phone => "98920 93084",:society_id => 161
-Member.create! :name => "HIRJI SAMJI PATEL", :mobile_phone => "",:society_id => 161
-Member.create! :name => "SHAH MUKUL .K.", :mobile_phone => "98204 29182",:society_id => 161
-Member.create! :name => "CHOPRA RAJINDER", :mobile_phone => "",:society_id => 161
-Member.create! :name => "SUNIL.K.KAPAHI", :mobile_phone => "",:society_id => 161
-Member.create! :name => "DAYA SHANKAR SARJIVE PRASAD CHURASIA", :mobile_phone => "98191 45484",:society_id => 161
-Member.create! :name => "SUNIL KUMAR GARG", :mobile_phone => "98202 94523",:society_id => 161
-Member.create! :name => "MANOJ AGARWAL", :mobile_phone => "98200 53986",:society_id => 161
-Member.create! :name => "PATEL PREMJI GANGJI", :mobile_phone => "093772 82989",:society_id => 161
-Member.create! :name => "VINOD JHAWAR", :mobile_phone => "98200 37803",:society_id => 161
-Member.create! :name => "KUNDAN KALACHAND SHAHANI", :mobile_phone => "",:society_id => 161
-Member.create! :name => "RAJESH PATEL", :mobile_phone => "",:society_id => 161
-Member.create! :name => "RAMNIKLAL TEJSHI SHAH", :mobile_phone => "98205 11994",:society_id => 161
-Member.create! :name => "ASHOK AGARWAL", :mobile_phone => "98212 31190",:email_id=> "amazingaakruti@gmail.com",:society_id => 161
-Member.create! :name => "MURUGESAN M.DEVENDRAN", :mobile_phone => "98672 57775",:society_id => 161
-Member.create! :name => "SURAMANIAN M. MADAR", :mobile_phone => "",:society_id => 161
-Member.create! :name => "CHETAN G. MEHTA", :mobile_phone => "",:society_id => 161
-Member.create! :name => "BHAMBHANI K.SANTOSH", :mobile_phone => "98215 21929",:society_id => 161
-Member.create! :name => "RAVEENA NANWANI", :mobile_phone => "98707 03553",:society_id => 161
-Member.create! :name => "SUNITA TODI", :mobile_phone => "93212 83697",:society_id => 161
-Member.create! :name => "BALRAJ B.VANWARI", :mobile_phone => "98202 84384",:society_id => 161
-Member.create! :name => "RAJESH H AGARWAL", :mobile_phone => "93200 89360",:email_id=> "prachiprints@gmail.com",:society_id => 161
-Member.create! :name => "VEENA MOTWANI", :mobile_phone => "",:society_id => 161
-Member.create! :name => "JAYESH VALJI GOTHI", :mobile_phone => "98204 44154",:email_id=> "jayesh_gothi@yahoo.co.in",:society_id => 161
-Member.create! :name => "SUMEET GARG", :mobile_phone => "9987257257",:society_id => 161
-Member.create! :name => "MONICA MOTWANI", :mobile_phone => "9820122280",:society_id => 161
-Member.create! :name => "PURVSHOTTAM MAHESHWARI", :mobile_phone => "98214 48870",:society_id => 161
-Member.create! :name => "BORENDRA JHAWAR", :mobile_phone => "98200 37803",:society_id => 161
-Member.create! :name => "PREMJI TEJASHI SHAH", :mobile_phone => "98191 33998",:society_id => 161
-Member.create! :name => "VARHUN THAAKUR", :mobile_phone => "98190 93673",:society_id => 161
-Member.create! :name => "VIJAY MOHANLAL GULATI", :mobile_phone => "98206 19977",:society_id => 162
-Member.create! :name => "SYED SHAKEEL HAIDERABODI", :mobile_phone => "",:society_id => 162
-Member.create! :name => "NARENDER M MEHTA", :mobile_phone => "98339 81477",:society_id => 162
-Member.create! :name => "KAILASH MALKANI", :mobile_phone => "98922 55660",:email_id=> "kailashmalkani@hotmail.com",:society_id => 162
-Member.create! :name => "DINESH M SRIVASTAUA", :mobile_phone => "98199 90504",:society_id => 162
-Member.create! :name => "HARISH KHANNA", :mobile_phone => "93240 44665",:society_id => 162
-Member.create! :name => "MOHNISH KHANNA", :mobile_phone => "",:society_id => 162
-Member.create! :name => "HARESH M GHELANI", :mobile_phone => "9821114899",:society_id => 162
-Member.create! :name => "MRS YASMIN DATEDAR", :mobile_phone => "9820052242",:society_id => 162
-Member.create! :name => "VINOD BACHCHAN", :mobile_phone => "9820991386",:society_id => 162
-Member.create! :name => "NEMISH K PAREKH", :mobile_phone => "98190 81985",:email_id=> "nemishp@gmail.com",:society_id => 162
-Member.create! :name => "KASHISH K MALKANI", :mobile_phone => "98922 55660",:society_id => 162
-Member.create! :name => "JITIN MALKANI", :mobile_phone => "97639 64737",:society_id => 162
-Member.create! :name => "PUNEET V GULATI", :mobile_phone => "98920 50999",:society_id => 162
-Member.create! :name => "SUNIL S.CHANDNI", :mobile_phone => "98702 84248",:society_id => 162
-Member.create! :name => "SRICHAND V KATARIA", :mobile_phone => "92244 27773",:society_id => 162
-Member.create! :name => "MAHENDRA S KATARIA", :mobile_phone => "98929 44306",:society_id => 162
-Member.create! :name => "MUKESH MILAWARAM MEHTA", :mobile_phone => "98334 81118",:society_id => 162
-Member.create! :name => "MANISH MEHTA", :mobile_phone => "98334 81118",:society_id => 162
-Member.create! :name => "PRAVIR MALHOTRA", :mobile_phone => "98219 86900",:email_id=> "pravirmalhotra@hotmail.com",:society_id => 162
-Member.create! :name => "NEHA MALHOTRA", :mobile_phone => "98194 16369",:email_id=> "nehamalhotra@hotmail.com",:society_id => 162
-Member.create! :name => "CAPT CLARENCE F GONSALUES", :mobile_phone => "98203 42817",:society_id => 162
-Member.create! :name => "RAJIV MALHOTRA", :mobile_phone => "",:society_id => 162
-Member.create! :name => "HIRO LALWANI", :mobile_phone => "9323105244",:society_id => 162
-Member.create! :name => "PALLAB K.BHATTACHARYA", :mobile_phone => "98210 90996",:email_id=> "pallab.bhattacharya@gmail.com",:society_id => 162
-Member.create! :name => "KHANNA SURINDER .P.", :mobile_phone => "98211 41063",:society_id => 163
-Member.create! :name => "SANTOSH.H.LALWANI", :mobile_phone => "98201 94056",:society_id => 163
-Member.create! :name => "SUDHIR.S.BHATIA", :mobile_phone => "98200 31460",:society_id => 163
-Member.create! :name => "RANBIR SINGH BAKSHI", :mobile_phone => "",:society_id => 163
-Member.create! :name => "SANDEEP BAKSHI", :mobile_phone => "98200 12954",:society_id => 163
-Member.create! :name => "YASHPAL BAJAJ", :mobile_phone => "",:society_id => 163
-Member.create! :name => "NITIKA THAPAR", :mobile_phone => "",:society_id => 163
-Member.create! :name => "VIJAYA MALHOTRA", :mobile_phone => "98203 99926",:society_id => 163
-Member.create! :name => "ROMI .S.KHANNA", :mobile_phone => "98211 15364",:society_id => 163
-Member.create! :name => "RISHI .S.KHANNA", :mobile_phone => "/98211 15364",:society_id => 163
-Member.create! :name => "JOBIN MUSTAQ KHAN", :mobile_phone => "98206 61375",:society_id => 163
-Member.create! :name => "SANGEETA SETH BHATIA", :mobile_phone => "93225 07673",:society_id => 163
-Member.create! :name => "MOHAMMED ABDUL HAQUO", :mobile_phone => "98195 52445",:society_id => 163
-Member.create! :name => "GANAPATI SUBRAMANI", :mobile_phone => "98201 83746",:society_id => 163
-Member.create! :name => "LLOYD B D'COSTA", :mobile_phone => "98205 67775",:society_id => 163
-Member.create! :name => "CHIRAG V. SHARAFF", :mobile_phone => "",:society_id => 163
-Member.create! :name => "HARSHAD NANCHAND KHARA", :mobile_phone => "98216 92131",:society_id => 163
-Member.create! :name => "VIVEK R MIDHA", :mobile_phone => "98210 26475",:society_id => 163
-Member.create! :name => "GAUTAM .D.THAKUR", :mobile_phone => "",:society_id => 164
-Member.create! :name => "BALRAJ K. MALHOTRA", :mobile_phone => "",:society_id => 164
-Member.create! :name => "S.S. MAJUMDAR", :mobile_phone => "",:society_id => 164
-Member.create! :name => "RATAN KUMAR GHOSH", :mobile_phone => "98203 43813",:email_id=> "ghoshratan@gmail.com",:society_id => 164
-Member.create! :name => "KANWAL SACHDEV", :mobile_phone => "99870 25921",:society_id => 164
-Member.create! :name => "DAMODAR SRIPAD BORKAR", :mobile_phone => "",:society_id => 164
-Member.create! :name => "PINAKI SHANKAR NAY", :mobile_phone => "",:society_id => 164
-Member.create! :name => "CAPT HASAN QEZILBASH", :mobile_phone => "98203 17191",:society_id => 164
-Member.create! :name => "DORS MEHRA", :mobile_phone => "98203 39066",:society_id => 164
-Member.create! :name => "KETKI SACHDEV", :mobile_phone => "9819714355",:society_id => 164
-Member.create! :name => "FARAHNAZ DARAIUS WADIA", :mobile_phone => "98199 12158",:society_id => 164
-Member.create! :name => "FAIZ QEZILBASH", :mobile_phone => "",:society_id => 164
-Member.create! :name => "FEROZ QEZILBASH", :mobile_phone => "",:society_id => 164
-Member.create! :name => "NARESH S KHEMKA", :mobile_phone => "98673 68777",:email_id=> "nareshkhemka@gmail.com",:society_id => 165
-Member.create! :name => "DR.NARESH KHANNA", :mobile_phone => "98212 19953",:email_id=> "khanna.naresh2008@gmail.com",:society_id => 166
-Member.create! :name => "KRISHNA RAJA GILIYAL", :mobile_phone => "",:society_id => 166
-Member.create! :name => "MADHU J. AGRWAL", :mobile_phone => "98202 22364",:society_id => 166
-Member.create! :name => "NARINDER SINGH SACHDEV", :mobile_phone => "98202 98635",:society_id => 166
-Member.create! :name => "AJAY K. ROHIRA", :mobile_phone => "",:society_id => 166
-Member.create! :name => "DR.SUNDEEP .S.DHARADHAR", :mobile_phone => "98200 31817",:society_id => 166
-Member.create! :name => "NAVNIT .G.KANANI", :mobile_phone => "98205 56229",:society_id => 166
-Member.create! :name => "NAGULA.G.GANGADHAR", :mobile_phone => "98200 11576",:email_id=> "n.prasad26gmail.com",:society_id => 166
-Member.create! :name => "NAGULA.G.HUNMANTHU", :mobile_phone => "98201 37086",:society_id => 166
-Member.create! :name => "PREMNATH .N.SINGH", :mobile_phone => "98197 95594",:society_id => 166
-Member.create! :name => "ASHOK .D. MEHTA", :mobile_phone => "98200 54907",:society_id => 166
-Member.create! :name => "AMIT BAKSHI", :mobile_phone => "98210 27137",:society_id => 166
-Member.create! :name => "DARSHAN SINGH SACHDEV", :mobile_phone => "98202 98635",:society_id => 166
-Member.create! :name => "JASBIR SINGH ANAND", :mobile_phone => "98202 79488",:society_id => 166
-Member.create! :name => "NIRAV MEHTA", :mobile_phone => "9322287227",:society_id => 166
-Member.create! :name => "JYOTI P DIALANI", :mobile_phone => "9819020059",:society_id => 166
-Member.create! :name => "PRATIK KANANI", :mobile_phone => "9920103441",:society_id => 166
-Member.create! :name => "RAVISH KAWANI", :mobile_phone => "9920199559",:society_id => 166
-Member.create! :name => "SALMA GUL AGHA", :mobile_phone => "97730 00160",:society_id => 167
+Member.create! :name => "VIJAY B.KHANDELWAL", :mobile_phone => "",:society_id => 37
+Member.create! :name => "VIKAS B.KHANDELWAL", :mobile_phone => "",:society_id => 37
+Member.create! :name => "BABULAL KHANDELWAL", :mobile_phone => "",:society_id => 37
+Member.create! :name => "RAJLAL CHANDANI", :mobile_phone => "98210 49918",:society_id => 37
+Member.create! :name => "KANHIAVALAL.C.HEMNANI", :mobile_phone => "98211 31952",:society_id => 37
+Member.create! :name => "KHANNA NITIN BHISHMA", :mobile_phone => "93222 20163",:email_id=> "khanna@vsnl.com",:society_id => 37
+Member.create! :name => "KHANNA PANKAJ BHISHMA", :mobile_phone => "98210 34798",:email_id=> "khanna@vsnl.com",:society_id => 37
+Member.create! :name => "RAMESH SHARMA", :mobile_phone => "",:society_id => 37
+Member.create! :name => "OM PRAKASH AGRAWAL", :mobile_phone => "98201 22434",:society_id => 37
+Member.create! :name => "KRISHAN PRATAP MALIK", :mobile_phone => "98334 20261",:email_id=> "kpmalik@gmail.com",:society_id => 37
+Member.create! :name => "TEKOO I. MAHBOOBONI", :mobile_phone => "98200 69127",:society_id => 37
+Member.create! :name => "KETAKI S DESAI", :mobile_phone => "98210 13769",:society_id => 37
+Member.create! :name => "VIJAY KODUMAL SHEWANI", :mobile_phone => "98190 50882",:society_id => 37
+Member.create! :name => "SACHIN MANSOTRA", :mobile_phone => "98201 38632",:society_id => 37
+Member.create! :name => "MUKESH KAPOOR", :mobile_phone => "98200 62660",:email_id=> "mickykapoor@hotmail.com",:society_id => 37
+Member.create! :name => "ATUL KUMAR M SHAH", :mobile_phone => "93232 87266",:society_id => 37
+Member.create! :name => "ALOK KUMAR TEWARI", :mobile_phone => "982111 3919",:society_id => 37
+Member.create! :name => "VIJAY CHARAMDAS KHANNA", :mobile_phone => "93249 63869",:society_id => 37
+Member.create! :name => "RISHI VIJAY KHANNA", :mobile_phone => "98200 67723",:email_id=> "rishikhanna@hotmail.com",:society_id => 37
+Member.create! :name => "SMIT KANTILAL JAIN", :mobile_phone => "",:society_id => 37
+Member.create! :name => "ARTI GIRISH HINGORANI", :mobile_phone => "9820610667",:society_id => 37
+Member.create! :name => "BHARAT RAJ LALCHANDANI", :mobile_phone => "9820843417",:society_id => 37
+Member.create! :name => "DARSHAN DALAL", :mobile_phone => "9820298114",:society_id => 37
+Member.create! :name => "JAGDISH GANDHI", :mobile_phone => "9987522887",:society_id => 37
+Member.create! :name => "DEEP KHANNA", :mobile_phone => "9322220163",:society_id => 37
+Member.create! :name => "RAJESH WAZIR", :mobile_phone => "",:society_id => 37
+Member.create! :name => "KANTI .B.JAIN", :mobile_phone => "",:society_id => 37
+Member.create! :name => "MANISH KUBRA", :mobile_phone => "98200 89589",:society_id => 42
+Member.create! :name => "VIKAS MUNOT", :mobile_phone => "98200 89015",:society_id => 42
+Member.create! :name => "NARSHIV MUKUND PRABHU", :mobile_phone => "98212 59280",:society_id => 42
+Member.create! :name => "PRATHL B BRAHM BHATT", :mobile_phone => "",:society_id => 42
+Member.create! :name => "MANGHARAM G. SAKHRANI", :mobile_phone => "",:society_id => 42
+Member.create! :name => "SMITA RAVINDRA BHIVAGAJE", :mobile_phone => "98921 03482",:society_id => 42
+Member.create! :name => "AVAD SHAH", :mobile_phone => "98201 25432",:society_id => 42
+Member.create! :name => "DR.SANJAY CHAUDHARI", :mobile_phone => "98201 29123",:email_id=> "drsbchaudhari@gmail.com",:society_id => 42
+Member.create! :name => "KANCHAN.S.SAMTANI", :mobile_phone => "982021 9281",:society_id => 42
+Member.create! :name => "MURLINARAYAN KUBRA", :mobile_phone => "",:society_id => 42
+Member.create! :name => "MUKESH KUBRA", :mobile_phone => "98207 07510",:society_id => 42
+Member.create! :name => "MANOJ KUBRA", :mobile_phone => "",:society_id => 42
+Member.create! :name => "POONAM MEHROTRA", :mobile_phone => "98218 70432",:email_id=> "mehrotra.poonam@gmail.com",:society_id => 42
+Member.create! :name => "KAMLA RATADIYA", :mobile_phone => "",:society_id => 42
+Member.create! :name => "MANISH KANU BHAI DANI", :mobile_phone => "98207 09492",:society_id => 42
+Member.create! :name => "GAURAV KABRA", :mobile_phone => "",:society_id => 42
+Member.create! :name => "EKLAVYA JAI N", :mobile_phone => "98672 21465",:society_id => 42
+Member.create! :name => "SUSHILAA R PATHAK", :mobile_phone => "98216 23741",:email_id=> "sushipat@hotmail.com",:society_id => 42
+Member.create! :name => "DEEPA SAMTANI", :mobile_phone => "98202 19281",:society_id => 42
+Member.create! :name => "AANCHAL SAXENA KANNAN", :mobile_phone => "98214 44945",:email_id=> "aanchalsaxena@hotmail.com",:society_id => 42
+Member.create! :name => "ALOK T. RATADIYA", :mobile_phone => "98202 19534",:society_id => 42
+Member.create! :name => "SUNITA B. MIRCHANDANI", :mobile_phone => "98200 69432",:society_id => 42
+Member.create! :name => "ISHAN N PRABHU", :mobile_phone => "98194 84919",:society_id => 42
+Member.create! :name => "DEEP KABRA", :mobile_phone => "",:society_id => 42
+Member.create! :name => "SHUBHAM KABRA", :mobile_phone => "",:society_id => 42
+Member.create! :name => "OM PRAKASH SHAH", :mobile_phone => "9323947933",:society_id => 42
+Member.create! :name => "SANJAY O SHAH", :mobile_phone => "9324275085",:society_id => 42
+Member.create! :name => "SARAS SHAH", :mobile_phone => "9821252565",:society_id => 42
+Member.create! :name => "VEDANT CHAUDHARI", :mobile_phone => "",:society_id => 42
+Member.create! :name => "SURAJ SAMTANI", :mobile_phone => "9820219281",:society_id => 42
+Member.create! :name => "AJAY GUPTA", :mobile_phone => "",:society_id => 43
+Member.create! :name => "ALI KHAN G. MAHAWLA", :mobile_phone => "98677 54648",:email_id=> "ali_valik@yahoo.com",:society_id => 43
+Member.create! :name => "MOHAN K. ADVANI", :mobile_phone => "98200 81073",:society_id => 43
+Member.create! :name => "C SUBOTH LAROYA", :mobile_phone => "98214 44942",:society_id => 43
+Member.create! :name => "BIMAL KUMAR SONI", :mobile_phone => "98690 00234",:society_id => 43
+Member.create! :name => "BHANU KUMAR NAHATA", :mobile_phone => "98201 55228",:society_id => 43
+Member.create! :name => "BRIJ BHUSHAN .M.SHARMA", :mobile_phone => "98690 14736",:email_id=> "shape_india@rediffmail.com",:society_id => 43
+Member.create! :name => "AMARJIT SINGH GUJRAL", :mobile_phone => "98211 04298",:society_id => 43
+Member.create! :name => "AJIT PENDHARKAR", :mobile_phone => "98922 26284",:email_id=> "ajit.pendkar@rediffmail.com",:society_id => 43
+Member.create! :name => "ROHIT SAMANT", :mobile_phone => "98206 14300",:society_id => 43
+Member.create! :name => "HANUMANMAL SHAYMSUKHA", :mobile_phone => "98921 36249",:society_id => 43
+Member.create! :name => "ANIL.R.SETHI", :mobile_phone => "98212 88551",:email_id=> "anilrsethi@hotmail.com",:society_id => 43
+Member.create! :name => "ANOOP.V.HINGORANI", :mobile_phone => "98211 08597",:society_id => 43
+Member.create! :name => "ASHOK MISHRA", :mobile_phone => "98206 00676",:society_id => 43
+Member.create! :name => "RAJ KUMARI BOTHRA", :mobile_phone => "93226 07024",:society_id => 43
+Member.create! :name => "GERA GULSHAN LAL", :mobile_phone => "98201 81073",:society_id => 43
+Member.create! :name => "HANISH .K.MEHTA", :mobile_phone => "98210 50423",:society_id => 43
+Member.create! :name => "RAMAN.S.GROVER", :mobile_phone => "98200 94493",:society_id => 43
+Member.create! :name => "NAHATA P. BHANUKUMAR", :mobile_phone => "98210 33283",:society_id => 43
+Member.create! :name => "JAIKISHAN S. MANSHARAMUNI", :mobile_phone => "93222 24226",:society_id => 43
+Member.create! :name => "MRS NEHA P. MELWANI", :mobile_phone => "98701 89780",:society_id => 43
+Member.create! :name => "KARAN H MEHTA", :mobile_phone => "",:society_id => 43
+Member.create! :name => "AAYUSH H MEHTA", :mobile_phone => "",:society_id => 43
+Member.create! :name => "SOMYA GUPTA", :mobile_phone => "98200 90888",:society_id => 43
+Member.create! :name => "AMOL ANAND INAMDAR", :mobile_phone => "98190 49789",:society_id => 43
+Member.create! :name => "SUDEEP SAHIR", :mobile_phone => "98203 17734",:society_id => 43
+Member.create! :name => "RAKHI GERA BANDARI", :mobile_phone => "98203 17434",:society_id => 43
+Member.create! :name => "NIDHI GERA", :mobile_phone => "98923 03552",:society_id => 43
+Member.create! :name => "ATUL D SHAH", :mobile_phone => "98206 11211",:society_id => 43
+Member.create! :name => "HARKIRATH SINGH GUJRAL", :mobile_phone => "98211 04298",:society_id => 43
+Member.create! :name => "RAHUL BIMAL KUMAR SONI", :mobile_phone => "93225 10922",:society_id => 43
+Member.create! :name => "SUNIL RAJADAKSHAYA", :mobile_phone => "98231 12402",:email_id=> "sunilrajadhyksha@hotmail.com",:society_id => 43
+Member.create! :name => "RAJESH LEHR", :mobile_phone => "9930041571",:society_id => 43
+Member.create! :name => "SANJAY M ADVANI", :mobile_phone => "9819381074",:society_id => 43
+Member.create! :name => "BIJOY METHIL", :mobile_phone => "9867725677",:society_id => 43
+Member.create! :name => "VENITA VASWANI", :mobile_phone => "9552123856",:society_id => 43
+Member.create! :name => "KARTIK PENDHARKAR", :mobile_phone => "9869067163",:society_id => 43
+Member.create! :name => "PRIYANKA KGUPATA", :mobile_phone => "98200 90888",:society_id => 43
+Member.create! :name => "NIKUNJ BIMAL KUMAR SONI", :mobile_phone => "",:society_id => 43
+Member.create! :name => "RISHABH BIMAL KUMAR SONI", :mobile_phone => "",:society_id => 43
+Member.create! :name => "KOMAL DEEPAK THARANI", :mobile_phone => "98202 12617",:society_id => 45
+Member.create! :name => "BANWARILAL R. BAJAJ", :mobile_phone => "",:society_id => 45
+Member.create! :name => "CHARAN BIRSINGH ANAND", :mobile_phone => "",:society_id => 45
+Member.create! :name => "NIRAJ BHATIA", :mobile_phone => "98201 85601",:society_id => 45
+Member.create! :name => "VINAY GUPTA", :mobile_phone => "",:society_id => 45
+Member.create! :name => "MEHRA ARUN KUMAR J.", :mobile_phone => "99206 91679",:society_id => 45
+Member.create! :name => "JAISINGH RAMESH S.", :mobile_phone => "98205 94057",:society_id => 45
+Member.create! :name => "KHEMJI.R. PATEL", :mobile_phone => "98200 77964",:society_id => 45
+Member.create! :name => "DEV NAIR", :mobile_phone => "98210 19469",:society_id => 45
+Member.create! :name => "PRABHJOYT SINGH RAJPAL", :mobile_phone => "93226 99227",:society_id => 45
+Member.create! :name => "BHAGIRATH.V.GANDHI", :mobile_phone => "93222 22922",:email_id=> "bhagirathgandhi@yahoo.com",:society_id => 45
+Member.create! :name => "SURESH LALWANI", :mobile_phone => "99696 18792",:email_id=> "sureshlalwani123@rediffmail.com",:society_id => 45
+Member.create! :name => "CHUHARMAL LALWANI", :mobile_phone => "92244 16434",:society_id => 45
+Member.create! :name => "GANDHI JITENDRA .B.", :mobile_phone => "",:society_id => 45
+Member.create! :name => "MANOHARLAL J. HINDUJA", :mobile_phone => "",:society_id => 45
+Member.create! :name => "KUNWARJIT PAINTAL", :mobile_phone => "98200 92598",:society_id => 45
+Member.create! :name => "KAWALJIT KAUR SABHARWAL", :mobile_phone => "",:society_id => 45
+Member.create! :name => "ASHWIN SOMALAL SHAH", :mobile_phone => "98213 30987",:society_id => 45
+Member.create! :name => "HIRALAL CHAGANLAL JAIN", :mobile_phone => "98694 43651",:society_id => 45
+Member.create! :name => "MAHAVIR SHANTILAL JAIN", :mobile_phone => "98692 50470",:society_id => 45
+Member.create! :name => "SURESH JALAN", :mobile_phone => "",:society_id => 45
+Member.create! :name => "MAMTA R BHOJWANI", :mobile_phone => "9820153058",:society_id => 45
+Member.create! :name => "PULIN N KUSUMGAR", :mobile_phone => "98219 33333",:society_id => 45
+Member.create! :name => "HARJEET SINGH NARANG", :mobile_phone => "93245 45219",:society_id => 45
+Member.create! :name => "RANDEEP SINGH ANAND", :mobile_phone => "982094 8887",:society_id => 45
+Member.create! :name => "KARAN A MEHRA", :mobile_phone => "",:society_id => 45
+Member.create! :name => "MAHEK MANDLIK", :mobile_phone => "93234 69312",:society_id => 45
+Member.create! :name => "SIDDHARTH AURORA", :mobile_phone => "98214 47985",:society_id => 45
+Member.create! :name => "DARSHAN AURORA", :mobile_phone => "98208 64959",:society_id => 45
+Member.create! :name => "BIPIN Kotak", :mobile_phone => "98922 41111",:society_id => 45
+Member.create! :name => "ARUN R.MEHRA", :mobile_phone => "98213 35419",:society_id => 45
+Member.create! :name => "SANJAY LALCHAND CHHABRIA", :mobile_phone => "98210 19218",:society_id => 45
+Member.create! :name => "ASHISH SANJAY CHHABRIA", :mobile_phone => "98210 19218",:society_id => 45
+Member.create! :name => "SHRADDHA SANJAY CHHABRIA", :mobile_phone => "98210 19218",:society_id => 45
+Member.create! :name => "RAICHAND D. JAIN", :mobile_phone => "98203 33578",:society_id => 48
+Member.create! :name => "JAGDUL P. KHANDEIWAL", :mobile_phone => "98200 30256",:society_id => 48
+Member.create! :name => "SAKET BATRA", :mobile_phone => "98200 88410",:society_id => 48
+Member.create! :name => "M.M. RANGWALA", :mobile_phone => "",:society_id => 48
+Member.create! :name => "RAJESH RAM GEHANI", :mobile_phone => "99204 77320",:email_id=> "rrgehani@gmail.com",:society_id => 48
+Member.create! :name => "KETAN C. AVLANI", :mobile_phone => "98210 30286",:society_id => 48
+Member.create! :name => "KRISHANLAL ROATRA", :mobile_phone => "",:society_id => 48
+Member.create! :name => "RAJIV C. CHODDHARY", :mobile_phone => "",:society_id => 48
+Member.create! :name => "CHANDRN C. CHODDHARY", :mobile_phone => "",:society_id => 48
+Member.create! :name => "RAJENDRA R. SINGH", :mobile_phone => "98206 42478",:society_id => 48
+Member.create! :name => "R.K. SUNDARAM", :mobile_phone => "93235 87595",:email_id=> "aarkayess2003@yahoo.co.in",:society_id => 48
+Member.create! :name => "CAPT RAVINDERPAL SINGH", :mobile_phone => "",:society_id => 48
+Member.create! :name => "VINAY M. SAHNI", :mobile_phone => "98204 07058",:email_id=> "vinay@horizzon.com",:society_id => 48
+Member.create! :name => "SUBHASH R. DOLE", :mobile_phone => "98200 54986",:society_id => 48
+Member.create! :name => "VIVEK SHETH", :mobile_phone => "98215 95925",:society_id => 48
+Member.create! :name => "NASEEM SIKANDER KAZI", :mobile_phone => "98212 88934",:society_id => 48
+Member.create! :name => "JAISINGH SANWALDAS P.", :mobile_phone => "",:society_id => 48
+Member.create! :name => "JAISINGH RAJU SANWALDAS", :mobile_phone => "98202 26377",:society_id => 48
+Member.create! :name => "JAISINGH DILIP SANWALDAS", :mobile_phone => "98202 26608",:society_id => 48
+Member.create! :name => "ADVANI BHOJRAJ DHALMAL", :mobile_phone => "",:society_id => 48
+Member.create! :name => "VIRAL PRAVIN MEHTA", :mobile_phone => "98210 21263",:society_id => 48
+Member.create! :name => "TUSHAR PRAVIN MEHTA", :mobile_phone => "98200 60056",:society_id => 48
+Member.create! :name => "DR.NICHANI KISHOR TULSIDAS", :mobile_phone => "98200 66051",:email_id=> "kishorenichani@gmail.com",:society_id => 48
+Member.create! :name => "VIJAY SINGH RAJAWAT", :mobile_phone => "98200 36943",:society_id => 48
+Member.create! :name => "GURBACHAN SINGH", :mobile_phone => "",:society_id => 48
+Member.create! :name => "RANJIT SINGH", :mobile_phone => "98201 55645",:society_id => 48
+Member.create! :name => "RINKU VIKAS ARORA", :mobile_phone => "98690 50330",:society_id => 48
+Member.create! :name => "SANJEEV MEHTA", :mobile_phone => "",:society_id => 48
+Member.create! :name => "BHARAT NAYAR", :mobile_phone => "98205 00391",:email_id=> "bharatnayar@hotmail.com",:society_id => 48
+Member.create! :name => "SUBHASH ARYA", :mobile_phone => "98216 29895",:society_id => 48
+Member.create! :name => "VINEET ARYA", :mobile_phone => "",:society_id => 48
+Member.create! :name => "JIVANI NOORUDIN .V.", :mobile_phone => "98200 52158",:society_id => 48
+Member.create! :name => "BHARAT .N.KACHWALA", :mobile_phone => "98202 97244",:society_id => 48
+Member.create! :name => "MANISH KACHWALA", :mobile_phone => "",:society_id => 48
+Member.create! :name => "ATUL ARYA", :mobile_phone => "98210 92959",:society_id => 48
+Member.create! :name => "CHETAN PRAKASH KAINATH", :mobile_phone => "98203 99190",:society_id => 48
+Member.create! :name => "LOVAI RAJABALI DALAL", :mobile_phone => "98200 27985",:society_id => 48
+Member.create! :name => "PARUL ASHWIN MANIAR", :mobile_phone => "98200 35375",:society_id => 48
+Member.create! :name => "SALIL - E - JANARDANAN", :mobile_phone => "99305 83848",:email_id=> "deepz.salil@gmail.com",:society_id => 48
+Member.create! :name => "GAURAV MEHRA", :mobile_phone => "98214 17188",:society_id => 48
+Member.create! :name => "SAURABH MEHRA", :mobile_phone => "98214 17188",:society_id => 48
+Member.create! :name => "IMRAN R SIDDIQUI", :mobile_phone => "98206 87407",:society_id => 48
+Member.create! :name => "VIPUL KULSHRESHTHA", :mobile_phone => "98214 25998",:society_id => 48
+Member.create! :name => "NIDHI MATHUR", :mobile_phone => "",:email_id=> "canthess@gmail.com",:society_id => 48
+Member.create! :name => "AVI S RAJAWAT", :mobile_phone => "9820036943",:society_id => 48
+Member.create! :name => "YASH T MEHTA", :mobile_phone => "9819595400",:society_id => 48
+Member.create! :name => "TANVI T MEHTA", :mobile_phone => "9819554440",:society_id => 48
+Member.create! :name => "TEENA SURENDER AHUJA", :mobile_phone => "9821629964",:society_id => 48
+Member.create! :name => "SUMIT GUPTA", :mobile_phone => "9819102949",:society_id => 48
+Member.create! :name => "RAKESH .U.MEHRA", :mobile_phone => "98214 17388",:email_id=> "mehrarakesh@hotmail.com",:society_id => 48
+Member.create! :name => "A.V.GOPALKRISHNAN", :mobile_phone => "",:society_id => 48
+Member.create! :name => "SURENDER KUMAR AHUJA", :mobile_phone => "98211 12903",:society_id => 48
+Member.create! :name => "MANILAL RAMJI FARIA", :mobile_phone => "98200 27471",:society_id => 59
+Member.create! :name => "RUMANA KHAN", :mobile_phone => "98213 03765",:society_id => 59
+Member.create! :name => "RITA SHAHANI", :mobile_phone => "9930777374",:society_id => 59
+Member.create! :name => "POONAM SHAHANI", :mobile_phone => "9769879499",:society_id => 59
+Member.create! :name => "SANJAY CHATURVEDI", :mobile_phone => "9820036161",:society_id => 59
+Member.create! :name => "HARPREET S SETHI", :mobile_phone => "9820770771",:society_id => 59
+Member.create! :name => "TARANJIT S SETHI", :mobile_phone => "9820105605",:society_id => 59
+Member.create! :name => "SIRAJAHMED BORA", :mobile_phone => "9920121126",:society_id => 59
+Member.create! :name => "IKRAM AHMEDI", :mobile_phone => "9867950686",:society_id => 59
+Member.create! :name => "HARISH CHANDER KUMAR", :mobile_phone => "93242 81151",:society_id => 59
+Member.create! :name => "JOGENDRA SETHI", :mobile_phone => "99675 91403",:email_id=> "jogendra@yahoo.com",:society_id => 59
+Member.create! :name => "RAUF HAMIDULLA KHAN", :mobile_phone => "98204 07630",:society_id => 59
+Member.create! :name => "TARIQ KHAN", :mobile_phone => "98191 46429",:society_id => 59
+Member.create! :name => "ANWAR KHAN", :mobile_phone => "",:society_id => 60
+Member.create! :name => "ELIZABETH S.DAFONSECA", :mobile_phone => "",:society_id => 60
+Member.create! :name => "E.V.RAMANNA", :mobile_phone => "98702 46048",:society_id => 60
+Member.create! :name => "RAMESH..L.MUTREJA", :mobile_phone => "99300 24446",:society_id => 60
+Member.create! :name => "AJAY WADHWA", :mobile_phone => "98215 55466",:email_id=> "aj_wadhwa@yahoo.com",:society_id => 60
+Member.create! :name => "CHHEDA BHARAT KESHAVJI", :mobile_phone => "98210 41235",:email_id=> "bkchhsarv@gmail.com",:society_id => 60
+Member.create! :name => "MISHRA RAJESH .B.", :mobile_phone => "",:society_id => 60
+Member.create! :name => "RUNJIT SINGH NAGI", :mobile_phone => "98202 93092",:email_id=> "ranjitnagi@gmail.com",:society_id => 60
+Member.create! :name => "KAMLESH R. LAHORI", :mobile_phone => "98923 08374",:society_id => 60
+Member.create! :name => "LALITA G.JAIN", :mobile_phone => "98202 96099",:society_id => 60
+Member.create! :name => "VIDHANI KISHORE MOTILAL", :mobile_phone => "98201 00489",:society_id => 60
+Member.create! :name => "NIRANJAN PODDAR", :mobile_phone => "",:society_id => 60
+Member.create! :name => "OM KATARE", :mobile_phone => "98200 52627",:email_id=> "omkatare@hotmail.com",:society_id => 60
+Member.create! :name => "MUKESH S. KANDHARI", :mobile_phone => "98678 79747",:email_id=> "mukeshsk@yahoo.co.in",:society_id => 60
+Member.create! :name => "CHETAN V. KESHARIA", :mobile_phone => "98210 14558",:email_id=> "satyamestate@hotmail.com",:society_id => 60
+Member.create! :name => "NAVIN SADARANGNI", :mobile_phone => "",:society_id => 60
+Member.create! :name => "BINU KAUSAL", :mobile_phone => "",:society_id => 60
+Member.create! :name => "RAHUL CHETAN KESHARIA", :mobile_phone => "98200 99788",:email_id=> "keshariarahul@hotmail.com",:society_id => 60
+Member.create! :name => "PRAKASH HANSRAJANI", :mobile_phone => "98670 17477",:society_id => 60
+Member.create! :name => "SHAILESH S. KISHNANI", :mobile_phone => "98604 46789",:society_id => 60
+Member.create! :name => "ANUJ KATARE", :mobile_phone => "99303 52626",:society_id => 60
+Member.create! :name => "APURVA KATARE", :mobile_phone => "98200 52627",:society_id => 60
+Member.create! :name => "KIMI SHARMA", :mobile_phone => "98332 51936",:society_id => 60
+Member.create! :name => "Ms SUSHEEL JANGIRA", :mobile_phone => "98211 15553",:society_id => 60
+Member.create! :name => "DEEPALI PAL", :mobile_phone => "9820246164",:society_id => 60
+Member.create! :name => "SRINIVAS ERANKI", :mobile_phone => "26363891",:society_id => 60
+Member.create! :name => "RAJ DINESHBHAI TRIVEDI", :mobile_phone => "98209 46284",:society_id => 60
+Member.create! :name => "ASHOK KUMAR SHARMA", :mobile_phone => "98209 59355",:society_id => 60
+Member.create! :name => "CAPT PRABHASH KANTIPAL", :mobile_phone => "98191 27787",:society_id => 14
+Member.create! :name => "CAPT S.M. MEHRA", :mobile_phone => "",:society_id => 14
+Member.create! :name => "NARSIAN S. AJIT KUMAR", :mobile_phone => "96190 83319",:email_id=> "vivi_india@rediffmail.com",:society_id => 14
+Member.create! :name => "CAPT TANUJ CHOPRA", :mobile_phone => "98205 00919",:society_id => 14
+Member.create! :name => "CAPT K. R. PAWA", :mobile_phone => "98208 27429",:society_id => 14
+Member.create! :name => "ANUJ PAWA", :mobile_phone => "98204 40746",:society_id => 14
+Member.create! :name => "ATUL CHOPRA", :mobile_phone => "98203 37697",:society_id => 14
+Member.create! :name => "CAPT R P CHOPRA", :mobile_phone => "98203 37697",:society_id => 14
+Member.create! :name => "V.SUBRAMANIAN", :mobile_phone => "98204 26830",:email_id=> "subs_2005@yahoo.com",:society_id => 14
+Member.create! :name => "WANVARI MOOLCHAND TAKURDAS", :mobile_phone => "98701 43431",:society_id => 14
+Member.create! :name => "YAZDI RUSTOM ERANEE", :mobile_phone => "98210 55455",:email_id=> "yreranee@gmail.com",:society_id => 14
+Member.create! :name => "DEREK DANIEL ARANHA", :mobile_phone => "98214 37730",:society_id => 14
+Member.create! :name => "VISHAL NARSSIAN", :mobile_phone => "98209 83319",:email_id=> "vishy1984@in.com",:society_id => 14
+Member.create! :name => "SUDEEP NAGAR", :mobile_phone => "98200 25792",:email_id=> "sudeepnagar@hotmail.com",:society_id => 14
+Member.create! :name => "YASH PAL SHARMA", :mobile_phone => "",:society_id => 14
+Member.create! :name => "ARPAN SHARMA", :mobile_phone => "9920010889",:society_id => 14
+Member.create! :name => "PRAKASH VAIJANATH JOSHI", :mobile_phone => "9820447246",:society_id => 14
+Member.create! :name => "PARIKSHIT JOSHI", :mobile_phone => "",:society_id => 14
+Member.create! :name => "NAVZAR ERANEE", :mobile_phone => "26310998",:society_id => 14
+Member.create! :name => "FARZAN ERANEE", :mobile_phone => "9820103077",:society_id => 14
+Member.create! :name => "IPSHITA RAY", :mobile_phone => "9673331990",:society_id => 14
+Member.create! :name => "HIMANSHU SHETH", :mobile_phone => "9820894171",:society_id => 14
+Member.create! :name => "MR VINOD KUMAR KHANNA", :mobile_phone => "98200 31914",:society_id => 14
+Member.create! :name => "MR GOUTAM KHANNA", :mobile_phone => "98209 88220",:society_id => 14
+Member.create! :name => "NEELMANI SMGH", :mobile_phone => "98211 78129",:society_id => 14
+Member.create! :name => "PUNIT CHOPRA", :mobile_phone => "98200 41034",:society_id => 14
+Member.create! :name => "ANIL WANVARI", :mobile_phone => "98203 56845",:society_id => 14
+Member.create! :name => "CAPT ROHIT MAYADEV", :mobile_phone => "98200 16527",:society_id => 14
+Member.create! :name => "SUBBHASH MEHTA", :mobile_phone => "98198 14301",:society_id => 14
+Member.create! :name => "AMITABHA RAY", :mobile_phone => "98213 43916",:society_id => 14
+Member.create! :name => "VIVEK NARSIAN", :mobile_phone => "9920910073",:society_id => 14
+Member.create! :name => "DR. HARISHIKESH B PARIKH", :mobile_phone => "98206 58131",:society_id => 16
+Member.create! :name => "RAGNI .S. VORA", :mobile_phone => "98926 20707",:society_id => 16
+Member.create! :name => "RAJENDRA. M. KAUSHIK", :mobile_phone => "98212 07173",:society_id => 16
+Member.create! :name => "RAMESH CHIMANLAL MEHTA", :mobile_phone => "98211 50112",:society_id => 16
+Member.create! :name => "WARADE DINKAR R.", :mobile_phone => "98210 21205",:society_id => 16
+Member.create! :name => "WARADE RUTU", :mobile_phone => "",:society_id => 16
+Member.create! :name => "APARNA WARADE", :mobile_phone => "",:society_id => 16
+Member.create! :name => "WARADE KASHINATH R.", :mobile_phone => "",:society_id => 16
+Member.create! :name => "WARADE RITESH KASHINATH", :mobile_phone => "",:society_id => 16
+Member.create! :name => "VASANT .C.BAMBOLKER", :mobile_phone => "98205 70228",:society_id => 16
+Member.create! :name => "PARESH.V. BAMBOLKAR", :mobile_phone => "",:society_id => 16
+Member.create! :name => "HOMI PHIROZE WADIA", :mobile_phone => "98211 67147",:society_id => 16
+Member.create! :name => "PRANAV .K.JHAVERI", :mobile_phone => "98194 13612",:society_id => 16
+Member.create! :name => "ABHAY BEHERE", :mobile_phone => "98212 464459",:society_id => 16
+Member.create! :name => "RAJEEV CHHIBBER", :mobile_phone => "98200 87656",:society_id => 16
+Member.create! :name => "BHAI MADAN M. CHHIBBER", :mobile_phone => "",:society_id => 16
+Member.create! :name => "JESWANI DOULAT CHATRUMAL", :mobile_phone => "98207 67711",:society_id => 16
+Member.create! :name => "RAVI .H. CHANDIRAMNI", :mobile_phone => "98210 48795",:society_id => 16
+Member.create! :name => "MIRCHANDANI NAVIN HARISH", :mobile_phone => "98200 46705",:society_id => 16
+Member.create! :name => "MIRCHANDANI HARISH B.", :mobile_phone => "98201 46705",:society_id => 16
+Member.create! :name => "MUKESH .H.SHAH", :mobile_phone => "98206 40572",:society_id => 16
+Member.create! :name => "MANOHARLAL R. GIYAMALANI", :mobile_phone => "93230 72661",:email_id=> "manoharlalg@gmail.com",:society_id => 16
+Member.create! :name => "ANUJ TIPINS", :mobile_phone => "98204 63661",:society_id => 16
+Member.create! :name => "RAMESH DEVJI PATEL", :mobile_phone => "98201 51936",:society_id => 16
+Member.create! :name => "JAGDISH .C.GODIWALA", :mobile_phone => "98211 86693",:society_id => 16
+Member.create! :name => "SANJAY JAYESHPURI GOSAI", :mobile_phone => "98198 65602",:society_id => 16
+Member.create! :name => "MR ADITYA R KAUSHIK", :mobile_phone => "",:society_id => 16
+Member.create! :name => "SANJAY UDAY SAGAR", :mobile_phone => "98205 06226",:society_id => 16
+Member.create! :name => "PRIYANKA K. WARADE", :mobile_phone => "",:society_id => 16
+Member.create! :name => "APEKSHA R KAUSHIK", :mobile_phone => "98212 07173",:society_id => 16
+Member.create! :name => "SANDER J GOLANI", :mobile_phone => "98670 24052",:society_id => 16
+Member.create! :name => "MONA INRANI", :mobile_phone => "98200 87854",:society_id => 16
+Member.create! :name => "AARIF SHEIKH", :mobile_phone => "98201 62177",:society_id => 16
+Member.create! :name => "PREMAL K BETAI", :mobile_phone => "93237 33446",:society_id => 16
+Member.create! :name => "RAVI KUMAR SINGH", :mobile_phone => "98207 88872",:society_id => 16
+Member.create! :name => "MEENA ASHOK KHARE", :mobile_phone => "93241 72351",:email_id=> "manikhare42@gmail.com",:society_id => 16
+Member.create! :name => "SUNIL ASHOK KHARE", :mobile_phone => "98675 56100",:email_id=> "khare201@yahoo.co.uk",:society_id => 16
+Member.create! :name => "BINDU IDRUS SHAIKH", :mobile_phone => "98332 12250",:society_id => 16
+Member.create! :name => "MAHENDRA M ASRANI", :mobile_phone => "98212 27128",:society_id => 16
+Member.create! :name => "INDRU HARISH MIRCHANDANI", :mobile_phone => "99206 25027",:society_id => 16
+Member.create! :name => "VIJAY R PATEL", :mobile_phone => "9820151936",:society_id => 16
+Member.create! :name => "NIKITA BAMBOLKAR", :mobile_phone => "9867596801",:society_id => 16
+Member.create! :name => "NIKIT M SHAH", :mobile_phone => "9819949699",:society_id => 16
+Member.create! :name => "MONICA GYAMLANI", :mobile_phone => "9029404629",:society_id => 16
+Member.create! :name => "CHINMAY GYAMLANI", :mobile_phone => "9323072661",:society_id => 16
+Member.create! :name => "KAMAL CHOWHAN", :mobile_phone => "",:society_id => 23
+Member.create! :name => "B.D.KHADUBAD", :mobile_phone => "96890 02637",:society_id => 23
+Member.create! :name => "HARIBHAI BHIKA BHAI PATEL", :mobile_phone => "98210 45951",:society_id => 23
+Member.create! :name => "PATEL RAMESH BHIKABHAI", :mobile_phone => "98212 64055",:society_id => 23
+Member.create! :name => "PATEL KANTI BHIKABHAI", :mobile_phone => "",:society_id => 23
+Member.create! :name => "PATEL KISHOR BHIKABHAI", :mobile_phone => "98212 14258",:society_id => 23
+Member.create! :name => "BHIKABHAI MEYHI PATEL", :mobile_phone => "",:society_id => 23
+Member.create! :name => "MAVJI WAGHJI PATEL", :mobile_phone => "98920 93084",:society_id => 23
+Member.create! :name => "HIRJI SAMJI PATEL", :mobile_phone => "",:society_id => 23
+Member.create! :name => "SHAH MUKUL .K.", :mobile_phone => "98204 29182",:society_id => 23
+Member.create! :name => "CHOPRA RAJINDER", :mobile_phone => "",:society_id => 23
+Member.create! :name => "SUNIL.K.KAPAHI", :mobile_phone => "",:society_id => 23
+Member.create! :name => "DAYA SHANKAR SARJIVE PRASAD CHURASIA", :mobile_phone => "98191 45484",:society_id => 23
+Member.create! :name => "SUNIL KUMAR GARG", :mobile_phone => "98202 94523",:society_id => 23
+Member.create! :name => "MANOJ AGARWAL", :mobile_phone => "98200 53986",:society_id => 23
+Member.create! :name => "PATEL PREMJI GANGJI", :mobile_phone => "093772 82989",:society_id => 23
+Member.create! :name => "VINOD JHAWAR", :mobile_phone => "98200 37803",:society_id => 23
+Member.create! :name => "KUNDAN KALACHAND SHAHANI", :mobile_phone => "",:society_id => 23
+Member.create! :name => "RAJESH PATEL", :mobile_phone => "",:society_id => 23
+Member.create! :name => "RAMNIKLAL TEJSHI SHAH", :mobile_phone => "98205 11994",:society_id => 23
+Member.create! :name => "ASHOK AGARWAL", :mobile_phone => "98212 31190",:email_id=> "amazingaakruti@gmail.com",:society_id => 23
+Member.create! :name => "MURUGESAN M.DEVENDRAN", :mobile_phone => "98672 57775",:society_id => 23
+Member.create! :name => "SURAMANIAN M. MADAR", :mobile_phone => "",:society_id => 23
+Member.create! :name => "CHETAN G. MEHTA", :mobile_phone => "",:society_id => 23
+Member.create! :name => "BHAMBHANI K.SANTOSH", :mobile_phone => "98215 21929",:society_id => 23
+Member.create! :name => "RAVEENA NANWANI", :mobile_phone => "98707 03553",:society_id => 23
+Member.create! :name => "SUNITA TODI", :mobile_phone => "93212 83697",:society_id => 23
+Member.create! :name => "BALRAJ B.VANWARI", :mobile_phone => "98202 84384",:society_id => 23
+Member.create! :name => "RAJESH H AGARWAL", :mobile_phone => "93200 89360",:email_id=> "prachiprints@gmail.com",:society_id => 23
+Member.create! :name => "VEENA MOTWANI", :mobile_phone => "",:society_id => 23
+Member.create! :name => "JAYESH VALJI GOTHI", :mobile_phone => "98204 44154",:email_id=> "jayesh_gothi@yahoo.co.in",:society_id => 23
+Member.create! :name => "SUMEET GARG", :mobile_phone => "9987257257",:society_id => 23
+Member.create! :name => "MONICA MOTWANI", :mobile_phone => "9820122280",:society_id => 23
+Member.create! :name => "PURVSHOTTAM MAHESHWARI", :mobile_phone => "98214 48870",:society_id => 23
+Member.create! :name => "BORENDRA JHAWAR", :mobile_phone => "98200 37803",:society_id => 23
+Member.create! :name => "PREMJI TEJASHI SHAH", :mobile_phone => "98191 33998",:society_id => 23
+Member.create! :name => "VARHUN THAAKUR", :mobile_phone => "98190 93673",:society_id => 23
+Member.create! :name => "VIJAY MOHANLAL GULATI", :mobile_phone => "98206 19977",:society_id => 25
+Member.create! :name => "SYED SHAKEEL HAIDERABODI", :mobile_phone => "",:society_id => 25
+Member.create! :name => "NARENDER M MEHTA", :mobile_phone => "98339 81477",:society_id => 25
+Member.create! :name => "KAILASH MALKANI", :mobile_phone => "98922 55660",:email_id=> "kailashmalkani@hotmail.com",:society_id => 25
+Member.create! :name => "DINESH M SRIVASTAUA", :mobile_phone => "98199 90504",:society_id => 25
+Member.create! :name => "HARISH KHANNA", :mobile_phone => "93240 44665",:society_id => 25
+Member.create! :name => "MOHNISH KHANNA", :mobile_phone => "",:society_id => 25
+Member.create! :name => "HARESH M GHELANI", :mobile_phone => "9821114899",:society_id => 25
+Member.create! :name => "MRS YASMIN DATEDAR", :mobile_phone => "9820052242",:society_id => 25
+Member.create! :name => "VINOD BACHCHAN", :mobile_phone => "9820991386",:society_id => 25
+Member.create! :name => "NEMISH K PAREKH", :mobile_phone => "98190 81985",:email_id=> "nemishp@gmail.com",:society_id => 25
+Member.create! :name => "KASHISH K MALKANI", :mobile_phone => "98922 55660",:society_id => 25
+Member.create! :name => "JITIN MALKANI", :mobile_phone => "97639 64737",:society_id => 25
+Member.create! :name => "PUNEET V GULATI", :mobile_phone => "98920 50999",:society_id => 25
+Member.create! :name => "SUNIL S.CHANDNI", :mobile_phone => "98702 84248",:society_id => 25
+Member.create! :name => "SRICHAND V KATARIA", :mobile_phone => "92244 27773",:society_id => 25
+Member.create! :name => "MAHENDRA S KATARIA", :mobile_phone => "98929 44306",:society_id => 25
+Member.create! :name => "MUKESH MILAWARAM MEHTA", :mobile_phone => "98334 81118",:society_id => 25
+Member.create! :name => "MANISH MEHTA", :mobile_phone => "98334 81118",:society_id => 25
+Member.create! :name => "PRAVIR MALHOTRA", :mobile_phone => "98219 86900",:email_id=> "pravirmalhotra@hotmail.com",:society_id => 25
+Member.create! :name => "NEHA MALHOTRA", :mobile_phone => "98194 16369",:email_id=> "nehamalhotra@hotmail.com",:society_id => 25
+Member.create! :name => "CAPT CLARENCE F GONSALUES", :mobile_phone => "98203 42817",:society_id => 25
+Member.create! :name => "RAJIV MALHOTRA", :mobile_phone => "",:society_id => 25
+Member.create! :name => "HIRO LALWANI", :mobile_phone => "9323105244",:society_id => 25
+Member.create! :name => "PALLAB K.BHATTACHARYA", :mobile_phone => "98210 90996",:email_id=> "pallab.bhattacharya@gmail.com",:society_id => 25
+Member.create! :name => "KHANNA SURINDER .P.", :mobile_phone => "98211 41063",:society_id => 28
+Member.create! :name => "SANTOSH.H.LALWANI", :mobile_phone => "98201 94056",:society_id => 28
+Member.create! :name => "SUDHIR.S.BHATIA", :mobile_phone => "98200 31460",:society_id => 28
+Member.create! :name => "RANBIR SINGH BAKSHI", :mobile_phone => "",:society_id => 28
+Member.create! :name => "SANDEEP BAKSHI", :mobile_phone => "98200 12954",:society_id => 28
+Member.create! :name => "YASHPAL BAJAJ", :mobile_phone => "",:society_id => 28
+Member.create! :name => "NITIKA THAPAR", :mobile_phone => "",:society_id => 28
+Member.create! :name => "VIJAYA MALHOTRA", :mobile_phone => "98203 99926",:society_id => 28
+Member.create! :name => "ROMI .S.KHANNA", :mobile_phone => "98211 15364",:society_id => 28
+Member.create! :name => "RISHI .S.KHANNA", :mobile_phone => "/98211 15364",:society_id => 28
+Member.create! :name => "JOBIN MUSTAQ KHAN", :mobile_phone => "98206 61375",:society_id => 28
+Member.create! :name => "SANGEETA SETH BHATIA", :mobile_phone => "93225 07673",:society_id => 28
+Member.create! :name => "MOHAMMED ABDUL HAQUO", :mobile_phone => "98195 52445",:society_id => 28
+Member.create! :name => "GANAPATI SUBRAMANI", :mobile_phone => "98201 83746",:society_id => 28
+Member.create! :name => "LLOYD B D'COSTA", :mobile_phone => "98205 67775",:society_id => 28
+Member.create! :name => "CHIRAG V. SHARAFF", :mobile_phone => "",:society_id => 28
+Member.create! :name => "HARSHAD NANCHAND KHARA", :mobile_phone => "98216 92131",:society_id => 28
+Member.create! :name => "VIVEK R MIDHA", :mobile_phone => "98210 26475",:society_id => 28
+Member.create! :name => "GAUTAM .D.THAKUR", :mobile_phone => "",:society_id => 36
+Member.create! :name => "BALRAJ K. MALHOTRA", :mobile_phone => "",:society_id => 36
+Member.create! :name => "S.S. MAJUMDAR", :mobile_phone => "",:society_id => 36
+Member.create! :name => "RATAN KUMAR GHOSH", :mobile_phone => "98203 43813",:email_id=> "ghoshratan@gmail.com",:society_id => 36
+Member.create! :name => "KANWAL SACHDEV", :mobile_phone => "99870 25921",:society_id => 36
+Member.create! :name => "DAMODAR SRIPAD BORKAR", :mobile_phone => "",:society_id => 36
+Member.create! :name => "PINAKI SHANKAR NAY", :mobile_phone => "",:society_id => 36
+Member.create! :name => "CAPT HASAN QEZILBASH", :mobile_phone => "98203 17191",:society_id => 36
+Member.create! :name => "DORS MEHRA", :mobile_phone => "98203 39066",:society_id => 36
+Member.create! :name => "KETKI SACHDEV", :mobile_phone => "9819714355",:society_id => 36
+Member.create! :name => "FARAHNAZ DARAIUS WADIA", :mobile_phone => "98199 12158",:society_id => 36
+Member.create! :name => "FAIZ QEZILBASH", :mobile_phone => "",:society_id => 36
+Member.create! :name => "FEROZ QEZILBASH", :mobile_phone => "",:society_id => 36
+Member.create! :name => "DR.NARESH KHANNA", :mobile_phone => "98212 19953",:email_id=> "khanna.naresh2008@gmail.com",:society_id => 13
+Member.create! :name => "KRISHNA RAJA GILIYAL", :mobile_phone => "",:society_id => 13
+Member.create! :name => "MADHU J. AGRWAL", :mobile_phone => "98202 22364",:society_id => 13
+Member.create! :name => "NARINDER SINGH SACHDEV", :mobile_phone => "98202 98635",:society_id => 13
+Member.create! :name => "AJAY K. ROHIRA", :mobile_phone => "",:society_id => 13
+Member.create! :name => "DR.SUNDEEP .S.DHARADHAR", :mobile_phone => "98200 31817",:society_id => 13
+Member.create! :name => "NAVNIT .G.KANANI", :mobile_phone => "98205 56229",:society_id => 13
+Member.create! :name => "NAGULA.G.GANGADHAR", :mobile_phone => "98200 11576",:email_id=> "n.prasad26gmail.com",:society_id => 13
+Member.create! :name => "NAGULA.G.HUNMANTHU", :mobile_phone => "98201 37086",:society_id => 13
+Member.create! :name => "PREMNATH .N.SINGH", :mobile_phone => "98197 95594",:society_id => 13
+Member.create! :name => "ASHOK .D. MEHTA", :mobile_phone => "98200 54907",:society_id => 13
+Member.create! :name => "AMIT BAKSHI", :mobile_phone => "98210 27137",:society_id => 13
+Member.create! :name => "DARSHAN SINGH SACHDEV", :mobile_phone => "98202 98635",:society_id => 13
+Member.create! :name => "JASBIR SINGH ANAND", :mobile_phone => "98202 79488",:society_id => 13
+Member.create! :name => "NIRAV MEHTA", :mobile_phone => "9322287227",:society_id => 13
+Member.create! :name => "JYOTI P DIALANI", :mobile_phone => "9819020059",:society_id => 13
+Member.create! :name => "PRATIK KANANI", :mobile_phone => "9920103441",:society_id => 13
+Member.create! :name => "RAVISH KAWANI", :mobile_phone => "9920199559",:society_id => 13
  

@@ -27,7 +27,7 @@
     <div class="span12">
     <!--Body content-->
 	    <div id="recinfoArea"></div>
-	    <div id="grid_membership" style="width:100%; height:540px; background-color:white;overflow:hidden"></div>
+	    <div id="grid_membership" style="margin-top: -10px; width:100%; height:425px; background-color:white;overflow:hidden"></div>
 	    <div id="pagingArea"></div>
 
 		<div id="grid_membership_sub" style="width:317px; height:350px; background-color:white;"></div>
@@ -80,7 +80,7 @@
 		grid.enableValidation(true);
 		grid.enableMultiline(false);
 		grid.setSkin("sbdark");
-		grid.enablePaging(true, 20, 10, "pagingArea", true, "recinfoArea");
+		grid.enablePaging(true, 18, 25, "pagingArea", true, "recinfoArea");
 		grid.setPagingSkin("bricks");
 		grid.setSubGrid(memgrid, 2, 0);
 		grid.setSubGrid(unitgrid, 1, 0);

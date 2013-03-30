@@ -14,7 +14,7 @@
               <a href="layout.html">Box Grid</a>
           </div>
       </li>	                      
-      <li><a href="typhography.html">
+      <li><a href="#">
           <img src="/images/icons/grey/apartment_building.png">
           <span>Society Master</span>
           <span class="icon">&nbsp;</span>
@@ -32,13 +32,9 @@
               <li><a href="#">Others
                   <span class="icon">&nbsp;</span></a>	
                   <ul>
-                      <li><a href="typhography_other.html">
-                          <img src="/images/icons/grey/sign_post.png">Tooltips</a></li>
-                      <li><a href="typhography_other.html">
-                          <img src="/images/icons/grey/strategy_2.png">Popovers</a></li>
-                      <li><a href="typhography_other.html">
+                      <li><a href="">
                           <img src="/images/icons/grey/iChat.png">Alerts</a></li>
-                      <li><a href="typhography_other.html">
+                      <li><a href="">
                           <img src="/images/icons/grey/loading_bar.png">Progress Bars</a></li>
                   </ul>
               </li>
@@ -50,11 +46,11 @@
           <span>Billing</span>
           <span class="icon">&nbsp;</span></a>
           <div class="accordion">
-            <a href="#"><%= link_to "Bill Setup", bill_setups_path %></a>
-		    <a href="#"><%= link_to "Bill Header", bill_headers_path %></a>
-		    <a href="#"><%= link_to "Bills", view_bills_path %></a>
-		    <a href="#"><%= link_to "Bill Verification", bill_headers_path %></a>
-		    <a href="#"><%= link_to "Bill Send", bill_headers_path %></a>
+            <a><%= link_to "Bill Setup", bill_setups_path %></a>
+		    <a><%= link_to "Bill Header", bill_headers_path %></a>
+		    <a><%= link_to "Bills", view_bills_path %></a>
+		    <a><%= link_to "Bill Verification", bill_headers_path %></a>
+		    <a><%= link_to "Bill Send", bill_headers_path %></a>
           </div>	
       </li>
       <li><a href="#">
@@ -62,12 +58,12 @@
           <span>Meetings</span>
           <span class="icon">&nbsp;</span></a>
           <div class="accordion">
-		    <a href="#"><%= link_to "Committe Members", meetings_path %></a>
-		    <a href="#"><%= link_to "Meetings", meetings_path %></a>
-		    <a href="#"><%= link_to "Correspondence", meetings_path %></a>
+		    <a><%= link_to "Committe Members", meetings_path %></a>
+		    <a><%= link_to "Meetings", meetings_path %></a>
+		    <a><%= link_to "Correspondence", meetings_path %></a>
           </div>	
       </li>	
-      <li><a href="calendar.html">
+      <li><a href="#">
           <img src="/images/icons/grey/Headphones.png">
           <span>Music Video</span></a>
           <span class="icon">&nbsp;</span></a>
@@ -81,14 +77,16 @@
 	        <% end %>
           </div>
       </li>	
-      <li><a href="">
+      <li><a href="#">
           <img src="/images/icons/grey/Images.png">
-          <span>Image Gallery</span></a>
+          <span>Image Gallery</span>
+          <span class="icon">&nbsp;</span></a>
+          <div class="accordion">
              <%= link_to("Gallery",  "/staff_photos" ) %>
-
+          </div>
       </li>	
       <li><a href="#">
-         <%= link_to (image_tag("/images/icons/grey/Exit.png", :alt => "Logout", :mouseover => "Sign out")), destroy_user_session_path, :method => "delete" %>
+         <%= link_to (image_tag("/images/icons/grey/Exit.png")), destroy_user_session_path, :method => "delete" %>
           </a>
       </li>	
   </ul>

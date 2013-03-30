@@ -95,6 +95,7 @@
 				<li><%= link_to (current_user.society_name), societies_path, :class => "navbar-link", :placeholder => 'Site controllar' %></li>
 			    <li><%= link_to (current_user.name), users_path %></li>
 			    <li><%= link_to (current_user.email), users_path %></li>
+			    <li><%= link_to ('Logout'), destroy_user_session_path, :method => "delete" %></li>
 			  <% else %>
 				<li><%= link_to('Login', new_user_session_path)  %></li>
 				<li><%= link_to('Sign up', new_user_registration_path)  %></li>
