@@ -1,93 +1,83 @@
 <% if user_signed_in? %></li>
-  <ul class="clearfix">
-      <li><a class="round_top" href="http://localhost:3000/">
-          <img src="/images/icons/grey/Laptop.png">
-          <span>Dashboard</span></a>
-      </li>
-      <li><a href="http://localhost:3000/users">
-          <img src="/images/icons/grey/admin_user_2.png">
-          <span>Admin</span>
-          <span class="icon">&nbsp;</span></a>
-          <div class="accordion">
-              <a href="http://localhost:3000/users">Users</a>
-              <a href="portlets.html">Portlets</a>
-              <a href="layout.html">Box Grid</a>
-          </div>
-      </li>	                      
-      <li><a href="#">
-          <img src="/images/icons/grey/apartment_building.png">
-          <span>Society Master</span>
-          <span class="icon">&nbsp;</span>
-          </a>
-          <ul>
-		    	<li><a href="#"><%= link_to "Master", societies_path %></a></li>
-			    <li><a href="#"><%= link_to "Member", view_members_path %></a></li>
-			    <li><a href="#"><%= link_to "Unit", units_path %></a></li>
-			    <li><a href="#"><%= link_to "Unit Type", unit_types_path %></a></li>
-			    <li class="divider"></li>
-			    <li><a href="#"><%= link_to "Membership", memberships_path %></a></li>
-	   		    <li class="divider"></li>
-			    <li><a href="#"><%= link_to "Staff", staffs_path %></a></li>
-			    <li><a href="#"><%= link_to "Vendor", vendors_path %></a></li>
-              <li><a href="#">Others
-                  <span class="icon">&nbsp;</span></a>	
-                  <ul>
-                      <li><a href="">
-                          <img src="/images/icons/grey/iChat.png">Alerts</a></li>
-                      <li><a href="">
-                          <img src="/images/icons/grey/loading_bar.png">Progress Bars</a></li>
-                  </ul>
-              </li>
-             
-          </ul>
-      </li>	
-      <li><a href="#">
-          <img src="/images/icons/grey/create_write.png">
-          <span>Billing</span>
-          <span class="icon">&nbsp;</span></a>
-          <div class="accordion">
-            <a><%= link_to "Bill Setup", bill_setups_path %></a>
-		    <a><%= link_to "Bill Header", bill_headers_path %></a>
-		    <a><%= link_to "Bills", view_bills_path %></a>
-		    <a><%= link_to "Bill Verification", bill_headers_path %></a>
-		    <a><%= link_to "Bill Send", bill_headers_path %></a>
-          </div>	
-      </li>
-      <li><a href="#">
-          <img src="/images/icons/grey/day_calendar.png">
-          <span>Meetings</span>
-          <span class="icon">&nbsp;</span></a>
-          <div class="accordion">
-		    <a><%= link_to "Committe Members", meetings_path %></a>
-		    <a><%= link_to "Meetings", meetings_path %></a>
-		    <a><%= link_to "Correspondence", meetings_path %></a>
-          </div>	
-      </li>	
-      <li><a href="#">
-          <img src="/images/icons/grey/Headphones.png">
-          <span>Music Video</span></a>
-          <span class="icon">&nbsp;</span></a>
-          <div class="accordion">
-            <%= link_to 'You Tube', videos_path %>
-	        <%= link_to('Stats', '/stats') %>
-	        <%= link_to('Genres', '/genres') %>  
-	        <% if user_signed_in? %>
-	          <%= link_to("Gallery", '/genres') %>
-	          <%= link_to('My Playlists', "/#{current_user.name}/playlists") %>
-	        <% end %>
-          </div>
-      </li>	
-      <li><a href="#">
-          <img src="/images/icons/grey/Images.png">
-          <span>Image Gallery</span>
-          <span class="icon">&nbsp;</span></a>
-          <div class="accordion">
-             <%= link_to("Gallery",  "/staff_photos" ) %>
-          </div>
-      </li>	
-      <li><a href="#">
-         <%= link_to (image_tag("/images/icons/grey/Exit.png")), destroy_user_session_path, :method => "delete" %>
-          </a>
-      </li>	
-  </ul>
+	<ul class="clearfix">
+		<li><a class="round_top" href="http://localhost:3000/">
+			<img src="/images/icons/grey/Laptop.png">
+			<span>Dashboard</span></a>
+		</li>
+		<li><a href="http://localhost:3000/users">
+			<img src="/images/icons/grey/admin_user_2.png">
+			<span>Admin</span>
+			<span class="icon">&nbsp;</span></a>
+			<div class="accordion">
+				<a href="http://localhost:3000/users">Users</a>
+			</div>
+		</li>
+		<li><a><img src="/images/icons/grey/apartment_building.png">
+			<span>First time setup</span>
+			<span class="icon">&nbsp;</span></a>
+			<ul>
+				<li><a><%= link_to "Master", societies_path %></a></li>
+				<li><a><%= link_to "Unit Type", unit_types_path %></a></li>
+				<li><a><%= link_to "Unit", units_path %></a></li>
+				<li><a><%= link_to "Bill Setup", bill_setups_path %></a></li>
+			</ul>
+		</li>	
+		<li><a><img src="/images/icons/grey/apartment_building.png">
+			<span>Need based setup</span>
+			<span class="icon">&nbsp;</span></a>
+			<ul>
+				<li><a><%= link_to "Member", view_members_path %></a></li>
+				<li><a><%= link_to "Membership", memberships_path %></a></li>
+				<li class="divider"></li>
+				<li><a><%= link_to "Staff", staffs_path %></a></li>
+				<li><a><%= link_to "Vendor", vendors_path %></a></li>
+			</ul>
+		</li>	
+		<li><a><img src="/images/icons/grey/create_write.png">
+			<span>Billing</span>
+			<span class="icon">&nbsp;</span></a>
+			<div class="accordion">
+				<a><%= link_to "Bill Header", bill_headers_path %></a>
+				<a><%= link_to "Bills", view_bills_path %></a>
+				<a><%= link_to "Bill Verification", bill_headers_path %></a>
+				<a><%= link_to "Bill Send", bill_headers_path %></a>
+			</div>	
+		</li>
+		<li><a href="#">
+			<img src="/images/icons/grey/day_calendar.png">
+			<span>Meetings</span>
+			<span class="icon">&nbsp;</span></a>
+			<div class="accordion">
+				<a><%= link_to "Committe Members", meetings_path %></a>
+				<a><%= link_to "Meetings", meetings_path %></a>
+				<a><%= link_to "Correspondence", meetings_path %></a>
+			</div>	
+		</li>	
+		<li><a href="#">
+			<img src="/images/icons/grey/Headphones.png">
+			<span>Music Video</span></a>
+			<span class="icon">&nbsp;</span></a>
+			<div class="accordion">
+				<%= link_to 'You Tube', videos_path %>
+				<%= link_to('Stats', '/stats') %>
+				<%= link_to('Genres', '/genres') %>  
+			<% if user_signed_in? %>
+				<%= link_to("Gallery", '/genres') %>
+				<%= link_to('My Playlists', "/#{current_user.name}/playlists") %>
+			<% end %>
+			</div>
+		</li>	
+		<li><a href="#">
+			<img src="/images/icons/grey/Images.png">
+			<span>Image Gallery</span>
+			<span class="icon">&nbsp;</span></a>
+			<div class="accordion">
+				<%= link_to("Gallery", "/staff_photos" ) %>
+			</div>
+		</li>	
+		<li><a href="#">
+				<%= link_to (image_tag("/images/icons/grey/Exit.png")), destroy_user_session_path, :method => "delete" %>
+			</a>
+		</li>	
+	</ul>
 <% end %>

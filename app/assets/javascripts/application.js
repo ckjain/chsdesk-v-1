@@ -147,3 +147,35 @@ $(function() {
 		}
 	});
 });
+
+$(function() {
+  $("#bill_header_bill_date").datepicker({ dateFormat: "dd-mm-yy", yearRange: "-00:+01"});
+});
+
+$(function() {
+  $("#bill_header_to_date").datepicker({ dateFormat: "dd-mm-yy", yearRange: "-00:+01", defaultDate: +4});
+});
+
+$(function() {
+  $("#bill_header_from_date").datepicker({ dateFormat: "dd-mm-yy", yearRange: "-00:+01", defaultDate: +4});
+});
+
+$(function() {
+	$( "#bill_header_from_date" ).datepicker({
+		changeMonth: true,
+		gotoCurrent: true,
+		showCurrentAtPos: 0,
+		numberOfMonths: +2,
+		onSelect: function( selectedDate ) {
+			$( "#bill_header_to_date" ).datepicker( "option", "minDate", selectedDate );
+		}
+	});
+	$( "#bill_header_to_date" ).datepicker({
+		defaultDate: "+1",
+		changeMonth: true,
+		numberOfMonths: 2,
+		onSelect: function( selectedDate ) {
+			$( "#bill_header_from_date" ).datepicker( "option", "maxDate", selectedDate );
+		}
+	});
+});

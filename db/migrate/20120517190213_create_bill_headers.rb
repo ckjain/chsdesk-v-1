@@ -6,7 +6,6 @@ class CreateBillHeaders < ActiveRecord::Migration
       t.date :to_date
       t.string :bill_cycle
       t.integer :grace_period
-      t.integer :days_to_discount
       t.integer :bill_number_start
       t.integer :bill_number_end
       t.string :bill_number_format
