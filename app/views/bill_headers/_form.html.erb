@@ -1,45 +1,78 @@
 
 <%= form_for(@bill_header) do |f| %>
-  <% if @bill_header.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@bill_header.errors.count, "error") %> prohibited this bill header from being saved:</h2>
-      <ul>
-	      <% @bill_header.errors.full_messages.each do |msg| %>
-	        <li><%= msg %></li>
-	      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-	<label class="control-label" for="focusedInput">Bill Date</label>
-	<div class="controls"><%= f.text_field :bill_date %></div>
-	<label class="control-label" for="focusedInput">From</label>
-	<div class="controls"><%= f.text_field :from_date %></div>
-	<label class="control-label" for="focusedInput">To</label>
-	<div class="controls"><%= f.text_field :to_date %></div>
-	<label class="control-label" for="focusedInput">Bill Cycle (2 for bi-monthly)</label>
-	<div class="controls"><%= f.text_field :bill_cycle %></div>
-	<label class="control-label" for="focusedInput">Grace Period (number of Days)</label>
-	<div class="controls"><%= f.number_field :grace_period %></div>
-	<label class="control-label" for="focusedInput">Discount Period (number of Days)</label>
-	<div class="controls"><%= f.number_field :days_to_discount %></div>
-	<label class="control-label" for="focusedInput">Starting Bill number (last bill number + 1)</label>
-	<div class="controls"><%= f.number_field :bill_number_start %></div>
-	<label class="control-label" for="focusedInput">Total number of bills (number of units)</label>
-	<div class="controls"><%= f.number_field :bill_number_end %></div>
-	<label class="control-label" for="focusedInput">Bill number Identifier(Society initial)</label>
-	<div class="controls"><%= f.text_field :bill_number_format %></div>
- 
-<ul>
-      <div class="controls">
-        <label class="checkbox uniform">
-		  <%= f.check_box :locked_period %>
-		  <%= f.label :locked_period, "Bill Finalised?" %>
-        </label>
-      </div>
-</ul>
- 	<div class="form-actions">
-		<%= f.submit 'Generate bills', :class => 'btn btn-primary'  %>
-		<%= link_to 'Cancel', bill_headers_path, :class => 'btn' %>
-      </div>
+	<% if @bill_header.errors.any? %>
+		<div id="error_explanation">
+				<h2><%= pluralize(@bill_header.errors.count, "error") %> prohibited this bill header from being saved:</h2>
+			<ul>
+				<% @bill_header.errors.full_messages.each do |msg| %>
+				<li><%= msg %></li>
+				<% end %>
+			</ul>
+		</div>
+	<% end %>
+<div class="row-fluid">
+		<div class="span12">
+			<ul class="breadcrumb">
+				<li><a href="http://localhost:3000">Dashboard</a> <span class="divider">/</span></li>                                      
+				<li><a href="http://localhost:3000/bill_headers">Bill Headers</a> <span class="divider">/</span></li>                                      
+				<li class="active"><%= controller.action_name.capitalize %> </li>
+				<li class="pull-right"> </li>
+			</ul>
+		</div><!--/span-->
+</div><!--/row-->
+<div class="row-fluid">
+	<div class="span6">
+		<div class="box grad_colour_dark_blue">
+			<h2 class="box_head round_top">Bill Header</h2>
+			<a href="#" class="settings box_button_3" title="config">&nbsp;</a>
+			<a href="#" class="toggle box_button_2" title="toggle">&nbsp;</a>
+			<a href="#" class="destroy box_button_1" title="close">&nbsp;</a>
+			<div class="toggle_container">					
+				<div class="block box_content round_bottom padding_20">
+					<label class="control-label" for="focusedInput">Bill Date</label>
+					<div class="controls"><%= f.text_field :bill_date %></div>
+					<label class="control-label" for="focusedInput">From</label>
+					<div class="controls"><%= f.text_field :from_date %></div>
+					<label class="control-label" for="focusedInput">To</label>
+					<div class="controls"><%= f.text_field :to_date %></div>
+					<label class="control-label" for="focusedInput">Bill Cycle (2 for bi-monthly)</label>
+					<div class="controls"><%= f.text_field :bill_cycle %></div>
+					<label class="control-label" for="focusedInput">Grace Period (number of Days)</label>
+					<div class="controls"><%= f.number_field :grace_period %></div>
+					<label class="control-label" for="focusedInput">Discount Period (number of Days)</label>
+					<div class="controls"><%= f.number_field :days_to_discount %></div>
+				</div>
+			</div>
+		</div>
+	</div><!--/span-->
+	<div class="span6">
+		<div class="box grad_colour_dark_green">
+			<h2 class="box_head round_top">Bill Header</h2>
+			<a href="#" class="settings box_button_3" title="config">&nbsp;</a>
+			<a href="#" class="toggle box_button_2" title="toggle">&nbsp;</a>
+			<a href="#" class="destroy box_button_1" title="close">&nbsp;</a>
+			<div class="toggle_container">					
+				<div class="block box_content round_bottom padding_20">
+				<label class="control-label" for="focusedInput">Starting Bill number (last bill number + 1)</label>
+				<div class="controls"><%= f.number_field :bill_number_start %></div>
+				<label class="control-label" for="focusedInput">Total number of bills (number of units)</label>
+				<div class="controls"><%= f.number_field :bill_number_end %></div>
+				<label class="control-label" for="focusedInput">Bill number Identifier(Society initial)</label>
+				<div class="controls"><%= f.text_field :bill_number_format %></div>
+			<ul>
+				<div class="controls">
+					<label class="checkbox uniform">
+					<%= f.check_box :locked_period %>
+					<%= f.label :locked_period, "Bill Finalised?" %>
+					</label>
+				</div>
+			</ul>
+				<div class="form-actions">
+					<%= f.submit 'Generate bills', :class => 'btn btn-primary'  %>
+					<%= link_to 'Cancel', bill_headers_path, :class => 'btn' %>
+				</div>
+					</div>
+			</div>
+		</div>
+	</div><!--/span-->
 <% end %>
