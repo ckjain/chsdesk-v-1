@@ -9,12 +9,12 @@ class EventsController < ApplicationController
     # I'll eventually do that to make the demo a little cleaner.
 
     if current_user.has_role? :super_admin
-      @events = Event.order("title").scoped.paginate :page => params[:page], :per_page => 10
+      @events = Event.order("starts_at DESC").scoped.paginate :page => params[:page], :per_page => 5
       @events = @events.after(params['start']) if (params['start'])
       @events = @events.before(params['end']) if (params['end'])
       @event = Event.find(params[:event_id]) if params[:event_id]
     else
-      @events = Event.order("title").scoped.where("society_id like ?", current_user.society_id).paginate :page => params[:page], :per_page => 10
+      @events = Event.order("starts_at DESC").scoped.where("society_id like ?", current_user.society_id).paginate :page => params[:page], :per_page => 5
       @events = @events.after(params['start']) if (params['start'])
       @events = @events.before(params['end']) if (params['end'])
       @event = Event.where("society_id like ?", current_user.society_id).find(params[:event_id]) if params[:event_id]

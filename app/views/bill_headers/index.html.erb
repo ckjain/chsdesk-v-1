@@ -42,9 +42,9 @@
 			<tbody>
 				<% @bill_headers.each do |bill_header| %>
 				<tr>
-					<td><%= link_to h(bill_header.bill_date), bill_header_url(bill_header) %></td>
-					<td><%= bill_header.from_date %></td>
-					<td><%= bill_header.to_date %></td>
+					<td><%= link_to h(l(bill_header.bill_date, :format => :long)), bill_header_url(bill_header) %></td>
+					<td><%= l(bill_header.from_date, :format => :long) %></td>
+					<td><%= l(bill_header.to_date, :format => :long) %></td>
 					<td><%= bill_header.bill_cycle %></td>
 					<td><%= bill_header.grace_period %></td>
 					<td><%= bill_header.bill_number_start %></td>

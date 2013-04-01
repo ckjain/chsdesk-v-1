@@ -7,11 +7,11 @@ class MeetingsController < ApplicationController
 
   def index
     if current_user.has_role? :super_admin
-      @meetings = Meeting.order("id").paginate :page => params[:page], :per_page => 10
+      @meetings = Meeting.order("meeting_date DESC").paginate :page => params[:page], :per_page => 10
       @meeting = Meeting.find(params[:meeting_id]) if params[:meeting_id]
 
     else
-      @meetings = Meeting.order("id").where("society_id like ?", current_user.society_id).paginate :page => params[:page], :per_page => 10     
+      @meetings = Meeting.order("meeting_date DESC").where("society_id like ?", current_user.society_id).paginate :page => params[:page], :per_page => 10     
       @meeting = Meeting.where("society_id like ?", current_user.society_id).find(params[:meeting_id]) if params[:meeting_id]
     end
 

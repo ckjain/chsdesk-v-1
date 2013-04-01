@@ -29,7 +29,7 @@
 					<label class="control-label" for="focusedInput">Bill Finalised? : <%= @bill_header.locked_period %></label>
 				</div>
 			 	<div class="form-actions">
-					<%= link_to ("/assets/Overlay-edit.png")), edit_bill_header_path(@bill_header), :class => 'btn' %>
+					<%= link_to ( image_tag("/assets/Overlay-edit.png")+' '+'Edit'), edit_bill_header_path(@bill_header), :class => 'btn' %>
 					<%= link_to 'Back to Bill header', bill_headers_path, :class => 'btn' %>
 				</div>
 			</div>
