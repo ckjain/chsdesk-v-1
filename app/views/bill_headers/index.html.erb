@@ -26,7 +26,6 @@
 			    <th>To</th>
 			    <th>Bill cycle</th>
 			    <th>Grace period</th>
-			    <th>Discount upto</th>
 			    <th>Start Bill no</th>
 			    <th>End Bill no</th>
 			    <th>Bill format</th>
@@ -48,15 +47,13 @@
 					<td><%= bill_header.to_date %></td>
 					<td><%= bill_header.bill_cycle %></td>
 					<td><%= bill_header.grace_period %></td>
-					<td><%= bill_header.days_to_discount %></td>
 					<td><%= bill_header.bill_number_start %></td>
 					<td><%= bill_header.bill_number_end %></td>
 					<td><%= bill_header.bill_number_format %></td>
 					<td><%= bill_header.locked_period %></td>
 					<td><%= bill_header.society_id %></td>
-					<td><%= link_to 'Show', bill_header %></td>
-					<td><%= link_to 'Edit', edit_bill_header_path(bill_header) %></td>
-					<td><%= link_to 'Destroy', bill_header, :confirm => 'Are you sure?', :method => :delete %></td>
+					<td><%= link_to ( image_tag("/assets/Overlay-edit.png")), edit_bill_header_path(bill_header), :class => 'btn' %></td>
+					<td><%= link_to ( image_tag("/assets/Overlay-cancel.png")), bill_header, :confirm => 'Are you sure?', :method => :delete, :class => 'btn' %></td>
 			    </tr>
 			  <% end %>
 			 </tbody>
@@ -64,7 +61,7 @@
 <br>
 </br>
 <%= will_paginate @bill_headers %>
-<%= link_to 'New Bill header', new_bill_header_path %>
+<%= link_to 'New Bill header', new_bill_header_path ,:class => 'btn btn-link' %>
                 </div>                                
             </div>
         </div>
