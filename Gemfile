@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 gem 'rails', '3.2.5'
-gem 'mysql'
+gem 'mysql', '~> 2.8.1'
 gem 'sqlite3'
 gem 'pg'
 group :assets do
@@ -30,6 +30,8 @@ gem "google_visualr", ">= 2.1.2"
 #gem "jquery-datatables-rails", ">= 1.10.0"
 gem "bootstrap-sass", ">= 2.0.3"
 gem "simple_form"
+gem 'client_side_validations'
+#gem 'client_side_validations-simple_form'
 #---end---neccessary for invite- part of prelaunch-----
 
 gem 'faker', :group => [:development, :test]

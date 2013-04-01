@@ -8,6 +8,12 @@ class Meeting < ActiveRecord::Base
   
   belongs_to :society
 
+  validates :meeting_date, :presence => true
+  validates :issue_date, :presence => true
+#  validates :meeting_place, :presence => true
+  validates :meeting_type_id, :presence => true
+
+  default_scope :order => 'meeting_date DESC'
 
   accepts_nested_attributes_for :agendas, allow_destroy: true
 #--------token-input------------------

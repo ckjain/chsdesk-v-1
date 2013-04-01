@@ -4,6 +4,8 @@ class Agenda < ActiveRecord::Base
   has_many :resolutions
   belongs_to :meeting
 
+#  validates :meeting_agendas, :presence => false
+
   accepts_nested_attributes_for :resolutions, allow_destroy: true
 
 end

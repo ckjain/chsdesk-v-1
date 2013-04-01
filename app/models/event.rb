@@ -3,7 +3,10 @@ class Event < ActiveRecord::Base
 
   validates :starts_at, :presence => true
   validates :ends_at, :presence => true
- 
+  validates :title, :presence => true
+
+  belongs_to :society
+
   scope :before, lambda {|end_time| {:conditions => ["ends_at < ?", Event.format_date(end_time)] }}
   scope :after, lambda {|start_time| {:conditions => ["starts_at > ?", Event.format_date(start_time)] }}
   

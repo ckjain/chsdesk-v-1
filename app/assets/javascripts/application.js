@@ -23,6 +23,7 @@
 //= require fullcalendar
 //= require jquery.pjax
 //= require bootstrap
+//= require rails.validations
 //= require_tree .
 $('document').ready(function() {
   
@@ -146,15 +147,6 @@ $(function() {
 			$( "#event_starts_at" ).datetimepicker( "option", "maxDate", selectedDate );
 		}
 	});
-});
-
-
-$(function() {
-  $("#bill_header_to_date").datepicker({ dateFormat: "dd-mm-yy", yearRange: "-00:+01", appendText: "(dd-mm-yy)" });
-});
-
-$(function() {
-  $("#bill_header_from_date").datepicker({ dateFormat: "dd-mm-yy", yearRange: "-00:+01", appendText: "(dd-mm-yy)" });
 });
 
 $(function() {
