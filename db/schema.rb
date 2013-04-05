@@ -310,7 +310,7 @@ ActiveRecord::Schema.define(:version => 20120626032812) do
     t.string   "vendor_email"
     t.string   "service_type"
     t.string   "stax_reg_number"
-    t.decimal  "service_tax_rate",    :precision => 10, :scale => 0
+    t.decimal  "service_tax_rate"
     t.string   "pan_number"
     t.boolean  "is_recurring"
     t.string   "vat_number"
@@ -322,8 +322,8 @@ ActiveRecord::Schema.define(:version => 20120626032812) do
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
     t.integer  "society_id"
-    t.datetime "created_at",                                         :null => false
-    t.datetime "updated_at",                                         :null => false
+    t.datetime "created_at",          :null => false
+    t.datetime "updated_at",          :null => false
   end
 
 end

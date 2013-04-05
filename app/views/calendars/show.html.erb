@@ -15,11 +15,12 @@
 			<a href="#" class="destroy box_button_1" title="close">&nbsp;</a>
 			<div class="toggle_container">					
 				<div class="block box_content round_bottom padding_20">
-					<p>
-					<%= link_to 'New event', new_event_path,:class => 'btn btn-large btn-link' %>
-					</p>
-					
+				<% if user_signed_in? %><p>
+					<% if current_user.has_role? :super_admin or current_user.has_role? :society_admin %>
+						<%= link_to 'New event', new_event_path,:class => 'btn btn-large btn-link' %>
+					<% end %></p>
 					<div id="calendar"></div>
+				<% end %>
 				</div>
 			</div>
 		</div>

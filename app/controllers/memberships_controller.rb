@@ -10,7 +10,7 @@ class MembershipsController < ApplicationController
     if current_user.has_role? :super_admin
       @memberships = Membership.all
     else
-      @memberships = Membership.where("society_id like ?", current_user.society_id)
+      @memberships = Membership.where("society_id = ?", current_user.society_id)
     end
   end
   

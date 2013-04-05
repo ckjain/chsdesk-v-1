@@ -20,7 +20,7 @@ class BillSetupsController < ApplicationController
       if current_user.has_role? :super_admin
         @bill_setups = BillSetup.all
       else
-        @bill_setups = BillSetup.where("society_id like ?", current_user.society_id)
+        @bill_setups = BillSetup.where("society_id = ?", current_user.society_id)
       end
   end
   

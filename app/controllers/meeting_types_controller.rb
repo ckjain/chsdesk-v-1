@@ -2,7 +2,7 @@ class MeetingTypesController < ApplicationController
   # GET /meeting_types
   # GET /meeting_types.json
   def index
-    @meeting_types = MeetingType.order(:name).where("name like ?", "%#{params[:term]}%")
+    @meeting_types = MeetingType.order(:name).where("name = ?", "%#{params[:term]}%")
     render json: @meeting_types.map(&:name)
   end
 
@@ -20,7 +20,7 @@ class MeetingTypesController < ApplicationController
   end
 
   # GET /meeting_types/1/edit
-  def edit
+  def editlike
     @meeting_type = MeetingType.find(params[:id])
   end
 

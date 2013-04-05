@@ -11,8 +11,8 @@ class BillHeadersController < ApplicationController
       @bill_header = BillHeader.find(params[:bill_header_id]) if params[:bill_header_id]
 
     else
-      @bill_headers = BillHeader.order("id").where("society_id like ?", current_user.society_id).paginate :page => params[:page], :per_page => 10     
-      @bill_header = BillHeader.where("society_id like ?", current_user.society_id).find(params[:bill_header_id]) if params[:bill_header_id]
+      @bill_headers = BillHeader.order("id").where("society_id = ?", current_user.society_id).paginate :page => params[:page], :per_page => 10     
+      @bill_header = BillHeader.where("society_id = ?", current_user.society_id).find(params[:bill_header_id]) if params[:bill_header_id]
     end
 
     respond_to do |format|

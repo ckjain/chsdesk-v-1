@@ -10,7 +10,7 @@ class UnitTypesController < ApplicationController
     if current_user.has_role? :super_admin
       @unit_types = UnitType.all
     else
-    @unit_types = UnitType.where("society_id like ?", current_user.society_id)      
+    @unit_types = UnitType.where("society_id = ?", current_user.society_id)      
     end
   end
   

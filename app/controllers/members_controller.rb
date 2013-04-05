@@ -8,7 +8,7 @@ class MembersController < ApplicationController
     if current_user.has_role? :super_admin
       @members = Member.order(:name)
     else
-      @members = Member.where("society_id like ?", current_user.society_id).order(:name)      
+      @members = Member.where("society_id = ?", current_user.society_id).order(:name)      
     end
 
     respond_to do |format|
@@ -52,7 +52,7 @@ class MembersController < ApplicationController
     if current_user.has_role? :super_admin
       @members = Member.all
     else
-      @members = Member.where("society_id like ?", current_user.society_id)      
+      @members = Member.where("society_id = ?", current_user.society_id)      
     end
   end
   

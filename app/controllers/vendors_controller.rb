@@ -8,7 +8,7 @@ class VendorsController < ApplicationController
     if current_user.has_role? :super_admin
       @vendors = Vendor.all
     else
-      @vendors = Vendor.where("society_id like ?", current_user.society_id)
+      @vendors = Vendor.where("society_id = ?", current_user.society_id)
     end
   end
 

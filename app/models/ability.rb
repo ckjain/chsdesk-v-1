@@ -6,18 +6,20 @@ class Ability
     if user.has_role? :super_admin
       can :manage, :all
       elsif user.has_role? :society_admin
-        can :manage, [Society, Unit, Member, User, UnitType, Membership, BillSetup, Bill, BillHeader, Meeting,Staff]
+        can :manage, [Society, Event, Unit, Member, User, UnitType, Membership, BillSetup, Bill, BillHeader, Meeting,Staff]
         elsif user.has_role? :society_team
-          can :manage, [Society, Unit, Member]
-          can [:index, :search, :active, :suspended, :pending, :deleted], User, :state => 'active', :id => user.id 
-          #          can :manage, [User], :show
-          # manage products, assets he owns
-          can :manage, BillHeader do |billheader|
-            billheader.try(:owner) == user
-          end
-          can :manage, BillHeader do |billheader|
-            billheader.assetable.try(:owner) == user
-          end
+            can :manage, [Society, Unit, Member]
+            can [:index, :search, :active, :suspended, :pending, :deleted], User, :state => 'active', :id => user.id 
+            #          can :manage, [User], :show
+            # manage products, assets he owns
+            can :manage, BillHeader do |billheader|
+              billheader.try(:owner) == user
+            end
+            can :manage, BillHeader do |billheader|
+              billheader.assetable.try(:owner) == user
+            end
+          elsif user.has_role? :society_user
+            can :read, [Event]
     end
         # Define abilities for the passed in user here. For example:
     #

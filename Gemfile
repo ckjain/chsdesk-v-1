@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 gem 'rails', '3.2.5'
-gem 'mysql', '~> 2.8.1'
+#gem 'mysql', '~> 2.8.1'
 #gem 'sqlite3'
 gem 'pg'
 group :assets do
@@ -10,7 +10,6 @@ group :assets do
 end
 
 gem 'jquery-rails'
-
 #---neccessary for invite- part of prelaunch-----
 gem "haml", ">= 3.1.6"
 gem "haml-rails", ">= 0.3.4", :group => :development

@@ -14,13 +14,17 @@
             <a href="#" class="toggle box_button_2" title="toggle">&nbsp;</a>
             <a href="#" class="destroy box_button_1" title="close">&nbsp;</a>
                 <div class="toggle_container">					
-                    <div class="block box_content round_bottom padding_20">                             
-                    	<div id="calendar"></div>   
-                    </div>                                
+                    <div class="block box_content round_bottom padding_20">
+					<% if user_signed_in? %><p>
+						<% if current_user.has_role? :super_admin or current_user.has_role? :society_admin %>
+							<%= link_to 'New event', new_event_path,:class => 'btn btn-large btn-link' %>
+						<% end %></p>
+						<div id="calendar"></div>
+					<% end %>
+                    </div>
                 </div>
             </div>
-        </div><!--/span-->               
-
+        </div><!--/span-->
 	<div class="span4">
         <div class="box grad_colour_dark_blue" id="box_0">
         	<h2 class="box_head round_top"><%= @event.title %> </h2>
@@ -37,8 +41,12 @@
 				  <%= l(@event.ends_at, :format => :long) %></p>
 				<p><b>Description:</b>
 				  <%= @event.description %></p>
-				<%= link_to 'Edit', edit_event_path(@event) %> |
-				<%= link_to 'Back', events_path %>
+					<% if current_user.has_role? :super_admin %>
+					<% if current_user.has_role? :society_admin %>
+						<%= link_to 'Edit', edit_event_path(@event), :class => 'btn'  %> 
+					<% end %></p>
+					<% end %>
+					<%= link_to 'All Events', events_path, :class => 'btn' %>
                 </div>
             </div>
         </div>

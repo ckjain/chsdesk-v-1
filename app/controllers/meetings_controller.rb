@@ -11,8 +11,8 @@ class MeetingsController < ApplicationController
       @meeting = Meeting.find(params[:meeting_id]) if params[:meeting_id]
 
     else
-      @meetings = Meeting.order("meeting_date DESC").where("society_id like ?", current_user.society_id).paginate :page => params[:page], :per_page => 10     
-      @meeting = Meeting.where("society_id like ?", current_user.society_id).find(params[:meeting_id]) if params[:meeting_id]
+      @meetings = Meeting.order("meeting_date DESC").where("society_id = ?", current_user.society_id).paginate :page => params[:page], :per_page => 10     
+      @meeting = Meeting.where("society_id = ?", current_user.society_id).find(params[:meeting_id]) if params[:meeting_id]
     end
 
     respond_to do |format|

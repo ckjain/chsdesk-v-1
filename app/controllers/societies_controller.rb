@@ -4,7 +4,7 @@ class SocietiesController < ApplicationController
   load_and_authorize_resource 
 
   def index
-    @societies = Society.order(:name).where("name like ?", "%#{params[:term]}%")
+    @societies = Society.order(:name).where("name = ?", "%#{params[:term]}%")
     render json: @societies.map(&:name)
   end
   
@@ -15,7 +15,7 @@ class SocietiesController < ApplicationController
     if current_user.has_role? :super_admin
       @societies = Society.all
     else
-      @societies = Society.where("id like ?", current_user.society_id)      
+      @societies = Society.where("id = ?", current_user.society_id)      
     end
   end
   

@@ -8,7 +8,7 @@ class UnitsController < ApplicationController
     if current_user.has_role? :super_admin
       @units = Unit.all
     else
-      @units = Unit.where("society_id like ?", current_user.society_id)
+      @units = Unit.where("society_id = ?", current_user.society_id)
     end
   end
   
@@ -91,28 +91,28 @@ class UnitsController < ApplicationController
   end
   
   def unit_update
-    property_rate_sqft_month=ActiveSupport::JSON.decode(BillSetup.select(:rate_sqft_month).where("society_id like ? AND head_name like?", current_user.society_id, 'Property Tax').to_json)[0]['rate_sqft_month'].to_d
-    property_rate_unit_month=ActiveSupport::JSON.decode(BillSetup.select(:rate_unit_month).where("society_id like ? AND head_name like?", current_user.society_id, 'Property Tax').to_json)[0]['rate_unit_month'].to_d
-    maintenance_rate_sqft_month=ActiveSupport::JSON.decode(BillSetup.select(:rate_sqft_month).where("society_id like ? AND head_name like?", current_user.society_id, 'Maintenance Charges').to_json)[0]['rate_sqft_month'].to_d
-    maintenance_rate_unit_month=ActiveSupport::JSON.decode(BillSetup.select(:rate_unit_month).where("society_id like ? AND head_name like?", current_user.society_id, 'Maintenance Charges').to_json)[0]['rate_unit_month'].to_d
-    sinking_fund_rate_sqft_month=ActiveSupport::JSON.decode(BillSetup.select(:rate_sqft_month).where("society_id like ? AND head_name like?", current_user.society_id, 'Sinking Fund').to_json)[0]['rate_sqft_month'].to_d
-    sinking_fund_rate_unit_month=ActiveSupport::JSON.decode(BillSetup.select(:rate_unit_month).where("society_id like ? AND head_name like?", current_user.society_id, 'Sinking Fund').to_json)[0]['rate_unit_month'].to_d
-    repair_fund_rate_sqft_month=ActiveSupport::JSON.decode(BillSetup.select(:rate_sqft_month).where("society_id like ? AND head_name like?", current_user.society_id, 'Repair Fund').to_json)[0]['rate_sqft_month'].to_d
-    repair_fund_rate_unit_month=ActiveSupport::JSON.decode(BillSetup.select(:rate_unit_month).where("society_id like ? AND head_name like?", current_user.society_id, 'Repair Fund').to_json)[0]['rate_unit_month'].to_d
-    other_charge_rate_sqft_month=ActiveSupport::JSON.decode(BillSetup.select(:rate_sqft_month).where("society_id like ? AND head_name like?", current_user.society_id, 'Other Charges-1').to_json)[0]['rate_sqft_month'].to_d
-    other_charge_rate_unit_month=ActiveSupport::JSON.decode(BillSetup.select(:rate_unit_month).where("society_id like ? AND head_name like?", current_user.society_id, 'Other Charges-1').to_json)[0]['rate_unit_month'].to_d
-    other_details=ActiveSupport::JSON.decode(BillSetup.select(:sub_head_name).where("society_id like ? AND head_name like?", current_user.society_id, 'Other Charges-1').to_json)[0]['sub_head_name'].to_s
-    other_charge2_rate_sqft_month=ActiveSupport::JSON.decode(BillSetup.select(:rate_sqft_month).where("society_id like ? AND head_name like?", current_user.society_id, 'Other Charges-2').to_json)[0]['rate_sqft_month'].to_d
-    other_charge2_rate_unit_month=ActiveSupport::JSON.decode(BillSetup.select(:rate_unit_month).where("society_id like ? AND head_name like?", current_user.society_id, 'Other Charges-2').to_json)[0]['rate_unit_month'].to_d
-    other_details2=ActiveSupport::JSON.decode(BillSetup.select(:sub_head_name).where("society_id like ? AND head_name like?", current_user.society_id, 'Other Charges-2').to_json)[0]['sub_head_name'].to_s
+    property_rate_sqft_month=ActiveSupport::JSON.decode(BillSetup.select(:rate_sqft_month).where("society_id = ? AND head_name =?", current_user.society_id, 'Property Tax').to_json)[0]['rate_sqft_month'].to_d
+    property_rate_unit_month=ActiveSupport::JSON.decode(BillSetup.select(:rate_unit_month).where("society_id = ? AND head_name =?", current_user.society_id, 'Property Tax').to_json)[0]['rate_unit_month'].to_d
+    maintenance_rate_sqft_month=ActiveSupport::JSON.decode(BillSetup.select(:rate_sqft_month).where("society_id = ? AND head_name =?", current_user.society_id, 'Maintenance Charges').to_json)[0]['rate_sqft_month'].to_d
+    maintenance_rate_unit_month=ActiveSupport::JSON.decode(BillSetup.select(:rate_unit_month).where("society_id = ? AND head_name =?", current_user.society_id, 'Maintenance Charges').to_json)[0]['rate_unit_month'].to_d
+    sinking_fund_rate_sqft_month=ActiveSupport::JSON.decode(BillSetup.select(:rate_sqft_month).where("society_id = ? AND head_name =?", current_user.society_id, 'Sinking Fund').to_json)[0]['rate_sqft_month'].to_d
+    sinking_fund_rate_unit_month=ActiveSupport::JSON.decode(BillSetup.select(:rate_unit_month).where("society_id = ? AND head_name =?", current_user.society_id, 'Sinking Fund').to_json)[0]['rate_unit_month'].to_d
+    repair_fund_rate_sqft_month=ActiveSupport::JSON.decode(BillSetup.select(:rate_sqft_month).where("society_id = ? AND head_name =?", current_user.society_id, 'Repair Fund').to_json)[0]['rate_sqft_month'].to_d
+    repair_fund_rate_unit_month=ActiveSupport::JSON.decode(BillSetup.select(:rate_unit_month).where("society_id = ? AND head_name =?", current_user.society_id, 'Repair Fund').to_json)[0]['rate_unit_month'].to_d
+    other_charge_rate_sqft_month=ActiveSupport::JSON.decode(BillSetup.select(:rate_sqft_month).where("society_id = ? AND head_name =?", current_user.society_id, 'Other Charges-1').to_json)[0]['rate_sqft_month'].to_d
+    other_charge_rate_unit_month=ActiveSupport::JSON.decode(BillSetup.select(:rate_unit_month).where("society_id = ? AND head_name =?", current_user.society_id, 'Other Charges-1').to_json)[0]['rate_unit_month'].to_d
+    other_details=ActiveSupport::JSON.decode(BillSetup.select(:sub_head_name).where("society_id = ? AND head_name =?", current_user.society_id, 'Other Charges-1').to_json)[0]['sub_head_name'].to_s
+    other_charge2_rate_sqft_month=ActiveSupport::JSON.decode(BillSetup.select(:rate_sqft_month).where("society_id = ? AND head_name =?", current_user.society_id, 'Other Charges-2').to_json)[0]['rate_sqft_month'].to_d
+    other_charge2_rate_unit_month=ActiveSupport::JSON.decode(BillSetup.select(:rate_unit_month).where("society_id = ? AND head_name =?", current_user.society_id, 'Other Charges-2').to_json)[0]['rate_unit_month'].to_d
+    other_details2=ActiveSupport::JSON.decode(BillSetup.select(:sub_head_name).where("society_id = ? AND head_name =?", current_user.society_id, 'Other Charges-2').to_json)[0]['sub_head_name'].to_s
 
-    unit=Unit.where("society_id like ?", current_user.society_id)
+    unit=Unit.where("society_id = ?", current_user.society_id)
     unit_count = unit.count
 
       unit_count.times do |n|
-        unit_tax_area=ActiveSupport::JSON.decode(UnitType.select(:tax_area).where("society_id like ? AND id like ?", current_user.society_id, unit[n].unit_type_id).to_json)[0]['tax_area'].to_d
+        unit_tax_area=ActiveSupport::JSON.decode(UnitType.select(:tax_area).where("society_id = ? AND id = ?", current_user.society_id, unit[n].unit_type_id).to_json)[0]['tax_area'].to_d
         unit_property_tax=unit_tax_area*property_rate_sqft_month+property_rate_unit_month
-        unit_maintenance_area=ActiveSupport::JSON.decode(UnitType.select(:maintenance_area).where("society_id like ? AND id like ?", current_user.society_id, unit[n].unit_type_id).to_json)[0]['maintenance_area'].to_d
+        unit_maintenance_area=ActiveSupport::JSON.decode(UnitType.select(:maintenance_area).where("society_id = ? AND id = ?", current_user.society_id, unit[n].unit_type_id).to_json)[0]['maintenance_area'].to_d
         unit_maintenance=unit_maintenance_area*maintenance_rate_sqft_month+maintenance_rate_unit_month
         unit_sinking_fund=unit_maintenance_area*sinking_fund_rate_sqft_month+sinking_fund_rate_unit_month
         unit_repair_fund=unit_maintenance_area*repair_fund_rate_sqft_month+repair_fund_rate_unit_month

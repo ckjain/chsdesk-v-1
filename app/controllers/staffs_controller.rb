@@ -9,8 +9,8 @@ class StaffsController < ApplicationController
       @staffs = Staff.order(:staff_name).paginate :page => params[:page], :per_page => 10
       @staff  = Staff.find(params[:staff_id]) if params[:staff_id]
     else
-      @staffs = Staff.where("society_id like ?", current_user.society_id).order(:staff_name).paginate :page => params[:page], :per_page => 10      
-      @staff  = Staff.where("society_id like ?", current_user.society_id).find(params[:staff_id]) if params[:staff_id]
+      @staffs = Staff.where("society_id = ?", current_user.society_id).order(:staff_name).paginate :page => params[:page], :per_page => 10      
+      @staff  = Staff.where("society_id = ?", current_user.society_id).find(params[:staff_id]) if params[:staff_id]
     end
 
     respond_to do |format|
@@ -26,7 +26,7 @@ class StaffsController < ApplicationController
     if current_user.has_role? :super_admin
       @staff = Staff.find(params[:id])
     else
-      @staff = Staff.where("society_id like ?", current_user.society_id).find(params[:id])
+      @staff = Staff.where("society_id = ?", current_user.society_id).find(params[:id])
     end
       if @staff.blank?
         redirect_to staffs_url, :notice => "You don't have access to staff with this ID"

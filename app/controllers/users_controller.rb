@@ -26,7 +26,7 @@ class UsersController < ApplicationController
     if current_user.has_role? :super_admin
       @users = User.paginate :conditions => {:state => 'pending'}, :page => params[:page], :per_page => 20
     else
-      @users = User.where("society_id like ?", current_user.society_id).paginate :conditions => {:state => 'pending'}, :page => params[:page], :per_page => 20
+      @users = User.where("society_id = ?", current_user.society_id).paginate :conditions => {:state => 'pending'}, :page => params[:page], :per_page => 20
     end
     render :action => 'index'
   end
@@ -35,7 +35,7 @@ class UsersController < ApplicationController
     if current_user.has_role? :super_admin
       @users = User.paginate :conditions => {:state => 'suspended'}, :page => params[:page], :per_page => 20
     else
-      @users = User.where("society_id like ?", current_user.society_id).paginate :conditions => {:state => 'suspended'}, :page => params[:page], :per_page => 20
+      @users = User.where("society_id = ?", current_user.society_id).paginate :conditions => {:state => 'suspended'}, :page => params[:page], :per_page => 20
     end
     render :action => 'index'
   end
@@ -44,7 +44,7 @@ class UsersController < ApplicationController
     if current_user.has_role? :super_admin
       @users = User.paginate :conditions => {:state => 'active'}, :page => params[:page], :per_page => 20
     else  
-      @users = User.where("society_id like ?", current_user.society_id).paginate :conditions => {:state => 'active'}, :page => params[:page], :per_page => 20
+      @users = User.where("society_id = ?", current_user.society_id).paginate :conditions => {:state => 'active'}, :page => params[:page], :per_page => 20
     end
     render :action => 'index'
   end
@@ -53,7 +53,7 @@ class UsersController < ApplicationController
     if current_user.has_role? :super_admin
       @users = User.paginate :conditions => {:state => 'deleted'}, :page => params[:page], :per_page => 20
     else
-      @users = User.where("society_id like ?", current_user.society_id).paginate :conditions => {:state => 'deleted'}, :page => params[:page], :per_page => 20
+      @users = User.where("society_id = ?", current_user.society_id).paginate :conditions => {:state => 'deleted'}, :page => params[:page], :per_page => 20
     end
     render :action => 'index'
   end
@@ -105,7 +105,7 @@ class UsersController < ApplicationController
     if current_user.has_role? :super_admin 
       @users = User.search(params[:search]).order("name #{direction}").paginate(:per_page => 20, :page => params[:page])
     else
-      @users = User.where("society_id like ?", current_user.society_id).search(params[:search]).order("name #{direction}").paginate(:per_page => 20, :page => params[:page])
+      @users = User.where("society_id = ?", current_user.society_id).search(params[:search]).order("name #{direction}").paginate(:per_page => 20, :page => params[:page])
     end
     @chart = create_chart
   end
