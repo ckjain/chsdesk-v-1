@@ -126,6 +126,10 @@ $(function() {
 });
 
 $(function() {
+  $("#user_date_of_birth").datepicker({ dateFormat: "dd-mm-yy", yearRange: "-99:+00",  });
+});
+
+$(function() {
   $( "#draggable" ).draggable();
 });
 

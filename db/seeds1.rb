@@ -1,37 +1,3 @@
-puts 'SETTING UP DEFAULT USER LOGIN'
-user = User.create! :name => 'First User', :email => 'user@example.com', :password => 'please', :password_confirmation => 'please', :confirmed_at => Time.now.utc
-puts 'New user created: ' << user.name
-user.add_role :super_admin
-
-user = User.create! :name => 'society_admin', :email => 'society_admin@example.com', :password => 'please', :password_confirmation => 'please', :confirmed_at => Time.now.utc
-puts 'New user created: ' << user.name
-user.add_role :society_admin
-user = User.create! :name => 'society_team', :email => 'society_team@example.com', :password => 'please', :password_confirmation => 'please', :confirmed_at => Time.now.utc
-puts 'New user created: ' << user.name
-user.add_role :society_team
-user = User.create! :name => 'society_manager', :email => 'society_manager@example.com', :password => 'please', :password_confirmation => 'please', :confirmed_at => Time.now.utc
-puts 'New user created: ' << user.name
-user.add_role :society_manager
-
-user = User.create! :name => 'First User', :email => 'user@example.com', :password => 'please', :password_confirmation => 'please', :confirmed_at => Time.now.utc
-puts 'New user created: ' << user.name
-user.add_role :super_admin
-
-user = User.create! :name => 'society_admin', :email => 'society_admin@example.com', :password => 'please', :password_confirmation => 'please', :confirmed_at => Time.now.utc
-puts 'New user created: ' << user.name
-user.add_role :society_admin
-user = User.create! :name => 'society_team', :email => 'society_team@example.com', :password => 'please', :password_confirmation => 'please', :confirmed_at => Time.now.utc
-puts 'New user created: ' << user.name
-user.add_role :society_team
-user = User.create! :name => 'society_manager', :email => 'society_manager@example.com', :password => 'please', :password_confirmation => 'please', :confirmed_at => Time.now.utc
-puts 'New user created: ' << user.name
-user.add_role :society_manager
-
-
-
-society1 = Society.create! :name => 'Samarth Angan CHS', :number_of_flats => 330, :active => true, :society_address_line1 => 'Lokhandwala Complex, K.L.walawalkar road', :society_address_line2 => 'Andheri West', :society_pincode => '400053'
-society2 = Society.create! :name => 'Oshiwara ind. Center', :number_of_flats => 270, :active => true, :society_address_line1 => 'Link Road Opp Oshiwara Bus depo', :society_address_line2 => 'Goregaon West', :society_pincode => '400104'
-society3 = Society.create! :name => 'Brighton Tower CHS', :number_of_flats => 120, :active => true, :society_address_line1 => 'Lokhandwala Complex, 2nd cross lane', :society_address_line2 => 'Andheri West', :society_pincode => '400053'
 puts 'New society created: ' 
  unit1 = Unit.create! :unit_number => '1502', :wing_name => 'A', :building_name => '1', :floor_name => '15', :unit_type_id => 7, :society_id => 2
  unit1 = Unit.create! :unit_number => '1501', :wing_name => 'A', :building_name => '1', :floor_name => '15', :unit_type_id => 7, :society_id => 2
@@ -416,16 +382,3 @@ puts 'New units for society 2 & 3 created: '
       Unit.create(:unit_number => '905',:wing_name => 'B',:building_name => '2',:floor_name => '9',:unit_type_id => 6,:society_id => 1)
       Unit.create(:unit_number => '906',:wing_name => 'B',:building_name => '2',:floor_name => '9',:unit_type_id => 6,:society_id => 1)
 puts 'New units for society 1 created: ' 
- member = Member.create! :mobile_phone => "0000000000", :name => "Name No", :society_id => 1
- member = Member.create! :mobile_phone => "9843707178", :name => "chandrakant Jain", :society_id => 2
- member = Member.create! :mobile_phone => "9543707178", :name => "User Example",  :society_id => 3
- member = Member.create! :mobile_phone => "9343707178", :name => "Sharmila Raone", :society_id => 2
- member = Member.create! :mobile_phone => "9443707178", :name => "Ujwal Jain", :society_id => 2
- member = Member.create! :mobile_phone => "9911736445", :name => "SUDHAKAR PATEL", :society_id => 3
- member = Member.create! :mobile_phone => "9811736445", :name => "Nitin Witsel", :society_id => 3
- member = Member.create! :mobile_phone => "9711736445", :name => "ABUZAR Defour", :society_id => 3
- member = Member.create! :mobile_phone => "9611736445", :name => "Reginal Patel", :society_id => 3
- member = Member.create! :mobile_phone => "9111736445", :name => "Nirmala GUPTA",   :society_id => 2
- member = Member.create! :mobile_phone => "9711736445", :name => "Laxminarayan De Camargo", :society_id => 3
-puts 'New members created: ' 
-#puts 'New user created: ' << user.username

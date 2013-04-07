@@ -4,6 +4,7 @@
 			<img src="/images/icons/grey/Laptop.png">
 			<span>Dashboard</span></a>
 		</li>
+		<% if current_user.has_role? :super_admin or current_user.has_role? :society_admin %>
 		<li><a href="http://localhost:3000/users">
 			<img src="/images/icons/grey/admin_user_2.png">
 			<span>Admin</span>
@@ -12,6 +13,8 @@
 				<a href="http://localhost:3000/users">Users</a>
 			</div>
 		</li>
+		<% end %></p>
+		<% if current_user.has_role? :super_admin or current_user.has_role? :society_manager %>
 		<li><a><img src="/images/icons/grey/apartment_building.png">
 			<span>First time setup</span>
 			<span class="icon">&nbsp;</span></a>
@@ -22,6 +25,7 @@
 				<li><a><%= link_to "Bill Setup", bill_setups_path %></a></li>
 			</ul>
 		</li>	
+		<% end %></p>
 		<li><a><img src="/images/icons/grey/apartment_building.png">
 			<span>Need based setup</span>
 			<span class="icon">&nbsp;</span></a>
@@ -33,6 +37,7 @@
 				<li><a><%= link_to "Vendor", vendors_path %></a></li>
 			</ul>
 		</li>	
+		<% if current_user.has_role? :super_admin or current_user.has_role? :society_accountant %>
 		<li><a><img src="/images/icons/grey/create_write.png">
 			<span>Billing</span>
 			<span class="icon">&nbsp;</span></a>
@@ -43,6 +48,8 @@
 				<a><%= link_to "Bill Send", bill_headers_path %></a>
 			</div>	
 		</li>
+		<% end %></p>
+		<% if current_user.has_role? :super_admin or current_user.has_role? :society_meeting %>
 		<li><a href="#">
 			<img src="/images/icons/grey/day_calendar.png">
 			<span>Meetings</span>
@@ -53,6 +60,7 @@
 				<a><%= link_to "Correspondence", meetings_path %></a>
 			</div>	
 		</li>	
+		<% end %></p>
 		<li><a href="#">
 			<img src="/images/icons/grey/Headphones.png">
 			<span>Music Video</span></a>

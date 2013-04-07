@@ -76,14 +76,14 @@ class MembersController < ApplicationController
         member.email_id = email_id
         member.user_id = user_id
         member.society_id = current_user.society_id
-                
+
         member.save!
-        
+
         @tid = member.id
       when "deleted"
         member=Member.find(@id)
         member.destroy
-        
+
         @tid = @id
       when "updated"
         member=Member.find(@id)
@@ -94,7 +94,7 @@ class MembersController < ApplicationController
         member.society_id = current_user.society_id
 
         member.save!
-        
+
         @tid = @id
     end 
   end

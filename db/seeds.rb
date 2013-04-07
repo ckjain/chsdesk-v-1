@@ -16,15 +16,24 @@ society1 = Society.create! :name => 'Samarth Aangan CHS', :number_of_flats => 33
   user2 = User.create! :name => 'SAadmin', :state => 'active', :email => 'sa_admin@chsdesk.com', :password => 'please', :password_confirmation => 'please', :society_id => 1, :confirmed_at => Time.now.utc
   puts 'New user created: ' << user2.name
   user2.add_role :society_admin
-  user3 = User.create! :name => 'SAteam', :email => 'sa_team@chsdesk.com', :password => 'please', :password_confirmation => 'please', :society_id => 1, :confirmed_at => Time.now.utc
+  user3 = User.create! :name => 'SAaccountant', :email => 'sa_accountant@chsdesk.com', :password => 'please', :password_confirmation => 'please', :society_id => 1, :confirmed_at => Time.now.utc
   puts 'New user created: ' << user3.name
-  user3.add_role :society_team
-  user4 = User.create! :name => 'SAuser', :email => 'sa_user@chsdesk.com', :password => 'please', :password_confirmation => 'please', :society_id => 1, :confirmed_at => Time.now.utc
+  user3.add_role :society_accountant
+  user4 = User.create! :name => 'SAcommittee', :email => 'sa_committee@chsdesk.com', :password => 'please', :password_confirmation => 'please', :society_id => 1, :confirmed_at => Time.now.utc
   puts 'New user created: ' << user4.name
-  user4.add_role :society_user
-  user = User.create! :name => 'SAmanager', :email => 'sa_manager@chsdesk.com', :password => 'please', :password_confirmation => 'please', :society_id => 1,:confirmed_at => Time.now.utc
-  puts 'New user created: ' << user.name
-  user.add_role :society_manager
+  user4.add_role :society_committee
+  user5 = User.create! :name => 'SAmanager', :email => 'sa_manager@chsdesk.com', :password => 'please', :password_confirmation => 'please', :society_id => 1,:confirmed_at => Time.now.utc
+  puts 'New user created: ' << user5.name
+  user5.add_role :society_manager
+  user6 = User.create! :name => 'SAmember', :email => 'sa_member@chsdesk.com', :password => 'please', :password_confirmation => 'please', :society_id => 1,:confirmed_at => Time.now.utc
+  puts 'New user created: ' << user6.name
+  user6.add_role :society_member
+  user22 = User.create! :name => 'SAevent', :email => 'sa_event@chsdesk.com', :password => 'please', :password_confirmation => 'please', :society_id => 1,:confirmed_at => Time.now.utc
+  puts 'New user created: ' << user22.name
+  user22.add_role :society_event
+  user23 = User.create! :name => 'SAmeeting', :email => 'sa_meeting@chsdesk.com', :password => 'please', :password_confirmation => 'please', :society_id => 1,:confirmed_at => Time.now.utc
+  puts 'New user created: ' << user23.name
+  user23.add_role :society_meeting
 
   unittype1 = UnitType.create! :type_name => "3-Bedroom", :carpet_area => 1680.78, :built_area => 1870.44, :super_built_area => 2050.80, :tax_area => 2050.80, :society_id => 1
   unittype2 = UnitType.create! :type_name => "4-Bedroom", :carpet_area => 1880.78, :built_area => 2070.44, :super_built_area => 2340.80, :tax_area => 2340.80, :society_id => 1
@@ -43,18 +52,27 @@ society1 = Society.create! :name => 'Samarth Aangan CHS', :number_of_flats => 33
   puts 'society1 billsetup created: '
 
 society2 = Society.create! :name => 'Oshiwara ind. Center', :number_of_flats => 270, :active => true, :society_address_line1 => 'Link Road Opp Oshiwara Bus depo', :society_address_line2 => 'Goregaon West', :society_pincode => '400104'
-  user5 = User.create! :name => 'OICadmin', :state => 'active', :email => 'oic_admin@chsdesk.com', :password => 'please', :password_confirmation => 'please', :society_id => 2, :confirmed_at => Time.now.utc
-  puts 'New user created: ' << user5.name
-  user5.add_role :society_admin
-  user6 = User.create! :name => 'OICteam', :email => 'oic_team@chsdesk.com', :password => 'please', :password_confirmation => 'please', :society_id => 2, :confirmed_at => Time.now.utc
-  puts 'New user created: ' << user6.name
-  user6.add_role :society_team
-  user7 = User.create! :name => 'OICuser', :email => 'oic_user@chsdesk.com', :password => 'please', :password_confirmation => 'please', :society_id => 2, :confirmed_at => DateTime.now
+  user13 = User.create! :name => 'OICadmin', :state => 'active', :email => 'OIC_admin@chsdesk.com', :password => 'please', :password_confirmation => 'please', :society_id => 2, :confirmed_at => Time.now.utc
+  puts 'New user created: ' << user13.name
+  user13.add_role :society_admin
+  user14 = User.create! :name => 'OICaccountant', :email => 'OIC_accountant@chsdesk.com', :password => 'please', :password_confirmation => 'please', :society_id => 2, :confirmed_at => Time.now.utc
+  puts 'New user created: ' << user14.name
+  user14.add_role :society_accountant
+  user15 = User.create! :name => 'OICcommittee', :email => 'OIC_committee@chsdesk.com', :password => 'please', :password_confirmation => 'please', :society_id => 2, :confirmed_at => Time.now.utc
+  puts 'New user created: ' << user15.name
+  user15.add_role :society_committee
+  user16 = User.create! :name => 'OICmanager', :email => 'OIC_manager@chsdesk.com', :password => 'please', :password_confirmation => 'please', :society_id => 2,:confirmed_at => Time.now.utc
+  puts 'New user created: ' << user16.name
+  user16.add_role :society_manager
+  user7 = User.create! :name => 'OICmember', :email => 'OIC_member@chsdesk.com', :password => 'please', :password_confirmation => 'please', :society_id => 2,:confirmed_at => Time.now.utc
   puts 'New user created: ' << user7.name
-  user7.add_role :society_user
-  user = User.create! :name => 'OICmanager', :email => 'oic_manager@chsdesk.com', :password => 'please', :password_confirmation => 'please', :society_id => 2,:confirmed_at => Time.now.utc
-  puts 'New user created: ' << user.name
-  user.add_role :society_manager
+  user7.add_role :society_member
+  user20 = User.create! :name => 'OICevent', :email => 'OIC_event@chsdesk.com', :password => 'please', :password_confirmation => 'please', :society_id => 2,:confirmed_at => Time.now.utc
+  puts 'New user created: ' << user20.name
+  user20.add_role :society_event
+  user21 = User.create! :name => 'OICmeeting', :email => 'OIC_meeting@chsdesk.com', :password => 'please', :password_confirmation => 'please', :society_id => 2,:confirmed_at => Time.now.utc
+  puts 'New user created: ' << user21.name
+  user21.add_role :society_meeting
 
   unittype1 = UnitType.create! :type_name => "Gala", :carpet_area => 480.78, :built_area => 605.44, :super_built_area => 845.80, :tax_area => 845.80, :society_id => 2
   unittype2 = UnitType.create! :type_name => "Small Gala", :carpet_area => 350.78, :built_area => 490.44, :super_built_area => 560.80, :tax_area => 560.80, :society_id => 2
@@ -74,18 +92,28 @@ society2 = Society.create! :name => 'Oshiwara ind. Center', :number_of_flats => 
   puts 'society2 billsetup created: '
 
 society3 = Society.create! :name => 'BRIGHOTN TOWER CHS',:society_address_line1 => '2ND CROSS LANE',:society_address_line2 => 'ANDHERI (W)', :society_city => 'MUMBAI',:society_pincode => '400053', :active => true, :number_of_flats => 1, :active => true, :number_of_flats => 120
-  user8 = User.create! :name => 'BTadmin', :state => 'active', :email => 'bt_admin@chsdesk.com', :password => 'please', :password_confirmation => 'please', :society_id => 3, :confirmed_at => DateTime.now
+  user8 = User.create! :name => 'BTadmin', :state => 'active', :email => 'BT_admin@chsdesk.com', :password => 'please', :password_confirmation => 'please', :society_id => 3, :confirmed_at => Time.now.utc
   puts 'New user created: ' << user8.name
   user8.add_role :society_admin
-  user9 = User.create! :name => 'BTteam', :email => 'bt_team@chsdesk.com', :password => 'please', :password_confirmation => 'please', :society_id => 3, :confirmed_at => DateTime.now
+  user9 = User.create! :name => 'BTaccountant', :email => 'BT_accountant@chsdesk.com', :password => 'please', :password_confirmation => 'please', :society_id => 3, :confirmed_at => Time.now.utc
   puts 'New user created: ' << user9.name
-  user9.add_role :society_team
-  user10 = User.create! :name => 'BTuser', :email => 'bt_user@chsdesk.com', :password => 'please', :password_confirmation => 'please', :society_id => 3, :confirmed_at => DateTime.now
+  user9.add_role :society_accountant
+  user10 = User.create! :name => 'BTcommittee', :email => 'BT_committee@chsdesk.com', :password => 'please', :password_confirmation => 'please', :society_id => 3, :confirmed_at => Time.now.utc
   puts 'New user created: ' << user10.name
-  user10.add_role :society_user
-  user = User.create! :name => 'BTmanager', :email => 'bt_manager@chsdesk.com', :password => 'please', :password_confirmation => 'please', :society_id => 3,:confirmed_at => Time.now.utc
-  puts 'New user created: ' << user.name
-  user.add_role :society_manager
+  user10.add_role :society_committee
+  user11 = User.create! :name => 'BTmanager', :email => 'BT_manager@chsdesk.com', :password => 'please', :password_confirmation => 'please', :society_id => 3,:confirmed_at => Time.now.utc
+  puts 'New user created: ' << user11.name
+  user11.add_role :society_manager
+  user12 = User.create! :name => 'BTmember', :email => 'BT_member@chsdesk.com', :password => 'please', :password_confirmation => 'please', :society_id => 3,:confirmed_at => Time.now.utc
+  puts 'New user created: ' << user12.name
+  user12.add_role :society_member
+  user18 = User.create! :name => 'BTevent', :email => 'BT_event@chsdesk.com', :password => 'please', :password_confirmation => 'please', :society_id => 3,:confirmed_at => Time.now.utc
+  puts 'New user created: ' << user18.name
+  user18.add_role :society_event
+  user19 = User.create! :name => 'BTmeeting', :email => 'BT_meeting@chsdesk.com', :password => 'please', :password_confirmation => 'please', :society_id => 3,:confirmed_at => Time.now.utc
+  puts 'New user created: ' << user19.name
+  user19.add_role :society_meeting
+  
 
   unittype3 = UnitType.create! :type_name => "2-Bedroom", :carpet_area => 680.78, :built_area => 870.44, :super_built_area => 1050.80, :tax_area => 1050.80, :society_id => 3
   unittype11 = UnitType.create! :type_name => "Bunglow", :carpet_area => 3680.60, :built_area => 3970.44, :super_built_area => 4350.00, :tax_area => 4350.80, :society_id => 3
@@ -2875,4 +2903,4 @@ Member.create! :name => "NIRAV MEHTA", :mobile_phone => "9322287227",:society_id
 Member.create! :name => "JYOTI P DIALANI", :mobile_phone => "9819020059",:society_id => 13
 Member.create! :name => "PRATIK KANANI", :mobile_phone => "9920103441",:society_id => 13
 Member.create! :name => "RAVISH KAWANI", :mobile_phone => "9920199559",:society_id => 13
- 
+

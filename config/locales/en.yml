@@ -35,9 +35,9 @@ en:
     login:
       title: Login
       text:
-        signed_with: JesteÅ› akutalnie zalogowany uÅ¼ywajÄ…c nastÄ™pujÄ…cych usÅ‚ug
-        sign_with_other: Loguj siÄ™ uÅ¼ywajÄ…c innych usÅ‚ug
-        sign_using: Zaloguj siÄ™ uÅ¼ywajÄ…c jednej z poniÅ¼szych usÅ‚ug
+        signed_with: Signed with
+        sign_with_other: Login with
+        sign_using: Signed using
   users:
     title: "Users"
     options:

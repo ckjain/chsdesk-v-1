@@ -7,7 +7,7 @@
 		<th><%= sortable "name"%></th>
 		<th><%= sortable "email" %></th>
 		<th><%= sortable "state",'Status' %></th>
-		<th><%= sortable "admin" %></th>
+		<th><%= sortable "role" %></th>
 		<th><%= sortable "created_at",'Requested' %></th>
 		<th><%= sortable "confirmation_token",'Invitation' %></th>
 		<th><%= sortable "confirmed_at",'Joined' %></th>
@@ -22,16 +22,24 @@
 	  <tr>
 		<td><%= user.id %></td>
 		<td><%= link_to h(user.name || user.site_name), user_url(user) %></td>
-	    <td><%= best_in_place user,:email, user %></td>
-		<td><%= user.state if user.state %></td>
-		<td><%= t('misc.words.yes') if user.admin? %></td>
-	    <td><%= l(user.created_at.to_date, :format => :long) %></td>
-	    <td><%= (user.confirmation_token.nil? ? (link_to "send invitation", invite_user_path(user)) : (link_to "resend", invite_user_path(user))) unless user.confirmed_at %></td>
-	    <td><%= l(user.confirmed_at.to_date, :format => :long) if user.confirmed_at %></td>
-	    <td><%= user.sign_in_count if user.sign_in_count %></td>
-	    <td><%= l(user.last_sign_in_at.to_date, :format => :long) if user.last_sign_in_at %></td>
-	    <td><%= image_tag avatar_url(user) %></td>
-	    <td>
+		<td><%= best_in_place user,:email, user %></td>
+		<td><% if user.active? %>
+			<span class="label label-success"><%= user.state  %></span>
+			<% elsif user.passive? %>
+			<span class="label label-Warning"><%= user.state  %></span>
+			<% elsif user.suspended? %>
+			<span class="label label-important"><%= user.state  %></span>
+			<% elsif user.pending? %>
+			<span class="label label-inverse"><%= user.state  %></span>
+			<% end %></td>
+		<td><%= user.roles.map{|x| x.name.humanize }.join(", ") %></td>
+		<td><%= l(user.created_at.to_date, :format => :long) %></td>
+		<td><%= (user.confirmation_token.nil? ? (link_to "send invitation", invite_user_path(user)) : (link_to "resend", invite_user_path(user))) unless user.confirmed_at %></td>
+		<td><%= l(user.confirmed_at.to_date, :format => :long) if user.confirmed_at %></td>
+		<td><%= user.sign_in_count if user.sign_in_count %></td>
+		<td><%= l(user.last_sign_in_at.to_date, :format => :long) if user.last_sign_in_at %></td>
+		<td><%= image_tag avatar_url(user) %></td>
+		<td>
 			<% if user.pending? %>
 				<%= link_to 'Activate', activate_user_url(user), :method => :put %>
 				<%= link_to 'Suspend', suspend_user_url(user), :method => :put %>
@@ -56,5 +64,5 @@
 <%= will_paginate @users %>
 
 <div class="form-actions">
-  <%= link_to 'Add New User', new_user_path, :class => 'btn' %>
+	<%= link_to 'Add New User', new_user_path, :class => 'btn' %>
 </div>

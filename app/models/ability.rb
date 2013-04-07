@@ -4,23 +4,36 @@ class Ability
   def initialize(user)
     user ||= User.new # guest user (not logged in)
     if user.has_role? :super_admin
-      can :manage, :all
-      elsif user.has_role? :society_admin
-        can :manage, [Society, Event, Unit, Member, User, UnitType, Membership, BillSetup, Bill, BillHeader, Meeting,Staff]
-        elsif user.has_role? :society_team
-            can :manage, [Society, Unit, Member]
-            can [:index, :search, :active, :suspended, :pending, :deleted], User, :state => 'active', :id => user.id 
-            #          can :manage, [User], :show
-            # manage products, assets he owns
-            can :manage, BillHeader do |billheader|
-              billheader.try(:owner) == user
-            end
-            can :manage, BillHeader do |billheader|
-              billheader.assetable.try(:owner) == user
-            end
-          elsif user.has_role? :society_user
-            can :read, [Event]
+       can :manage, :all
+    elsif user.has_role? :society_admin
+       can :manage, [Society, User]
+#      can :read, [Meeting, Event, Bill, BillHeader, BillSetup]
     end
+
+    if user.has_role? :society_member
+      can :read, [Event, Meeting, Bill, Member, Unit, UnitType, Staff, Vendor]
+    end
+
+    if user.has_role? :society_committee
+      can :read, [Event, Unit, Member, UnitType, Membership, BillSetup, Bill, BillHeader, Meeting, Staff, Vendor]
+    end
+
+    if user.has_role? :society_manager
+      can :manage, [Unit, UnitType, Member, Membership, Staff, Vendor]
+    end
+
+    if user.has_role? :society_event
+      can :manage, [Event]
+    end
+    
+    if user.has_role? :society_meeting
+      can :manage, [Meeting, MeetingType, MeetingMember, ]
+    end
+    
+    if user.has_role? :society_accountant
+      can :manage, [Bill, BillHeader, BillSetup]
+    end
+
         # Define abilities for the passed in user here. For example:
     #
     #   user ||= User.new # guest user (not logged in)

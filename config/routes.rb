@@ -83,15 +83,16 @@ RailsPrelaunchSignup::Application.routes.draw do
           end
      end
 
-     resources :units do
-      match '/units',       :to => 'units#show',  :requirements => { :method => :get }
-          collection do
-            get 'view'
-            get 'data'
-            get 'dbaction'
-            get 'show'
-          end
+   resources :units do
+    match '/unit', :to => 'units#show', :requirements => { :method => :get }
+      collection do
+        get 'data'
+        get 'dbaction'
+        get 'show'
+        get 'index'
       end
+    end
+            
      resources :bill_setups do
       match '/bill_setups',       :to => 'bill_setups#show',  :requirements => { :method => :get }
           collection do

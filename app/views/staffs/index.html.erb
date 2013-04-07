@@ -9,37 +9,37 @@
 
 <div class="row-fluid">
 	<div class="span5">
-        <div class="box grad_colour_dark_blue" id="box_0">
-            <h2 class="box_head round_top"></h2>
-            <a href="#" class="settings box_button_3" title="config">&nbsp;</a>
-            <a href="#" class="toggle box_button_2" title="toggle">&nbsp;</a>
-            <a href="#" class="destroy box_button_1" title="close">&nbsp;</a>
-            <div class="toggle_container">
-                <div class="block box_content round_bottom padding_20">
+		<div class="box grad_colour_dark_blue" id="box_0">
+			<h2 class="box_head round_top"></h2>
+			<a href="#" class="settings box_button_3" title="config">&nbsp;</a>
+			<a href="#" class="toggle box_button_2" title="toggle">&nbsp;</a>
+			<a href="#" class="destroy box_button_1" title="close">&nbsp;</a>
+			<div class="toggle_container">
+				<div class="block box_content round_bottom padding_20">
 			<% content_for :staff_name, @staff ? @staff.staff_name : "staffs" %>
 			<% for staff in @staffs %>
 		  <div class="event">
-            <%= link_to staff.staff_name, :staff_id => staff %>
-            <%= staff.society_id %>
+			<%= link_to staff.staff_name, :staff_id => staff %>
+			<%= staff.society_id %>
  			<%= link_to ( image_tag("/assets/Overlay-cancel.png")), staff, :method => :delete, :confirm => "Are you sure?" %>
-		  </div>
+			</div>
 			<% end %>
-	        <%= will_paginate @staffs %>
-			 	<div class="form-actions">
-		        <%= link_to 'New Staff', new_staff_path , :class => 'btn' %>
+			<%= will_paginate @staffs %>
+				<div class="form-actions">
+				<%= link_to 'New Staff', new_staff_path , :class => 'btn' %>
 				</div>
-              </div>
-            </div>
-        </div>
+			</div>
+			</div>
+		</div>
 	</div>
 	<div class="span7">
-        <div class="box grad_colour_dark_blue" id="box_0">
-            <h2 class="box_head round_top"></h2>
-            <a href="#" class="settings box_button_3" title="config">&nbsp;</a>
-            <a href="#" class="toggle box_button_2" title="toggle">&nbsp;</a>
-            <a href="#" class="destroy box_button_1" title="close">&nbsp;</a>
-            <div class="toggle_container">					
-                <div class="block box_content round_bottom padding_20">
+		<div class="box grad_colour_dark_blue" id="box_0">
+			<h2 class="box_head round_top"></h2>
+			<a href="#" class="settings box_button_3" title="config">&nbsp;</a>
+			<a href="#" class="toggle box_button_2" title="toggle">&nbsp;</a>
+			<a href="#" class="destroy box_button_1" title="close">&nbsp;</a>
+			<div class="toggle_container">					
+				<div class="block box_content round_bottom padding_20">
 					<div data-pjax-container>
 				  <% if @staff %>
 				  <div id="event_details">
@@ -62,18 +62,18 @@
 					<dt> Is Active
 					<%= staff.active %></dt>
 					<dt> Image:
-				    <%= link_to (image_tag staff.avatar.url(:thumb)), staff %></dt>
+					<%= link_to (image_tag staff.avatar.url(:thumb)), staff %></dt>
 					<dt> Society Id:
 					<%= staff.society_id %></dt>
-					 	<div class="form-actions">
-						  <%= link_to ( image_tag("/assets/Overlay-edit.png")), edit_staff_path(@staff), :class => 'btn' %>
-					      <%= link_to ( image_tag("/assets/Overlay-cancel.png")), @staff, method: :delete, confirm: "Are you sure?", :class => 'btn' %>
+						<div class="form-actions">
+						<%= link_to ( image_tag("/assets/Overlay-edit.png")), edit_staff_path(@staff), :class => 'btn' %>
+						<%= link_to ( image_tag("/assets/Overlay-cancel.png")), @staff, method: :delete, confirm: "Are you sure?", :class => 'btn' %>
 						</div>
-					  </div>
-					  <% end %>
 					</div>
-                </div>
-            </div>
-        </div>
+					<% end %>
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
 </div><!--/row-->

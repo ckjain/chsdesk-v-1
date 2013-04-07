@@ -17,7 +17,7 @@
 			<div class="toggle_container">
 				<div class="block box_content round_bottom padding_20">
 				<% if user_signed_in? %><p>
-					<% if current_user.has_role? :super_admin or current_user.has_role? :society_admin %>
+					<% if current_user.has_role? :super_admin or current_user.has_role? :society_event %>
 						<%= link_to 'New event', new_event_path,:class => 'btn btn-large btn-link' %>
 					<% end %></p>
 					<div id="calendar"></div>
@@ -53,7 +53,7 @@
 						<dt>Description:</dt>
 						<dd><%= best_in_place_if @event.description, @event, :description, :type => :textarea %></dd>
 						</dl>
-						<% if current_user.has_role? :super_admin or current_user.has_role? :society_admin %>
+						<% if current_user.has_role? :super_admin or current_user.has_role? :society_event %>
 							<div class="form-actions">
 								<%= link_to 'Edit', edit_event_path(@event), :class => 'btn'  %> 
 								<%= link_to ( image_tag("/assets/Overlay-cancel.png")), @event, method: :delete, confirm: "Are you sure?", :class => 'btn'  %>

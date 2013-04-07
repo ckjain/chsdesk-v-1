@@ -30,7 +30,9 @@
 						<% end %>
 					</ol>
 				<div class="form-actions">
+				<% if current_user.has_role? :super_admin or current_user.has_role? :society_meeting %>
 					<%= link_to 'Edit', edit_meeting_path(@meeting), :class => 'btn' %>
+				<% end %>
 					<%= link_to 'Back to Meetings', meetings_path, :class => 'btn' %>
 				</div>
 				</div>

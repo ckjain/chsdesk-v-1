@@ -1,9 +1,53 @@
 class UnitsController < ApplicationController
 #    skip_authorization_check
-   before_filter :authenticate_user!
-   load_and_authorize_resource 
+  before_filter :authenticate_user!
+  load_and_authorize_resource 
+  respond_to :html, :json
 
- 
+  def index
+    if current_user.has_role? :super_admin
+      @units = Unit.order(:name)
+    else
+      @units = Unit.where("society_id = ?", current_user.society_id).order(:name)
+    end
+
+    respond_to do |format|
+      format.html
+      format.json { render json: @units.tokens(params[:q]) }
+    end
+  end
+  
+  def new
+    @units = Unit.new
+#    :society_id => current_user.society_id
+    respond_to do |format|
+      format.html # new.html.erb
+      format.json { render json: @units }
+    end
+  end
+
+  # GET /staffs/1/edit
+  def edit
+    @units = Unit.find(params[:id])
+  end
+
+  # POST /staffs
+  # POST /staffs.json
+  def create
+    @units = Unit.new(params[:staff])
+    @units.society_id = current_user.society_id
+
+    respond_to do |format|
+      if @units.save
+        format.html { redirect_to @units, only_path: true, notice: 'Unit was successfully created.' }
+        format.json { render json: @units, status: :created, location: @units }
+      else
+        format.html { render action: "new" }
+        format.json { render json: @units.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
   def data
     if current_user.has_role? :super_admin
       @units = Unit.all
@@ -11,7 +55,7 @@ class UnitsController < ApplicationController
       @units = Unit.where("society_id = ?", current_user.society_id)
     end
   end
-  
+
   def dbaction
     #called for all db actions
     unit_name = params["c0"]
@@ -31,9 +75,9 @@ class UnitsController < ApplicationController
     service_tax   = params["c14"]
     bill_amount   = params["c15"]
     society_id    = params["c16"]
-     
+
     @mode = params["!nativeeditor_status"]
-                  
+
     @id = params["gr_id"]
     case @mode
       when "inserted"
@@ -54,14 +98,14 @@ class UnitsController < ApplicationController
         unit.service_tax = service_tax
         unit.bill_amount = bill_amount
         unit.society_id = current_user.society_id
-        
+
         unit.save!
-        
+
         @tid = unit.id
       when "deleted"
         unit=Unit.find(@id)
         unit.destroy
-        
+
         @tid = @id
       when "updated"
         unit=Unit.find(@id)
@@ -82,12 +126,9 @@ class UnitsController < ApplicationController
         unit.bill_amount = bill_amount
 
         unit.save!
-        
+
         @tid = @id
     end 
-  end
-  
-  def index
   end
   
   def unit_update
@@ -127,7 +168,5 @@ class UnitsController < ApplicationController
 #        unit_property_tax=unit_property_tax.round(2).to_s
       redirect_to :back, only_path: true 
   end
-
-
 
 end

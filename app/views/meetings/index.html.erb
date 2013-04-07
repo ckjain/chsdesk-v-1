@@ -26,9 +26,11 @@
 						</div>
 						<% end %>
 						<%= will_paginate @meetings %>
+						<% if current_user.has_role? :super_admin or current_user.has_role? :society_meeting %>
 						<div class="form-actions">
 							<%= link_to 'New Meeting', new_meeting_path , :class => 'btn' %>
 						</div>
+						<% end %>
 				</div>
 			</div>
 		</div>
@@ -63,10 +65,12 @@
 							</li>
 						<% end %>
 						</dl>
+						<% if current_user.has_role? :super_admin or current_user.has_role? :society_meeting %>
 						<div class="form-actions">
 							<%= link_to ( image_tag("/assets/Overlay-edit.png")), edit_meeting_path(@meeting), :class => 'btn' %>
 							<%= link_to ( image_tag("/assets/Overlay-cancel.png")), @meeting, method: :delete, confirm: "Are you sure?", :class => 'btn' %>
 						</div>
+						<% end %>
 					</div>
 					<% end %>
 					</div>
