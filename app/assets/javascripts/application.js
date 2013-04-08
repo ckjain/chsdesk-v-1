@@ -122,7 +122,7 @@ $(function() {
 });
 
 $(function() {
-  $("#staff_joining_date").datepicker({ dateFormat: "dd-mm-yy"  });
+  $("#staff_joining_date").datepicker({ dateFormat: "dd-mm-yy", yearRange: "-30:+00"  });
 });
 
 $(function() {
