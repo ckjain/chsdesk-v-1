@@ -75,14 +75,11 @@
 			<% end %>
 			</div>
 		</li>	
-		<li><a href="#">
-			<img src="/images/icons/grey/Images.png">
-			<span>Image Gallery</span>
-			<span class="icon">&nbsp;</span></a>
-			<div class="accordion">
-				<%= link_to("Gallery", "/staff_photos" ) %>
-			</div>
-		</li>	
+		<li><a class="round_top" href="http://0.0.0.0:3000/activities">
+			<img src="/images/icons/grey/Laptop.png">
+			<span>Activity Log</span></a>
+		</li>
+
 		<li><a href="#">
 				<%= link_to (image_tag("/images/icons/grey/Exit.png")+' '+'Logout'), destroy_user_session_path, :method => "delete" %>
 			</a>

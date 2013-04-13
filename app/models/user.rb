@@ -18,6 +18,7 @@ class User < ActiveRecord::Base
   # override Devise method
   # no password is required when the account is created; validate password when the user sets one
   has_and_belongs_to_many :roles, :join_table => :users_roles
+  has_many :activities
   
   belongs_to :society
 #  has_many :societies
@@ -31,7 +32,7 @@ class User < ActiveRecord::Base
 
   def self.search(search)
     if search
-      where('name LIKE ? OR state LIKE ? OR email LIKE ?' , "%#{search}%", "%#{search}%", "%#{search}%")
+      where('name ilike ? OR state ilike ? OR email ilike ?' , "%#{search}%", "%#{search}%", "%#{search}%")
     else
       scoped
     end

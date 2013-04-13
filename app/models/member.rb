@@ -3,8 +3,8 @@ class Member < ActiveRecord::Base
   attr_accessible :mobile_phone, :user_id, :society_id, :name, :counter, :email_id
 
   validates :name,
-                    :length   => { :within => 2..50 },
-                    :allow_blank => true
+            :length   => { :within => 2..50 },
+            :allow_blank => true
   validates :mobile_phone,  :length  => { :maximum => 20 }, 
             :allow_blank => true
   has_many :memberships
@@ -30,23 +30,19 @@ class Member < ActiveRecord::Base
     "#{name.capitalize}"
   end
   #------------token input-------------
-  has_many :meeting_members
-  has_many :meetings, through: :meeting_members
+  has_many :meeting_invited_members
+  has_many :meetings, through: :meeting_invited_members
+
+  has_many :meeting_attended_members
+  has_many :meetings, through: :meeting_attended_members
+  
 #  ilke instead of like to avoid case sensitive
-  def self.tokens(query)
-    members = where("name like ?", "%#{query}%")
-    if members.empty?
-      [{id: "<<<#{query}>>>", name: "New: \"#{query}\""}]
-    else
-      members
-    end
-  end
 
   def self.ids_from_tokens(tokens)
-    tokens.gsub!(/<<<(.+?)>>>/) { create!(name: $1, society_id: 2).id}
+    tokens.gsub!(/<<<(.+?)>>>/) { create!(name: $1).id}
     tokens.split(',')
   end
-  
+
 #------------token input------end-------
 
   def mem_id_update
@@ -63,7 +59,7 @@ class Member < ActiveRecord::Base
     
   scope :member_search, lambda { |search| 
   search = "%#{search}%"
-  where('name LIKE ? OR  mobile_phone LIKE ?', search, search)
+  where('name ilike ? OR  mobile_phone ilike ?', search, search)
  }
 
 

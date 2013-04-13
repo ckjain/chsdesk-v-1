@@ -8,18 +8,18 @@ class MembersController < ApplicationController
     if current_user.has_role? :super_admin
       @members = Member.order(:name)
     else
-      @members = Member.where("society_id = ?", current_user.society_id).order(:name)      
+      @members = Member.where("society_id = ?", current_user.society_id).order(:name)
     end
 
     respond_to do |format|
       format.html
-      format.json { render json: @members.tokens(params[:q]) }
+      format.json { render json: @members.where("name ilike ?", "%#{params[:q]}%") }
     end
   end
-  
+
   def new
-    @members = Member.new
-#    :society_id => current_user.society_id
+    @member = Member.new
+#    @member_society_id = current_user.society_id
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @members }
@@ -28,22 +28,39 @@ class MembersController < ApplicationController
 
   # GET /staffs/1/edit
   def edit
-    @members = Member.find(params[:id])
+    @member = Member.find(params[:id])
   end
 
   # POST /staffs
   # POST /staffs.json
   def create
-    @members = Member.new(params[:staff])
-    @members.society_id = current_user.society_id
+    @member = Member.new(params[:member])
+    @member.society_id = current_user.society_id
 
     respond_to do |format|
-      if @members.save
-        format.html { redirect_to @members, only_path: true, notice: 'Staff was successfully created.' }
-        format.json { render json: @members, status: :created, location: @members }
+      if @member.save
+        format.html {render :json => [@member.to_jq_member].to_json, :content_type => 'text/html', :layout => false }
+        format.json { render json: [@member.to_jq_member].to_json, status: :created, location: @member }
       else
         format.html { render action: "new" }
-        format.json { render json: @members.errors, status: :unprocessable_entity }
+        format.json { render json: @member.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  # PUT /Members/1
+  # PUT /Members/1.json
+  def update
+    @member = Member.find(params[:id])
+#    @member.society_id = current_user.society_id
+
+    respond_to do |format|
+      if @member.update_attributes(params[:member])
+        format.html { redirect_to @member, notice: 'Member was successfully updated.' }
+        format.json { head :no_content }
+      else
+        format.html { render action: "edit" }
+        format.json { render json: @member.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -52,7 +69,7 @@ class MembersController < ApplicationController
     if current_user.has_role? :super_admin
       @members = Member.all
     else
-      @members = Member.where("society_id = ?", current_user.society_id)      
+      @members = Member.where("society_id = ?", current_user.society_id)
     end
   end
   
@@ -78,11 +95,15 @@ class MembersController < ApplicationController
         member.society_id = current_user.society_id
 
         member.save!
+        params[:action] = "insert"
+        track_activity member
 
         @tid = member.id
       when "deleted"
         member=Member.find(@id)
         member.destroy
+        params[:action] = "delete"
+        track_activity member
 
         @tid = @id
       when "updated"
@@ -94,7 +115,9 @@ class MembersController < ApplicationController
         member.society_id = current_user.society_id
 
         member.save!
-
+        params[:action] = "update"
+        track_activity member
+        
         @tid = @id
     end 
   end

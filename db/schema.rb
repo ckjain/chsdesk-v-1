@@ -11,7 +11,23 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120626032812) do
+ActiveRecord::Schema.define(:version => 20130411143411) do
+
+  create_table "activities", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "action"
+    t.integer  "trackable_id"
+    t.string   "trackable_type"
+    t.string   "ip"
+    t.string   "browser"
+    t.integer  "society_id"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+  end
+
+  add_index "activities", ["society_id"], :name => "index_activities_on_society_id"
+  add_index "activities", ["trackable_id"], :name => "index_activities_on_trackable_id"
+  add_index "activities", ["user_id"], :name => "index_activities_on_user_id"
 
   create_table "agendas", :force => true do |t|
     t.text     "meeting_agendas"
@@ -89,15 +105,25 @@ ActiveRecord::Schema.define(:version => 20120626032812) do
     t.datetime "updated_at",  :null => false
   end
 
-  create_table "meeting_members", :force => true do |t|
+  create_table "meeting_attended_members", :force => true do |t|
     t.integer  "meeting_id"
     t.integer  "member_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
 
-  add_index "meeting_members", ["meeting_id"], :name => "index_meeting_members_on_meeting_id"
-  add_index "meeting_members", ["member_id"], :name => "index_meeting_members_on_member_id"
+  add_index "meeting_attended_members", ["meeting_id"], :name => "index_meeting_attended_members_on_meeting_id"
+  add_index "meeting_attended_members", ["member_id"], :name => "index_meeting_attended_members_on_member_id"
+
+  create_table "meeting_invited_members", :force => true do |t|
+    t.integer  "meeting_id"
+    t.integer  "member_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "meeting_invited_members", ["meeting_id"], :name => "index_meeting_invited_members_on_meeting_id"
+  add_index "meeting_invited_members", ["member_id"], :name => "index_meeting_invited_members_on_member_id"
 
   create_table "meeting_types", :force => true do |t|
     t.string   "name"
@@ -107,16 +133,13 @@ ActiveRecord::Schema.define(:version => 20120626032812) do
 
   create_table "meetings", :force => true do |t|
     t.integer  "meeting_type_id"
-    t.datetime "meeting_date"
-    t.string   "meeting_place",   :default => "Society Office"
-    t.string   "issued_by",       :default => "Hon. Secretary"
+    t.datetime "meeting_datetime"
+    t.string   "meeting_place",    :default => "Society Office"
+    t.string   "issued_by",        :default => "Hon. Secretary"
     t.datetime "issue_date"
     t.integer  "society_id"
-    t.datetime "ends_at"
-    t.boolean  "all_day"
-    t.text     "description"
-    t.datetime "created_at",                                    :null => false
-    t.datetime "updated_at",                                    :null => false
+    t.datetime "created_at",                                     :null => false
+    t.datetime "updated_at",                                     :null => false
   end
 
   create_table "members", :force => true do |t|

@@ -63,6 +63,7 @@ class StaffsController < ApplicationController
 
     respond_to do |format|
       if @staff.save
+      track_activity @staff
         format.html { redirect_to @staff, notice: 'Staff was successfully created.' }
         format.json { render json: @staff, status: :created, location: @staff }
       else
@@ -79,6 +80,7 @@ class StaffsController < ApplicationController
 
     respond_to do |format|
       if @staff.update_attributes(params[:staff])
+      track_activity @staff
         format.html { redirect_to @staff, notice: 'Staff was successfully updated.' }
         format.json { head :no_content }
       else
@@ -93,6 +95,7 @@ class StaffsController < ApplicationController
   def destroy
     @staff = Staff.find(params[:id])
     @staff.destroy
+      track_activity @staff
 
     respond_to do |format|
       format.html { redirect_to staffs_url }

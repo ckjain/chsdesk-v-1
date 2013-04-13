@@ -58,6 +58,7 @@ class BillHeadersController < ApplicationController
 
     respond_to do |format|
       if @bill_header.save
+      track_activity @bill_header
         format.html { redirect_to @bill_header, only_path: true, notice: 'Bill header was successfully created.' }
         format.json { render json: @bill_header, status: :created, location: @bill_header }
       else
@@ -74,6 +75,7 @@ class BillHeadersController < ApplicationController
 
     respond_to do |format|
       if @bill_header.update_attributes(params[:bill_header])
+      track_activity @bill_header
         format.html { redirect_to @bill_header, only_path: true, notice: 'Bill header was successfully updated.' }
         format.json { head :no_content }
       else
@@ -88,6 +90,7 @@ class BillHeadersController < ApplicationController
   def destroy
     @bill_header = BillHeader.find(params[:id])
     @bill_header.destroy
+    track_activity @bill_header
 
     respond_to do |format|
       format.html { redirect_to bill_headers_url, only_path: true }

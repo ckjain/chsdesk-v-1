@@ -58,10 +58,11 @@ class EventsController < ApplicationController
   def create
       @event = Event.new(params[:event])
       @event.society_id = current_user.society_id
-
     respond_to do |format|
       if @event.save
-        format.html { redirect_to @event, :notice => 'Event was successfully created.' }
+      track_activity @event
+      
+        format.html { redirect_to @event, :notice => "<strong>#{@event.title}</strong> was successfully created".html_safe }
         format.json { render :json => @event, :status => :created, :location => @event }
       else
         format.html { render :action => "new" }
@@ -77,7 +78,9 @@ class EventsController < ApplicationController
 
     respond_to do |format|
       if @event.update_attributes(params[:event])
-        format.html { redirect_to @event, :notice => 'Event was successfully updated.' }
+      track_activity @event
+
+        format.html { redirect_to @event, :notice => "<strong>#{@event.title}</strong> was successfully updated".html_safe }
         format.json { head :no_content }
       else
         format.html { render :action => "edit" }
@@ -91,6 +94,7 @@ class EventsController < ApplicationController
   def destroy
       @event = Event.find(params[:id])
       @event.destroy
+      track_activity @event
 
     respond_to do |format|
       format.html { redirect_to events_url }

@@ -68,14 +68,18 @@ class BillsController < ApplicationController
         bill.society_id       = current_user.society_id
         
         bill.save!
+        params[:action] = "insert"
+        track_activity bill
         
         @tid = bill.id
       when "deleted"
         bill=Bill.find(@id)
         bill.destroy
+        params[:action] = "delete"
+        track_activity bill
         
         @tid = @id
-      when "updated"
+      when "updaupdatedted"
         bill=Bill.find(@id)
         bill.bill_number = bill_number
         bill.from_date = from_date
@@ -99,6 +103,8 @@ class BillsController < ApplicationController
         bill.society_id       = current_user.society_id
  
         bill.save!
+        params[:action] = "update"
+        track_activity bill
         
         @tid = @id
     end 

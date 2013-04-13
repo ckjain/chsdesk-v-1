@@ -1,5 +1,7 @@
 RailsPrelaunchSignup::Application.routes.draw do
 
+  resources :activities
+
   resource :calendar, :only => [:show]
 
   resources :events

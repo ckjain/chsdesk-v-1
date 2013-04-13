@@ -13,6 +13,7 @@ class UsersController < ApplicationController
     else
       @user.roles << role
       @user.save
+      track_activity @user
       flash[:notice] = "Granted #{role.name} permissions"
     end
     if request.env["HTTP_REFERER"].present?
@@ -61,24 +62,28 @@ class UsersController < ApplicationController
   def activate
     @user = User.find(params[:id])
     @user.activate!
+      track_activity @user
     redirect_to users_path, only_path: true 
   end
   
   def suspend
     @user = User.find(params[:id])
     @user.suspend! 
+      track_activity @user
     redirect_to users_path, only_path: true 
   end
 
   def unsuspend
     @user = User.find(params[:id])
     @user.unsuspend! 
+      track_activity @user
     redirect_to users_path, only_path: true 
   end
 
   def purge
     @user = User.find(params[:id])
     @user.destroy
+      track_activity @user
     redirect_to users_url, only_path: true 
   end
   # DELETE /users/1
@@ -86,6 +91,7 @@ class UsersController < ApplicationController
   def destroy
     @user = User.find(params[:id])
     @user.delete!
+      track_activity @user
 
     redirect_to users_path, only_path: true 
   end
@@ -93,6 +99,7 @@ class UsersController < ApplicationController
   def reset_password
     @user = User.find(params[:id])
     @user.reset_password!
+      track_activity @user
     
     flash[:notice] = "A new password has been sent to the user by email."
     redirect_to user_path(@user), only_path: true 
@@ -138,6 +145,7 @@ class UsersController < ApplicationController
     end
       respond_to do |format|
         if @user.update_attributes(params[:user])
+      track_activity @user
           format.html { redirect_to(@user, only_path: true , :notice => 'User was successfully updated.') }
           format.json { respond_with_bip(@user) }
         else

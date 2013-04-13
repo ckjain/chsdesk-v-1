@@ -25,6 +25,8 @@ class BillSetupsController < ApplicationController
   end
   
   def dbaction
+#        @bill_setups = BillSetup.where("society_id = ?", current_user.society_id)
+
     #called for all db actions
     sub_head_name    = params["c1"]
     rate_sqft_month  = params["c2"]
@@ -49,11 +51,15 @@ class BillSetupsController < ApplicationController
         bill_setup.society_id = current_user.society_id
         
         bill_setup.save!
+        params[:action] = "insert"
+        track_activity bill_setup
         
         @tid = bill_setup.id
       when "deleted"
         bill_setup=BillSetup.find(@id)
         bill_setup.destroy
+        params[:action] = "delete"
+        track_activity bill_setup
         
         @tid = @id
       when "updated"
@@ -66,6 +72,8 @@ class BillSetupsController < ApplicationController
         bill_setup.discount_pct = discount_pct       
  
         bill_setup.save!
+        params[:action] = "update"
+        track_activity bill_setup
         
         @tid = @id
     end 

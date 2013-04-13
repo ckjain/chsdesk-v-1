@@ -53,11 +53,15 @@ class VendorsController < ApplicationController
         vendor.society_id = current_user.society_id
         
         vendor.save!
+        params[:action] = "insert"
+        track_activity vendor
         
         @tid = vendor.id
       when "deleted"
         vendor=Vendor.find(@id)
         vendor.destroy
+        params[:action] = "delete"
+        track_activity vendor
         
         @tid = @id
       when "updated"
@@ -79,6 +83,8 @@ class VendorsController < ApplicationController
         vendor.society_id = current_user.society_id
 
         vendor.save!
+        params[:action] = "update"
+        track_activity vendor
         
         @tid = @id
     end 

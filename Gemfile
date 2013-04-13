@@ -12,7 +12,6 @@ end
 gem 'jquery-rails'
 #---neccessary for invite- part of prelaunch-----
 gem "haml", ">= 3.1.6"
-gem "haml-rails", ">= 0.3.4", :group => :development
 gem "hominid"
 gem "devise", ">= 2.1.0"
 gem "devise_invitable", ">= 1.0.2"
@@ -21,7 +20,7 @@ gem "rolify", ">= 3.1.0"
 gem "google_visualr", ">= 2.1.2"
 gem "bootstrap-sass", ">= 2.0.3"
 #---end---neccessary for invite- part of prelaunch-----
-
+gem 'roo'#Importing CSV and Excel
 gem 'client_side_validations'
 gem 'thin'
 gem 'will_paginate' # Pagination
@@ -40,6 +39,14 @@ gem 'oink' #Rails plugin and log parser to help narrow down the source(s) of inc
 gem "aasm" # 
 gem 'best_in_place' # in line editing
 #------------- Test --------------
+group :development do
+  gem 'better_errors'
+  gem 'binding_of_caller'
+  gem 'meta_request'
+  gem "haml-rails", ">= 0.3.4"
+
+end
+
 gem "rspec-rails", ">= 2.10.1", :group => [:development, :test]
 gem "factory_girl_rails", ">= 3.3.0", :group => [:development, :test]
 gem "email_spec", ">= 1.2.1", :group => :test

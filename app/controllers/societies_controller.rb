@@ -62,11 +62,15 @@ class SocietiesController < ApplicationController
         society.govt_ward_number = govt_ward_number
 
         society.save!
+        params[:action] = "insert"
+        track_activity society
         
         @tid = society.id
       when "deleted"
         society=Society.find(@id)
         society.destroy
+        params[:action] = "delete"
+        track_activity society
         
         @tid = @id
       when "updated"
@@ -89,6 +93,8 @@ class SocietiesController < ApplicationController
         society.govt_ward_number = govt_ward_number
 
         society.save!
+        params[:action] = "update"
+        track_activity society
         
         @tid = @id
     end 

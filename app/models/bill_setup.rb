@@ -6,7 +6,7 @@ class BillSetup < ActiveRecord::Base
          
  scope :billsetup_search, lambda { |search| 
   search = "%#{search}%"
-  where('head_name LIKE ? ',  search)
+  where('head_name ilike ? ',  search)
  }
 
 end

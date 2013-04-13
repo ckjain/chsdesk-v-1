@@ -27,7 +27,7 @@ class Ability
     end
     
     if user.has_role? :society_meeting
-      can :manage, [Meeting, MeetingType, MeetingMember, ]
+      can :manage, [Meeting, MeetingType, MeetingInvitedMember, MeetingAttendedMember]
     end
     
     if user.has_role? :society_accountant

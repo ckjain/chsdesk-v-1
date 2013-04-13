@@ -39,11 +39,15 @@ class UnitTypesController < ApplicationController
         unit_type.society_id = current_user.society_id
 
         unit_type.save!
+        params[:action] = "insert"
+        track_activity unit_type
         
         @tid = unit_type.id
       when "deleted"
         unit_type=UnitType.find(@id)
         unit_type.destroy
+        params[:action] = "delete"
+        track_activity unit_type
         
         @tid = @id
       when "updated"
@@ -56,6 +60,8 @@ class UnitTypesController < ApplicationController
         unit_type.super_built_area = super_built_area
 
         unit_type.save!
+        params[:action] = "update"
+        track_activity unit_type
         
         @tid = @id
     end 

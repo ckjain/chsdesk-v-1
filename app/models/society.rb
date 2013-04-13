@@ -9,6 +9,15 @@ class Society < ActiveRecord::Base
    # Automatically create the virtual attribute 'password_confirmation'.
 #  has_many :invoices
   has_many :users
+  has_many :activities
+  has_many :events
+  has_many :meetings 
+  has_many :staffs
+  has_many :vendors
+  has_many :unit_types
+  has_many :bills 
+  has_many :bill_setups 
+  has_many :bill_headers
 #  belongs_to :user
 
   has_many :memberships

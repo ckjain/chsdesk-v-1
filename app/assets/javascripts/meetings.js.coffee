@@ -16,6 +16,12 @@ jQuery ->
   $('#meeting_meeting_name').autocomplete
     source: $('#meeting_meeting_name').data('autocomplete-source')
 
-  $('#meeting_author_tokens').tokenInput '/members.json'
+  $('#meeting_invited_tokens').tokenInput '/members.json'
     theme: 'facebook'
-    prePopulate: $('#meeting_author_tokens').data('load')
+    prePopulate: $('#meeting_invited_tokens').data('load')
+    preventDuplicates: true
+    
+  $('#meeting_attended_tokens').tokenInput '/members.json'
+    theme: 'facebook'
+    prePopulate: $('#meeting_attended_tokens').data('load')
+    preventDuplicates: true

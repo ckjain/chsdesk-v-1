@@ -100,11 +100,15 @@ class UnitsController < ApplicationController
         unit.society_id = current_user.society_id
 
         unit.save!
+        params[:action] = "insert"
+        track_activity unit
 
         @tid = unit.id
       when "deleted"
         unit=Unit.find(@id)
         unit.destroy
+        params[:action] = "delete"
+        track_activity unit
 
         @tid = @id
       when "updated"
@@ -126,6 +130,8 @@ class UnitsController < ApplicationController
         unit.bill_amount = bill_amount
 
         unit.save!
+        params[:action] = "update"
+        track_activity unit
 
         @tid = @id
     end 

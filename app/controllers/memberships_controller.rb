@@ -51,11 +51,15 @@ class MembershipsController < ApplicationController
         membership.society_id = current_user.society_id
         
         membership.save!
+        params[:action] = "insert"
+        track_activity membership
         
         @tid = membership.id
       when "deleted"
         membership=Membership.find(@id)
         membership.destroy
+        params[:action] = "delete"
+        track_activity membership
         
         @tid = @id
       when "updated"
@@ -74,6 +78,8 @@ class MembershipsController < ApplicationController
         membership.is_mc_member = is_mc_member
 
         membership.save!
+        params[:action] = "update"
+        track_activity membership
         
         @tid = @id
     end 

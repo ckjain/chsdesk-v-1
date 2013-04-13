@@ -6,7 +6,7 @@ class CommitteeMember < ActiveRecord::Base
 
 scope :mc_search, lambda { |search| 
   search = "%#{search}%"
-  where('designation LIKE ? OR duty LIKE ? OR mc_start_date LIKE ?', search, search, search)
+  where('designation ilike ? OR duty ilike ? OR mc_start_date ilike ?', search, search, search)
  }
 
 end
